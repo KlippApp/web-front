@@ -18,9 +18,8 @@ i18n
     fallbackLng: 'en',
     detection: {
       order: ['cookie', 'navigator', 'htmlTag'],
-      caches: ['cookie'],
+      caches: [],
       lookupCookie: 'i18next',
-      cookieMinutes: 1440 * 365, // 1 year
       cookieOptions: { path: '/', sameSite: 'strict' }
     },
     interpolation: {

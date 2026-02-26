@@ -21,7 +21,7 @@ export function useCookieConsent() {
   }
 
   const decline = () => {
-    setCookie(CONSENT_KEY, 'declined')
+    // Only update local state to hide popup, no persistent cookie
     setConsented('declined')
   }
 

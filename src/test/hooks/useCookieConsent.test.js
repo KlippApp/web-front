@@ -44,9 +44,9 @@ describe('useCookieConsent', () => {
     expect(result.current.consented).toBe('declined')
   })
 
-  it('decline() writes cookie_consent=declined cookie', () => {
+  it('decline() does NOT write cookie_consent cookie', () => {
     const { result } = renderHook(() => useCookieConsent())
     act(() => { result.current.decline() })
-    expect(document.cookie).toContain(`${COOKIE}=declined`)
+    expect(document.cookie).not.toContain(`${COOKIE}=declined`)
   })
 })

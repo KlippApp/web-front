@@ -1,8 +1,11 @@
+import { useTranslation, Trans } from 'react-i18next'
 import IPhoneMockup from './IPhoneMockup.jsx'
 import StoreButton from './StoreButton.jsx'
 import screen1 from '../assets/screenshots/screen1.png'
 
 export default function Hero() {
+  const { t } = useTranslation()
+
   return (
     <section
       id="hero"
@@ -44,7 +47,7 @@ export default function Hero() {
               }}
             >
               <span style={{ fontSize: '0.65rem' }}>●</span>
-              Now available on iOS & Android
+              {t('hero.badge')}
             </div>
 
             {/* Headline */}
@@ -57,18 +60,20 @@ export default function Hero() {
                 marginBottom: '1.5rem',
               }}
             >
-              Find Your{' '}
-              <span
-                style={{
-                  background: 'linear-gradient(135deg, #2B7FFF 0%, #8EC5FF 100%)',
-                  WebkitBackgroundClip: 'text',
-                  WebkitTextFillColor: 'transparent',
-                  backgroundClip: 'text',
+              <Trans
+                i18nKey="hero.headline"
+                components={{
+                  highlight: <span
+                    style={{
+                      background: 'linear-gradient(135deg, #2B7FFF 0%, #8EC5FF 100%)',
+                      WebkitBackgroundClip: 'text',
+                      WebkitTextFillColor: 'transparent',
+                      backgroundClip: 'text',
+                    }}
+                  />,
+                  br: <br />
                 }}
-              >
-                Perfect Home
-              </span>
-              <br />with AI
+              />
             </h1>
 
             {/* Subtitle */}
@@ -82,7 +87,7 @@ export default function Hero() {
               }}
               className="mx-auto md:mx-0"
             >
-              AI-powered property search, immersive virtual tours, and real-time market insights — all in one beautifully simple app.
+              {t('hero.subtitle')}
             </p>
 
             {/* Store buttons */}
@@ -94,9 +99,9 @@ export default function Hero() {
             {/* Stats row */}
             <div className="flex gap-8 justify-center md:justify-start">
               {[
-                { value: '4.9★', label: 'App Store Rating' },
-                { value: '50K+', label: 'Happy Users' },
-                { value: '#1', label: 'Real Estate App' },
+                { value: '4.9★', label: t('hero.stats.rating') },
+                { value: '50K+', label: t('hero.stats.users') },
+                { value: '#1', label: t('hero.stats.market') },
               ].map(stat => (
                 <div key={stat.label}>
                   <div style={{ fontSize: '1.4rem', fontWeight: 700, color: 'var(--color-text-primary)' }}>{stat.value}</div>
@@ -127,7 +132,7 @@ export default function Hero() {
               }}
             />
             <div style={{ position: 'relative', zIndex: 1 }}>
-              <IPhoneMockup src={screen1} alt="Klipp app screenshot" size="lg" />
+              <IPhoneMockup src={screen1} alt={t('hero.mockupAlt')} size="lg" />
             </div>
           </div>
 

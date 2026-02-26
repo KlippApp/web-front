@@ -1,43 +1,47 @@
-const testimonials = [
-  {
-    stars: 5,
-    quote: "Klipp made finding our first home feel effortless. The AI search understood exactly what we wanted — we found our place in two weeks instead of six months.",
-    name: 'Sarah K.',
-    role: 'First-time homebuyer, Austin TX',
-    initials: 'SK',
-    color: '#2B7FFF',
-  },
-  {
-    stars: 5,
-    quote: "As a real estate agent, I recommend Klipp to all my clients. The virtual tours alone save us dozens of hours per deal. The market data is genuinely best-in-class.",
-    name: 'Marcus T.',
-    role: 'Licensed Real Estate Agent, NYC',
-    initials: 'MT',
-    color: '#7C3AED',
-  },
-  {
-    stars: 5,
-    quote: "Relocated from Seattle to Miami for work. Used Klipp to scope out neighborhoods remotely — the neighborhood guides and virtual tours were absolutely invaluable.",
-    name: 'Priya M.',
-    role: 'Remote buyer, Miami FL',
-    initials: 'PM',
-    color: '#059669',
-  },
-]
+import { useTranslation } from 'react-i18next'
 
 export default function Testimonials() {
+  const { t } = useTranslation()
+
+  const testimonials = [
+    {
+      stars: 5,
+      quote: t('testimonials.list.0.quote'),
+      name: 'Sarah K.',
+      role: t('testimonials.list.0.role'),
+      initials: 'SK',
+      color: '#2B7FFF',
+    },
+    {
+      stars: 5,
+      quote: t('testimonials.list.1.quote'),
+      name: 'Marcus T.',
+      role: t('testimonials.list.1.role'),
+      initials: 'MT',
+      color: '#7C3AED',
+    },
+    {
+      stars: 5,
+      quote: t('testimonials.list.2.quote'),
+      name: 'Priya M.',
+      role: t('testimonials.list.2.role'),
+      initials: 'PM',
+      color: '#059669',
+    },
+  ]
+
   return (
     <section id="testimonials" className="max-w-6xl mx-auto px-6 py-24">
       {/* Section header */}
       <div className="text-center mb-16">
         <p style={{ color: '#2B7FFF', fontWeight: 600, fontSize: '0.85rem', letterSpacing: '0.1em', textTransform: 'uppercase', marginBottom: '0.75rem' }}>
-          Reviews
+          {t('nav.reviews')}
         </p>
         <h2 style={{ fontSize: 'clamp(1.8rem, 4vw, 2.8rem)', fontWeight: 800, letterSpacing: '-0.02em', marginBottom: '1rem' }}>
-          Loved by home seekers
+          {t('testimonials.title')}
         </h2>
         <p style={{ color: 'var(--color-text-secondary)', fontSize: '1.1rem', maxWidth: '400px', margin: '0 auto', lineHeight: 1.6 }}>
-          Join 50,000+ people who found their perfect home with Klipp.
+          {t('testimonials.subtitle')}
         </p>
       </div>
 

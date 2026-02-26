@@ -1,0 +1,107 @@
+{
+  "nav": {
+    "features": "Fonctionnalités",
+    "screenshots": "Captures",
+    "reviews": "Avis",
+    "clientPortal": "Espace Client"
+  },
+  "hero": {
+    "badge": "Maintenant disponible sur iOS & Android",
+    "headline": "Trouvez votre <highlight>maison idéale</highlight><br/>grâce à l'IA",
+    "subtitle": "Recherche immobilière propulsée par l'IA, visites virtuelles immersives et analyses du marché en temps réel — le tout dans une application magnifiquement simple.",
+    "stats": {
+      "rating": "Note App Store",
+      "users": "Utilisateurs Heureux",
+      "market": "App Immobilière N°1"
+    },
+    "mockupAlt": "Capture d'écran de l'application Klipp"
+  },
+  "features": {
+    "tag": "Fonctionnalités",
+    "title": "Tout ce dont vous avez besoin pour trouver votre chez-vous",
+    "subtitle": "Des outils puissants conçus pour rendre votre recherche de propriété plus rapide, plus intelligente et moins stressante.",
+    "list": {
+      "search": {
+        "title": "Recherche par IA",
+        "description": "Décrivez la maison de vos rêves en langage naturel. Notre IA comprend vos besoins et affiche instantanément les meilleures correspondances."
+      },
+      "tours": {
+        "title": "Visites Virtuelles",
+        "description": "Visitez n'importe quelle propriété depuis votre canapé. Des visites 3D immersives vous permettent d'explorer chaque pièce avec précision."
+      },
+      "insights": {
+        "title": "Analyses du Marché",
+        "description": "Tendances des prix en temps réel, scores de quartier et prévisions d'investissement vous aident à décider en toute confiance."
+      },
+      "alerts": {
+        "title": "Alertes Instantanées",
+        "description": "Ne manquez aucune annonce. Recevez des notifications push dès qu'un bien correspondant à vos critères arrive sur le marché."
+      },
+      "connect": {
+        "title": "Contact Agent",
+        "description": "Envoyez des messages aux agents locaux vérifiés directement dans l'application. Planifiez des visites et négociez sans quitter Klipp."
+      },
+      "guide": {
+        "title": "Guide de Quartier",
+        "description": "Écoles, transports, restaurants, scores de sécurité — tout ce dont vous avez besoin pour évaluer un emplacement en un coup d'œil."
+      }
+    }
+  },
+  "screenshots": {
+    "title": "Conçu pour votre poche",
+    "subtitle": "Une interface propre et moderne qui fait de la recherche immobilière un plaisir."
+  },
+  "testimonials": {
+    "title": "Apprécié par les futurs propriétaires",
+    "subtitle": "Rejoignez plus de 50 000 personnes qui ont trouvé leur maison idéale avec Klipp.",
+    "list": [
+      {
+        "quote": "Klipp a rendu la recherche de notre première maison sans effort. La recherche par IA a compris exactement ce que nous voulions — nous avons trouvé notre place en deux semaines au lieu de six mois.",
+        "role": "Premier achat, Austin TX"
+      },
+      {
+        "quote": "En tant qu'agent immobilier, je recommande Klipp à tous mes clients. Les visites virtuelles nous font gagner des dizaines d'heures par transaction. Les données du marché sont vraiment les meilleures du secteur.",
+        "role": "Agent immobilier agréé, NYC"
+      },
+      {
+        "quote": "Mutation de Seattle à Miami pour le travail. J'ai utilisé Klipp pour explorer les quartiers à distance — les guides de quartier et les visites virtuelles ont été absolument inestimables.",
+        "role": "Acheteur à distance, Miami FL"
+      }
+    ]
+  },
+  "download": {
+    "title": "Commencez votre recherche aujourd'hui",
+    "subtitle": "Téléchargez Klipp gratuitement et trouvez votre propriété idéale. Aucun abonnement requis.",
+    "appStore": "Télécharger sur l'App Store",
+    "googlePlay": "Disponible sur Google Play",
+    "disclaimer": "Gratuit à télécharger · Disponible sur iOS 16+ & Android 8+"
+  },
+  "footer": {
+    "description": "Trouvez votre maison idéale grâce à la recherche par IA et aux analyses du marché en temps réel.",
+    "sections": {
+      "Product": "Produit",
+      "Company": "Entreprise",
+      "Legal": "Légal"
+    },
+    "links": {
+      "Features": "Fonctionnalités",
+      "Screenshots": "Captures",
+      "Pricing": "Tarifs",
+      "Changelog": "Journal",
+      "About": "À propos",
+      "Blog": "Blog",
+      "Careers": "Carrières",
+      "Press": "Presse",
+      "Privacy Policy": "Confidentialité",
+      "Terms of Service": "Conditions d'utilisation",
+      "Cookie Policy": "Politique de cookies"
+    },
+    "copyright": "© {{year}} Klipp. Tous droits réservés."
+  },
+  "cookies": {
+    "title": "Cookies & préférences",
+    "description": "Nous utilisons des cookies pour mémoriser votre préférence de thème (clair/sombre). Aucune donnée personnelle n'est collectée.",
+    "accept": "Tout accepter",
+    "decline": "Refuser"
+  }
+}

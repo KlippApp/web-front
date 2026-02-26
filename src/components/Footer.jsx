@@ -1,28 +1,30 @@
+import { useTranslation } from 'react-i18next'
 import appleBadge from '../assets/app-store-badge.svg'
 import googleBadge from '../assets/google-play-badge.svg'
 
-const footerLinks = {
-  Product: [
-    { label: 'Features', href: '#features' },
-    { label: 'Screenshots', href: '#screenshots' },
-    { label: 'Pricing', href: '#' },
-    { label: 'Changelog', href: '#' },
-  ],
-  Company: [
-    { label: 'About', href: '#' },
-    { label: 'Blog', href: '#' },
-    { label: 'Careers', href: '#' },
-    { label: 'Press', href: '#' },
-  ],
-  Legal: [
-    { label: 'Privacy Policy', href: '#' },
-    { label: 'Terms of Service', href: '#' },
-    { label: 'Cookie Policy', href: '#' },
-  ],
-}
-
 export default function Footer() {
+  const { t } = useTranslation()
   const year = new Date().getFullYear()
+
+  const footerLinks = {
+    [t('footer.sections.Product')]: [
+      { label: t('footer.links.Features'), href: '#features' },
+      { label: t('footer.links.Screenshots'), href: '#screenshots' },
+      { label: t('footer.links.Pricing'), href: '#' },
+      { label: t('footer.links.Changelog'), href: '#' },
+    ],
+    [t('footer.sections.Company')]: [
+      { label: t('footer.links.About'), href: '#' },
+      { label: t('footer.links.Blog'), href: '#' },
+      { label: t('footer.links.Careers'), href: '#' },
+      { label: t('footer.links.Press'), href: '#' },
+    ],
+    [t('footer.sections.Legal')]: [
+      { label: t('footer.links.Privacy Policy'), href: '#' },
+      { label: t('footer.links.Terms of Service'), href: '#' },
+      { label: t('footer.links.Cookie Policy'), href: '#' },
+    ],
+  }
 
   return (
     <footer style={{ borderTop: '1px solid var(--color-divider)', marginTop: '2rem' }}>
@@ -50,7 +52,7 @@ export default function Footer() {
               <span style={{ fontWeight: 700, fontSize: '1.05rem', color: 'var(--color-logo-text)' }}>Klipp</span>
             </div>
             <p style={{ color: 'var(--color-text-secondary)', fontSize: '0.875rem', lineHeight: 1.6, maxWidth: '220px' }}>
-              Find your perfect home with AI-powered search and real-time market insights.
+              {t('footer.description')}
             </p>
           </div>
 
@@ -96,7 +98,7 @@ export default function Footer() {
           }}
         >
           <p style={{ color: 'var(--color-copyright)', fontSize: '0.8rem' }}>
-            © {year} Klipp. All rights reserved.
+            {t('footer.copyright', { year })}
           </p>
 
           <div className="flex items-center gap-3">
@@ -106,7 +108,7 @@ export default function Footer() {
               onMouseEnter={e => e.currentTarget.style.opacity = '1'}
               onMouseLeave={e => e.currentTarget.style.opacity = '0.6'}
             >
-              <img src={appleBadge} alt="Download on the App Store" style={{ display: 'block', height: 28, width: 'auto' }} />
+              <img src={appleBadge} alt={t('download.appStore')} style={{ display: 'block', height: 28, width: 'auto' }} />
             </a>
             <a
               href="#play-store"
@@ -114,7 +116,7 @@ export default function Footer() {
               onMouseEnter={e => e.currentTarget.style.opacity = '1'}
               onMouseLeave={e => e.currentTarget.style.opacity = '0.6'}
             >
-              <img src={googleBadge} alt="Get it on Google Play" style={{ display: 'block', height: 28, width: 'auto' }} />
+              <img src={googleBadge} alt={t('download.googlePlay')} style={{ display: 'block', height: 28, width: 'auto' }} />
             </a>
           </div>
         </div>

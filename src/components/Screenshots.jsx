@@ -1,22 +1,25 @@
+import { useTranslation } from 'react-i18next'
 import IPhoneMockup from './IPhoneMockup.jsx'
 import screen1 from '../assets/screenshots/screen1.png'
 import screen2 from '../assets/screenshots/screen2.png'
 import screen3 from '../assets/screenshots/screen3.png'
 
 export default function Screenshots() {
+  const { t } = useTranslation()
+
   return (
     <section id="screenshots" className="py-24 overflow-hidden" style={{ background: 'var(--color-section-stripe)' }}>
       <div className="max-w-6xl mx-auto px-6">
         {/* Section header */}
         <div className="text-center mb-16">
           <p style={{ color: '#2B7FFF', fontWeight: 600, fontSize: '0.85rem', letterSpacing: '0.1em', textTransform: 'uppercase', marginBottom: '0.75rem' }}>
-            App Preview
+            {t('nav.screenshots')}
           </p>
           <h2 style={{ fontSize: 'clamp(1.8rem, 4vw, 2.8rem)', fontWeight: 800, letterSpacing: '-0.02em', marginBottom: '1rem' }}>
-            Beautiful by design
+            {t('screenshots.title')}
           </h2>
           <p style={{ color: 'var(--color-text-secondary)', fontSize: '1.1rem', maxWidth: '480px', margin: '0 auto', lineHeight: 1.6 }}>
-            Every screen crafted for clarity. Powerful features delivered through a clean, intuitive interface.
+            {t('screenshots.subtitle')}
           </p>
         </div>
 

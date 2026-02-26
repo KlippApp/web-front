@@ -1,7 +1,9 @@
+import { useTranslation } from 'react-i18next'
 import appleBadge from '../assets/app-store-badge.svg'
 import googleBadge from '../assets/google-play-badge.svg'
 
 export default function StoreButton({ store = 'apple', href = '#' }) {
+  const { t } = useTranslation()
   const isApple = store === 'apple'
 
   return (
@@ -24,7 +26,7 @@ export default function StoreButton({ store = 'apple', href = '#' }) {
     >
       <img
         src={isApple ? appleBadge : googleBadge}
-        alt={isApple ? 'Download on the App Store' : 'Get it on Google Play'}
+        alt={isApple ? t('download.appStore') : t('download.googlePlay')}
         style={{ display: 'block', height: 40, width: 'auto' }}
       />
     </a>

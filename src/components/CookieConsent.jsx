@@ -1,8 +1,10 @@
 import { useState } from 'react'
+import { useTranslation } from 'react-i18next'
 
 const ANIMATION_DURATION = 350
 
 export default function CookieConsent({ onAccept, onDecline }) {
+  const { t } = useTranslation()
   const [leaving, setLeaving] = useState(false)
 
   function dismiss(callback) {
@@ -13,7 +15,7 @@ export default function CookieConsent({ onAccept, onDecline }) {
   return (
     <div
       role="dialog"
-      aria-label="Consentement aux cookies"
+      aria-label={t('cookies.title')}
       className={leaving ? 'cookie-consent-out' : 'cookie-consent'}
       style={{
         position: 'fixed',
@@ -58,10 +60,10 @@ export default function CookieConsent({ onAccept, onDecline }) {
         </div>
         <div>
           <p style={{ fontWeight: 600, fontSize: '0.9rem', marginBottom: '0.25rem', color: 'var(--color-text-primary)' }}>
-            Cookies &amp; préférences
+            {t('cookies.title')}
           </p>
           <p style={{ fontSize: '0.8rem', color: 'var(--color-text-secondary)', lineHeight: 1.5, margin: 0 }}>
-            Nous utilisons des cookies pour mémoriser votre préférence de thème (clair/sombre). Aucune donnée personnelle n'est collectée.
+            {t('cookies.description')}
           </p>
         </div>
       </div>
@@ -90,7 +92,7 @@ export default function CookieConsent({ onAccept, onDecline }) {
             e.currentTarget.style.color = 'var(--color-text-secondary)'
           }}
         >
-          Refuser
+          {t('cookies.decline')}
         </button>
         <button
           onClick={() => dismiss(onAccept)}
@@ -112,7 +114,7 @@ export default function CookieConsent({ onAccept, onDecline }) {
             e.currentTarget.style.background = '#2B7FFF'
           }}
         >
-          Accepter
+          {t('cookies.accept')}
         </button>
       </div>
     </div>

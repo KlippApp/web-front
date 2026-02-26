@@ -1,6 +1,9 @@
+import { useTranslation } from 'react-i18next'
 import StoreButton from './StoreButton.jsx'
 
 export default function DownloadCTA() {
+  const { t } = useTranslation()
+
   return (
     <section id="download" className="max-w-6xl mx-auto px-6 py-24">
       <div
@@ -51,7 +54,7 @@ export default function DownloadCTA() {
               marginBottom: '1rem',
             }}
           >
-            Start your search today
+            {t('download.title')}
           </h2>
 
           <p
@@ -64,7 +67,7 @@ export default function DownloadCTA() {
               margin: '0 auto 2rem',
             }}
           >
-            Download Klipp free and find your perfect property. No subscription required.
+            {t('download.subtitle')}
           </p>
 
           <div className="flex flex-wrap gap-3 justify-center mb-4">
@@ -73,7 +76,7 @@ export default function DownloadCTA() {
           </div>
 
           <p style={{ color: 'var(--color-text-dim)', fontSize: '0.78rem' }}>
-            Free to download · Available on iOS 16+ & Android 8+
+            {t('download.disclaimer')}
           </p>
         </div>
       </div>

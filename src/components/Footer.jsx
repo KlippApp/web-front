@@ -115,7 +115,7 @@ export default function Footer() {
               onMouseEnter={e => e.currentTarget.style.opacity = '1'}
               onMouseLeave={e => e.currentTarget.style.opacity = '0.6'}
             >
-              <img src={googleBadge} alt="Get it on Google Play" height="34" style={{ display: 'block' }} />
+              <img src={googleBadge} alt="Get it on Google Play" height="28" style={{ display: 'block' }} />
             </a>
           </div>
         </div>

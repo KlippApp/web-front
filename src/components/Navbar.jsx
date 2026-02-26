@@ -76,8 +76,9 @@ export default function Navbar() {
         </div>
 
         {/* Desktop CTA */}
-        <div className="hidden md:block">
+        <div className="hidden md:flex items-center gap-2">
           <StoreButton store="apple" href="#download" />
+          <StoreButton store="google" href="#download" />
         </div>
 
         {/* Mobile hamburger */}
@@ -136,8 +137,9 @@ export default function Navbar() {
                 {link.label}
               </a>
             ))}
-            <div className="mt-2">
+            <div className="mt-2 flex flex-wrap gap-2">
               <StoreButton store="apple" href="#download" />
+              <StoreButton store="google" href="#download" />
             </div>
           </div>
         </div>

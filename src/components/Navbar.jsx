@@ -1,16 +1,19 @@
 import { useState, useEffect } from 'react'
 import { User } from 'lucide-react'
+import { useTranslation } from 'react-i18next'
 import ThemeToggle from './ThemeToggle.jsx'
-
-const navLinks = [
-  { label: 'Features', href: '#features' },
-  { label: 'Screenshots', href: '#screenshots' },
-  { label: 'Reviews', href: '#testimonials' },
-]
+import LanguageToggle from './LanguageToggle.jsx'
 
 export default function Navbar({ theme, toggleTheme }) {
+  const { t } = useTranslation()
   const [scrolled, setScrolled] = useState(false)
   const [menuOpen, setMenuOpen] = useState(false)
+
+  const navLinks = [
+    { label: t('nav.features'), href: '#features' },
+    { label: t('nav.screenshots'), href: '#screenshots' },
+    { label: t('nav.reviews'), href: '#testimonials' },
+  ]
 
   useEffect(() => {
     const handleScroll = () => setScrolled(window.scrollY > 20)
@@ -78,6 +81,7 @@ export default function Navbar({ theme, toggleTheme }) {
 
         {/* Desktop CTA */}
         <div className="hidden md:flex items-center gap-3">
+          <LanguageToggle />
           <ThemeToggle theme={theme} toggleTheme={toggleTheme} />
           <a
             href="#client-portal"
@@ -105,7 +109,7 @@ export default function Navbar({ theme, toggleTheme }) {
             }}
           >
             <User size={18} />
-            Espace Client
+            {t('nav.clientPortal')}
           </a>
         </div>
 
@@ -150,7 +154,8 @@ export default function Navbar({ theme, toggleTheme }) {
           }}
         >
           <div className="flex flex-col gap-4">
-            <div className="flex justify-end">
+            <div className="flex justify-end gap-3">
+              <LanguageToggle />
               <ThemeToggle theme={theme} toggleTheme={toggleTheme} />
             </div>
             {navLinks.map(link => (
@@ -183,7 +188,7 @@ export default function Navbar({ theme, toggleTheme }) {
               }}
             >
               <User size={20} />
-              Espace Client
+              {t('nav.clientPortal')}
             </a>
           </div>
         </div>

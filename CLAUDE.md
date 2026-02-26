@@ -1,7 +1,7 @@
 # Klipp Landing Page
 
 Landing page for the **Klipp** mobile app (`com.husur.klipp`).
-Dark/glass aesthetic (Notion/Linear/Vercel style).
+Light/dark theme, glass aesthetic (Notion/Linear/Vercel style).
 
 ## Commands
 
@@ -9,13 +9,44 @@ Dark/glass aesthetic (Notion/Linear/Vercel style).
 npm run dev      # Start dev server at http://localhost:5173
 npm run build    # Production build → dist/
 npm run preview  # Preview production build locally
+npm run test     # Run tests (vitest)
+npm run deploy   # Build + push to gh-pages branch
 ```
 
 ## Tech Stack
 
 - **Vite 7** + **React 19** + **Tailwind CSS v4** (`@tailwindcss/vite` — no PostCSS, no tailwind.config.js)
+- **lucide-react** for icons (Sun, Moon, User)
 - **Inter** font via Google Fonts CDN
-- Zero external component libraries
+
+## Theme System
+
+Light is the default. Dark mode toggled via a Sun/Moon button in the navbar.
+
+- `src/hooks/useTheme.js` — reads `data-theme` on `<html>`, persists to `theme` cookie (only after cookie consent)
+- `src/hooks/useCookieConsent.js` — reads/writes `cookie_consent` cookie (`accepted` | `declined` | null)
+- All colors are CSS custom properties — `:root` = light, `[data-theme="dark"]` = dark overrides
+- Never hardcode colors in components — always use `var(--color-*)`
+
+### Key CSS variables (`src/index.css`)
+
+| Variable | Purpose |
+|----------|---------|
+| `--color-bg` | Page background |
+| `--color-text-primary` / `--color-text-secondary` | Body text |
+| `--color-card-bg` / `--color-card-border` | Glass cards |
+| `--color-nav-bg` | Scrolled navbar background |
+| `--color-btn-store-bg` / `--color-btn-store-text` | Store buttons |
+
+Full variable list in `src/index.css` `:root` block.
+
+## Cookie Consent
+
+`CookieConsent.jsx` renders as a fixed bottom-right panel with slide-in/out animations.
+- Appears when `cookie_consent` cookie is absent
+- Accept → writes `cookie_consent=accepted`, enables `theme` cookie persistence
+- Decline → writes `cookie_consent=declined`, theme resets on each reload
+- Animation classes: `.cookie-consent` (enter) / `.cookie-consent-out` (exit) in `src/index.css`
 
 ## Adding Screenshots
 
@@ -27,25 +58,15 @@ Replace the placeholder files in `src/assets/screenshots/`:
 | `screen2.png` | Screenshots left | 390×844px |
 | `screen3.png` | Screenshots right | 390×844px |
 
-PNGs will be auto-imported and displayed inside iPhone frame components.
-
-## Color Tokens (defined in `src/index.css` `@theme`)
-
-| Token | Value | Tailwind class |
-|-------|-------|----------------|
-| `--color-blue-primary` | `#2B7FFF` | `text-blue-primary`, `bg-blue-primary` |
-| `--color-blue-light` | `#8EC5FF` | `text-blue-light`, `bg-blue-light` |
-| `--color-gray-subtitle` | `#D1D5DC` | `text-gray-subtitle` |
-
-Use slash syntax for opacity: `bg-blue-primary/20` (not `bg-opacity-*`).
-
 ## Component Map
 
 | Component | Purpose |
 |-----------|---------|
 | `IPhoneMockup` | Pure CSS iPhone 15 Pro frame — props: `src`, `alt`, `size` (sm/md/lg) |
 | `StoreButton` | App Store / Google Play badge — props: `store` (apple/google), `href` |
-| `Navbar` | Sticky, scroll-aware, mobile hamburger |
+| `ThemeToggle` | Sun/Moon icon button — props: `theme`, `toggleTheme` |
+| `CookieConsent` | Cookie banner — props: `onAccept`, `onDecline` |
+| `Navbar` | Sticky, scroll-aware, mobile hamburger + theme toggle |
 | `Hero` | Full-height hero with headline + phone mockup |
 | `Features` | 6-card feature grid |
 | `Screenshots` | 3-phone showcase |
@@ -53,13 +74,41 @@ Use slash syntax for opacity: `bg-blue-primary/20` (not `bg-opacity-*`).
 | `DownloadCTA` | Centered CTA with glass card |
 | `Footer` | 4-column links + store badges |
 
+## Testing
+
+**Always write tests for every new piece of code added.** No exceptions.
+
+- Test files live in `src/test/` mirroring the source structure:
+  - `src/test/components/` for components
+  - `src/test/hooks/` for hooks
+- Framework: **Vitest** + **@testing-library/react**
+- Setup file: `src/test/setup.js` (imports `@testing-library/jest-dom`)
+- Use `renderHook` + `act` for hooks, `render` + `fireEvent` for components
+- Use `vi.useFakeTimers()` / `vi.runAllTimers()` when testing `setTimeout`-based behavior
+- Run tests: `rtk vitest run` — must pass before committing
+
+## Commits
+
+- **Always commit atomically**: one logical unit per commit
+- **Use partial staging** (`git add -p`) when a file contains changes belonging to different commits
+- Commit message format: `type: short description` (`feat`, `fix`, `style`, `refactor`, `test`, `ci`, `docs`)
+- Never add `Co-Authored-By` to commit messages
+
+## CI/CD
+
+| Workflow | Trigger | Steps |
+|----------|---------|-------|
+| `ci.yml` | push + PR → main | lint → test |
+| `deploy.yml` | CI passes on main | build → gh-pages push |
+
+`deploy.yml` uses `workflow_run` on CI success — deploy never runs if tests fail.
+
 ## Tailwind v4 Notes
 
 - No `tailwind.config.js` — v4 ignores it entirely
 - Use `@import "tailwindcss"` (not `@tailwind base/components/utilities`)
 - `bg-opacity-*` removed — use slash syntax: `bg-blue-primary/20`
-- Custom utilities defined in `@layer components` in `src/index.css`
-- `glass-card` and `btn-store` are custom component classes
+- Custom utilities in `@layer components` in `src/index.css`: `glass-card`, `btn-store`, `cookie-consent`, `cookie-consent-out`
 
 ## Store Links
 

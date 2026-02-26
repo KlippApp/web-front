@@ -18,7 +18,7 @@ export default function DownloadCTA() {
           style={{
             position: 'absolute',
             inset: 0,
-            background: 'linear-gradient(135deg, rgba(43,127,255,0.15) 0%, rgba(142,197,255,0.05) 100%)',
+            background: 'linear-gradient(135deg, var(--color-overlay-gradient) 0%, rgba(142,197,255,0.05) 100%)',
             pointerEvents: 'none',
           }}
         />
@@ -56,7 +56,7 @@ export default function DownloadCTA() {
 
           <p
             style={{
-              color: '#D1D5DC',
+              color: 'var(--color-text-secondary)',
               fontSize: '1.05rem',
               lineHeight: 1.6,
               marginBottom: '2rem',
@@ -72,7 +72,7 @@ export default function DownloadCTA() {
             <StoreButton store="google" href="#play-store" />
           </div>
 
-          <p style={{ color: 'rgba(255,255,255,0.4)', fontSize: '0.78rem' }}>
+          <p style={{ color: 'var(--color-text-dim)', fontSize: '0.78rem' }}>
             Free to download · Available on iOS 16+ & Android 8+
           </p>
         </div>

@@ -25,7 +25,7 @@ export default function Footer() {
   const year = new Date().getFullYear()
 
   return (
-    <footer style={{ borderTop: '1px solid rgba(255,255,255,0.08)', marginTop: '2rem' }}>
+    <footer style={{ borderTop: '1px solid var(--color-divider)', marginTop: '2rem' }}>
       <div className="max-w-6xl mx-auto px-6 py-16">
         <div className="grid grid-cols-2 md:grid-cols-4 gap-10 mb-12">
           {/* Brand */}
@@ -47,9 +47,9 @@ export default function Footer() {
                   <polyline points="9 22 9 12 15 12 15 22" stroke="#fff" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
                 </svg>
               </div>
-              <span style={{ fontWeight: 700, fontSize: '1.05rem' }}>Klipp</span>
+              <span style={{ fontWeight: 700, fontSize: '1.05rem', color: 'var(--color-logo-text)' }}>Klipp</span>
             </div>
-            <p style={{ color: '#D1D5DC', fontSize: '0.875rem', lineHeight: 1.6, maxWidth: '220px' }}>
+            <p style={{ color: 'var(--color-text-secondary)', fontSize: '0.875rem', lineHeight: 1.6, maxWidth: '220px' }}>
               Find your perfect home with AI-powered search and real-time market insights.
             </p>
           </div>
@@ -57,7 +57,7 @@ export default function Footer() {
           {/* Link columns */}
           {Object.entries(footerLinks).map(([section, links]) => (
             <div key={section}>
-              <h4 style={{ fontWeight: 600, fontSize: '0.875rem', marginBottom: '1rem', color: '#fff' }}>
+              <h4 style={{ fontWeight: 600, fontSize: '0.875rem', marginBottom: '1rem', color: 'var(--color-footer-heading)' }}>
                 {section}
               </h4>
               <ul style={{ listStyle: 'none', padding: 0, margin: 0, display: 'flex', flexDirection: 'column', gap: '0.625rem' }}>
@@ -66,13 +66,13 @@ export default function Footer() {
                     <a
                       href={link.href}
                       style={{
-                        color: '#D1D5DC',
+                        color: 'var(--color-footer-link)',
                         textDecoration: 'none',
                         fontSize: '0.875rem',
                         transition: 'color 0.2s',
                       }}
-                      onMouseEnter={e => e.target.style.color = '#fff'}
-                      onMouseLeave={e => e.target.style.color = '#D1D5DC'}
+                      onMouseEnter={e => e.target.style.color = 'var(--color-footer-link-hover)'}
+                      onMouseLeave={e => e.target.style.color = 'var(--color-footer-link)'}
                     >
                       {link.label}
                     </a>
@@ -86,7 +86,7 @@ export default function Footer() {
         {/* Bottom bar */}
         <div
           style={{
-            borderTop: '1px solid rgba(255,255,255,0.08)',
+            borderTop: '1px solid var(--color-divider)',
             paddingTop: '2rem',
             display: 'flex',
             flexWrap: 'wrap',
@@ -95,7 +95,7 @@ export default function Footer() {
             gap: '1rem',
           }}
         >
-          <p style={{ color: 'rgba(255,255,255,0.4)', fontSize: '0.8rem' }}>
+          <p style={{ color: 'var(--color-copyright)', fontSize: '0.8rem' }}>
             © {year} Klipp. All rights reserved.
           </p>
 

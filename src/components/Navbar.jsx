@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react'
 import { User } from 'lucide-react'
+import ThemeToggle from './ThemeToggle.jsx'
 
 const navLinks = [
   { label: 'Features', href: '#features' },
@@ -7,7 +8,7 @@ const navLinks = [
   { label: 'Reviews', href: '#testimonials' },
 ]
 
-export default function Navbar() {
+export default function Navbar({ theme, toggleTheme }) {
   const [scrolled, setScrolled] = useState(false)
   const [menuOpen, setMenuOpen] = useState(false)
 
@@ -26,10 +27,10 @@ export default function Navbar() {
         right: 0,
         zIndex: 50,
         transition: 'all 0.3s ease',
-        background: scrolled ? 'rgba(0,0,0,0.85)' : 'transparent',
+        background: scrolled ? 'var(--color-nav-bg)' : 'transparent',
         backdropFilter: scrolled ? 'blur(16px)' : 'none',
         WebkitBackdropFilter: scrolled ? 'blur(16px)' : 'none',
-        borderBottom: scrolled ? '1px solid rgba(255,255,255,0.08)' : '1px solid transparent',
+        borderBottom: scrolled ? '1px solid var(--color-divider)' : '1px solid transparent',
       }}
     >
       <nav className="max-w-6xl mx-auto px-6 flex items-center justify-between h-16">
@@ -51,7 +52,7 @@ export default function Navbar() {
               <polyline points="9 22 9 12 15 12 15 22" stroke="#fff" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
             </svg>
           </div>
-          <span style={{ fontWeight: 700, fontSize: '1.1rem', color: '#fff' }}>Klipp</span>
+          <span style={{ fontWeight: 700, fontSize: '1.1rem', color: 'var(--color-logo-text)' }}>Klipp</span>
         </a>
 
         {/* Desktop nav links */}
@@ -61,14 +62,14 @@ export default function Navbar() {
               key={link.href}
               href={link.href}
               style={{
-                color: 'rgba(255,255,255,0.7)',
+                color: 'var(--color-nav-link)',
                 textDecoration: 'none',
                 fontSize: '0.9rem',
                 fontWeight: 500,
                 transition: 'color 0.2s',
               }}
-              onMouseEnter={e => e.target.style.color = '#fff'}
-              onMouseLeave={e => e.target.style.color = 'rgba(255,255,255,0.7)'}
+              onMouseEnter={e => e.target.style.color = 'var(--color-nav-link-hover)'}
+              onMouseLeave={e => e.target.style.color = 'var(--color-nav-link)'}
             >
               {link.label}
             </a>
@@ -76,30 +77,31 @@ export default function Navbar() {
         </div>
 
         {/* Desktop CTA */}
-        <div className="hidden md:flex items-center">
+        <div className="hidden md:flex items-center gap-3">
+          <ThemeToggle theme={theme} toggleTheme={toggleTheme} />
           <a
             href="#client-portal"
             style={{
               display: 'inline-flex',
               alignItems: 'center',
               gap: '0.5rem',
-              color: '#fff',
+              color: 'var(--color-text-primary)',
               textDecoration: 'none',
               fontSize: '0.9rem',
               fontWeight: 600,
               padding: '0.5rem 1.25rem',
               borderRadius: '0.75rem',
-              border: '1px solid rgba(255,255,255,0.15)',
-              background: 'rgba(255,255,255,0.05)',
+              border: '1px solid var(--color-portal-border)',
+              background: 'var(--color-portal-bg)',
               transition: 'all 0.2s ease',
             }}
             onMouseEnter={e => {
-              e.currentTarget.style.background = 'rgba(255,255,255,0.1)'
-              e.currentTarget.style.borderColor = 'rgba(255,255,255,0.3)'
+              e.currentTarget.style.background = 'var(--color-portal-hover-bg)'
+              e.currentTarget.style.borderColor = 'var(--color-portal-hover-border)'
             }}
             onMouseLeave={e => {
-              e.currentTarget.style.background = 'rgba(255,255,255,0.05)'
-              e.currentTarget.style.borderColor = 'rgba(255,255,255,0.15)'
+              e.currentTarget.style.background = 'var(--color-portal-bg)'
+              e.currentTarget.style.borderColor = 'var(--color-portal-border)'
             }}
           >
             <User size={18} />
@@ -114,7 +116,7 @@ export default function Navbar() {
           style={{
             background: 'none',
             border: 'none',
-            color: '#fff',
+            color: 'var(--color-hamburger)',
             cursor: 'pointer',
             padding: '0.25rem',
           }}
@@ -142,19 +144,22 @@ export default function Navbar() {
         <div
           className="md:hidden"
           style={{
-            background: 'rgba(0,0,0,0.95)',
-            borderTop: '1px solid rgba(255,255,255,0.08)',
+            background: 'var(--color-mobile-menu-bg)',
+            borderTop: '1px solid var(--color-divider)',
             padding: '1rem 1.5rem 1.5rem',
           }}
         >
           <div className="flex flex-col gap-4">
+            <div className="flex justify-end">
+              <ThemeToggle theme={theme} toggleTheme={toggleTheme} />
+            </div>
             {navLinks.map(link => (
               <a
                 key={link.href}
                 href={link.href}
                 onClick={() => setMenuOpen(false)}
                 style={{
-                  color: 'rgba(255,255,255,0.8)',
+                  color: 'var(--color-nav-link)',
                   textDecoration: 'none',
                   fontSize: '1rem',
                   fontWeight: 500,
@@ -170,7 +175,7 @@ export default function Navbar() {
                 display: 'flex',
                 alignItems: 'center',
                 gap: '0.75rem',
-                color: '#8EC5FF',
+                color: 'var(--color-mobile-portal)',
                 textDecoration: 'none',
                 fontSize: '1rem',
                 fontWeight: 600,

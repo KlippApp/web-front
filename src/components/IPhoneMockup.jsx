@@ -18,8 +18,8 @@ export default function IPhoneMockup({ src, alt = 'App screenshot', size = 'md' 
         border: '3px solid rgba(255,255,255,0.25)',
         boxShadow: [
           'inset 0 0 0 1px rgba(255,255,255,0.08)',
-          '0 0 0 1px rgba(0,0,0,0.6)',
-          '0 32px 64px rgba(0,0,0,0.5)',
+          '0 0 0 1px var(--color-iphone-ring)',
+          '0 32px 64px var(--color-iphone-drop)',
           '0 0 80px rgba(43,127,255,0.12)',
         ].join(', '),
         flexShrink: 0,

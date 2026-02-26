@@ -36,7 +36,7 @@ export default function Testimonials() {
         <h2 style={{ fontSize: 'clamp(1.8rem, 4vw, 2.8rem)', fontWeight: 800, letterSpacing: '-0.02em', marginBottom: '1rem' }}>
           Loved by home seekers
         </h2>
-        <p style={{ color: '#D1D5DC', fontSize: '1.1rem', maxWidth: '400px', margin: '0 auto', lineHeight: 1.6 }}>
+        <p style={{ color: 'var(--color-text-secondary)', fontSize: '1.1rem', maxWidth: '400px', margin: '0 auto', lineHeight: 1.6 }}>
           Join 50,000+ people who found their perfect home with Klipp.
         </p>
       </div>
@@ -53,7 +53,7 @@ export default function Testimonials() {
             {/* Quote */}
             <blockquote
               style={{
-                color: 'rgba(255,255,255,0.85)',
+                color: 'var(--color-text-quote)',
                 fontSize: '0.95rem',
                 lineHeight: 1.7,
                 fontStyle: 'italic',
@@ -65,7 +65,7 @@ export default function Testimonials() {
             </blockquote>
 
             {/* Author */}
-            <div className="flex items-center gap-3 pt-2" style={{ borderTop: '1px solid rgba(255,255,255,0.08)' }}>
+            <div className="flex items-center gap-3 pt-2" style={{ borderTop: '1px solid var(--color-divider)' }}>
               <div
                 style={{
                   width: 40,
@@ -78,13 +78,14 @@ export default function Testimonials() {
                   fontWeight: 700,
                   fontSize: '0.8rem',
                   flexShrink: 0,
+                  color: 'var(--color-avatar-initials)',
                 }}
               >
                 {t.initials}
               </div>
               <div>
                 <div style={{ fontWeight: 600, fontSize: '0.9rem' }}>{t.name}</div>
-                <div style={{ color: '#D1D5DC', fontSize: '0.8rem' }}>{t.role}</div>
+                <div style={{ color: 'var(--color-text-secondary)', fontSize: '0.8rem' }}>{t.role}</div>
               </div>
             </div>
           </div>

@@ -20,7 +20,7 @@ export default function Hero() {
         style={{
           position: 'absolute',
           inset: 0,
-          background: 'radial-gradient(ellipse 80% 60% at 60% 40%, rgba(43,127,255,0.12) 0%, transparent 70%)',
+          background: 'radial-gradient(ellipse 80% 60% at 60% 40%, var(--color-hero-radial) 0%, transparent 70%)',
           pointerEvents: 'none',
         }}
       />
@@ -33,13 +33,13 @@ export default function Hero() {
             {/* Badge */}
             <div className="inline-flex items-center gap-2 mb-6"
               style={{
-                background: 'rgba(43,127,255,0.15)',
-                border: '1px solid rgba(43,127,255,0.3)',
+                background: 'var(--color-badge-bg)',
+                border: '1px solid var(--color-badge-border)',
                 borderRadius: '2rem',
                 padding: '0.375rem 1rem',
                 fontSize: '0.8rem',
                 fontWeight: 600,
-                color: '#8EC5FF',
+                color: 'var(--color-badge-text)',
                 letterSpacing: '0.05em',
               }}
             >
@@ -75,7 +75,7 @@ export default function Hero() {
             <p
               style={{
                 fontSize: '1.125rem',
-                color: '#D1D5DC',
+                color: 'var(--color-text-secondary)',
                 lineHeight: 1.7,
                 marginBottom: '2.5rem',
                 maxWidth: '480px',
@@ -99,8 +99,8 @@ export default function Hero() {
                 { value: '#1', label: 'Real Estate App' },
               ].map(stat => (
                 <div key={stat.label}>
-                  <div style={{ fontSize: '1.4rem', fontWeight: 700, color: '#fff' }}>{stat.value}</div>
-                  <div style={{ fontSize: '0.75rem', color: '#D1D5DC', marginTop: '0.25rem' }}>{stat.label}</div>
+                  <div style={{ fontSize: '1.4rem', fontWeight: 700, color: 'var(--color-text-primary)' }}>{stat.value}</div>
+                  <div style={{ fontSize: '0.75rem', color: 'var(--color-text-secondary)', marginTop: '0.25rem' }}>{stat.label}</div>
                 </div>
               ))}
             </div>
@@ -120,7 +120,7 @@ export default function Hero() {
                 transform: 'translateX(-50%)',
                 width: '320px',
                 height: '200px',
-                background: 'radial-gradient(ellipse, rgba(43,127,255,0.35) 0%, transparent 70%)',
+                background: 'radial-gradient(ellipse, var(--color-hero-glow) 0%, transparent 70%)',
                 filter: 'blur(24px)',
                 pointerEvents: 'none',
                 zIndex: 0,

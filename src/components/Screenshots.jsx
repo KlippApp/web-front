@@ -5,7 +5,7 @@ import screen3 from '../assets/screenshots/screen3.png'
 
 export default function Screenshots() {
   return (
-    <section id="screenshots" className="py-24 overflow-hidden" style={{ background: 'rgba(255,255,255,0.02)' }}>
+    <section id="screenshots" className="py-24 overflow-hidden" style={{ background: 'var(--color-section-stripe)' }}>
       <div className="max-w-6xl mx-auto px-6">
         {/* Section header */}
         <div className="text-center mb-16">
@@ -15,7 +15,7 @@ export default function Screenshots() {
           <h2 style={{ fontSize: 'clamp(1.8rem, 4vw, 2.8rem)', fontWeight: 800, letterSpacing: '-0.02em', marginBottom: '1rem' }}>
             Beautiful by design
           </h2>
-          <p style={{ color: '#D1D5DC', fontSize: '1.1rem', maxWidth: '480px', margin: '0 auto', lineHeight: 1.6 }}>
+          <p style={{ color: 'var(--color-text-secondary)', fontSize: '1.1rem', maxWidth: '480px', margin: '0 auto', lineHeight: 1.6 }}>
             Every screen crafted for clarity. Powerful features delivered through a clean, intuitive interface.
           </p>
         </div>
@@ -45,7 +45,7 @@ export default function Screenshots() {
                 transform: 'translateX(-50%)',
                 width: '260px',
                 height: '120px',
-                background: 'radial-gradient(ellipse, rgba(43,127,255,0.4) 0%, transparent 70%)',
+                background: 'radial-gradient(ellipse, var(--color-screenshots-glow) 0%, transparent 70%)',
                 filter: 'blur(20px)',
                 pointerEvents: 'none',
               }}

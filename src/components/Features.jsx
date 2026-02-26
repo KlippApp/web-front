@@ -78,7 +78,7 @@ export default function Features() {
         <h2 style={{ fontSize: 'clamp(1.8rem, 4vw, 2.8rem)', fontWeight: 800, letterSpacing: '-0.02em', marginBottom: '1rem' }}>
           Everything you need to find home
         </h2>
-        <p style={{ color: '#D1D5DC', fontSize: '1.1rem', maxWidth: '480px', margin: '0 auto', lineHeight: 1.6 }}>
+        <p style={{ color: 'var(--color-text-secondary)', fontSize: '1.1rem', maxWidth: '480px', margin: '0 auto', lineHeight: 1.6 }}>
           Powerful tools designed to make your property search faster, smarter, and less stressful.
         </p>
       </div>
@@ -93,20 +93,20 @@ export default function Features() {
               transition: 'border-color 0.2s ease',
               cursor: 'default',
             }}
-            onMouseEnter={e => e.currentTarget.style.borderColor = 'rgba(43,127,255,0.3)'}
-            onMouseLeave={e => e.currentTarget.style.borderColor = 'rgba(255,255,255,0.15)'}
+            onMouseEnter={e => e.currentTarget.style.borderColor = 'var(--color-card-hover-border)'}
+            onMouseLeave={e => e.currentTarget.style.borderColor = 'var(--color-card-border)'}
           >
             <div
               style={{
                 width: 48,
                 height: 48,
                 borderRadius: '0.75rem',
-                background: 'rgba(43,127,255,0.15)',
+                background: 'var(--color-icon-bg)',
                 display: 'flex',
                 alignItems: 'center',
                 justifyContent: 'center',
                 marginBottom: '1rem',
-                color: '#8EC5FF',
+                color: 'var(--color-icon-color)',
               }}
             >
               {feature.icon}
@@ -114,7 +114,7 @@ export default function Features() {
             <h3 style={{ fontWeight: 700, fontSize: '1.05rem', marginBottom: '0.5rem' }}>
               {feature.title}
             </h3>
-            <p style={{ color: '#D1D5DC', fontSize: '0.9rem', lineHeight: 1.6 }}>
+            <p style={{ color: 'var(--color-text-secondary)', fontSize: '0.9rem', lineHeight: 1.6 }}>
               {feature.description}
             </p>
           </article>

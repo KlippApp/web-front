@@ -3,28 +3,149 @@
 @theme {
   --color-blue-primary: #2B7FFF;
   --color-blue-light: #8EC5FF;
-  --color-gray-subtitle: #D1D5DC;
+  --color-gray-subtitle: #64748b;
   --font-family-sans: 'Inter', system-ui, -apple-system, sans-serif;
+}
+
+/* ─── Light theme (default) ─────────────────────────────────────── */
+:root {
+  --color-bg: #f8f9fb;
+  --color-text-primary: #0f172a;
+  --color-text-secondary: #64748b;
+  --color-text-dim: rgba(15,23,42,0.4);
+  --color-text-quote: #1e293b;
+  --color-card-bg: rgba(0,0,0,0.04);
+  --color-card-border: rgba(0,0,0,0.08);
+  --color-card-hover-border: rgba(43,127,255,0.4);
+  --color-card-shadow: 0 1px 3px rgba(0,0,0,0.06), 0 4px 16px rgba(0,0,0,0.04);
+  --color-divider: rgba(0,0,0,0.08);
+  --color-nav-bg: rgba(255,255,255,0.85);
+  --color-nav-link: #64748b;
+  --color-nav-link-hover: #0f172a;
+  --color-portal-bg: rgba(0,0,0,0.05);
+  --color-portal-border: rgba(0,0,0,0.12);
+  --color-portal-hover-bg: rgba(0,0,0,0.08);
+  --color-portal-hover-border: rgba(0,0,0,0.2);
+  --color-mobile-menu-bg: #ffffff;
+  --color-badge-bg: rgba(43,127,255,0.10);
+  --color-badge-border: rgba(43,127,255,0.25);
+  --color-badge-text: #2B7FFF;
+  --color-icon-bg: rgba(43,127,255,0.10);
+  --color-icon-color: #2B7FFF;
+  --color-section-stripe: #f1f3f7;
+  --color-hero-radial: rgba(43,127,255,0.07);
+  --color-hero-glow: rgba(43,127,255,0.15);
+  --color-screenshots-glow: rgba(43,127,255,0.18);
+  --color-iphone-ring: rgba(0,0,0,0.15);
+  --color-iphone-drop: rgba(0,0,0,0.25);
+  --color-mobile-portal: #2B7FFF;
+  --color-btn-store-bg: #0f172a;
+  --color-btn-store-text: #fff;
+  --color-btn-store-hover-bg: rgba(15,23,42,0.85);
+  --color-hamburger: #0f172a;
+  --color-logo-text: #0f172a;
+  --color-footer-heading: #0f172a;
+  --color-footer-link: #64748b;
+  --color-footer-link-hover: #0f172a;
+  --color-copyright: rgba(15,23,42,0.4);
+  --color-avatar-initials: #fff;
+  --color-overlay-gradient: rgba(43,127,255,0.08);
+}
+
+/* ─── Dark theme overrides ──────────────────────────────────────── */
+[data-theme="dark"] {
+  --color-bg: #000;
+  --color-text-primary: #fff;
+  --color-text-secondary: #D1D5DC;
+  --color-text-dim: rgba(255,255,255,0.4);
+  --color-text-quote: rgba(255,255,255,0.85);
+  --color-card-bg: rgba(255,255,255,0.08);
+  --color-card-border: rgba(255,255,255,0.15);
+  --color-card-hover-border: rgba(43,127,255,0.3);
+  --color-card-shadow: none;
+  --color-divider: rgba(255,255,255,0.08);
+  --color-nav-bg: rgba(0,0,0,0.85);
+  --color-nav-link: rgba(255,255,255,0.7);
+  --color-nav-link-hover: #fff;
+  --color-portal-bg: rgba(255,255,255,0.05);
+  --color-portal-border: rgba(255,255,255,0.15);
+  --color-portal-hover-bg: rgba(255,255,255,0.1);
+  --color-portal-hover-border: rgba(255,255,255,0.3);
+  --color-mobile-menu-bg: rgba(0,0,0,0.95);
+  --color-badge-bg: rgba(43,127,255,0.15);
+  --color-badge-border: rgba(43,127,255,0.3);
+  --color-badge-text: #8EC5FF;
+  --color-icon-bg: rgba(43,127,255,0.15);
+  --color-icon-color: #8EC5FF;
+  --color-section-stripe: rgba(255,255,255,0.02);
+  --color-hero-radial: rgba(43,127,255,0.12);
+  --color-hero-glow: rgba(43,127,255,0.35);
+  --color-screenshots-glow: rgba(43,127,255,0.4);
+  --color-iphone-ring: rgba(0,0,0,0.6);
+  --color-iphone-drop: rgba(0,0,0,0.5);
+  --color-mobile-portal: #8EC5FF;
+  --color-btn-store-bg: #fff;
+  --color-btn-store-text: #000;
+  --color-btn-store-hover-bg: rgba(255,255,255,0.9);
+  --color-hamburger: #fff;
+  --color-logo-text: #fff;
+  --color-footer-heading: #fff;
+  --color-footer-link: #D1D5DC;
+  --color-footer-link-hover: #fff;
+  --color-copyright: rgba(255,255,255,0.4);
+  --color-avatar-initials: #fff;
+  --color-overlay-gradient: rgba(43,127,255,0.15);
 }
 
 @layer base {
   html {
     scroll-behavior: smooth;
-    background: #000;
+    background: var(--color-bg);
   }
   body {
-    background: #000;
-    color: #fff;
+    background: var(--color-bg);
+    color: var(--color-text-primary);
     font-family: var(--font-family-sans);
     -webkit-font-smoothing: antialiased;
     overflow-x: hidden;
   }
 }
 
+@keyframes cookie-slide-in {
+  from {
+    transform: translateX(calc(100% + 2rem));
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+@keyframes cookie-slide-out {
+  from {
+    transform: translateX(0);
+    opacity: 1;
+  }
+  to {
+    transform: translateX(calc(100% + 2rem));
+    opacity: 0;
+  }
+}
+
 @layer components {
+  .cookie-consent {
+    animation: cookie-slide-in 0.45s cubic-bezier(0.34, 1.2, 0.64, 1) both;
+  }
+
+  .cookie-consent-out {
+    animation: cookie-slide-out 0.35s cubic-bezier(0.4, 0, 0.6, 1) both;
+  }
+
   .glass-card {
-    background: rgba(255, 255, 255, 0.08);
-    border: 1px solid rgba(255, 255, 255, 0.15);
+    background: var(--color-card-bg);
+    border: 1px solid var(--color-card-border);
+    box-shadow: var(--color-card-shadow);
     backdrop-filter: blur(12px);
     -webkit-backdrop-filter: blur(12px);
     border-radius: 1rem;
@@ -34,8 +155,8 @@
     display: inline-flex;
     align-items: center;
     gap: 0.75rem;
-    background: #fff;
-    color: #000;
+    background: var(--color-btn-store-bg);
+    color: var(--color-btn-store-text);
     border-radius: 0.75rem;
     padding: 0.625rem 1.25rem;
     font-weight: 600;
@@ -45,7 +166,7 @@
   }
 
   .btn-store:hover {
-    background: rgba(255, 255, 255, 0.9);
+    background: var(--color-btn-store-hover-bg);
     transform: translateY(-1px);
     box-shadow: 0 8px 24px rgba(43, 127, 255, 0.25);
   }

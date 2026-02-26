@@ -10,13 +10,18 @@ function setCookie(name, value) {
   document.cookie = `${name}=${value}; expires=${expires}; path=/`
 }
 
-export function useTheme() {
-  const [theme, setTheme] = useState(() => getCookie('theme') || 'light')
+export function useTheme(consented) {
+  const [theme, setTheme] = useState(() => {
+    if (consented === 'accepted') return getCookie('theme') || 'light'
+    return 'light'
+  })
 
   useEffect(() => {
     document.documentElement.setAttribute('data-theme', theme)
-    setCookie('theme', theme)
-  }, [theme])
+    if (consented === 'accepted') {
+      setCookie('theme', theme)
+    }
+  }, [theme, consented])
 
   const toggleTheme = () => setTheme(t => t === 'light' ? 'dark' : 'light')
 

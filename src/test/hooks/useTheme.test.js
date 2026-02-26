@@ -7,53 +7,74 @@ beforeEach(() => {
   document.documentElement.removeAttribute('data-theme')
 })
 
-describe('useTheme', () => {
-  it('defaults to light when no cookie is set', () => {
-    const { result } = renderHook(() => useTheme())
+describe('useTheme — sans consentement', () => {
+  it('defaults to light', () => {
+    const { result } = renderHook(() => useTheme(null))
     expect(result.current.theme).toBe('light')
   })
 
-  it('reads theme from existing cookie', () => {
+  it('ignores existing theme cookie when not consented', () => {
     document.cookie = 'theme=dark; path=/'
-    const { result } = renderHook(() => useTheme())
-    expect(result.current.theme).toBe('dark')
+    const { result } = renderHook(() => useTheme(null))
+    expect(result.current.theme).toBe('light')
   })
 
-  it('sets data-theme attribute on documentElement after mount', () => {
-    renderHook(() => useTheme())
+  it('sets data-theme attribute even without consent', () => {
+    renderHook(() => useTheme(null))
     expect(document.documentElement.getAttribute('data-theme')).toBe('light')
   })
 
-  it('sets data-theme="dark" when cookie is dark', () => {
-    document.cookie = 'theme=dark; path=/'
-    renderHook(() => useTheme())
-    expect(document.documentElement.getAttribute('data-theme')).toBe('dark')
-  })
-
-  it('toggleTheme switches from light to dark', () => {
-    const { result } = renderHook(() => useTheme())
-    act(() => {
-      result.current.toggleTheme()
-    })
+  it('toggleTheme changes the theme in memory', () => {
+    const { result } = renderHook(() => useTheme(null))
+    act(() => { result.current.toggleTheme() })
     expect(result.current.theme).toBe('dark')
     expect(document.documentElement.getAttribute('data-theme')).toBe('dark')
   })
 
-  it('toggleTheme switches from dark back to light', () => {
+  it('does not write cookie when not consented', () => {
+    const { result } = renderHook(() => useTheme(null))
+    act(() => { result.current.toggleTheme() })
+    expect(document.cookie).not.toContain('theme=')
+  })
+})
+
+describe('useTheme — avec consentement accepté', () => {
+  it('reads theme from cookie when consented', () => {
     document.cookie = 'theme=dark; path=/'
-    const { result } = renderHook(() => useTheme())
-    act(() => {
-      result.current.toggleTheme()
-    })
+    const { result } = renderHook(() => useTheme('accepted'))
+    expect(result.current.theme).toBe('dark')
+  })
+
+  it('defaults to light when consented but no cookie', () => {
+    const { result } = renderHook(() => useTheme('accepted'))
     expect(result.current.theme).toBe('light')
+  })
+
+  it('sets data-theme attribute after mount', () => {
+    renderHook(() => useTheme('accepted'))
     expect(document.documentElement.getAttribute('data-theme')).toBe('light')
   })
 
-  it('writes cookie when toggleTheme is called', () => {
-    const { result } = renderHook(() => useTheme())
-    act(() => {
-      result.current.toggleTheme()
-    })
+  it('toggleTheme switches light to dark and persists cookie', () => {
+    const { result } = renderHook(() => useTheme('accepted'))
+    act(() => { result.current.toggleTheme() })
+    expect(result.current.theme).toBe('dark')
+    expect(document.cookie).toContain('theme=dark')
+  })
+
+  it('toggleTheme switches dark to light', () => {
+    document.cookie = 'theme=dark; path=/'
+    const { result } = renderHook(() => useTheme('accepted'))
+    act(() => { result.current.toggleTheme() })
+    expect(result.current.theme).toBe('light')
+  })
+
+  it('persists cookie when consent is granted after toggling', () => {
+    const { result, rerender } = renderHook(({ c }) => useTheme(c), { initialProps: { c: null } })
+    act(() => { result.current.toggleTheme() })  // theme = dark, no cookie yet
+    expect(document.cookie).not.toContain('theme=')
+
+    rerender({ c: 'accepted' })  // consent granted → effect re-runs
     expect(document.cookie).toContain('theme=dark')
   })
 })

@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react'
-import StoreButton from './StoreButton.jsx'
+import { User } from 'lucide-react'
 
 const navLinks = [
   { label: 'Features', href: '#features' },
@@ -76,9 +76,35 @@ export default function Navbar() {
         </div>
 
         {/* Desktop CTA */}
-        <div className="hidden md:flex items-center gap-2">
-          <StoreButton store="apple" href="#download" />
-          <StoreButton store="google" href="#download" />
+        <div className="hidden md:flex items-center">
+          <a
+            href="#client-portal"
+            style={{
+              display: 'inline-flex',
+              alignItems: 'center',
+              gap: '0.5rem',
+              color: '#fff',
+              textDecoration: 'none',
+              fontSize: '0.9rem',
+              fontWeight: 600,
+              padding: '0.5rem 1.25rem',
+              borderRadius: '0.75rem',
+              border: '1px solid rgba(255,255,255,0.15)',
+              background: 'rgba(255,255,255,0.05)',
+              transition: 'all 0.2s ease',
+            }}
+            onMouseEnter={e => {
+              e.currentTarget.style.background = 'rgba(255,255,255,0.1)'
+              e.currentTarget.style.borderColor = 'rgba(255,255,255,0.3)'
+            }}
+            onMouseLeave={e => {
+              e.currentTarget.style.background = 'rgba(255,255,255,0.05)'
+              e.currentTarget.style.borderColor = 'rgba(255,255,255,0.15)'
+            }}
+          >
+            <User size={18} />
+            Espace Client
+          </a>
         </div>
 
         {/* Mobile hamburger */}
@@ -137,10 +163,23 @@ export default function Navbar() {
                 {link.label}
               </a>
             ))}
-            <div className="mt-2 flex flex-wrap gap-2">
-              <StoreButton store="apple" href="#download" />
-              <StoreButton store="google" href="#download" />
-            </div>
+            <a
+              href="#client-portal"
+              onClick={() => setMenuOpen(false)}
+              style={{
+                display: 'flex',
+                alignItems: 'center',
+                gap: '0.75rem',
+                color: '#8EC5FF',
+                textDecoration: 'none',
+                fontSize: '1rem',
+                fontWeight: 600,
+                padding: '0.5rem 0',
+              }}
+            >
+              <User size={20} />
+              Espace Client
+            </a>
           </div>
         </div>
       )}

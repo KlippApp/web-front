@@ -9,6 +9,7 @@ describe('Navbar', () => {
     expect(screen.getByText(/Features/i)).toBeInTheDocument()
     expect(screen.getByText(/Screenshots/i)).toBeInTheDocument()
     expect(screen.getByText(/Reviews/i)).toBeInTheDocument()
+    expect(screen.getAllByText(/Espace Client/i).length).toBeGreaterThan(0)
   })
 
   it('toggles mobile menu when hamburger is clicked', () => {

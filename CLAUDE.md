@@ -92,7 +92,7 @@ Replace the placeholder files in `src/assets/screenshots/`:
 - **Always commit atomically**: one logical unit per commit
 - **Use partial staging** (`git add -p`) when a file contains changes belonging to different commits
 - Commit message format: `type: short description` (`feat`, `fix`, `style`, `refactor`, `test`, `ci`, `docs`)
-- Always append `Co-Authored-By: Claude Sonnet 4.6 <noreply@anthropic.com>`
+- Never add `Co-Authored-By` to commit messages
 
 ## CI/CD
 

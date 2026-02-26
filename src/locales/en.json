@@ -1,0 +1,107 @@
+{
+  "nav": {
+    "features": "Features",
+    "screenshots": "Screenshots",
+    "reviews": "Reviews",
+    "clientPortal": "Client Portal"
+  },
+  "hero": {
+    "badge": "Now available on iOS & Android",
+    "headline": "Find Your <highlight>Perfect Home</highlight><br/>with AI",
+    "subtitle": "AI-powered property search, immersive virtual tours, and real-time market insights — all in one beautifully simple app.",
+    "stats": {
+      "rating": "App Store Rating",
+      "users": "Happy Users",
+      "market": "Real Estate App"
+    },
+    "mockupAlt": "Klipp app screenshot"
+  },
+  "features": {
+    "tag": "Features",
+    "title": "Everything you need to find home",
+    "subtitle": "Powerful tools designed to make your property search faster, smarter, and less stressful.",
+    "list": {
+      "search": {
+        "title": "AI-Powered Search",
+        "description": "Describe your dream home in plain language. Our AI understands what you want and surfaces the best matches instantly."
+      },
+      "tours": {
+        "title": "Virtual Tours",
+        "description": "Walk through any property from your couch. Immersive 3D tours let you explore every room in stunning detail."
+      },
+      "insights": {
+        "title": "Market Insights",
+        "description": "Real-time price trends, neighborhood scores, and investment forecasts help you make confident decisions."
+      },
+      "alerts": {
+        "title": "Instant Alerts",
+        "description": "Never miss a listing. Get push notifications the moment a home matching your criteria hits the market."
+      },
+      "connect": {
+        "title": "Agent Connect",
+        "description": "Message verified local agents directly in-app. Schedule viewings and negotiate offers without leaving Klipp."
+      },
+      "guide": {
+        "title": "Neighborhood Guide",
+        "description": "Schools, transit, restaurants, safety scores — everything you need to evaluate a location at a glance."
+      }
+    }
+  },
+  "screenshots": {
+    "title": "Designed for your pocket",
+    "subtitle": "A clean, modern interface that makes property searching a joy."
+  },
+  "testimonials": {
+    "title": "Loved by home seekers",
+    "subtitle": "Join 50,000+ people who found their perfect home using Klipp.",
+    "list": [
+      {
+        "quote": "Klipp made finding our first home feel effortless. The AI search understood exactly what we wanted — we found our place in two weeks instead of six months.",
+        "role": "First-time homebuyer, Austin TX"
+      },
+      {
+        "quote": "As a real estate agent, I recommend Klipp to all my clients. The virtual tours alone save us dozens of hours per deal. The market data is genuinely best-in-class.",
+        "role": "Licensed Real Estate Agent, NYC"
+      },
+      {
+        "quote": "Relocated from Seattle to Miami for work. Used Klipp to scope out neighborhoods remotely — the neighborhood guides and virtual tours were absolutely invaluable.",
+        "role": "Remote buyer, Miami FL"
+      }
+    ]
+  },
+  "download": {
+    "title": "Start your search today",
+    "subtitle": "Download Klipp free and find your perfect property. No subscription required.",
+    "appStore": "Download on the App Store",
+    "googlePlay": "Get it on Google Play",
+    "disclaimer": "Free to download · Available on iOS 16+ & Android 8+"
+  },
+  "footer": {
+    "description": "Find your perfect home with AI-powered search and real-time market insights.",
+    "sections": {
+      "Product": "Product",
+      "Company": "Company",
+      "Legal": "Legal"
+    },
+    "links": {
+      "Features": "Features",
+      "Screenshots": "Screenshots",
+      "Pricing": "Pricing",
+      "Changelog": "Changelog",
+      "About": "About",
+      "Blog": "Blog",
+      "Careers": "Careers",
+      "Press": "Press",
+      "Privacy Policy": "Privacy Policy",
+      "Terms of Service": "Terms of Service",
+      "Cookie Policy": "Cookie Policy"
+    },
+    "copyright": "© {{year}} Klipp. All rights reserved."
+  },
+  "cookies": {
+    "title": "Cookies & preferences",
+    "description": "We use cookies to remember your theme preference (light/dark). No personal data is collected.",
+    "accept": "Accept all",
+    "decline": "Decline"
+  }
+}

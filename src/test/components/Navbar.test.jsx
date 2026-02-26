@@ -27,9 +27,10 @@ describe('Navbar', () => {
     expect(mobileLinks.length).toBeGreaterThan(1)
   })
 
-  it('renders the ThemeToggle button', () => {
+  it('renders the ThemeToggle and LanguageToggle buttons', () => {
     renderNavbar()
     expect(screen.getAllByRole('button', { name: /switch to dark mode/i }).length).toBeGreaterThan(0)
+    expect(screen.getAllByRole('button', { name: /select language/i }).length).toBeGreaterThan(0)
   })
 
   it('renders ThemeToggle with Sun icon when theme is dark', () => {

@@ -1,5 +1,5 @@
 import { render, screen, fireEvent } from '@testing-library/react'
-import { describe, it, expect, vi } from 'vitest'
+import { describe, it, expect } from 'vitest'
 import LanguageToggle from '../../components/LanguageToggle'
 import { useTranslation } from 'react-i18next'
 

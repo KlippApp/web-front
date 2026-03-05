@@ -183,7 +183,15 @@
       "errorPasswordMismatch": "Passwords do not match.",
       "errorGeneric": "An error occurred. Please try again.",
       "successInfo": "Information updated successfully.",
-      "successPassword": "Password updated successfully."
+      "successPassword": "Password updated successfully.",
+      "deleteSection": "Danger zone",
+      "deleteDescription": "Once you delete your account, all your data will be permanently removed. This action cannot be undone.",
+      "deleteButton": "Delete account",
+      "deleteModalTitle": "Delete account",
+      "deleteModalWarning": "This action is irreversible and will permanently delete all your data.",
+      "deleteModalInstruction": "Type your agency name to confirm:",
+      "deleteModalConfirm": "Delete account",
+      "deleteModalCancel": "Cancel"
     }
   }
 }

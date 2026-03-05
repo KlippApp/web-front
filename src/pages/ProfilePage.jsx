@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import { useNavigate } from 'react-router-dom'
 import { useTranslation } from 'react-i18next'
 import { useAuth } from '../hooks/useAuth.js'
 
@@ -59,7 +60,8 @@ function SectionCard({ title, subtitle, children }) {
 
 export default function ProfilePage() {
   const { t } = useTranslation()
-  const { agency, managerName, token, updateProfile } = useAuth()
+  const { agency, managerName, token, updateProfile, logout } = useAuth()
+  const navigate = useNavigate()
 
   const [infoForm, setInfoForm] = useState({
     managerName: managerName || '',
@@ -74,6 +76,41 @@ export default function ProfilePage() {
   const [infoError, setInfoError] = useState('')
   const [infoSuccess, setInfoSuccess] = useState('')
   const [infoLoading, setInfoLoading] = useState(false)
+
+  const [deleteModalOpen, setDeleteModalOpen] = useState(false)
+  const [deleteConfirm, setDeleteConfirm] = useState('')
+  const [deleteError, setDeleteError] = useState('')
+  const [deleteLoading, setDeleteLoading] = useState(false)
+
+  const canConfirmDelete = deleteConfirm === agency
+
+  const closeDeleteModal = () => {
+    setDeleteModalOpen(false)
+    setDeleteConfirm('')
+    setDeleteError('')
+  }
+
+  const handleDeleteAccount = async () => {
+    setDeleteError('')
+    setDeleteLoading(true)
+    try {
+      const res = await fetch('PLACEHOLDER_API_URL/agency/account', {
+        method: 'DELETE',
+        headers: { Authorization: `Bearer ${token}` },
+      })
+      if (!res.ok) {
+        const data = await res.json()
+        setDeleteError(data.message || t('portal.profile.errorGeneric'))
+      } else {
+        logout()
+        navigate('/login')
+      }
+    } catch {
+      setDeleteError(t('portal.profile.errorGeneric'))
+    } finally {
+      setDeleteLoading(false)
+    }
+  }
 
   const [pwForm, setPwForm] = useState({ currentPassword: '', newPassword: '', confirmNewPassword: '' })
   const [pwError, setPwError] = useState('')
@@ -237,7 +274,106 @@ export default function ProfilePage() {
           </form>
         </SectionCard>
 
+        {/* Danger zone */}
+        <div className="glass-card" style={{ overflow: 'hidden', border: '1px solid rgba(239, 68, 68, 0.35)' }}>
+          <div style={{ padding: '1.25rem 1.5rem', borderBottom: '1px solid rgba(239, 68, 68, 0.2)' }}>
+            <p style={{ margin: 0, fontWeight: 600, fontSize: '0.9375rem', color: '#ef4444' }}>
+              {t('portal.profile.deleteSection')}
+            </p>
+          </div>
+          <div style={{ padding: '1.5rem', display: 'flex', justifyContent: 'space-between', alignItems: 'center', gap: '1rem' }}>
+            <p style={{ margin: 0, fontSize: '0.875rem', color: 'var(--color-text-secondary)', maxWidth: 420 }}>
+              {t('portal.profile.deleteDescription')}
+            </p>
+            <button
+              onClick={() => setDeleteModalOpen(true)}
+              style={{
+                flexShrink: 0, padding: '0.625rem 1.25rem', borderRadius: '0.75rem',
+                border: '1px solid rgba(239, 68, 68, 0.5)',
+                background: 'rgba(239, 68, 68, 0.08)', color: '#ef4444',
+                fontWeight: 600, fontSize: '0.875rem', cursor: 'pointer',
+                transition: 'all 0.2s',
+              }}
+            >
+              {t('portal.profile.deleteButton')}
+            </button>
+          </div>
+        </div>
+
       </div>
+
+      {/* Delete account modal */}
+      {deleteModalOpen && (
+        <div
+          role="dialog"
+          aria-modal="true"
+          style={{
+            position: 'fixed', inset: 0,
+            background: 'rgba(0, 0, 0, 0.5)',
+            backdropFilter: 'blur(4px)',
+            display: 'flex', alignItems: 'center', justifyContent: 'center',
+            zIndex: 200, padding: '1rem',
+          }}
+        >
+          <div className="glass-card" style={{ width: '100%', maxWidth: 440, padding: '2rem' }}>
+            <h2 style={{ margin: '0 0 0.5rem', fontSize: '1.1rem', fontWeight: 700, color: 'var(--color-text-primary)' }}>
+              {t('portal.profile.deleteModalTitle')}
+            </h2>
+            <p style={{ margin: '0 0 1.25rem', fontSize: '0.875rem', color: 'var(--color-text-secondary)' }}>
+              {t('portal.profile.deleteModalWarning')}
+            </p>
+            <label style={{ display: 'block', fontSize: '0.8rem', fontWeight: 600, color: 'var(--color-text-secondary)', marginBottom: '0.375rem' }}>
+              {t('portal.profile.deleteModalInstruction')}
+            </label>
+            <input
+              id="delete-confirm-input"
+              type="text"
+              value={deleteConfirm}
+              onChange={e => setDeleteConfirm(e.target.value)}
+              placeholder={agency}
+              style={{ ...inputStyle, marginBottom: '1rem' }}
+              onFocus={focusStyle}
+              onBlur={blurStyle}
+            />
+            {deleteError && (
+              <p style={{ fontSize: '0.8rem', color: 'var(--color-input-error)', margin: '0 0 1rem' }}>
+                {deleteError}
+              </p>
+            )}
+            <div style={{ display: 'flex', gap: '0.75rem', justifyContent: 'flex-end' }}>
+              <button
+                onClick={closeDeleteModal}
+                style={{
+                  padding: '0.625rem 1.25rem', borderRadius: '0.75rem',
+                  border: '1px solid var(--color-card-border)',
+                  background: 'transparent', color: 'var(--color-text-secondary)',
+                  fontWeight: 600, fontSize: '0.875rem', cursor: 'pointer',
+                  transition: 'all 0.2s',
+                }}
+              >
+                {t('portal.profile.deleteModalCancel')}
+              </button>
+              <button
+                onClick={handleDeleteAccount}
+                disabled={!canConfirmDelete || deleteLoading}
+                style={{
+                  padding: '0.625rem 1.25rem', borderRadius: '0.75rem',
+                  border: '1px solid rgba(239, 68, 68, 0.5)',
+                  background: canConfirmDelete && !deleteLoading ? 'rgba(239, 68, 68, 0.15)' : 'rgba(239, 68, 68, 0.05)',
+                  color: '#ef4444',
+                  fontWeight: 600, fontSize: '0.875rem',
+                  cursor: !canConfirmDelete || deleteLoading ? 'not-allowed' : 'pointer',
+                  opacity: !canConfirmDelete || deleteLoading ? 0.5 : 1,
+                  transition: 'all 0.2s',
+                }}
+              >
+                {t('portal.profile.deleteModalConfirm')}
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
+
     </div>
   )
 }

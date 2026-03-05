@@ -4,6 +4,8 @@ import { describe, it, expect, vi, beforeEach } from 'vitest'
 import ProfilePage from '../../pages/ProfilePage'
 
 const mockUpdateProfile = vi.fn()
+const mockLogout = vi.fn()
+const mockNavigate = vi.fn()
 
 vi.mock('../../hooks/useAuth.js', () => ({
   useAuth: () => ({
@@ -11,8 +13,14 @@ vi.mock('../../hooks/useAuth.js', () => ({
     managerName: 'Jean Dupont',
     token: 'valid-token',
     updateProfile: mockUpdateProfile,
+    logout: mockLogout,
   }),
 }))
+
+vi.mock('react-router-dom', async () => {
+  const actual = await vi.importActual('react-router-dom')
+  return { ...actual, useNavigate: () => mockNavigate }
+})
 
 beforeEach(() => {
   vi.clearAllMocks()
@@ -114,5 +122,67 @@ describe('ProfilePage', () => {
     fireEvent.change(document.getElementById('prof-confirmNewPassword'), { target: { value: 'newpass' } })
     fireEvent.click(screen.getByRole('button', { name: /update password/i }))
     await waitFor(() => expect(screen.getByText('Wrong current password')).toBeInTheDocument())
+  })
+
+  it('opens delete modal on delete button click', () => {
+    renderProfilePage()
+    fireEvent.click(screen.getByRole('button', { name: /delete account/i }))
+    expect(screen.getByRole('dialog')).toBeInTheDocument()
+    expect(screen.getByText('This action is irreversible and will permanently delete all your data.')).toBeInTheDocument()
+  })
+
+  it('close button resets input and closes modal', () => {
+    renderProfilePage()
+    fireEvent.click(screen.getByRole('button', { name: /delete account/i }))
+    fireEvent.change(document.getElementById('delete-confirm-input'), { target: { value: 'Test Agency' } })
+    fireEvent.click(screen.getByRole('button', { name: /^cancel$/i }))
+    expect(screen.queryByRole('dialog')).not.toBeInTheDocument()
+  })
+
+  it('confirm button is disabled when input does not match agency name', () => {
+    renderProfilePage()
+    fireEvent.click(screen.getByRole('button', { name: /delete account/i }))
+    fireEvent.change(document.getElementById('delete-confirm-input'), { target: { value: 'Wrong Name' } })
+    const confirmBtn = screen.getAllByRole('button', { name: /delete account/i }).find(b => b.disabled !== undefined && b.closest('[role="dialog"]'))
+    expect(document.getElementById('delete-confirm-input').value).toBe('Wrong Name')
+    const dialogButtons = screen.getByRole('dialog').querySelectorAll('button')
+    const confirmButton = Array.from(dialogButtons).find(b => b.textContent === 'Delete account')
+    expect(confirmButton).toBeDisabled()
+  })
+
+  it('confirm button is enabled when input matches agency name exactly', () => {
+    renderProfilePage()
+    fireEvent.click(screen.getByRole('button', { name: /delete account/i }))
+    fireEvent.change(document.getElementById('delete-confirm-input'), { target: { value: 'Test Agency' } })
+    const dialogButtons = screen.getByRole('dialog').querySelectorAll('button')
+    const confirmButton = Array.from(dialogButtons).find(b => b.textContent === 'Delete account')
+    expect(confirmButton).not.toBeDisabled()
+  })
+
+  it('calls logout and navigates to /login on successful delete', async () => {
+    globalThis.fetch = vi.fn().mockResolvedValueOnce({ ok: true })
+    renderProfilePage()
+    fireEvent.click(screen.getByRole('button', { name: /delete account/i }))
+    fireEvent.change(document.getElementById('delete-confirm-input'), { target: { value: 'Test Agency' } })
+    const dialogButtons = screen.getByRole('dialog').querySelectorAll('button')
+    const confirmButton = Array.from(dialogButtons).find(b => b.textContent === 'Delete account')
+    fireEvent.click(confirmButton)
+    await waitFor(() => expect(mockLogout).toHaveBeenCalled())
+    expect(mockNavigate).toHaveBeenCalledWith('/login')
+  })
+
+  it('shows error on delete failure without closing modal', async () => {
+    globalThis.fetch = vi.fn().mockResolvedValueOnce({
+      ok: false,
+      json: async () => ({ message: 'Delete failed' }),
+    })
+    renderProfilePage()
+    fireEvent.click(screen.getByRole('button', { name: /delete account/i }))
+    fireEvent.change(document.getElementById('delete-confirm-input'), { target: { value: 'Test Agency' } })
+    const dialogButtons = screen.getByRole('dialog').querySelectorAll('button')
+    const confirmButton = Array.from(dialogButtons).find(b => b.textContent === 'Delete account')
+    fireEvent.click(confirmButton)
+    await waitFor(() => expect(screen.getByText('Delete failed')).toBeInTheDocument())
+    expect(screen.getByRole('dialog')).toBeInTheDocument()
   })
 })

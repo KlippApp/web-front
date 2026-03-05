@@ -139,6 +139,14 @@ const { mockChangeLanguage, mockT } = vi.hoisted(() => ({
       'portal.profile.errorGeneric': 'An error occurred. Please try again.',
       'portal.profile.successInfo': 'Information updated successfully.',
       'portal.profile.successPassword': 'Password updated successfully.',
+      'portal.profile.deleteSection': 'Danger zone',
+      'portal.profile.deleteDescription': 'Once you delete your account, all your data will be permanently removed. This action cannot be undone.',
+      'portal.profile.deleteButton': 'Delete account',
+      'portal.profile.deleteModalTitle': 'Delete account',
+      'portal.profile.deleteModalWarning': 'This action is irreversible and will permanently delete all your data.',
+      'portal.profile.deleteModalInstruction': 'Type your agency name to confirm:',
+      'portal.profile.deleteModalConfirm': 'Delete account',
+      'portal.profile.deleteModalCancel': 'Cancel',
     }
     if (key === 'portal.dashboard.greeting') {
       return `Hello, ${options?.agency ?? ''}`

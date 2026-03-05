@@ -183,7 +183,15 @@
       "errorPasswordMismatch": "Les mots de passe ne correspondent pas.",
       "errorGeneric": "Une erreur est survenue. Veuillez réessayer.",
       "successInfo": "Informations mises à jour avec succès.",
-      "successPassword": "Mot de passe mis à jour avec succès."
+      "successPassword": "Mot de passe mis à jour avec succès.",
+      "deleteSection": "Zone de danger",
+      "deleteDescription": "La suppression de votre compte entraîne la suppression définitive de toutes vos données. Cette action est irréversible.",
+      "deleteButton": "Supprimer le compte",
+      "deleteModalTitle": "Supprimer le compte",
+      "deleteModalWarning": "Cette action est irréversible et supprimera définitivement toutes vos données.",
+      "deleteModalInstruction": "Saisissez le nom de votre agence pour confirmer :",
+      "deleteModalConfirm": "Supprimer le compte",
+      "deleteModalCancel": "Annuler"
     }
   }
 }

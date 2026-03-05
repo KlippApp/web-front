@@ -315,7 +315,15 @@ export default function ProfilePage() {
             zIndex: 200, padding: '1rem',
           }}
         >
-          <div className="glass-card" style={{ width: '100%', maxWidth: 440, padding: '2rem' }}>
+          <div style={{
+            width: '100%', maxWidth: 440, padding: '2rem',
+            background: 'var(--color-nav-bg)',
+            backdropFilter: 'blur(20px)',
+            WebkitBackdropFilter: 'blur(20px)',
+            border: '1px solid var(--color-card-border)',
+            borderRadius: '1.25rem',
+            boxShadow: '0 8px 40px rgba(0,0,0,0.18)',
+          }}>
             <h2 style={{ margin: '0 0 0.5rem', fontSize: '1.1rem', fontWeight: 700, color: 'var(--color-text-primary)' }}>
               {t('portal.profile.deleteModalTitle')}
             </h2>

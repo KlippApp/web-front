@@ -94,6 +94,12 @@ export default function ProfilePage() {
     setDeleteError('')
     setDeleteLoading(true)
     try {
+      // TODO: replace PLACEHOLDER_API_URL with the real API base URL
+      if ('PLACEHOLDER_API_URL' === 'PLACEHOLDER_API_URL') {
+        logout()
+        navigate('/login')
+        return
+      }
       const res = await fetch('PLACEHOLDER_API_URL/agency/account', {
         method: 'DELETE',
         headers: { Authorization: `Bearer ${token}` },

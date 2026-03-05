@@ -152,6 +152,7 @@
         "dashboard": "Dashboard",
         "agents": "Agents",
         "offices": "Offices",
+        "announces": "Listings",
         "profile": "Agency profile"
       },
       "chart": {
@@ -219,6 +220,49 @@
         "empty": "No agents yet.",
         "actions": "Actions",
         "edit": "Edit"
+      }
+    },
+    "announces": {
+      "title": "Listings",
+      "subtitle": "Manage your real estate listings",
+      "add": "Add a listing",
+      "edit": "Edit listing",
+      "form": {
+        "photo": "Photo",
+        "title": "Title",
+        "type": "Type",
+        "typeSale": "For sale",
+        "typeRent": "For rent",
+        "price": "Price (€)",
+        "address": "Address",
+        "surface": "Surface (m²)",
+        "rooms": "Rooms",
+        "status": "Status",
+        "statusActive": "Published",
+        "statusDraft": "Draft",
+        "statusArchived": "Archived",
+        "cancel": "Cancel",
+        "submit": "Add listing",
+        "submitEdit": "Save changes"
+      },
+      "list": {
+        "empty": "No listings yet.",
+        "edit": "Edit",
+        "stats": "Statistics",
+        "delete": "Delete"
+      },
+      "stats": {
+        "title": "Listing statistics",
+        "views": "Views",
+        "contacts": "Contacts",
+        "favorites": "Favorites",
+        "daysOnline": "Days online",
+        "conversionRate": "Contact rate",
+        "viewFull": "View full stats",
+        "backToList": "Back to listings",
+        "viewsChart": "Views per day",
+        "contactsChart": "Contacts per day",
+        "sources": "Traffic sources"
       }
     },
     "offices": {

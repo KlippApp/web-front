@@ -19,6 +19,8 @@ import DashboardPage from './pages/DashboardPage.jsx'
 import AgentsPage from './pages/AgentsPage.jsx'
 import OfficesPage from './pages/OfficesPage.jsx'
 import ProfilePage from './pages/ProfilePage.jsx'
+import AnnouncesPage from './pages/AnnouncesPage.jsx'
+import AnnounceStatsPage from './pages/AnnounceStatsPage.jsx'
 
 function LandingLayout() {
   const { i18n } = useTranslation()
@@ -62,6 +64,8 @@ export default function App() {
             <Route path="/dashboard" element={<DashboardPage />} />
             <Route path="/dashboard/agents" element={<AgentsPage />} />
             <Route path="/dashboard/offices" element={<OfficesPage />} />
+            <Route path="/dashboard/announces" element={<AnnouncesPage />} />
+            <Route path="/dashboard/announces/:id/stats" element={<AnnounceStatsPage />} />
             <Route path="/dashboard/profile" element={<ProfilePage />} />
           </Route>
         </Route>

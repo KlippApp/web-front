@@ -152,6 +152,7 @@
         "dashboard": "Tableau de bord",
         "agents": "Agents",
         "offices": "Agences",
+        "announces": "Annonces",
         "profile": "Profil de l'agence"
       },
       "chart": {
@@ -219,6 +220,49 @@
         "empty": "Aucun agent pour le moment.",
         "actions": "Actions",
         "edit": "Modifier"
+      }
+    },
+    "announces": {
+      "title": "Annonces",
+      "subtitle": "Gérez vos annonces immobilières",
+      "add": "Ajouter une annonce",
+      "edit": "Modifier l'annonce",
+      "form": {
+        "photo": "Photo",
+        "title": "Titre",
+        "type": "Type",
+        "typeSale": "Vente",
+        "typeRent": "Location",
+        "price": "Prix (€)",
+        "address": "Adresse",
+        "surface": "Surface (m²)",
+        "rooms": "Pièces",
+        "status": "Statut",
+        "statusActive": "Publié",
+        "statusDraft": "Brouillon",
+        "statusArchived": "Archivé",
+        "cancel": "Annuler",
+        "submit": "Ajouter",
+        "submitEdit": "Enregistrer"
+      },
+      "list": {
+        "empty": "Aucune annonce pour le moment.",
+        "edit": "Modifier",
+        "stats": "Statistiques",
+        "delete": "Supprimer"
+      },
+      "stats": {
+        "title": "Statistiques de l'annonce",
+        "views": "Vues",
+        "contacts": "Contacts",
+        "favorites": "Favoris",
+        "daysOnline": "Jours en ligne",
+        "conversionRate": "Taux de contact",
+        "viewFull": "Voir les stats complètes",
+        "backToList": "Retour aux annonces",
+        "viewsChart": "Vues par jour",
+        "contactsChart": "Contacts par jour",
+        "sources": "Sources de trafic"
       }
     },
     "offices": {

@@ -23,6 +23,7 @@ function renderRegister() {
 function fillForm(overrides = {}) {
   const defaults = {
     agencyName: 'Test Agency',
+    managerName: 'Jean Dupont',
     email: 'test@agency.com',
     password: 'password123',
     confirmPassword: 'password123',
@@ -35,6 +36,7 @@ function fillForm(overrides = {}) {
   const values = { ...defaults, ...overrides }
 
   fireEvent.change(screen.getByLabelText('Agency name'), { target: { value: values.agencyName } })
+  fireEvent.change(screen.getByLabelText('Manager name'), { target: { value: values.managerName } })
   fireEvent.change(screen.getByLabelText('Email'), { target: { value: values.email } })
   // password fields — select by id to avoid ambiguity between Password and Confirm password
   fireEvent.change(document.getElementById('reg-password'), { target: { value: values.password } })
@@ -51,6 +53,7 @@ describe('RegisterPage', () => {
     renderRegister()
     expect(screen.getByText('Create your account')).toBeInTheDocument()
     expect(screen.getByLabelText('Agency name')).toBeInTheDocument()
+    expect(screen.getByLabelText('Manager name')).toBeInTheDocument()
     expect(screen.getByRole('button', { name: /create account/i })).toBeInTheDocument()
   })
 
@@ -86,12 +89,13 @@ describe('RegisterPage', () => {
   it('navigates to dashboard on successful registration', async () => {
     globalThis.fetch = vi.fn().mockResolvedValueOnce({
       ok: true,
-      json: async () => ({ token: 'reg-token', agencyName: 'Test Agency' }),
+      json: async () => ({ token: 'reg-token', agencyName: 'Test Agency', managerName: 'Jean Dupont' }),
     })
     renderRegister()
     fillForm()
     fireEvent.click(screen.getByRole('button', { name: /create account/i }))
     await waitFor(() => expect(screen.getByText('Dashboard')).toBeInTheDocument())
     expect(localStorage.getItem('klipp_token')).toBe('reg-token')
+    expect(localStorage.getItem('klipp_manager')).toBe('Jean Dupont')
   })
 })

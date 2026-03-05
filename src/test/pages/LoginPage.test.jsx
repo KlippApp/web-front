@@ -40,13 +40,17 @@ describe('LoginPage', () => {
     expect(screen.getByText('Register page')).toBeInTheDocument()
   })
 
-  it('navigates to dashboard and stores dev token (placeholder mode)', async () => {
+  it('navigates to dashboard and stores token on successful login', async () => {
+    globalThis.fetch = vi.fn().mockResolvedValueOnce({
+      ok: true,
+      json: async () => ({ token: 'api-token', agency: 'Test Agency' }),
+    })
     renderLogin()
     fireEvent.change(screen.getByLabelText('Email'), { target: { value: 'hugo@agency.com' } })
     fireEvent.change(screen.getByLabelText('Password'), { target: { value: 'pw' } })
     fireEvent.click(screen.getByRole('button', { name: /sign in/i }))
     await waitFor(() => expect(screen.getByText('Dashboard')).toBeInTheDocument())
-    expect(localStorage.getItem('klipp_token')).toBe('dev-token')
-    expect(localStorage.getItem('klipp_agency')).toBe('hugo')
+    expect(localStorage.getItem('klipp_token')).toBe('api-token')
+    expect(localStorage.getItem('klipp_agency')).toBe('Test Agency')
   })
 })

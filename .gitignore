@@ -6,6 +6,8 @@ dist/
 .vite/
 
 # Environment files
+# Committed (safe defaults, no secrets): .env.example  .env.development  .env.production
+# NOT committed (real values, local overrides):
 .env
 .env.local
 .env.*.local

@@ -3,6 +3,7 @@ import { Link, useNavigate } from 'react-router-dom'
 import { useTranslation } from 'react-i18next'
 import { ChevronLeft } from 'lucide-react'
 import { useAuth } from '../hooks/useAuth.js'
+import API_URL, { DEV_BYPASS } from '../config/api.js'
 
 const inputStyle = {
   width: '100%',
@@ -31,9 +32,7 @@ export default function LoginPage() {
     setError('')
     setLoading(true)
     try {
-      // TODO: replace PLACEHOLDER_API_URL with the real API base URL
-      const API_URL = 'PLACEHOLDER_API_URL'
-      if (API_URL === 'PLACEHOLDER_API_URL') {
+      if (DEV_BYPASS) {
         login('dev-token', email.split('@')[0])
         navigate('/dashboard')
         return

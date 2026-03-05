@@ -1,6 +1,6 @@
-# Klipp Landing Page
+# Klipp — Landing Page + Dashboard Portal
 
-Landing page for the **Klipp** mobile app (`com.husur.klipp`).
+Landing page + authenticated agency dashboard for the **Klipp** mobile app (`com.husur.klipp`).
 Light/dark theme, glass aesthetic (Notion/Linear/Vercel style).
 
 ## Commands
@@ -16,17 +16,19 @@ npm run deploy   # Build + push to gh-pages branch
 ## Tech Stack
 
 - **Vite 7** + **React 19** + **Tailwind CSS v4** (`@tailwindcss/vite` — no PostCSS, no tailwind.config.js)
-- **lucide-react** for icons (Sun, Moon, User)
+- **react-router-dom** for routing (landing page + `/login` `/register` `/dashboard/*`)
+- **react-i18next** for i18n — locales in `src/locales/en.json` + `src/locales/fr.json`
+- **lucide-react** for icons
 - **Inter** font via Google Fonts CDN
 
 ## Theme System
 
-Light is the default. Dark mode toggled via a Sun/Moon button in the navbar.
+Light is the default. Dark mode toggled via a Sun/Moon button in the navbar and dashboard header.
 
 - `src/hooks/useTheme.js` — reads `data-theme` on `<html>`, persists to `theme` cookie (only after cookie consent)
 - `src/hooks/useCookieConsent.js` — reads/writes `cookie_consent` cookie (`accepted` | `declined` | null)
 - All colors are CSS custom properties — `:root` = light, `[data-theme="dark"]` = dark overrides
-- Never hardcode colors in components — always use `var(--color-*)`
+- **Never hardcode colors in components** — always use `var(--color-*)`
 
 ### Key CSS variables (`src/index.css`)
 
@@ -34,11 +36,63 @@ Light is the default. Dark mode toggled via a Sun/Moon button in the navbar.
 |----------|---------|
 | `--color-bg` | Page background |
 | `--color-text-primary` / `--color-text-secondary` | Body text |
-| `--color-card-bg` / `--color-card-border` | Glass cards |
-| `--color-nav-bg` | Scrolled navbar background |
+| `--color-card-bg` / `--color-card-border` | Glass cards (semi-transparent) |
+| `--color-nav-bg` | Navbar + sidebar + modal backgrounds (`rgba(255,255,255,0.85)` / `rgba(0,0,0,0.85)`) |
+| `--color-input-bg` / `--color-input-border` / `--color-input-focus-border` | Form inputs |
+| `--color-input-error` / `--color-input-success` | Validation feedback |
 | `--color-btn-store-bg` / `--color-btn-store-text` | Store buttons |
 
 Full variable list in `src/index.css` `:root` block.
+
+**Modal cards**: use `background: var(--color-nav-bg)` + `backdropFilter: blur(20px)` — never `glass-card` (too transparent for modals).
+
+## Auth (`src/hooks/useAuth.js`)
+
+Persists in `localStorage` under keys `klipp_token`, `klipp_agency`, `klipp_manager`.
+
+| Returned value | Type | Description |
+|----------------|------|-------------|
+| `token` | string\|null | JWT |
+| `agency` | string\|null | Agency name |
+| `managerName` | string\|null | Manager name |
+| `isAuthenticated` | bool | `!!token` |
+| `login(token, agency, manager)` | fn | Sets all three values |
+| `logout()` | fn | Clears all three values |
+| `updateProfile(agency, manager)` | fn | Updates agency/manager name |
+
+## Client Portal
+
+Routes: `/login` → `/register` → `/dashboard/*` (protected by `ProtectedRoute`).
+
+### Dashboard pages
+
+| Page | Route | Description |
+|------|-------|-------------|
+| `DashboardPage` | `/dashboard` | Stats + sales chart |
+| `AgentsPage` | `/dashboard/agents` | CRUD agents (photo, name, email, phone + country code) |
+| `OfficesPage` | `/dashboard/offices` | CRUD offices (photo, name, address, email, phone) |
+| `ProfilePage` | `/dashboard/profile` | Agency info form, change password, delete account |
+
+### Dashboard layout (`DashboardLayout.jsx`)
+
+Collapsible sidebar (240px / 0px) + fixed header. Nav items: Dashboard, Agents, Offices, Profile. Header: greeting (managerName), LanguageToggle, ThemeToggle. Logout → redirects to `/`.
+
+### API pattern
+
+All API calls use `PLACEHOLDER_API_URL` as base. Every handler has a dev bypass:
+```js
+if ('PLACEHOLDER_API_URL' === 'PLACEHOLDER_API_URL') {
+  // simulate success — remove when real API is connected
+}
+```
+Tests that cover the error path of bypassed handlers are marked `it.skip(...)` until the API is connected.
+
+## i18n
+
+- `src/locales/en.json` / `src/locales/fr.json` — flat nested JSON
+- Top-level keys: `nav`, `hero`, `features`, `screenshots`, `testimonials`, `download`, `footer`, `cookies`, `portal`
+- `portal` key contains: `backToHome`, `login`, `register`, `dashboard`, `profile`, `agents`, `offices`
+- `src/test/setup.js` contains `mockT` — **always add new i18n keys to `mockT`** when adding them to locale files
 
 ## Cookie Consent
 
@@ -48,25 +102,17 @@ Full variable list in `src/index.css` `:root` block.
 - Decline → writes `cookie_consent=declined`, theme resets on each reload
 - Animation classes: `.cookie-consent` (enter) / `.cookie-consent-out` (exit) in `src/index.css`
 
-## Adding Screenshots
-
-Replace the placeholder files in `src/assets/screenshots/`:
-
-| File | Used in | Recommended size |
-|------|---------|-----------------|
-| `screen1.png` | Hero + Screenshots center | 390×844px |
-| `screen2.png` | Screenshots left | 390×844px |
-| `screen3.png` | Screenshots right | 390×844px |
-
 ## Component Map
 
+### Landing page
 | Component | Purpose |
 |-----------|---------|
 | `IPhoneMockup` | Pure CSS iPhone 15 Pro frame — props: `src`, `alt`, `size` (sm/md/lg) |
 | `StoreButton` | App Store / Google Play badge — props: `store` (apple/google), `href` |
 | `ThemeToggle` | Sun/Moon icon button — props: `theme`, `toggleTheme` |
+| `LanguageToggle` | FR/EN switcher — no props |
 | `CookieConsent` | Cookie banner — props: `onAccept`, `onDecline` |
-| `Navbar` | Sticky, scroll-aware, mobile hamburger + theme toggle |
+| `Navbar` | Sticky, scroll-aware, mobile hamburger + theme + language toggles |
 | `Hero` | Full-height hero with headline + phone mockup |
 | `Features` | 6-card feature grid |
 | `Screenshots` | 3-phone showcase |
@@ -74,15 +120,32 @@ Replace the placeholder files in `src/assets/screenshots/`:
 | `DownloadCTA` | Centered CTA with glass card |
 | `Footer` | 4-column links + store badges |
 
+### Dashboard
+| Component | Purpose |
+|-----------|---------|
+| `ProtectedRoute` | Redirects to `/login` if not authenticated |
+| `DashboardLayout` | Sidebar + header shell, renders `<Outlet />` |
+
+## Adding Screenshots
+
+Replace placeholder files in `src/assets/screenshots/`:
+
+| File | Used in | Recommended size |
+|------|---------|-----------------|
+| `screen1.png` | Hero + Screenshots center | 390×844px |
+| `screen2.png` | Screenshots left | 390×844px |
+| `screen3.png` | Screenshots right | 390×844px |
+
 ## Testing
 
 **Always write tests for every new piece of code added.** No exceptions.
 
 - Test files live in `src/test/` mirroring the source structure:
   - `src/test/components/` for components
+  - `src/test/pages/` for pages
   - `src/test/hooks/` for hooks
 - Framework: **Vitest** + **@testing-library/react**
-- Setup file: `src/test/setup.js` (imports `@testing-library/jest-dom`)
+- Setup file: `src/test/setup.js` — contains `mockT` (all i18n keys) + `localStorage` mock + `react-i18next` mock
 - Use `renderHook` + `act` for hooks, `render` + `fireEvent` for components
 - Use `vi.useFakeTimers()` / `vi.runAllTimers()` when testing `setTimeout`-based behavior
 - Run tests: `rtk vitest run` — must pass before committing

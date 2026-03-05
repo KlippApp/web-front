@@ -57,6 +57,7 @@
   --color-input-text: #0f172a;
   --color-input-placeholder: #94a3b8;
   --color-input-error: #ef4444;
+  --color-input-success: #16a34a;
 }
 
 /* ─── Dark theme overrides ──────────────────────────────────────── */
@@ -109,6 +110,7 @@
   --color-input-text: #fff;
   --color-input-placeholder: rgba(255,255,255,0.4);
   --color-input-error: #f87171;
+  --color-input-success: #4ade80;
 }
 
 @layer base {

@@ -232,26 +232,38 @@ export default function AgentsPage() {
             <form onSubmit={handleSubmit}>
               <div style={{ display: 'flex', justifyContent: 'center', marginBottom: '1.5rem' }}>
                 <div style={{ position: 'relative' }}>
-                  <div style={{
-                    width: 80, height: 80, borderRadius: '50%', overflow: 'hidden',
-                    background: 'var(--color-nav-bg)', display: 'flex', alignItems: 'center', justifyContent: 'center',
-                    border: '2px solid var(--color-blue-primary)'
+                  <label style={{ 
+                    cursor: 'pointer', 
+                    display: 'block',
+                    position: 'relative',
+                    borderRadius: '50%',
                   }}>
-                    {form.photo ? (
-                      <img src={form.photo} alt="" style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
-                    ) : (
-                      <Users size={32} color="var(--color-text-secondary)" />
-                    )}
-                  </div>
-                  <label style={{
-                    position: 'absolute', bottom: 0, right: 0, 
-                    width: 28, height: 28, borderRadius: '50%', 
-                    background: 'var(--color-blue-primary)', color: '#fff',
-                    display: 'flex', alignItems: 'center', justifyContent: 'center',
-                    cursor: 'pointer', border: '2px solid var(--color-bg)'
-                  }}>
-                    <Camera size={14} />
                     <input type="file" accept="image/*" onChange={handlePhotoChange} style={{ display: 'none' }} />
+                    <div style={{
+                      width: 80, height: 80, borderRadius: '50%', overflow: 'hidden',
+                      background: 'var(--color-nav-bg)', display: 'flex', alignItems: 'center', justifyContent: 'center',
+                      border: '2px solid var(--color-blue-primary)',
+                      transition: 'opacity 0.2s',
+                    }}
+                    onMouseEnter={e => { e.currentTarget.style.opacity = '0.8' }}
+                    onMouseLeave={e => { e.currentTarget.style.opacity = '1' }}
+                    >
+                      {form.photo ? (
+                        <img src={form.photo} alt="" style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
+                      ) : (
+                        <Users size={32} color="var(--color-text-secondary)" />
+                      )}
+                    </div>
+                    <div style={{
+                      position: 'absolute', bottom: 0, right: 0, 
+                      width: 28, height: 28, borderRadius: '50%', 
+                      background: 'var(--color-blue-primary)', color: '#fff',
+                      display: 'flex', alignItems: 'center', justifyContent: 'center',
+                      border: '2px solid var(--color-bg)',
+                      pointerEvents: 'none' // Let the click pass through to the label
+                    }}>
+                      <Camera size={14} />
+                    </div>
                   </label>
                 </div>
               </div>

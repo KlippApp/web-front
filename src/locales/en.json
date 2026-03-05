@@ -105,6 +105,7 @@
     "decline": "Decline"
   },
   "portal": {
+    "backToHome": "Back to home",
     "login": {
       "title": "Welcome back",
       "subtitle": "Sign in to your agency account",
@@ -149,6 +150,8 @@
       "logout": "Sign out",
       "nav": {
         "dashboard": "Dashboard",
+        "agents": "Agents",
+        "offices": "Offices",
         "profile": "Agency profile"
       },
       "chart": {
@@ -192,6 +195,52 @@
       "deleteModalInstruction": "Type your agency name to confirm:",
       "deleteModalConfirm": "Delete account",
       "deleteModalCancel": "Cancel"
+    },
+    "agents": {
+      "title": "Agency agents",
+      "subtitle": "Manage your real estate agents",
+      "addAgent": "Add an agent",
+      "editAgent": "Edit agent",
+      "form": {
+        "photo": "Photo",
+        "photoUpload": "Upload photo",
+        "photoChange": "Change",
+        "firstName": "First name",
+        "lastName": "Last name",
+        "email": "Email address",
+        "phone": "Phone number",
+        "cancel": "Cancel",
+        "submit": "Add agent",
+        "submitEdit": "Save changes",
+        "success": "Agent added successfully!",
+        "successEdit": "Agent updated successfully!"
+      },
+      "list": {
+        "empty": "No agents yet.",
+        "actions": "Actions",
+        "edit": "Edit"
+      }
+    },
+    "offices": {
+      "title": "Physical offices",
+      "subtitle": "Manage your agency locations",
+      "addOffice": "Add an office",
+      "editOffice": "Edit office",
+      "form": {
+        "photo": "Office photo",
+        "name": "Office name",
+        "address": "Postal address",
+        "email": "Email address",
+        "phone": "Phone number",
+        "cancel": "Cancel",
+        "submit": "Add office",
+        "submitEdit": "Save changes"
+      },
+      "list": {
+        "empty": "No offices yet.",
+        "actions": "Actions",
+        "edit": "Edit"
+      }
     }
   }
 }

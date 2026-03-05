@@ -3,6 +3,20 @@ import { MemoryRouter, Routes, Route } from 'react-router-dom'
 import { describe, it, expect, vi } from 'vitest'
 import DashboardLayout from '../../components/DashboardLayout'
 
+vi.mock('react-i18next', () => ({
+  useTranslation: () => ({
+    t: (key, params) => {
+      if (key === 'portal.dashboard.nav.dashboard') return 'Dashboard'
+      if (key === 'portal.dashboard.nav.agents') return 'Agents'
+      if (key === 'portal.dashboard.nav.offices') return 'Offices'
+      if (key === 'portal.dashboard.nav.profile') return 'Agency profile'
+      if (key === 'portal.dashboard.logout') return 'Sign out'
+      if (key === 'portal.dashboard.greeting') return `Hello, ${params.agency}`
+      return key
+    },
+  }),
+}))
+
 vi.mock('../../hooks/useAuth.js', () => ({
   useAuth: () => ({
     agency: 'Test Agency',
@@ -34,7 +48,7 @@ function renderLayout({ initialEntry = '/dashboard' } = {}) {
           <Route path="/dashboard" element={<div>Dashboard content</div>} />
           <Route path="/dashboard/profile" element={<div>Profile content</div>} />
         </Route>
-        <Route path="/login" element={<div>Login page</div>} />
+        <Route path="/" element={<div>Home page</div>} />
       </Routes>
     </MemoryRouter>
   )
@@ -43,8 +57,10 @@ function renderLayout({ initialEntry = '/dashboard' } = {}) {
 describe('DashboardLayout', () => {
   it('renders sidebar navigation links', () => {
     renderLayout()
-    expect(screen.getByRole('link', { name: /dashboard/i })).toBeInTheDocument()
-    expect(screen.getByRole('link', { name: /agency profile/i })).toBeInTheDocument()
+    expect(screen.getByRole('link', { name: /^dashboard$/i })).toBeInTheDocument()
+    expect(screen.getByRole('link', { name: /^agents$/i })).toBeInTheDocument()
+    expect(screen.getByRole('link', { name: /^offices$/i })).toBeInTheDocument()
+    expect(screen.getByRole('link', { name: /^agency profile$/i })).toBeInTheDocument()
   })
 
   it('renders logout button', () => {
@@ -59,7 +75,7 @@ describe('DashboardLayout', () => {
 
   it('marks the active nav link with aria-current', () => {
     renderLayout({ initialEntry: '/dashboard' })
-    const dashboardLink = screen.getByRole('link', { name: /dashboard/i })
+    const dashboardLink = screen.getByRole('link', { name: /^dashboard$/i })
     expect(dashboardLink).toHaveAttribute('aria-current', 'page')
   })
 
@@ -68,10 +84,10 @@ describe('DashboardLayout', () => {
     expect(screen.getByText('Dashboard content')).toBeInTheDocument()
   })
 
-  it('navigates to login on logout click', () => {
+  it('navigates to home on logout click', () => {
     renderLayout()
     fireEvent.click(screen.getByRole('button', { name: /sign out/i }))
-    expect(screen.getByText('Login page')).toBeInTheDocument()
+    expect(screen.getByText('Home page')).toBeInTheDocument()
   })
 
   it('renders Klipp logo text', () => {

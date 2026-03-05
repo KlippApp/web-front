@@ -105,6 +105,7 @@
     "decline": "Refuser"
   },
   "portal": {
+    "backToHome": "Retour à l'accueil",
     "login": {
       "title": "Bon retour",
       "subtitle": "Connectez-vous à votre espace agence",
@@ -149,6 +150,8 @@
       "logout": "Se déconnecter",
       "nav": {
         "dashboard": "Tableau de bord",
+        "agents": "Agents",
+        "offices": "Agences",
         "profile": "Profil de l'agence"
       },
       "chart": {
@@ -192,6 +195,52 @@
       "deleteModalInstruction": "Saisissez le nom de votre agence pour confirmer :",
       "deleteModalConfirm": "Supprimer le compte",
       "deleteModalCancel": "Annuler"
+    },
+    "agents": {
+      "title": "Agents de l'agence",
+      "subtitle": "Gérez vos agents immobiliers",
+      "addAgent": "Ajouter un agent",
+      "editAgent": "Modifier l'agent",
+      "form": {
+        "photo": "Photo",
+        "photoUpload": "Télécharger une photo",
+        "photoChange": "Modifier",
+        "firstName": "Prénom",
+        "lastName": "Nom",
+        "email": "Adresse mail",
+        "phone": "Numéro de téléphone",
+        "cancel": "Annuler",
+        "submit": "Ajouter l'agent",
+        "submitEdit": "Enregistrer les modifications",
+        "success": "Agent ajouté avec succès !",
+        "successEdit": "Agent mis à jour avec succès !"
+      },
+      "list": {
+        "empty": "Aucun agent pour le moment.",
+        "actions": "Actions",
+        "edit": "Modifier"
+      }
+    },
+    "offices": {
+      "title": "Agences physiques",
+      "subtitle": "Gérez vos points de vente",
+      "addOffice": "Ajouter une agence",
+      "editOffice": "Modifier l'agence",
+      "form": {
+        "photo": "Photo de l'agence",
+        "name": "Nom de l'agence",
+        "address": "Adresse postale",
+        "email": "Adresse mail",
+        "phone": "Numéro de téléphone",
+        "cancel": "Annuler",
+        "submit": "Ajouter l'agence",
+        "submitEdit": "Enregistrer les modifications"
+      },
+      "list": {
+        "empty": "Aucune agence pour le moment.",
+        "actions": "Actions",
+        "edit": "Modifier"
+      }
     }
   }
 }

@@ -164,7 +164,26 @@
     },
     "profile": {
       "title": "Agency profile",
-      "comingSoon": "This section is under development."
+      "agencyInfoSection": "Agency information",
+      "passwordSection": "Change password",
+      "managerNameLabel": "Manager name",
+      "agencyNameLabel": "Agency name",
+      "emailLabel": "Email",
+      "phoneLabel": "Phone",
+      "streetNumberLabel": "No.",
+      "streetLabel": "Street",
+      "postalCodeLabel": "Postal code",
+      "cityLabel": "City",
+      "saveInfo": "Save changes",
+      "savePassword": "Update password",
+      "currentPasswordLabel": "Current password",
+      "newPasswordLabel": "New password",
+      "confirmNewPasswordLabel": "Confirm new password",
+      "loading": "Saving…",
+      "errorPasswordMismatch": "Passwords do not match.",
+      "errorGeneric": "An error occurred. Please try again.",
+      "successInfo": "Information updated successfully.",
+      "successPassword": "Password updated successfully."
     }
   }
 }

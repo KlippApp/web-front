@@ -11,7 +11,7 @@ import LanguageToggle from './LanguageToggle.jsx'
 export default function DashboardLayout() {
   const { t } = useTranslation()
   const navigate = useNavigate()
-  const { agency, logout } = useAuth()
+  const { managerName, logout } = useAuth()
   const { consented } = useCookieConsent()
   const { theme, toggleTheme } = useTheme(consented)
   const [sidebarOpen, setSidebarOpen] = useState(true)
@@ -139,7 +139,7 @@ export default function DashboardLayout() {
               </button>
             )}
             <p style={{ margin: 0, fontWeight: 600, color: 'var(--color-text-primary)', fontSize: '0.9375rem' }}>
-              {t('portal.dashboard.greeting', { agency })}
+              {t('portal.dashboard.greeting', { agency: managerName })}
             </p>
           </div>
           <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>

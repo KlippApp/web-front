@@ -6,9 +6,11 @@ import DashboardLayout from '../../components/DashboardLayout'
 vi.mock('../../hooks/useAuth.js', () => ({
   useAuth: () => ({
     agency: 'Test Agency',
+    managerName: 'Jean Dupont',
     logout: vi.fn(),
     token: 'valid-token',
     isAuthenticated: true,
+    updateProfile: vi.fn(),
   }),
 }))
 
@@ -50,9 +52,9 @@ describe('DashboardLayout', () => {
     expect(screen.getByRole('button', { name: /sign out/i })).toBeInTheDocument()
   })
 
-  it('renders greeting with agency name', () => {
+  it('renders greeting with manager name', () => {
     renderLayout()
-    expect(screen.getByText('Hello, Test Agency')).toBeInTheDocument()
+    expect(screen.getByText('Hello, Jean Dupont')).toBeInTheDocument()
   })
 
   it('marks the active nav link with aria-current', () => {

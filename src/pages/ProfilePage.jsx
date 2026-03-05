@@ -16,8 +16,7 @@ const inputStyle = {
 }
 
 const submitStyle = (loading) => ({
-  marginTop: '0.25rem',
-  padding: '0.625rem',
+  padding: '0.65rem 1.5rem',
   borderRadius: '0.75rem',
   border: 'none',
   background: 'linear-gradient(135deg, #2B7FFF 0%, #8EC5FF 100%)',
@@ -27,6 +26,7 @@ const submitStyle = (loading) => ({
   cursor: loading ? 'not-allowed' : 'pointer',
   opacity: loading ? 0.7 : 1,
   transition: 'opacity 0.2s',
+  alignSelf: 'flex-end',
 })
 
 function Field({ label, htmlFor, children }) {
@@ -36,6 +36,23 @@ function Field({ label, htmlFor, children }) {
         {label}
       </label>
       {children}
+    </div>
+  )
+}
+
+function SectionCard({ title, subtitle, children }) {
+  return (
+    <div className="glass-card" style={{ overflow: 'hidden' }}>
+      <div style={{
+        padding: '1.25rem 1.5rem',
+        borderBottom: '1px solid var(--color-card-border)',
+      }}>
+        <p style={{ margin: 0, fontWeight: 600, fontSize: '0.9375rem', color: 'var(--color-text-primary)' }}>{title}</p>
+        {subtitle && <p style={{ margin: '0.25rem 0 0', fontSize: '0.8rem', color: 'var(--color-text-secondary)' }}>{subtitle}</p>}
+      </div>
+      <div style={{ padding: '1.5rem' }}>
+        {children}
+      </div>
     </div>
   )
 }
@@ -123,90 +140,103 @@ export default function ProfilePage() {
     }
   }
 
-  const sectionTitle = { margin: '0 0 1.25rem', fontSize: '0.9375rem', fontWeight: 600, color: 'var(--color-text-primary)' }
-
   return (
-    <div style={{ padding: '2rem 1.5rem', maxWidth: 640, display: 'flex', flexDirection: 'column', gap: '1.5rem' }}>
-      <h1 style={{ margin: 0, fontSize: '1.25rem', fontWeight: 700, color: 'var(--color-text-primary)' }}>
-        {t('portal.profile.title')}
-      </h1>
+    <div style={{ padding: '2rem 1.5rem' }}>
+      <div style={{ maxWidth: 680, margin: '0 auto', display: 'flex', flexDirection: 'column', gap: '1.25rem' }}>
 
-      {/* Agency information */}
-      <div className="glass-card" style={{ padding: '1.5rem' }}>
-        <h2 style={sectionTitle}>{t('portal.profile.agencyInfoSection')}</h2>
-        <form onSubmit={handleInfoSubmit} style={{ display: 'flex', flexDirection: 'column', gap: '0.875rem' }}>
-          <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '0.75rem' }}>
-            <Field label={t('portal.profile.managerNameLabel')} htmlFor="prof-managerName">
-              <input id="prof-managerName" type="text" required value={infoForm.managerName} onChange={setInfo('managerName')}
-                style={inputStyle} onFocus={focusStyle} onBlur={blurStyle} />
-            </Field>
-            <Field label={t('portal.profile.agencyNameLabel')} htmlFor="prof-agencyName">
-              <input id="prof-agencyName" type="text" required value={infoForm.agencyName} onChange={setInfo('agencyName')}
-                style={inputStyle} onFocus={focusStyle} onBlur={blurStyle} />
-            </Field>
-          </div>
-          <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '0.75rem' }}>
-            <Field label={t('portal.profile.emailLabel')} htmlFor="prof-email">
-              <input id="prof-email" type="email" required value={infoForm.email} onChange={setInfo('email')}
-                style={inputStyle} onFocus={focusStyle} onBlur={blurStyle} />
-            </Field>
-            <Field label={t('portal.profile.phoneLabel')} htmlFor="prof-phone">
-              <input id="prof-phone" type="tel" required value={infoForm.phone} onChange={setInfo('phone')}
-                style={inputStyle} onFocus={focusStyle} onBlur={blurStyle} />
-            </Field>
-          </div>
-          <div style={{ display: 'grid', gridTemplateColumns: '1fr 2fr', gap: '0.75rem' }}>
-            <Field label={t('portal.profile.streetNumberLabel')} htmlFor="prof-streetNumber">
-              <input id="prof-streetNumber" type="text" required value={infoForm.streetNumber} onChange={setInfo('streetNumber')}
-                style={inputStyle} onFocus={focusStyle} onBlur={blurStyle} />
-            </Field>
-            <Field label={t('portal.profile.streetLabel')} htmlFor="prof-street">
-              <input id="prof-street" type="text" required value={infoForm.street} onChange={setInfo('street')}
-                style={inputStyle} onFocus={focusStyle} onBlur={blurStyle} />
-            </Field>
-          </div>
-          <div style={{ display: 'grid', gridTemplateColumns: '1fr 2fr', gap: '0.75rem' }}>
-            <Field label={t('portal.profile.postalCodeLabel')} htmlFor="prof-postalCode">
-              <input id="prof-postalCode" type="text" required value={infoForm.postalCode} onChange={setInfo('postalCode')}
-                style={inputStyle} onFocus={focusStyle} onBlur={blurStyle} />
-            </Field>
-            <Field label={t('portal.profile.cityLabel')} htmlFor="prof-city">
-              <input id="prof-city" type="text" required value={infoForm.city} onChange={setInfo('city')}
-                style={inputStyle} onFocus={focusStyle} onBlur={blurStyle} />
-            </Field>
-          </div>
-          {infoError && <p style={{ fontSize: '0.8rem', color: 'var(--color-input-error)', margin: 0 }}>{infoError}</p>}
-          {infoSuccess && <p style={{ fontSize: '0.8rem', color: 'var(--color-input-success)', margin: 0 }}>{infoSuccess}</p>}
-          <button type="submit" disabled={infoLoading} style={submitStyle(infoLoading)}>
-            {infoLoading ? t('portal.profile.loading') : t('portal.profile.saveInfo')}
-          </button>
-        </form>
-      </div>
+        {/* Page header */}
+        <div style={{ marginBottom: '0.5rem' }}>
+          <h1 style={{ margin: 0, fontSize: '1.25rem', fontWeight: 700, color: 'var(--color-text-primary)' }}>
+            {t('portal.profile.title')}
+          </h1>
+        </div>
 
-      {/* Change password */}
-      <div className="glass-card" style={{ padding: '1.5rem' }}>
-        <h2 style={sectionTitle}>{t('portal.profile.passwordSection')}</h2>
-        <form onSubmit={handlePwSubmit} style={{ display: 'flex', flexDirection: 'column', gap: '0.875rem' }}>
-          <Field label={t('portal.profile.currentPasswordLabel')} htmlFor="prof-currentPassword">
-            <input id="prof-currentPassword" type="password" required value={pwForm.currentPassword} onChange={setPw('currentPassword')}
-              placeholder="••••••••" style={inputStyle} onFocus={focusStyle} onBlur={blurStyle} />
-          </Field>
-          <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '0.75rem' }}>
-            <Field label={t('portal.profile.newPasswordLabel')} htmlFor="prof-newPassword">
-              <input id="prof-newPassword" type="password" required value={pwForm.newPassword} onChange={setPw('newPassword')}
+        {/* Agency information */}
+        <SectionCard title={t('portal.profile.agencyInfoSection')}>
+          <form onSubmit={handleInfoSubmit} style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
+            <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '0.75rem' }}>
+              <Field label={t('portal.profile.managerNameLabel')} htmlFor="prof-managerName">
+                <input id="prof-managerName" type="text" required value={infoForm.managerName} onChange={setInfo('managerName')}
+                  style={inputStyle} onFocus={focusStyle} onBlur={blurStyle} />
+              </Field>
+              <Field label={t('portal.profile.agencyNameLabel')} htmlFor="prof-agencyName">
+                <input id="prof-agencyName" type="text" required value={infoForm.agencyName} onChange={setInfo('agencyName')}
+                  style={inputStyle} onFocus={focusStyle} onBlur={blurStyle} />
+              </Field>
+            </div>
+            <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '0.75rem' }}>
+              <Field label={t('portal.profile.emailLabel')} htmlFor="prof-email">
+                <input id="prof-email" type="email" required value={infoForm.email} onChange={setInfo('email')}
+                  style={inputStyle} onFocus={focusStyle} onBlur={blurStyle} />
+              </Field>
+              <Field label={t('portal.profile.phoneLabel')} htmlFor="prof-phone">
+                <input id="prof-phone" type="tel" required value={infoForm.phone} onChange={setInfo('phone')}
+                  style={inputStyle} onFocus={focusStyle} onBlur={blurStyle} />
+              </Field>
+            </div>
+            <div style={{ display: 'grid', gridTemplateColumns: '120px 1fr', gap: '0.75rem' }}>
+              <Field label={t('portal.profile.streetNumberLabel')} htmlFor="prof-streetNumber">
+                <input id="prof-streetNumber" type="text" required value={infoForm.streetNumber} onChange={setInfo('streetNumber')}
+                  style={inputStyle} onFocus={focusStyle} onBlur={blurStyle} />
+              </Field>
+              <Field label={t('portal.profile.streetLabel')} htmlFor="prof-street">
+                <input id="prof-street" type="text" required value={infoForm.street} onChange={setInfo('street')}
+                  style={inputStyle} onFocus={focusStyle} onBlur={blurStyle} />
+              </Field>
+            </div>
+            <div style={{ display: 'grid', gridTemplateColumns: '120px 1fr', gap: '0.75rem' }}>
+              <Field label={t('portal.profile.postalCodeLabel')} htmlFor="prof-postalCode">
+                <input id="prof-postalCode" type="text" required value={infoForm.postalCode} onChange={setInfo('postalCode')}
+                  style={inputStyle} onFocus={focusStyle} onBlur={blurStyle} />
+              </Field>
+              <Field label={t('portal.profile.cityLabel')} htmlFor="prof-city">
+                <input id="prof-city" type="text" required value={infoForm.city} onChange={setInfo('city')}
+                  style={inputStyle} onFocus={focusStyle} onBlur={blurStyle} />
+              </Field>
+            </div>
+
+            <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginTop: '0.25rem' }}>
+              <div>
+                {infoError && <p style={{ fontSize: '0.8rem', color: 'var(--color-input-error)', margin: 0 }}>{infoError}</p>}
+                {infoSuccess && <p style={{ fontSize: '0.8rem', color: 'var(--color-input-success)', margin: 0 }}>{infoSuccess}</p>}
+              </div>
+              <button type="submit" disabled={infoLoading} style={submitStyle(infoLoading)}>
+                {infoLoading ? t('portal.profile.loading') : t('portal.profile.saveInfo')}
+              </button>
+            </div>
+          </form>
+        </SectionCard>
+
+        {/* Change password */}
+        <SectionCard title={t('portal.profile.passwordSection')}>
+          <form onSubmit={handlePwSubmit} style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
+            <Field label={t('portal.profile.currentPasswordLabel')} htmlFor="prof-currentPassword">
+              <input id="prof-currentPassword" type="password" required value={pwForm.currentPassword} onChange={setPw('currentPassword')}
                 placeholder="••••••••" style={inputStyle} onFocus={focusStyle} onBlur={blurStyle} />
             </Field>
-            <Field label={t('portal.profile.confirmNewPasswordLabel')} htmlFor="prof-confirmNewPassword">
-              <input id="prof-confirmNewPassword" type="password" required value={pwForm.confirmNewPassword} onChange={setPw('confirmNewPassword')}
-                placeholder="••••••••" style={inputStyle} onFocus={focusStyle} onBlur={blurStyle} />
-            </Field>
-          </div>
-          {pwError && <p style={{ fontSize: '0.8rem', color: 'var(--color-input-error)', margin: 0 }}>{pwError}</p>}
-          {pwSuccess && <p style={{ fontSize: '0.8rem', color: 'var(--color-input-success)', margin: 0 }}>{pwSuccess}</p>}
-          <button type="submit" disabled={pwLoading} style={submitStyle(pwLoading)}>
-            {pwLoading ? t('portal.profile.loading') : t('portal.profile.savePassword')}
-          </button>
-        </form>
+            <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '0.75rem' }}>
+              <Field label={t('portal.profile.newPasswordLabel')} htmlFor="prof-newPassword">
+                <input id="prof-newPassword" type="password" required value={pwForm.newPassword} onChange={setPw('newPassword')}
+                  placeholder="••••••••" style={inputStyle} onFocus={focusStyle} onBlur={blurStyle} />
+              </Field>
+              <Field label={t('portal.profile.confirmNewPasswordLabel')} htmlFor="prof-confirmNewPassword">
+                <input id="prof-confirmNewPassword" type="password" required value={pwForm.confirmNewPassword} onChange={setPw('confirmNewPassword')}
+                  placeholder="••••••••" style={inputStyle} onFocus={focusStyle} onBlur={blurStyle} />
+              </Field>
+            </div>
+
+            <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginTop: '0.25rem' }}>
+              <div>
+                {pwError && <p style={{ fontSize: '0.8rem', color: 'var(--color-input-error)', margin: 0 }}>{pwError}</p>}
+                {pwSuccess && <p style={{ fontSize: '0.8rem', color: 'var(--color-input-success)', margin: 0 }}>{pwSuccess}</p>}
+              </div>
+              <button type="submit" disabled={pwLoading} style={submitStyle(pwLoading)}>
+                {pwLoading ? t('portal.profile.loading') : t('portal.profile.savePassword')}
+              </button>
+            </div>
+          </form>
+        </SectionCard>
+
       </div>
     </div>
   )

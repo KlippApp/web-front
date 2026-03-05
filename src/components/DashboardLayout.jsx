@@ -6,6 +6,7 @@ import { useAuth } from '../hooks/useAuth.js'
 import { useTheme } from '../hooks/useTheme.js'
 import { useCookieConsent } from '../hooks/useCookieConsent.js'
 import ThemeToggle from './ThemeToggle.jsx'
+import LanguageToggle from './LanguageToggle.jsx'
 
 export default function DashboardLayout() {
   const { t } = useTranslation()
@@ -141,7 +142,10 @@ export default function DashboardLayout() {
               {t('portal.dashboard.greeting', { agency })}
             </p>
           </div>
-          <ThemeToggle theme={theme} toggleTheme={toggleTheme} />
+          <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
+            <LanguageToggle />
+            <ThemeToggle theme={theme} toggleTheme={toggleTheme} />
+          </div>
         </header>
 
         {/* Page content */}

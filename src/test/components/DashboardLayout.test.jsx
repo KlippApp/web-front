@@ -20,6 +20,10 @@ vi.mock('../../hooks/useCookieConsent.js', () => ({
   useCookieConsent: () => ({ consented: null }),
 }))
 
+vi.mock('../../components/LanguageToggle.jsx', () => ({
+  default: () => <button aria-label="Select language">EN</button>,
+}))
+
 function renderLayout({ initialEntry = '/dashboard' } = {}) {
   return render(
     <MemoryRouter initialEntries={[initialEntry]}>
@@ -71,6 +75,11 @@ describe('DashboardLayout', () => {
   it('renders Klipp logo text', () => {
     renderLayout()
     expect(screen.getByText('Klipp')).toBeInTheDocument()
+  })
+
+  it('renders language toggle in header', () => {
+    renderLayout()
+    expect(screen.getByRole('button', { name: /select language/i })).toBeInTheDocument()
   })
 
   it('sidebar is open by default — no burger button visible', () => {

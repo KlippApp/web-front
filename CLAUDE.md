@@ -87,6 +87,11 @@ Replace the placeholder files in `src/assets/screenshots/`:
 - Use `vi.useFakeTimers()` / `vi.runAllTimers()` when testing `setTimeout`-based behavior
 - Run tests: `rtk vitest run` — must pass before committing
 
+## Workflow
+
+- **Each request is done on a new branch** created from `main`. Branch naming: `feat/short-description`, `fix/short-description`, etc.
+- Never work directly on `main`.
+
 ## Commits
 
 - **Always commit atomically**: one logical unit per commit

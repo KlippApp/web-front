@@ -144,7 +144,23 @@
     },
     "dashboard": {
       "greeting": "Bonjour, {{agency}}",
-      "logout": "Se déconnecter"
+      "logout": "Se déconnecter",
+      "nav": {
+        "dashboard": "Tableau de bord",
+        "profile": "Profil de l'agence"
+      },
+      "chart": {
+        "title": "Ventes — 30 derniers jours"
+      },
+      "stats": {
+        "messages":       { "label": "Messages",          "value": "0" },
+        "activeListings": { "label": "Annonces actives",  "value": "0" },
+        "monthlySales":   { "label": "Ventes ce mois",    "value": "0" }
+      }
+    },
+    "profile": {
+      "title": "Profil de l'agence",
+      "comingSoon": "Cette section est en cours de développement."
     }
   }
 }

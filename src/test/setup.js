@@ -105,6 +105,17 @@ const { mockChangeLanguage, mockT } = vi.hoisted(() => ({
       'portal.register.errorPasswordMismatch': 'Passwords do not match.',
       'portal.register.errorGeneric': 'An error occurred. Please try again.',
       'portal.dashboard.logout': 'Sign out',
+      'portal.dashboard.nav.dashboard': 'Dashboard',
+      'portal.dashboard.nav.profile': 'Agency profile',
+      'portal.dashboard.chart.title': 'Sales — Last 30 days',
+      'portal.dashboard.stats.messages.label': 'Messages',
+      'portal.dashboard.stats.messages.value': '0',
+      'portal.dashboard.stats.activeListings.label': 'Active listings',
+      'portal.dashboard.stats.activeListings.value': '0',
+      'portal.dashboard.stats.monthlySales.label': 'Sales this month',
+      'portal.dashboard.stats.monthlySales.value': '0',
+      'portal.profile.title': 'Agency profile',
+      'portal.profile.comingSoon': 'This section is under development.',
     }
     if (key === 'portal.dashboard.greeting') {
       return `Hello, ${options?.agency ?? ''}`

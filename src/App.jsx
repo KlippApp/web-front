@@ -1,4 +1,5 @@
 import { useEffect } from 'react'
+import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom'
 import { useTranslation } from 'react-i18next'
 import { useTheme } from './hooks/useTheme.js'
 import { useCookieConsent } from './hooks/useCookieConsent.js'
@@ -10,13 +11,18 @@ import Testimonials from './components/Testimonials.jsx'
 import DownloadCTA from './components/DownloadCTA.jsx'
 import Footer from './components/Footer.jsx'
 import CookieConsent from './components/CookieConsent.jsx'
+import ProtectedRoute from './components/ProtectedRoute.jsx'
+import DashboardLayout from './components/DashboardLayout.jsx'
+import LoginPage from './pages/LoginPage.jsx'
+import RegisterPage from './pages/RegisterPage.jsx'
+import DashboardPage from './pages/DashboardPage.jsx'
+import ProfilePage from './pages/ProfilePage.jsx'
 
-export default function App() {
+function LandingLayout() {
   const { i18n } = useTranslation()
   const { consented, accept, decline } = useCookieConsent()
   const { theme, toggleTheme } = useTheme(consented)
 
-  // Persist language to cookie if consented
   useEffect(() => {
     if (consented === 'accepted') {
       const expires = new Date(Date.now() + 365 * 864e5).toUTCString()
@@ -39,5 +45,24 @@ export default function App() {
         <CookieConsent onAccept={accept} onDecline={decline} />
       )}
     </>
+  )
+}
+
+export default function App() {
+  return (
+    <BrowserRouter>
+      <Routes>
+        <Route path="/" element={<LandingLayout />} />
+        <Route path="/login" element={<LoginPage />} />
+        <Route path="/register" element={<RegisterPage />} />
+        <Route element={<ProtectedRoute />}>
+          <Route element={<DashboardLayout />}>
+            <Route path="/dashboard" element={<DashboardPage />} />
+            <Route path="/dashboard/profile" element={<ProfilePage />} />
+          </Route>
+        </Route>
+        <Route path="*" element={<Navigate to="/" replace />} />
+      </Routes>
+    </BrowserRouter>
   )
 }

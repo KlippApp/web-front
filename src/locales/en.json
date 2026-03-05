@@ -144,7 +144,23 @@
     },
     "dashboard": {
       "greeting": "Hello, {{agency}}",
-      "logout": "Sign out"
+      "logout": "Sign out",
+      "nav": {
+        "dashboard": "Dashboard",
+        "profile": "Agency profile"
+      },
+      "chart": {
+        "title": "Sales — Last 30 days"
+      },
+      "stats": {
+        "messages":       { "label": "Messages",        "value": "0" },
+        "activeListings": { "label": "Active listings",  "value": "0" },
+        "monthlySales":   { "label": "Sales this month", "value": "0" }
+      }
+    },
+    "profile": {
+      "title": "Agency profile",
+      "comingSoon": "This section is under development."
     }
   }
 }

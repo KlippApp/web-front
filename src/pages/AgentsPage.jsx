@@ -25,13 +25,14 @@ const countries = [
 ]
 
 const formatPhone = (value) => {
-  const digits = value.replace(/\D/g, '')
+  let digits = value.replace(/\D/g, '')
+  if (digits.startsWith('0')) digits = digits.substring(1)
   let formatted = ''
   for (let i = 0; i < digits.length; i++) {
-    if (i > 0 && i % 2 === 0) formatted += ' '
+    if (i > 0 && i % 2 === 1) formatted += ' ' // First group is 1 digit, then 2 digits groups
     formatted += digits[i]
   }
-  return formatted.substring(0, 14) // Max 10 digits + spaces
+  return formatted.substring(0, 13) // Max 9 digits + spaces
 }
 
 function Field({ label, id, children }) {
@@ -245,7 +246,7 @@ export default function AgentsPage() {
                     id="agent-phone"
                     type="tel" required style={inputStyle} value={form.phone} 
                     onChange={handlePhoneChange}
-                    placeholder="06 12 34 56 78"
+                    placeholder="6 12 34 56 78"
                   />
                 </div>
               </Field>

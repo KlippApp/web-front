@@ -52,7 +52,7 @@ describe('AgentsPage', () => {
     expect(screen.queryByText('portal.agents.form.submit')).not.toBeInTheDocument()
     expect(screen.getByText('John Doe')).toBeInTheDocument()
     expect(screen.getByText('john.doe@example.com')).toBeInTheDocument()
-    expect(screen.getByText('+33 01 23 45 67 89')).toBeInTheDocument()
+    expect(screen.getByText('+33 1 23 45 67 89')).toBeInTheDocument()
   })
 
   it('edits an existing agent', () => {
@@ -78,7 +78,7 @@ describe('AgentsPage', () => {
 
     // Check if updated in list
     expect(screen.getByText('Jane Doe')).toBeInTheDocument()
-    expect(screen.getByText('+33 01 23 45 67 89')).toBeInTheDocument()
+    expect(screen.getByText('+33 1 23 45 67 89')).toBeInTheDocument()
     expect(screen.queryByText('John Doe')).not.toBeInTheDocument()
   })
 })

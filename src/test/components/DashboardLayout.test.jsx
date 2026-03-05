@@ -3,6 +3,19 @@ import { MemoryRouter, Routes, Route } from 'react-router-dom'
 import { describe, it, expect, vi } from 'vitest'
 import DashboardLayout from '../../components/DashboardLayout'
 
+vi.mock('react-i18next', () => ({
+  useTranslation: () => ({
+    t: (key, params) => {
+      if (key === 'portal.dashboard.nav.dashboard') return 'Dashboard'
+      if (key === 'portal.dashboard.nav.agents') return 'Agents'
+      if (key === 'portal.dashboard.nav.profile') return 'Agency profile'
+      if (key === 'portal.dashboard.logout') return 'Sign out'
+      if (key === 'portal.dashboard.greeting') return `Hello, ${params.agency}`
+      return key
+    },
+  }),
+}))
+
 vi.mock('../../hooks/useAuth.js', () => ({
   useAuth: () => ({
     agency: 'Test Agency',
@@ -41,8 +54,9 @@ function renderLayout({ initialEntry = '/dashboard' } = {}) {
 describe('DashboardLayout', () => {
   it('renders sidebar navigation links', () => {
     renderLayout()
-    expect(screen.getByRole('link', { name: /dashboard/i })).toBeInTheDocument()
-    expect(screen.getByRole('link', { name: /agency profile/i })).toBeInTheDocument()
+    expect(screen.getByRole('link', { name: /^dashboard$/i })).toBeInTheDocument()
+    expect(screen.getByRole('link', { name: /^agents$/i })).toBeInTheDocument()
+    expect(screen.getByRole('link', { name: /^agency profile$/i })).toBeInTheDocument()
   })
 
   it('renders logout button', () => {
@@ -57,7 +71,7 @@ describe('DashboardLayout', () => {
 
   it('marks the active nav link with aria-current', () => {
     renderLayout({ initialEntry: '/dashboard' })
-    const dashboardLink = screen.getByRole('link', { name: /dashboard/i })
+    const dashboardLink = screen.getByRole('link', { name: /^dashboard$/i })
     expect(dashboardLink).toHaveAttribute('aria-current', 'page')
   })
 

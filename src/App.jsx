@@ -16,6 +16,7 @@ import DashboardLayout from './components/DashboardLayout.jsx'
 import LoginPage from './pages/LoginPage.jsx'
 import RegisterPage from './pages/RegisterPage.jsx'
 import DashboardPage from './pages/DashboardPage.jsx'
+import AgentsPage from './pages/AgentsPage.jsx'
 import ProfilePage from './pages/ProfilePage.jsx'
 
 function LandingLayout() {
@@ -58,6 +59,7 @@ export default function App() {
         <Route element={<ProtectedRoute />}>
           <Route element={<DashboardLayout />}>
             <Route path="/dashboard" element={<DashboardPage />} />
+            <Route path="/dashboard/agents" element={<AgentsPage />} />
             <Route path="/dashboard/profile" element={<ProfilePage />} />
           </Route>
         </Route>

@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import { NavLink, Outlet, useNavigate } from 'react-router-dom'
 import { useTranslation } from 'react-i18next'
-import { LayoutDashboard, Building2, LogOut, ChevronLeft, Menu } from 'lucide-react'
+import { LayoutDashboard, Building2, LogOut, ChevronLeft, Menu, Users } from 'lucide-react'
 import { useAuth } from '../hooks/useAuth.js'
 import { useTheme } from '../hooks/useTheme.js'
 import { useCookieConsent } from '../hooks/useCookieConsent.js'
@@ -23,6 +23,7 @@ export default function DashboardLayout() {
 
   const navItems = [
     { to: '/dashboard', icon: LayoutDashboard, label: t('portal.dashboard.nav.dashboard'), end: true },
+    { to: '/dashboard/agents', icon: Users, label: t('portal.dashboard.nav.agents') },
     { to: '/dashboard/profile', icon: Building2, label: t('portal.dashboard.nav.profile') },
   ]
 

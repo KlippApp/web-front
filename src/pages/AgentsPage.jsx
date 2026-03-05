@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState, useCallback } from 'react'
 import { useTranslation } from 'react-i18next'
 import { Plus, Users, X, Pencil, Camera } from 'lucide-react'
 
@@ -53,15 +53,22 @@ export default function AgentsPage() {
   const [agents, setAgents] = useState([])
   const [form, setForm] = useState({ firstName: '', lastName: '', email: '', phone: '', countryCode: '+33', photo: null })
 
-  const handleSubmit = (e) => {
+  const closeForm = useCallback(() => {
+    setEditingAgent(null)
+    setForm({ firstName: '', lastName: '', email: '', phone: '', countryCode: '+33', photo: null })
+    setShowForm(false)
+  }, [])
+
+  const handleSubmit = useCallback((e) => {
     e.preventDefault()
     if (editingAgent) {
-      setAgents(agents.map(a => a.id === editingAgent.id ? { ...form, id: a.id } : a))
+      setAgents(prev => prev.map(a => a.id === editingAgent.id ? { ...form, id: a.id } : a))
     } else {
-      setAgents([...agents, { ...form, id: Date.now() }])
+      const newAgent = { ...form, id: Date.now() }
+      setAgents(prev => [...prev, newAgent])
     }
     closeForm()
-  }
+  }, [editingAgent, form, closeForm])
 
   const openEdit = (agent) => {
     setEditingAgent(agent)
@@ -74,12 +81,6 @@ export default function AgentsPage() {
       photo: agent.photo || null
     })
     setShowForm(true)
-  }
-
-  const closeForm = () => {
-    setEditingAgent(null)
-    setForm({ firstName: '', lastName: '', email: '', phone: '', countryCode: '+33', photo: null })
-    setShowForm(false)
   }
 
   const handlePhoneChange = (e) => {

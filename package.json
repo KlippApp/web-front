@@ -11,7 +11,9 @@
     "test:watch": "vitest",
     "preview": "vite preview",
     "predeploy": "npm run build",
-    "deploy": "gh-pages -d dist"
+    "deploy": "gh-pages -d dist",
+    "email": "email dev --dir src/emails",
+    "email:export": "email export --dir src/emails --out dist/emails"
   },
   "dependencies": {
     "i18next": "^25.8.13",
@@ -25,6 +27,8 @@
   },
   "devDependencies": {
     "@eslint/js": "^10.0.1",
+    "@react-email/components": "^1.0.8",
+    "@react-email/preview-server": "^5.2.9",
     "@tailwindcss/vite": "^4.0.0",
     "@testing-library/dom": "^10.4.1",
     "@testing-library/jest-dom": "^6.9.1",
@@ -38,6 +42,7 @@
     "gh-pages": "^6.3.0",
     "globals": "^17.4.0",
     "jsdom": "^28.1.0",
+    "react-email": "^5.2.9",
     "tailwindcss": "^4.0.0",
     "vite": "^7.0.0",
     "vitest": "^4.0.18"

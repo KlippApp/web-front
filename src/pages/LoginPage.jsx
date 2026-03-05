@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import { useTranslation } from 'react-i18next'
+import { ChevronLeft } from 'lucide-react'
 import { useAuth } from '../hooks/useAuth.js'
 
 const inputStyle = {
@@ -71,6 +72,25 @@ export default function LoginPage() {
         className="glass-card"
         style={{ width: '100%', maxWidth: 420, padding: '2.5rem 2rem' }}
       >
+        <Link
+          to="/"
+          style={{
+            display: 'inline-flex',
+            alignItems: 'center',
+            gap: '0.25rem',
+            color: 'var(--color-text-secondary)',
+            textDecoration: 'none',
+            fontSize: '0.85rem',
+            marginBottom: '1.5rem',
+            transition: 'color 0.2s',
+          }}
+          onMouseEnter={e => { e.target.style.color = 'var(--color-text-primary)' }}
+          onMouseLeave={e => { e.target.style.color = 'var(--color-text-secondary)' }}
+        >
+          <ChevronLeft size={16} />
+          {t('portal.backToHome')}
+        </Link>
+
         {/* Logo */}
         <div style={{ display: 'flex', alignItems: 'center', gap: '0.625rem', marginBottom: '2rem' }}>
           <div

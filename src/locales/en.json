@@ -105,6 +105,7 @@
     "decline": "Decline"
   },
   "portal": {
+    "backToHome": "Back to home",
     "login": {
       "title": "Welcome back",
       "subtitle": "Sign in to your agency account",

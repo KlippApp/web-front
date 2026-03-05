@@ -32,7 +32,7 @@ function renderLayout({ initialEntry = '/dashboard' } = {}) {
           <Route path="/dashboard" element={<div>Dashboard content</div>} />
           <Route path="/dashboard/profile" element={<div>Profile content</div>} />
         </Route>
-        <Route path="/login" element={<div>Login page</div>} />
+        <Route path="/" element={<div>Home page</div>} />
       </Routes>
     </MemoryRouter>
   )
@@ -66,10 +66,10 @@ describe('DashboardLayout', () => {
     expect(screen.getByText('Dashboard content')).toBeInTheDocument()
   })
 
-  it('navigates to login on logout click', () => {
+  it('navigates to home on logout click', () => {
     renderLayout()
     fireEvent.click(screen.getByRole('button', { name: /sign out/i }))
-    expect(screen.getByText('Login page')).toBeInTheDocument()
+    expect(screen.getByText('Home page')).toBeInTheDocument()
   })
 
   it('renders Klipp logo text', () => {

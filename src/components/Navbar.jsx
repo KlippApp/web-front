@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react'
+import { Link } from 'react-router-dom'
 import { User } from 'lucide-react'
 import { useTranslation } from 'react-i18next'
 import ThemeToggle from './ThemeToggle.jsx'
@@ -83,8 +84,8 @@ export default function Navbar({ theme, toggleTheme }) {
         <div className="hidden md:flex items-center gap-3">
           <LanguageToggle />
           <ThemeToggle theme={theme} toggleTheme={toggleTheme} />
-          <a
-            href="#client-portal"
+          <Link
+            to="/login"
             style={{
               display: 'inline-flex',
               alignItems: 'center',
@@ -110,7 +111,7 @@ export default function Navbar({ theme, toggleTheme }) {
           >
             <User size={18} />
             {t('nav.clientPortal')}
-          </a>
+          </Link>
         </div>
 
         {/* Mobile hamburger */}
@@ -173,23 +174,27 @@ export default function Navbar({ theme, toggleTheme }) {
                 {link.label}
               </a>
             ))}
-            <a
-              href="#client-portal"
+            <Link
+              to="/login"
               onClick={() => setMenuOpen(false)}
               style={{
-                display: 'flex',
+                display: 'inline-flex',
                 alignItems: 'center',
-                gap: '0.75rem',
-                color: 'var(--color-mobile-portal)',
+                gap: '0.5rem',
+                color: 'var(--color-text-primary)',
                 textDecoration: 'none',
-                fontSize: '1rem',
+                fontSize: '0.9rem',
                 fontWeight: 600,
-                padding: '0.5rem 0',
+                padding: '0.5rem 1.25rem',
+                borderRadius: '0.75rem',
+                border: '1px solid var(--color-portal-border)',
+                background: 'var(--color-portal-bg)',
+                alignSelf: 'flex-start',
               }}
             >
-              <User size={20} />
+              <User size={18} />
               {t('nav.clientPortal')}
-            </a>
+            </Link>
           </div>
         </div>
       )}

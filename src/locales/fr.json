@@ -103,5 +103,48 @@
     "description": "Nous utilisons des cookies pour mémoriser votre préférence de thème (clair/sombre). Aucune donnée personnelle n'est collectée.",
     "accept": "Tout accepter",
     "decline": "Refuser"
+  },
+  "portal": {
+    "login": {
+      "title": "Bon retour",
+      "subtitle": "Connectez-vous à votre espace agence",
+      "emailLabel": "Email",
+      "emailPlaceholder": "agence@exemple.com",
+      "passwordLabel": "Mot de passe",
+      "passwordPlaceholder": "Votre mot de passe",
+      "submit": "Se connecter",
+      "loading": "Connexion…",
+      "noAccount": "Pas encore de compte ?",
+      "registerLink": "Créer un compte",
+      "errorGeneric": "Une erreur est survenue. Veuillez réessayer."
+    },
+    "register": {
+      "title": "Créer votre compte",
+      "subtitle": "Inscrivez votre agence sur Klipp",
+      "agencyNameLabel": "Nom de l'agence",
+      "agencyNamePlaceholder": "Mon Agence",
+      "emailLabel": "Email",
+      "emailPlaceholder": "agence@exemple.com",
+      "passwordLabel": "Mot de passe",
+      "confirmPasswordLabel": "Confirmer le mot de passe",
+      "phoneLabel": "Téléphone",
+      "phonePlaceholder": "+33 6 00 00 00 00",
+      "streetNumberLabel": "N°",
+      "streetLabel": "Rue",
+      "streetPlaceholder": "Rue de la Paix",
+      "postalCodeLabel": "Code postal",
+      "cityLabel": "Ville",
+      "cityPlaceholder": "Paris",
+      "submit": "Créer le compte",
+      "loading": "Création…",
+      "hasAccount": "Déjà un compte ?",
+      "loginLink": "Se connecter",
+      "errorPasswordMismatch": "Les mots de passe ne correspondent pas.",
+      "errorGeneric": "Une erreur est survenue. Veuillez réessayer."
+    },
+    "dashboard": {
+      "greeting": "Bonjour, {{agency}}",
+      "logout": "Se déconnecter"
+    }
   }
 }

@@ -1,9 +1,21 @@
 import '@testing-library/jest-dom'
 import { vi } from 'vitest'
 
+// jsdom throws SecurityError for localStorage on opaque origins — provide a simple mock
+const localStorageMock = (() => {
+  let store = {}
+  return {
+    getItem: (key) => Object.prototype.hasOwnProperty.call(store, key) ? store[key] : null,
+    setItem: (key, value) => { store[key] = String(value) },
+    removeItem: (key) => { delete store[key] },
+    clear: () => { store = {} },
+  }
+})()
+Object.defineProperty(window, 'localStorage', { value: localStorageMock, writable: true })
+
 const { mockChangeLanguage, mockT } = vi.hoisted(() => ({
   mockChangeLanguage: vi.fn(() => new Promise(() => {})),
-  mockT: (key) => {
+  mockT: (key, options) => {
     const translations = {
       'nav.features': 'Features',
       'nav.screenshots': 'Screenshots',
@@ -58,7 +70,44 @@ const { mockChangeLanguage, mockT } = vi.hoisted(() => ({
       'cookies.title': 'Cookies & préférences',
       'cookies.description': 'Nous utilisons des cookies pour mémoriser votre préférence de thème (clair/sombre). Aucune donnée personnelle n\'est collectée.',
       'cookies.accept': 'Accepter',
-      'cookies.decline': 'Refuser'
+      'cookies.decline': 'Refuser',
+      'portal.login.title': 'Welcome back',
+      'portal.login.subtitle': 'Sign in to your agency account',
+      'portal.login.emailLabel': 'Email',
+      'portal.login.emailPlaceholder': 'agency@example.com',
+      'portal.login.passwordLabel': 'Password',
+      'portal.login.passwordPlaceholder': 'Your password',
+      'portal.login.submit': 'Sign in',
+      'portal.login.loading': 'Signing in…',
+      'portal.login.noAccount': "Don't have an account?",
+      'portal.login.registerLink': 'Create one',
+      'portal.login.errorGeneric': 'An error occurred. Please try again.',
+      'portal.register.title': 'Create your account',
+      'portal.register.subtitle': 'Register your agency on Klipp',
+      'portal.register.agencyNameLabel': 'Agency name',
+      'portal.register.agencyNamePlaceholder': 'My Agency',
+      'portal.register.emailLabel': 'Email',
+      'portal.register.emailPlaceholder': 'agency@example.com',
+      'portal.register.passwordLabel': 'Password',
+      'portal.register.confirmPasswordLabel': 'Confirm password',
+      'portal.register.phoneLabel': 'Phone',
+      'portal.register.phonePlaceholder': '+33 6 00 00 00 00',
+      'portal.register.streetNumberLabel': 'No.',
+      'portal.register.streetLabel': 'Street',
+      'portal.register.streetPlaceholder': 'Rue de la Paix',
+      'portal.register.postalCodeLabel': 'Postal code',
+      'portal.register.cityLabel': 'City',
+      'portal.register.cityPlaceholder': 'Paris',
+      'portal.register.submit': 'Create account',
+      'portal.register.loading': 'Creating…',
+      'portal.register.hasAccount': 'Already have an account?',
+      'portal.register.loginLink': 'Sign in',
+      'portal.register.errorPasswordMismatch': 'Passwords do not match.',
+      'portal.register.errorGeneric': 'An error occurred. Please try again.',
+      'portal.dashboard.logout': 'Sign out',
+    }
+    if (key === 'portal.dashboard.greeting') {
+      return `Hello, ${options?.agency ?? ''}`
     }
     return translations[key] || key
   }

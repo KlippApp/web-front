@@ -1,9 +1,14 @@
 import { render, screen, fireEvent } from '@testing-library/react'
+import { MemoryRouter } from 'react-router-dom'
 import { describe, it, expect, vi } from 'vitest'
 import Navbar from '../../components/Navbar'
 
 function renderNavbar(props = {}) {
-  return render(<Navbar theme="light" toggleTheme={vi.fn()} {...props} />)
+  return render(
+    <MemoryRouter>
+      <Navbar theme="light" toggleTheme={vi.fn()} {...props} />
+    </MemoryRouter>
+  )
 }
 
 describe('Navbar', () => {

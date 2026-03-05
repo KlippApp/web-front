@@ -103,5 +103,48 @@
     "description": "We use cookies to remember your theme preference (light/dark). No personal data is collected.",
     "accept": "Accept all",
     "decline": "Decline"
+  },
+  "portal": {
+    "login": {
+      "title": "Welcome back",
+      "subtitle": "Sign in to your agency account",
+      "emailLabel": "Email",
+      "emailPlaceholder": "agency@example.com",
+      "passwordLabel": "Password",
+      "passwordPlaceholder": "Your password",
+      "submit": "Sign in",
+      "loading": "Signing in…",
+      "noAccount": "Don't have an account?",
+      "registerLink": "Create one",
+      "errorGeneric": "An error occurred. Please try again."
+    },
+    "register": {
+      "title": "Create your account",
+      "subtitle": "Register your agency on Klipp",
+      "agencyNameLabel": "Agency name",
+      "agencyNamePlaceholder": "My Agency",
+      "emailLabel": "Email",
+      "emailPlaceholder": "agency@example.com",
+      "passwordLabel": "Password",
+      "confirmPasswordLabel": "Confirm password",
+      "phoneLabel": "Phone",
+      "phonePlaceholder": "+33 6 00 00 00 00",
+      "streetNumberLabel": "No.",
+      "streetLabel": "Street",
+      "streetPlaceholder": "Rue de la Paix",
+      "postalCodeLabel": "Postal code",
+      "cityLabel": "City",
+      "cityPlaceholder": "Paris",
+      "submit": "Create account",
+      "loading": "Creating…",
+      "hasAccount": "Already have an account?",
+      "loginLink": "Sign in",
+      "errorPasswordMismatch": "Passwords do not match.",
+      "errorGeneric": "An error occurred. Please try again."
+    },
+    "dashboard": {
+      "greeting": "Hello, {{agency}}",
+      "logout": "Sign out"
+    }
   }
 }

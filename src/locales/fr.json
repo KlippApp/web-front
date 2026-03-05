@@ -149,6 +149,7 @@
       "nav": {
         "dashboard": "Tableau de bord",
         "agents": "Agents",
+        "offices": "Agences",
         "profile": "Profil de l'agence"
       },
       "chart": {
@@ -187,6 +188,27 @@
       },
       "list": {
         "empty": "Aucun agent pour le moment.",
+        "actions": "Actions",
+        "edit": "Modifier"
+      }
+    },
+    "offices": {
+      "title": "Agences physiques",
+      "subtitle": "Gérez vos points de vente",
+      "addOffice": "Ajouter une agence",
+      "editOffice": "Modifier l'agence",
+      "form": {
+        "photo": "Photo de l'agence",
+        "name": "Nom de l'agence",
+        "address": "Adresse postale",
+        "email": "Adresse mail",
+        "phone": "Numéro de téléphone",
+        "cancel": "Annuler",
+        "submit": "Ajouter l'agence",
+        "submitEdit": "Enregistrer les modifications"
+      },
+      "list": {
+        "empty": "Aucune agence pour le moment.",
         "actions": "Actions",
         "edit": "Modifier"
       }

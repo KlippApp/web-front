@@ -8,6 +8,7 @@ vi.mock('react-i18next', () => ({
     t: (key, params) => {
       if (key === 'portal.dashboard.nav.dashboard') return 'Dashboard'
       if (key === 'portal.dashboard.nav.agents') return 'Agents'
+      if (key === 'portal.dashboard.nav.offices') return 'Offices'
       if (key === 'portal.dashboard.nav.profile') return 'Agency profile'
       if (key === 'portal.dashboard.logout') return 'Sign out'
       if (key === 'portal.dashboard.greeting') return `Hello, ${params.agency}`
@@ -56,6 +57,7 @@ describe('DashboardLayout', () => {
     renderLayout()
     expect(screen.getByRole('link', { name: /^dashboard$/i })).toBeInTheDocument()
     expect(screen.getByRole('link', { name: /^agents$/i })).toBeInTheDocument()
+    expect(screen.getByRole('link', { name: /^offices$/i })).toBeInTheDocument()
     expect(screen.getByRole('link', { name: /^agency profile$/i })).toBeInTheDocument()
   })
 

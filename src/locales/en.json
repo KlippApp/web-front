@@ -149,6 +149,7 @@
       "nav": {
         "dashboard": "Dashboard",
         "agents": "Agents",
+        "offices": "Offices",
         "profile": "Agency profile"
       },
       "chart": {
@@ -187,6 +188,27 @@
       },
       "list": {
         "empty": "No agents yet.",
+        "actions": "Actions",
+        "edit": "Edit"
+      }
+    },
+    "offices": {
+      "title": "Physical offices",
+      "subtitle": "Manage your agency locations",
+      "addOffice": "Add an office",
+      "editOffice": "Edit office",
+      "form": {
+        "photo": "Office photo",
+        "name": "Office name",
+        "address": "Postal address",
+        "email": "Email address",
+        "phone": "Phone number",
+        "cancel": "Cancel",
+        "submit": "Add office",
+        "submitEdit": "Save changes"
+      },
+      "list": {
+        "empty": "No offices yet.",
         "actions": "Actions",
         "edit": "Edit"
       }

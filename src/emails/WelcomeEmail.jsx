@@ -11,7 +11,6 @@ import {
   Link,
   Preview,
 } from "@react-email/components";
-import * as React from "react";
 
 export const WelcomeEmail = ({
   userFirstname = "Utilisateur",

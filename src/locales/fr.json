@@ -123,6 +123,8 @@
       "subtitle": "Inscrivez votre agence sur Klipp",
       "agencyNameLabel": "Nom de l'agence",
       "agencyNamePlaceholder": "Mon Agence",
+      "managerNameLabel": "Nom du responsable",
+      "managerNamePlaceholder": "Jean Dupont",
       "emailLabel": "Email",
       "emailPlaceholder": "agence@exemple.com",
       "passwordLabel": "Mot de passe",

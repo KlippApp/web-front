@@ -123,6 +123,8 @@
       "subtitle": "Register your agency on Klipp",
       "agencyNameLabel": "Agency name",
       "agencyNamePlaceholder": "My Agency",
+      "managerNameLabel": "Manager name",
+      "managerNamePlaceholder": "John Doe",
       "emailLabel": "Email",
       "emailPlaceholder": "agency@example.com",
       "passwordLabel": "Password",

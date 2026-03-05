@@ -86,6 +86,8 @@ const { mockChangeLanguage, mockT } = vi.hoisted(() => ({
       'portal.register.subtitle': 'Register your agency on Klipp',
       'portal.register.agencyNameLabel': 'Agency name',
       'portal.register.agencyNamePlaceholder': 'My Agency',
+      'portal.register.managerNameLabel': 'Manager name',
+      'portal.register.managerNamePlaceholder': 'John Doe',
       'portal.register.emailLabel': 'Email',
       'portal.register.emailPlaceholder': 'agency@example.com',
       'portal.register.passwordLabel': 'Password',

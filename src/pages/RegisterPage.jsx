@@ -34,6 +34,7 @@ export default function RegisterPage() {
 
   const [form, setForm] = useState({
     agencyName: '',
+    managerName: '',
     email: '',
     password: '',
     confirmPassword: '',
@@ -67,6 +68,7 @@ export default function RegisterPage() {
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
           agencyName: form.agencyName,
+          managerName: form.managerName,
           email: form.email,
           password: form.password,
           phone: form.phone,
@@ -80,7 +82,7 @@ export default function RegisterPage() {
       if (!res.ok) {
         setError(data.message || t('portal.register.errorGeneric'))
       } else {
-        login(data.token, data.agencyName)
+        login(data.token, data.agencyName, data.managerName)
         navigate('/dashboard')
       }
     } catch {
@@ -135,11 +137,18 @@ export default function RegisterPage() {
         </p>
 
         <form onSubmit={handleSubmit} style={{ display: 'flex', flexDirection: 'column', gap: '0.875rem' }}>
-          <Field label={t('portal.register.agencyNameLabel')} htmlFor="reg-agencyName">
-            <input id="reg-agencyName" type="text" required value={form.agencyName} onChange={set('agencyName')}
-              placeholder={t('portal.register.agencyNamePlaceholder')}
-              style={inputStyle} onFocus={focusStyle} onBlur={blurStyle} />
-          </Field>
+          <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '0.75rem' }}>
+            <Field label={t('portal.register.agencyNameLabel')} htmlFor="reg-agencyName">
+              <input id="reg-agencyName" type="text" required value={form.agencyName} onChange={set('agencyName')}
+                placeholder={t('portal.register.agencyNamePlaceholder')}
+                style={inputStyle} onFocus={focusStyle} onBlur={blurStyle} />
+            </Field>
+            <Field label={t('portal.register.managerNameLabel')} htmlFor="reg-managerName">
+              <input id="reg-managerName" type="text" required value={form.managerName} onChange={set('managerName')}
+                placeholder={t('portal.register.managerNamePlaceholder')}
+                style={inputStyle} onFocus={focusStyle} onBlur={blurStyle} />
+            </Field>
+          </div>
 
           <Field label={t('portal.register.emailLabel')} htmlFor="reg-email">
             <input id="reg-email" type="email" required value={form.email} onChange={set('email')}

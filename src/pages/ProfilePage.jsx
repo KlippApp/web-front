@@ -79,7 +79,7 @@ export default function ProfilePage() {
   const [infoLoading, setInfoLoading] = useState(false)
 
   useEffect(() => {
-    if (DEV_BYPASS) return
+    if (!API_URL) return
     fetch(`${API_URL}/agency/profile`, {
       headers: { Authorization: `Bearer ${token}` },
     })
@@ -133,7 +133,7 @@ export default function ProfilePage() {
         const data = await res.json()
         const msg = Array.isArray(data.detail)
           ? data.detail.map(e => e.msg).join(', ')
-          : data.detail || t('portal.profile.errorGeneric')
+          : data.detail || data.message || t('portal.profile.errorGeneric')
         setDeleteError(msg)
       } else {
         logout()
@@ -186,7 +186,7 @@ export default function ProfilePage() {
       if (!res.ok) {
         const msg = Array.isArray(data.detail)
           ? data.detail.map(e => e.msg).join(', ')
-          : data.detail || t('portal.profile.errorGeneric')
+          : data.detail || data.message || t('portal.profile.errorGeneric')
         setInfoError(msg)
       } else {
         updateProfile(infoForm.agencyName, infoForm.managerName)
@@ -223,7 +223,7 @@ export default function ProfilePage() {
       if (!res.ok) {
         const msg = Array.isArray(data.detail)
           ? data.detail.map(e => e.msg).join(', ')
-          : data.detail || t('portal.profile.errorGeneric')
+          : data.detail || data.message || t('portal.profile.errorGeneric')
         setPwError(msg)
       } else {
         setPwSuccess(t('portal.profile.successPassword'))

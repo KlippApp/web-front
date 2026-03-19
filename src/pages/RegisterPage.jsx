@@ -89,7 +89,7 @@ export default function RegisterPage() {
       if (!res.ok) {
         const msg = Array.isArray(data.detail)
           ? data.detail.map(e => e.msg).join(', ')
-          : data.detail || t('portal.register.errorGeneric')
+          : data.detail || data.message || t('portal.register.errorGeneric')
         setError(msg)
       } else {
         login(data.token, data.agency, data.managerName)

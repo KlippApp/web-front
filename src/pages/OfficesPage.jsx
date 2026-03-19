@@ -60,7 +60,7 @@ export default function OfficesPage() {
   const authHeaders = { 'Content-Type': 'application/json', Authorization: `Bearer ${token}` }
 
   useEffect(() => {
-    if (DEV_BYPASS) {
+    if (DEV_BYPASS || !API_URL) {
       setOffices([])
       return
     }
@@ -80,11 +80,11 @@ export default function OfficesPage() {
     e.preventDefault()
     setLoading(true)
     try {
-      if (DEV_BYPASS) {
+      if (DEV_BYPASS || !API_URL) {
         if (editingOffice) {
           setOffices(prev => prev.map(o => o.uuid === editingOffice.uuid ? { ...form, uuid: o.uuid } : o))
         } else {
-          setOffices(prev => [...prev, { ...form, uuid: Date.now().toString() }])
+          setOffices(prev => [...prev, { ...form, country_code: form.countryCode, uuid: Date.now().toString() }])
         }
         closeForm()
         return

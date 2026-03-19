@@ -56,6 +56,7 @@ export default function OfficesPage() {
   const [offices, setOffices] = useState([])
   const [loading, setLoading] = useState(false)
   const [form, setForm] = useState({ name: '', address: '', email: '', phone: '', countryCode: '+33', photo: null })
+  const [confirmDelete, setConfirmDelete] = useState(null)
 
   const authHeaders = { 'Content-Type': 'application/json', Authorization: `Bearer ${token}` }
 
@@ -126,14 +127,16 @@ export default function OfficesPage() {
     }
   }, [editingOffice, form, closeForm])
 
-  const handleDelete = useCallback(async (office) => {
-    if (DEV_BYPASS) {
+  const handleDelete = useCallback(async () => {
+    const office = confirmDelete
+    setConfirmDelete(null)
+    if (DEV_BYPASS || !API_URL) {
       setOffices(prev => prev.filter(o => o.uuid !== office.uuid))
       return
     }
     await fetch(`${API_URL}/offices/${office.uuid}`, { method: 'DELETE', headers: authHeaders })
     setOffices(prev => prev.filter(o => o.uuid !== office.uuid))
-  }, [])
+  }, [confirmDelete])
 
   const openEdit = (office) => {
     const countryCode = office.country_code || '+33'
@@ -281,7 +284,7 @@ export default function OfficesPage() {
                       {t('portal.offices.list.edit')}
                     </button>
                     <button
-                      onClick={() => handleDelete(office)}
+                      onClick={() => setConfirmDelete(office)}
                       style={{
                         padding: '0.4rem 0.75rem', borderRadius: '0.5rem', border: '1px solid var(--color-input-error)',
                         background: 'transparent', color: 'var(--color-input-error)', fontSize: '0.8rem', fontWeight: 600,
@@ -295,6 +298,60 @@ export default function OfficesPage() {
               ))}
             </tbody>
           </table>
+        </div>
+      )}
+
+      {/* Delete confirmation modal */}
+      {confirmDelete && (
+        <div
+          role="dialog"
+          aria-modal="true"
+          style={{
+            position: 'fixed', inset: 0, background: 'rgba(0,0,0,0.5)',
+            backdropFilter: 'blur(4px)', display: 'flex', alignItems: 'center',
+            justifyContent: 'center', padding: '1rem', zIndex: 200,
+          }}
+        >
+          <div style={{
+            width: '100%', maxWidth: 400, padding: '2rem',
+            background: 'var(--color-nav-bg)',
+            backdropFilter: 'blur(20px)',
+            WebkitBackdropFilter: 'blur(20px)',
+            border: '1px solid var(--color-card-border)',
+            borderRadius: '1.25rem',
+            boxShadow: '0 8px 40px rgba(0,0,0,0.18)',
+          }}>
+            <h2 style={{ margin: '0 0 0.5rem', fontSize: '1.1rem', fontWeight: 700, color: 'var(--color-text-primary)' }}>
+              {t('portal.offices.deleteModal.title')}
+            </h2>
+            <p style={{ margin: '0 0 1.5rem', fontSize: '0.875rem', color: 'var(--color-text-secondary)' }}>
+              {t('portal.offices.deleteModal.message', { name: confirmDelete.name })}
+            </p>
+            <div style={{ display: 'flex', gap: '0.75rem', justifyContent: 'flex-end' }}>
+              <button
+                onClick={() => setConfirmDelete(null)}
+                style={{
+                  padding: '0.625rem 1.25rem', borderRadius: '0.75rem',
+                  border: '1px solid var(--color-card-border)',
+                  background: 'transparent', color: 'var(--color-text-secondary)',
+                  fontWeight: 600, fontSize: '0.875rem', cursor: 'pointer',
+                }}
+              >
+                {t('portal.offices.deleteModal.cancel')}
+              </button>
+              <button
+                onClick={handleDelete}
+                style={{
+                  padding: '0.625rem 1.25rem', borderRadius: '0.75rem',
+                  border: '1px solid rgba(239, 68, 68, 0.5)',
+                  background: 'rgba(239, 68, 68, 0.12)', color: '#ef4444',
+                  fontWeight: 600, fontSize: '0.875rem', cursor: 'pointer',
+                }}
+              >
+                {t('portal.offices.deleteModal.confirm')}
+              </button>
+            </div>
+          </div>
         </div>
       )}
 

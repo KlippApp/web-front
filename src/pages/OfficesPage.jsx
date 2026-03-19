@@ -136,13 +136,18 @@ export default function OfficesPage() {
   }, [])
 
   const openEdit = (office) => {
+    const countryCode = office.country_code || '+33'
+    let phoneNum = office.phone || ''
+    if (phoneNum.startsWith(countryCode)) {
+      phoneNum = phoneNum.slice(countryCode.length).trim()
+    }
     setEditingOffice(office)
     setForm({
       name: office.name,
       address: office.address,
       email: office.email,
-      phone: office.phone,
-      countryCode: office.country_code || '+33',
+      phone: phoneNum,
+      countryCode,
       photo: office.photo || null,
     })
     setShowForm(true)

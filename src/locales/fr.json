@@ -240,6 +240,12 @@
         "empty": "Aucune agence pour le moment.",
         "actions": "Actions",
         "edit": "Modifier"
+      },
+      "deleteModal": {
+        "title": "Supprimer l'agence ?",
+        "message": "Êtes-vous sûr de vouloir supprimer \"{{name}}\" ? Cette action est irréversible.",
+        "cancel": "Annuler",
+        "confirm": "Supprimer"
       }
     }
   }

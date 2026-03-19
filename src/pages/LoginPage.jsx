@@ -44,9 +44,12 @@ export default function LoginPage() {
       })
       const data = await res.json()
       if (!res.ok) {
-        setError(data.message || t('portal.login.errorGeneric'))
+        const msg = Array.isArray(data.detail)
+          ? data.detail.map(e => e.msg).join(', ')
+          : data.detail || t('portal.login.errorGeneric')
+        setError(msg)
       } else {
-        login(data.token, data.agency)
+        login(data.token, data.agency, data.managerName)
         navigate('/dashboard')
       }
     } catch {

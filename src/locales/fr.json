@@ -210,6 +210,8 @@
         "email": "Adresse mail",
         "phone": "Numéro de téléphone",
         "cancel": "Annuler",
+        "office": "Agence physique",
+        "officeNone": "Aucune agence assignée",
         "submit": "Ajouter l'agent",
         "submitEdit": "Enregistrer les modifications",
         "success": "Agent ajouté avec succès !",
@@ -218,7 +220,15 @@
       "list": {
         "empty": "Aucun agent pour le moment.",
         "actions": "Actions",
-        "edit": "Modifier"
+        "edit": "Modifier",
+        "pending": "En attente",
+        "delete": "Supprimer"
+      },
+      "deleteModal": {
+        "title": "Supprimer l'agent ?",
+        "message": "Êtes-vous sûr de vouloir supprimer \"{{name}}\" ? Cette action est irréversible.",
+        "cancel": "Annuler",
+        "confirm": "Supprimer"
       }
     },
     "offices": {
@@ -240,7 +250,29 @@
         "empty": "Aucune agence pour le moment.",
         "actions": "Actions",
         "edit": "Modifier"
+      },
+      "deleteModal": {
+        "title": "Supprimer l'agence ?",
+        "message": "Êtes-vous sûr de vouloir supprimer \"{{name}}\" ? Cette action est irréversible.",
+        "cancel": "Annuler",
+        "confirm": "Supprimer"
       }
     }
+  },
+  "setPassword": {
+    "loading": "Vérification de l'invitation…",
+    "invalidTitle": "Lien invalide ou expiré",
+    "invalidMessage": "Ce lien d'invitation n'est plus valide. Veuillez contacter votre agence.",
+    "title": "Créez votre mot de passe",
+    "subtitle": "Bienvenue, {{name}}. Choisissez un mot de passe pour activer votre compte.",
+    "emailLabel": "Adresse email",
+    "passwordLabel": "Mot de passe",
+    "confirmLabel": "Confirmer le mot de passe",
+    "submit": "Créer le mot de passe",
+    "submitting": "Enregistrement…",
+    "errorMismatch": "Les mots de passe ne correspondent pas.",
+    "errorGeneric": "Une erreur est survenue. Veuillez réessayer.",
+    "successTitle": "Mot de passe créé !",
+    "successMessage": "Votre mot de passe a été créé avec succès. Vous pouvez maintenant utiliser l'application mobile."
   }
 }

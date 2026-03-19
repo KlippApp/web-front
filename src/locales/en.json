@@ -210,6 +210,8 @@
         "email": "Email address",
         "phone": "Phone number",
         "cancel": "Cancel",
+        "office": "Physical office",
+        "officeNone": "No office assigned",
         "submit": "Add agent",
         "submitEdit": "Save changes",
         "success": "Agent added successfully!",
@@ -218,7 +220,15 @@
       "list": {
         "empty": "No agents yet.",
         "actions": "Actions",
-        "edit": "Edit"
+        "edit": "Edit",
+        "pending": "Pending",
+        "delete": "Delete"
+      },
+      "deleteModal": {
+        "title": "Delete agent?",
+        "message": "Are you sure you want to delete \"{{name}}\"? This action cannot be undone.",
+        "cancel": "Cancel",
+        "confirm": "Delete"
       }
     },
     "offices": {
@@ -240,7 +250,29 @@
         "empty": "No offices yet.",
         "actions": "Actions",
         "edit": "Edit"
+      },
+      "deleteModal": {
+        "title": "Delete office?",
+        "message": "Are you sure you want to delete \"{{name}}\"? This action cannot be undone.",
+        "cancel": "Cancel",
+        "confirm": "Delete"
       }
     }
+  },
+  "setPassword": {
+    "loading": "Verifying invitation…",
+    "invalidTitle": "Invalid or expired link",
+    "invalidMessage": "This invitation link is no longer valid. Please contact your agency.",
+    "title": "Create your password",
+    "subtitle": "Welcome, {{name}}. Choose a password to activate your account.",
+    "emailLabel": "Email address",
+    "passwordLabel": "Password",
+    "confirmLabel": "Confirm password",
+    "submit": "Create password",
+    "submitting": "Saving…",
+    "errorMismatch": "Passwords do not match.",
+    "errorGeneric": "An error occurred. Please try again.",
+    "successTitle": "Password created!",
+    "successMessage": "Your password has been set successfully. You can now use the mobile app."
   }
 }

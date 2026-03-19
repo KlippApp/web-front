@@ -66,7 +66,7 @@ export default function OfficesPage() {
     }
     fetch(`${API_URL}/offices`, { headers: authHeaders })
       .then(r => r.json())
-      .then(data => setOffices(data.data ?? []))
+      .then(data => setOffices(data.items ?? []))
       .catch(() => {})
   }, [])
 

@@ -17,24 +17,22 @@ const inputStyle = {
 
 export default function SetPasswordPage() {
   const { t } = useTranslation()
-  const [status, setStatus] = useState('loading')
-  const [agentInfo, setAgentInfo] = useState(null)
+  const token = new URLSearchParams(window.location.search).get('token') ?? ''
+  const isMock = !token || DEV_BYPASS || !API_URL
+  const [status, setStatus] = useState(() => {
+    if (!token) return 'invalid'
+    if (DEV_BYPASS || !API_URL) return 'valid'
+    return 'loading'
+  })
+  const [agentInfo, setAgentInfo] = useState(() =>
+    token && (DEV_BYPASS || !API_URL) ? { name: 'Demo Agent', email: 'agent@demo.com' } : null
+  )
   const [password, setPassword] = useState('')
   const [confirm, setConfirm] = useState('')
   const [error, setError] = useState('')
 
-  const token = new URLSearchParams(window.location.search).get('token') ?? ''
-
   useEffect(() => {
-    if (!token) {
-      setStatus('invalid')
-      return
-    }
-    if (DEV_BYPASS || !API_URL) {
-      setAgentInfo({ name: 'Demo Agent', email: 'agent@demo.com' })
-      setStatus('valid')
-      return
-    }
+    if (isMock) return
     fetch(`${API_URL}/agents/invitation/verify?token=${encodeURIComponent(token)}`)
       .then(r => r.json().then(data => ({ ok: r.ok, data })))
       .then(({ ok, data }) => {
@@ -46,7 +44,7 @@ export default function SetPasswordPage() {
         }
       })
       .catch(() => setStatus('invalid'))
-  }, [token])
+  }, [isMock, token])
 
   const handleSubmit = async (e) => {
     e.preventDefault()

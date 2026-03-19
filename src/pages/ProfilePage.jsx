@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { useTranslation } from 'react-i18next'
 import { useAuth } from '../hooks/useAuth.js'
@@ -78,6 +78,31 @@ export default function ProfilePage() {
   const [infoSuccess, setInfoSuccess] = useState('')
   const [infoLoading, setInfoLoading] = useState(false)
 
+  useEffect(() => {
+    if (DEV_BYPASS) return
+    fetch(`${API_URL}/agency/profile`, {
+      headers: { Authorization: `Bearer ${token}` },
+    })
+      .then(async r => {
+        const data = await r.json()
+        if (!r.ok) {
+          setInfoError(data.detail || 'Failed to load profile')
+          return
+        }
+        setInfoForm({
+          managerName: data.manager_name || '',
+          agencyName: data.agency_name || '',
+          email: data.email || '',
+          phone: data.phone || '',
+          streetNumber: data.street_number || '',
+          street: data.street || '',
+          postalCode: data.postal_code || '',
+          city: data.city || '',
+        })
+      })
+      .catch(err => setInfoError(err.message))
+  }, [token])
+
   const [deleteModalOpen, setDeleteModalOpen] = useState(false)
   const [deleteConfirm, setDeleteConfirm] = useState('')
   const [deleteError, setDeleteError] = useState('')
@@ -106,7 +131,10 @@ export default function ProfilePage() {
       })
       if (!res.ok) {
         const data = await res.json()
-        setDeleteError(data.message || t('portal.profile.errorGeneric'))
+        const msg = Array.isArray(data.detail)
+          ? data.detail.map(e => e.msg).join(', ')
+          : data.detail || t('portal.profile.errorGeneric')
+        setDeleteError(msg)
       } else {
         logout()
         navigate('/login')
@@ -143,11 +171,23 @@ export default function ProfilePage() {
       const res = await fetch(`${API_URL}/agency/profile`, {
         method: 'PUT',
         headers: { 'Content-Type': 'application/json', Authorization: `Bearer ${token}` },
-        body: JSON.stringify(infoForm),
+        body: JSON.stringify({
+          agency_name: infoForm.agencyName,
+          manager_name: infoForm.managerName,
+          email: infoForm.email,
+          phone: infoForm.phone,
+          street_number: infoForm.streetNumber,
+          street: infoForm.street,
+          postal_code: infoForm.postalCode,
+          city: infoForm.city,
+        }),
       })
       const data = await res.json()
       if (!res.ok) {
-        setInfoError(data.message || t('portal.profile.errorGeneric'))
+        const msg = Array.isArray(data.detail)
+          ? data.detail.map(e => e.msg).join(', ')
+          : data.detail || t('portal.profile.errorGeneric')
+        setInfoError(msg)
       } else {
         updateProfile(infoForm.agencyName, infoForm.managerName)
         setInfoSuccess(t('portal.profile.successInfo'))
@@ -177,11 +217,14 @@ export default function ProfilePage() {
       const res = await fetch(`${API_URL}/auth/change-password`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json', Authorization: `Bearer ${token}` },
-        body: JSON.stringify({ currentPassword: pwForm.currentPassword, newPassword: pwForm.newPassword }),
+        body: JSON.stringify({ current_password: pwForm.currentPassword, new_password: pwForm.newPassword }),
       })
       const data = await res.json()
       if (!res.ok) {
-        setPwError(data.message || t('portal.profile.errorGeneric'))
+        const msg = Array.isArray(data.detail)
+          ? data.detail.map(e => e.msg).join(', ')
+          : data.detail || t('portal.profile.errorGeneric')
+        setPwError(msg)
       } else {
         setPwSuccess(t('portal.profile.successPassword'))
         setPwForm({ currentPassword: '', newPassword: '', confirmNewPassword: '' })

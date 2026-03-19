@@ -1,6 +1,8 @@
-import { useState, useCallback } from 'react'
+import { useState, useCallback, useEffect } from 'react'
 import { useTranslation } from 'react-i18next'
-import { Plus, MapPin, X, Pencil, Camera } from 'lucide-react'
+import { Plus, MapPin, X, Pencil, Camera, Trash2 } from 'lucide-react'
+import { useAuth } from '../hooks/useAuth.js'
+import API_URL, { DEV_BYPASS } from '../config/api.js'
 
 const inputStyle = {
   width: '100%',
@@ -48,10 +50,25 @@ function Field({ label, id, children }) {
 
 export default function OfficesPage() {
   const { t } = useTranslation()
+  const { token } = useAuth()
   const [showForm, setShowForm] = useState(false)
   const [editingOffice, setEditingOffice] = useState(null)
   const [offices, setOffices] = useState([])
+  const [loading, setLoading] = useState(false)
   const [form, setForm] = useState({ name: '', address: '', email: '', phone: '', countryCode: '+33', photo: null })
+
+  const authHeaders = { 'Content-Type': 'application/json', Authorization: `Bearer ${token}` }
+
+  useEffect(() => {
+    if (DEV_BYPASS) {
+      setOffices([])
+      return
+    }
+    fetch(`${API_URL}/offices`, { headers: authHeaders })
+      .then(r => r.json())
+      .then(data => setOffices(data.data ?? []))
+      .catch(() => {})
+  }, [])
 
   const closeForm = useCallback(() => {
     setEditingOffice(null)
@@ -59,26 +76,74 @@ export default function OfficesPage() {
     setShowForm(false)
   }, [])
 
-  const handleSubmit = useCallback((e) => {
+  const handleSubmit = useCallback(async (e) => {
     e.preventDefault()
-    if (editingOffice) {
-      setOffices(prev => prev.map(o => o.id === editingOffice.id ? { ...form, id: o.id } : o))
-    } else {
-      const newOffice = { ...form, id: Date.now() }
-      setOffices(prev => [...prev, newOffice])
+    setLoading(true)
+    try {
+      if (DEV_BYPASS) {
+        if (editingOffice) {
+          setOffices(prev => prev.map(o => o.uuid === editingOffice.uuid ? { ...form, uuid: o.uuid } : o))
+        } else {
+          setOffices(prev => [...prev, { ...form, uuid: Date.now().toString() }])
+        }
+        closeForm()
+        return
+      }
+      if (editingOffice) {
+        const res = await fetch(`${API_URL}/offices/${editingOffice.uuid}`, {
+          method: 'PUT',
+          headers: authHeaders,
+          body: JSON.stringify({
+            name: form.name,
+            address: form.address,
+            email: form.email,
+            phone: `${form.countryCode} ${form.phone}`,
+            country_code: form.countryCode,
+            photo: form.photo,
+          }),
+        })
+        const data = await res.json()
+        if (res.ok) setOffices(prev => prev.map(o => o.uuid === editingOffice.uuid ? data : o))
+      } else {
+        const res = await fetch(`${API_URL}/offices`, {
+          method: 'POST',
+          headers: authHeaders,
+          body: JSON.stringify({
+            name: form.name,
+            address: form.address,
+            email: form.email,
+            phone: `${form.countryCode} ${form.phone}`,
+            country_code: form.countryCode,
+            photo: form.photo,
+          }),
+        })
+        const data = await res.json()
+        if (res.ok) setOffices(prev => [...prev, data])
+      }
+      closeForm()
+    } finally {
+      setLoading(false)
     }
-    closeForm()
   }, [editingOffice, form, closeForm])
+
+  const handleDelete = useCallback(async (office) => {
+    if (DEV_BYPASS) {
+      setOffices(prev => prev.filter(o => o.uuid !== office.uuid))
+      return
+    }
+    await fetch(`${API_URL}/offices/${office.uuid}`, { method: 'DELETE', headers: authHeaders })
+    setOffices(prev => prev.filter(o => o.uuid !== office.uuid))
+  }, [])
 
   const openEdit = (office) => {
     setEditingOffice(office)
-    setForm({ 
-      name: office.name, 
-      address: office.address, 
-      email: office.email, 
+    setForm({
+      name: office.name,
+      address: office.address,
+      email: office.email,
       phone: office.phone,
-      countryCode: office.countryCode || '+33',
-      photo: office.photo || null
+      countryCode: office.country_code || '+33',
+      photo: office.photo || null,
     })
     setShowForm(true)
   }
@@ -172,7 +237,7 @@ export default function OfficesPage() {
             </thead>
             <tbody>
               {offices.map(office => (
-                <tr key={office.id} style={{ borderBottom: '1px solid var(--color-card-border)' }}>
+                <tr key={office.uuid} style={{ borderBottom: '1px solid var(--color-card-border)' }}>
                   <td style={{ padding: '0.75rem 1rem' }}>
                     <div style={{
                       width: 40, height: 40, borderRadius: '50%', overflow: 'hidden',
@@ -196,9 +261,9 @@ export default function OfficesPage() {
                     {office.email}
                   </td>
                   <td style={{ padding: '1rem', color: 'var(--color-text-secondary)', fontSize: '0.875rem' }}>
-                    {office.countryCode} {office.phone}
+                    {office.country_code} {office.phone}
                   </td>
-                  <td style={{ padding: '1rem', textAlign: 'right' }}>
+                  <td style={{ padding: '1rem', textAlign: 'right', display: 'flex', gap: '0.5rem', justifyContent: 'flex-end' }}>
                     <button
                       onClick={() => openEdit(office)}
                       style={{
@@ -209,6 +274,16 @@ export default function OfficesPage() {
                     >
                       <Pencil size={14} />
                       {t('portal.offices.list.edit')}
+                    </button>
+                    <button
+                      onClick={() => handleDelete(office)}
+                      style={{
+                        padding: '0.4rem 0.75rem', borderRadius: '0.5rem', border: '1px solid var(--color-input-error)',
+                        background: 'transparent', color: 'var(--color-input-error)', fontSize: '0.8rem', fontWeight: 600,
+                        cursor: 'pointer', display: 'inline-flex', alignItems: 'center', gap: '0.4rem'
+                      }}
+                    >
+                      <Trash2 size={14} />
                     </button>
                   </td>
                 </tr>
@@ -329,12 +404,14 @@ export default function OfficesPage() {
                 >
                   {t('portal.offices.form.cancel')}
                 </button>
-                <button 
+                <button
                   type="submit"
+                  disabled={loading}
                   style={{
                     flex: 1, padding: '0.625rem', borderRadius: '0.625rem', border: 'none',
                     background: 'linear-gradient(135deg, #2B7FFF 0%, #8EC5FF 100%)',
-                    color: '#fff', fontWeight: 600, cursor: 'pointer'
+                    color: '#fff', fontWeight: 600, cursor: loading ? 'not-allowed' : 'pointer',
+                    opacity: loading ? 0.7 : 1,
                   }}
                 >
                   {editingOffice ? t('portal.offices.form.submitEdit') : t('portal.offices.form.submit')}

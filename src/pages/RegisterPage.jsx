@@ -74,22 +74,25 @@ export default function RegisterPage() {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
-          agencyName: form.agencyName,
-          managerName: form.managerName,
+          agency_name: form.agencyName,
+          manager_name: form.managerName,
           email: form.email,
           password: form.password,
           phone: form.phone,
-          streetNumber: form.streetNumber,
+          street_number: form.streetNumber,
           street: form.street,
-          postalCode: form.postalCode,
+          postal_code: form.postalCode,
           city: form.city,
         }),
       })
       const data = await res.json()
       if (!res.ok) {
-        setError(data.message || t('portal.register.errorGeneric'))
+        const msg = Array.isArray(data.detail)
+          ? data.detail.map(e => e.msg).join(', ')
+          : data.detail || t('portal.register.errorGeneric')
+        setError(msg)
       } else {
-        login(data.token, data.agencyName, data.managerName)
+        login(data.token, data.agency, data.managerName)
         navigate('/dashboard')
       }
     } catch {

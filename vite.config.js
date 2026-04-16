@@ -3,7 +3,7 @@ import react from '@vitejs/plugin-react'
 import tailwindcss from '@tailwindcss/vite'
 
 export default defineConfig({
-  base: '/web-front/',
+  base: process.env.RAILWAY_ENVIRONMENT ? '/' : '/web-front/',
   plugins: [tailwindcss(), react()],
   test: {
     globals: true,

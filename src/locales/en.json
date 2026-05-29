@@ -240,6 +240,12 @@
         "empty": "No offices yet.",
         "actions": "Actions",
         "edit": "Edit"
+      },
+      "deleteModal": {
+        "title": "Delete office?",
+        "message": "Are you sure you want to delete \"{{name}}\"? This action cannot be undone.",
+        "cancel": "Cancel",
+        "confirm": "Delete"
       }
     }
   }

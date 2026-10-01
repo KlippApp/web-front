@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react'
 import { useTranslation } from 'react-i18next'
 import API_URL, { DEV_BYPASS, apiErrorMessage } from '../config/api.js'
+import Logo from '../components/Logo.jsx'
 
 const inputStyle = {
   width: '100%',
@@ -110,16 +111,7 @@ export default function SetPasswordPage() {
       <div className="glass-card" style={{ width: '100%', maxWidth: 420, padding: '2.5rem 2rem' }}>
         {/* Logo */}
         <div style={{ display: 'flex', alignItems: 'center', gap: '0.625rem', marginBottom: '2rem' }}>
-          <div style={{
-            width: 32, height: 32, borderRadius: '0.5rem',
-            background: 'linear-gradient(135deg, #695CF6 0%, #B7AFFB 100%)',
-            display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0,
-          }}>
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="none">
-              <path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2V9z" stroke="#fff" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-              <polyline points="9 22 9 12 15 12 15 22" stroke="#fff" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-            </svg>
-          </div>
+          <Logo size={28} />
           <span style={{ fontWeight: 700, fontSize: '1.1rem', color: 'var(--color-logo-text)' }}>Klipp</span>
         </div>
 

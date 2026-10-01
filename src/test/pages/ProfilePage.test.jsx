@@ -80,12 +80,31 @@ describe('ProfilePage', () => {
     fireEvent.click(screen.getByRole('button', { name: /save changes/i }))
     await waitFor(() => expect(screen.getByText('Information updated successfully.')).toBeInTheDocument())
     expect(mockUpdateProfile).toHaveBeenCalledWith('Test Agency', 'Jean Dupont')
+    const [url, init] = fetch.mock.calls[0]
+    expect(url).toBe('/agencies/Test%20Agency')
+    expect(init.method).toBe('PATCH')
+  })
+
+  it('logs out after renaming the agency since the session token becomes invalid', async () => {
+    globalThis.fetch = vi.fn().mockResolvedValueOnce({ ok: true, json: async () => ({}) })
+    renderProfilePage()
+    fireEvent.change(document.getElementById('prof-email'), { target: { value: 'agency@test.com' } })
+    fireEvent.change(document.getElementById('prof-phone'), { target: { value: '+33600000000' } })
+    fireEvent.change(document.getElementById('prof-streetNumber'), { target: { value: '12' } })
+    fireEvent.change(document.getElementById('prof-street'), { target: { value: 'Rue de la Paix' } })
+    fireEvent.change(document.getElementById('prof-postalCode'), { target: { value: '75001' } })
+    fireEvent.change(document.getElementById('prof-city'), { target: { value: 'Paris' } })
+    fireEvent.change(document.getElementById('prof-agencyName'), { target: { value: 'New Name' } })
+    fireEvent.click(screen.getByRole('button', { name: /save changes/i }))
+    await waitFor(() => expect(mockLogout).toHaveBeenCalled())
+    expect(mockNavigate).toHaveBeenCalledWith('/login')
+    expect(mockUpdateProfile).not.toHaveBeenCalled()
   })
 
   it('shows error on agency info save failure', async () => {
     globalThis.fetch = vi.fn().mockResolvedValueOnce({
       ok: false,
-      json: async () => ({ message: 'Server error' }),
+      json: async () => ({ detail: 'Server error' }),
     })
     renderProfilePage()
     fireEvent.change(document.getElementById('prof-email'), { target: { value: 'agency@test.com' } })
@@ -109,12 +128,13 @@ describe('ProfilePage', () => {
     fireEvent.change(document.getElementById('prof-confirmNewPassword'), { target: { value: 'newpass' } })
     fireEvent.click(screen.getByRole('button', { name: /update password/i }))
     await waitFor(() => expect(screen.getByText('Password updated successfully.')).toBeInTheDocument())
+    expect(fetch.mock.calls[0][0]).toBe('/auth/agency/change-password')
   })
 
   it('shows error on password update failure', async () => {
     globalThis.fetch = vi.fn().mockResolvedValueOnce({
       ok: false,
-      json: async () => ({ message: 'Wrong current password' }),
+      json: async () => ({ detail: 'Wrong current password' }),
     })
     renderProfilePage()
     fireEvent.change(document.getElementById('prof-currentPassword'), { target: { value: 'wrongpass' } })
@@ -168,12 +188,13 @@ describe('ProfilePage', () => {
     fireEvent.click(confirmButton)
     await waitFor(() => expect(mockLogout).toHaveBeenCalled())
     expect(mockNavigate).toHaveBeenCalledWith('/login')
+    expect(fetch).toHaveBeenCalledWith('/agencies/Test%20Agency', expect.objectContaining({ method: 'DELETE' }))
   })
 
   it('shows error on delete failure without closing modal', async () => {
     globalThis.fetch = vi.fn().mockResolvedValueOnce({
       ok: false,
-      json: async () => ({ message: 'Delete failed' }),
+      json: async () => ({ detail: 'Delete failed' }),
     })
     renderProfilePage()
     fireEvent.click(screen.getByRole('button', { name: /delete account/i }))

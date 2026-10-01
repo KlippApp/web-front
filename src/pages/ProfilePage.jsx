@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { useTranslation } from 'react-i18next'
 import { useAuth } from '../hooks/useAuth.js'
-import API_URL, { DEV_BYPASS } from '../config/api.js'
+import API_URL, { DEV_BYPASS, apiErrorMessage } from '../config/api.js'
 
 const inputStyle = {
   width: '100%',
@@ -80,13 +80,13 @@ export default function ProfilePage() {
 
   useEffect(() => {
     if (!API_URL) return
-    fetch(`${API_URL}/agency/profile`, {
+    fetch(`${API_URL}/agencies/profile`, {
       headers: { Authorization: `Bearer ${token}` },
     })
       .then(async r => {
         const data = await r.json()
         if (!r.ok) {
-          setInfoError(data.detail || 'Failed to load profile')
+          setInfoError(apiErrorMessage(data, t('portal.profile.errorGeneric')))
           return
         }
         setInfoForm({
@@ -101,7 +101,7 @@ export default function ProfilePage() {
         })
       })
       .catch(err => setInfoError(err.message))
-  }, [token])
+  }, [token, t])
 
   const [deleteModalOpen, setDeleteModalOpen] = useState(false)
   const [deleteConfirm, setDeleteConfirm] = useState('')
@@ -125,16 +125,13 @@ export default function ProfilePage() {
         navigate('/login')
         return
       }
-      const res = await fetch(`${API_URL}/agency/account`, {
+      const res = await fetch(`${API_URL}/agencies/${encodeURIComponent(agency)}`, {
         method: 'DELETE',
         headers: { Authorization: `Bearer ${token}` },
       })
       if (!res.ok) {
         const data = await res.json()
-        const msg = Array.isArray(data.detail)
-          ? data.detail.map(e => e.msg).join(', ')
-          : data.detail || data.message || t('portal.profile.errorGeneric')
-        setDeleteError(msg)
+        setDeleteError(apiErrorMessage(data, t('portal.profile.errorGeneric')))
       } else {
         logout()
         navigate('/login')
@@ -168,8 +165,8 @@ export default function ProfilePage() {
         setInfoSuccess(t('portal.profile.successInfo'))
         return
       }
-      const res = await fetch(`${API_URL}/agency/profile`, {
-        method: 'PUT',
+      const res = await fetch(`${API_URL}/agencies/${encodeURIComponent(agency)}`, {
+        method: 'PATCH',
         headers: { 'Content-Type': 'application/json', Authorization: `Bearer ${token}` },
         body: JSON.stringify({
           agency_name: infoForm.agencyName,
@@ -184,10 +181,11 @@ export default function ProfilePage() {
       })
       const data = await res.json()
       if (!res.ok) {
-        const msg = Array.isArray(data.detail)
-          ? data.detail.map(e => e.msg).join(', ')
-          : data.detail || data.message || t('portal.profile.errorGeneric')
-        setInfoError(msg)
+        setInfoError(apiErrorMessage(data, t('portal.profile.errorGeneric')))
+      } else if (infoForm.agencyName !== agency) {
+        // The backend token subject is the agency name, so a rename invalidates the current session.
+        logout()
+        navigate('/login')
       } else {
         updateProfile(infoForm.agencyName, infoForm.managerName)
         setInfoSuccess(t('portal.profile.successInfo'))
@@ -214,17 +212,14 @@ export default function ProfilePage() {
         setPwForm({ currentPassword: '', newPassword: '', confirmNewPassword: '' })
         return
       }
-      const res = await fetch(`${API_URL}/auth/change-password`, {
+      const res = await fetch(`${API_URL}/auth/agency/change-password`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json', Authorization: `Bearer ${token}` },
         body: JSON.stringify({ current_password: pwForm.currentPassword, new_password: pwForm.newPassword }),
       })
       const data = await res.json()
       if (!res.ok) {
-        const msg = Array.isArray(data.detail)
-          ? data.detail.map(e => e.msg).join(', ')
-          : data.detail || data.message || t('portal.profile.errorGeneric')
-        setPwError(msg)
+        setPwError(apiErrorMessage(data, t('portal.profile.errorGeneric')))
       } else {
         setPwSuccess(t('portal.profile.successPassword'))
         setPwForm({ currentPassword: '', newPassword: '', confirmNewPassword: '' })

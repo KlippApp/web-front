@@ -3,7 +3,7 @@ import { Link, useNavigate } from 'react-router-dom'
 import { useTranslation } from 'react-i18next'
 import { ChevronLeft } from 'lucide-react'
 import { useAuth } from '../hooks/useAuth.js'
-import API_URL, { DEV_BYPASS } from '../config/api.js'
+import { DEV_BYPASS, ApiError, registerAgency } from '../config/api.js'
 
 const inputStyle = {
   width: '100%',
@@ -70,33 +70,21 @@ export default function RegisterPage() {
         navigate('/dashboard')
         return
       }
-      const res = await fetch(`${API_URL}/auth/register`, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          agency_name: form.agencyName,
-          manager_name: form.managerName,
-          email: form.email,
-          password: form.password,
-          phone: form.phone,
-          street_number: form.streetNumber,
-          street: form.street,
-          postal_code: form.postalCode,
-          city: form.city,
-        }),
+      const session = await registerAgency({
+        agency_name: form.agencyName,
+        manager_name: form.managerName,
+        email: form.email,
+        password: form.password,
+        phone: form.phone,
+        street_number: form.streetNumber,
+        street: form.street,
+        postal_code: form.postalCode,
+        city: form.city,
       })
-      const data = await res.json()
-      if (!res.ok) {
-        const msg = Array.isArray(data.detail)
-          ? data.detail.map(e => e.msg).join(', ')
-          : data.detail || data.message || t('portal.register.errorGeneric')
-        setError(msg)
-      } else {
-        login(data.token, data.agency, data.managerName)
-        navigate('/dashboard')
-      }
-    } catch {
-      setError(t('portal.register.errorGeneric'))
+      login(session.token, session.agency, session.manager)
+      navigate('/dashboard')
+    } catch (err) {
+      setError((err instanceof ApiError && err.message) || t('portal.register.errorGeneric'))
     } finally {
       setLoading(false)
     }

@@ -41,10 +41,9 @@ describe('LoginPage', () => {
   })
 
   it('navigates to dashboard and stores token on successful login', async () => {
-    globalThis.fetch = vi.fn().mockResolvedValueOnce({
-      ok: true,
-      json: async () => ({ token: 'api-token', agency: 'Test Agency' }),
-    })
+    globalThis.fetch = vi.fn()
+      .mockResolvedValueOnce({ ok: true, json: async () => ({ access_token: 'api-token', token_type: 'bearer' }) })
+      .mockResolvedValueOnce({ ok: true, json: async () => ({ agency_name: 'Test Agency', manager_name: 'Jean Dupont' }) })
     renderLogin()
     fireEvent.change(screen.getByLabelText('Email'), { target: { value: 'hugo@agency.com' } })
     fireEvent.change(screen.getByLabelText('Password'), { target: { value: 'pw' } })
@@ -52,5 +51,19 @@ describe('LoginPage', () => {
     await waitFor(() => expect(screen.getByText('Dashboard')).toBeInTheDocument())
     expect(localStorage.getItem('klipp_token')).toBe('api-token')
     expect(localStorage.getItem('klipp_agency')).toBe('Test Agency')
+    expect(localStorage.getItem('klipp_manager')).toBe('Jean Dupont')
+  })
+
+  it('shows the API error message on failed login', async () => {
+    globalThis.fetch = vi.fn().mockResolvedValueOnce({
+      ok: false,
+      json: async () => ({ detail: 'Wrong email or password.' }),
+    })
+    renderLogin()
+    fireEvent.change(screen.getByLabelText('Email'), { target: { value: 'hugo@agency.com' } })
+    fireEvent.change(screen.getByLabelText('Password'), { target: { value: 'bad' } })
+    fireEvent.click(screen.getByRole('button', { name: /sign in/i }))
+    await waitFor(() => expect(screen.getByText('Wrong email or password.')).toBeInTheDocument())
+    expect(localStorage.getItem('klipp_token')).toBeNull()
   })
 })

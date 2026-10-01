@@ -3,7 +3,7 @@ import { Link, useNavigate } from 'react-router-dom'
 import { useTranslation } from 'react-i18next'
 import { ChevronLeft } from 'lucide-react'
 import { useAuth } from '../hooks/useAuth.js'
-import API_URL, { DEV_BYPASS } from '../config/api.js'
+import { DEV_BYPASS, ApiError, loginAgency } from '../config/api.js'
 
 const inputStyle = {
   width: '100%',
@@ -37,23 +37,11 @@ export default function LoginPage() {
         navigate('/dashboard')
         return
       }
-      const res = await fetch(`${API_URL}/auth/login`, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ email, password }),
-      })
-      const data = await res.json()
-      if (!res.ok) {
-        const msg = Array.isArray(data.detail)
-          ? data.detail.map(e => e.msg).join(', ')
-          : data.detail || t('portal.login.errorGeneric')
-        setError(msg)
-      } else {
-        login(data.token, data.agency, data.managerName)
-        navigate('/dashboard')
-      }
-    } catch {
-      setError(t('portal.login.errorGeneric'))
+      const session = await loginAgency(email, password)
+      login(session.token, session.agency, session.manager)
+      navigate('/dashboard')
+    } catch (err) {
+      setError((err instanceof ApiError && err.message) || t('portal.login.errorGeneric'))
     } finally {
       setLoading(false)
     }

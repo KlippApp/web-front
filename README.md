@@ -32,7 +32,5 @@ npm run lint       # Vérification du code avec ESLint
 
 ## 🌐 Déploiement
 
-Le projet est configuré pour être déployé sur GitHub Pages via la commande :
-```bash
-npm run deploy
-```
+Le projet est déployé par Railway (service `web-front`) à chaque push sur `main` une fois la CI passée, sur [klippapps.com](https://klippapps.com).
+L'URL de l'API est fournie par la variable `VITE_API_URL` du service Railway.

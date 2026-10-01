@@ -10,7 +10,6 @@ npm run dev      # Start dev server at http://localhost:5173
 npm run build    # Production build → dist/
 npm run preview  # Preview production build locally
 npm run test     # Run tests (vitest)
-npm run deploy   # Build + push to gh-pages branch
 ```
 
 ## Tech Stack
@@ -167,9 +166,8 @@ Replace placeholder files in `src/assets/screenshots/`:
 | Workflow | Trigger | Steps |
 |----------|---------|-------|
 | `ci.yml` | push + PR → main | lint → test |
-| `deploy.yml` | CI passes on main | build → gh-pages push |
 
-`deploy.yml` uses `workflow_run` on CI success — deploy never runs if tests fail.
+Deployment is handled by Railway (project Klipp, service `web-front`, env `staging`): it builds `main` once the GitHub checks pass and serves it on `klippapps.com`. `VITE_API_URL` is set in the Railway service variables (build-time — redeploy after changing it).
 
 ## Tailwind v4 Notes
 

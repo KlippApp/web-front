@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react'
 import { useTranslation } from 'react-i18next'
-import API_URL, { DEV_BYPASS } from '../config/api.js'
+import API_URL, { DEV_BYPASS, apiErrorMessage } from '../config/api.js'
 
 const inputStyle = {
   width: '100%',
@@ -68,7 +68,7 @@ export default function SetPasswordPage() {
         setStatus('done')
       } else {
         const data = await res.json()
-        setError(data.detail || t('setPassword.errorGeneric'))
+        setError(apiErrorMessage(data, t('setPassword.errorGeneric')))
         setStatus('valid')
       }
     } catch {

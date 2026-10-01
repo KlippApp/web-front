@@ -18,7 +18,7 @@ npm run test     # Run tests (vitest)
 - **react-router-dom** for routing (landing page + `/login` `/register` `/dashboard/*`)
 - **react-i18next** for i18n — locales in `src/locales/en.json` + `src/locales/fr.json`
 - **lucide-react** for icons
-- **Inter** font via Google Fonts CDN
+- **Schibsted Grotesk** variable font, self-hosted in `public/fonts/` (preloaded in `index.html`)
 
 ## SEO / Prerendering
 
@@ -48,6 +48,12 @@ Light is the default. Dark mode toggled via a Sun/Moon button in the navbar and 
 | `--color-input-bg` / `--color-input-border` / `--color-input-focus-border` | Form inputs |
 | `--color-input-error` / `--color-input-success` | Validation feedback |
 | `--color-btn-store-bg` / `--color-btn-store-text` | Store buttons |
+| `--color-ink` / `--color-paper` / `--color-mist` | Brand base colors (logo black, app icon background, violet tint) |
+| `--color-surface` / `--color-surface-alt` / `--color-panel` / `--color-line` | Landing section backgrounds, panels and hairlines (themed) |
+
+- **`.on-ink`** — the "video world" (navbar, hero, final call to action): dark in both themes, overrides text/nav/toggle variables locally.
+- **`.brand-dot`** — the violet period that ends the big headlines, echoing the logo's dot.
+- Landing sections use Tailwind utilities with CSS variables (`bg-(--color-surface)`, `text-(--color-text-secondary)`).
 
 Full variable list in `src/index.css` `:root` block.
 
@@ -114,34 +120,24 @@ Tests that cover the error path of bypassed handlers are marked `it.skip(...)` u
 ### Landing page
 | Component | Purpose |
 |-----------|---------|
-| `IPhoneMockup` | Pure CSS iPhone 15 Pro frame — props: `src`, `alt`, `size` (sm/md/lg) |
-| `StoreButton` | App Store / Google Play badge — props: `store` (apple/google), `href` |
+| `Navbar` | Fixed, `.on-ink`, scroll-aware, mobile menu + theme + language toggles |
+| `Hero` | Slogan with brand dot + `Feed` + store badges |
+| `Feed` | 9:16 preview of the app's video feed; auto-swipes every 3.2 s, pauses on hover, still with reduced motion |
+| `HowItWorks` | Swipe / save / contact steps with UI vignettes + other app features |
+| `Agencies` | Agency pitch + HTML preview of the dashboard, links to `/register` and `/login` |
+| `DownloadCTA` | Final `.on-ink` call to action with store badges |
+| `Footer` | One-row links + copyright |
+| `StoreButton` | App Store / Google Play badge — props: `store` (apple/google), `href` (omit → « Bientôt disponible », not a link) |
+| `Logo` | Official Klipp mark — prop: `size` |
 | `ThemeToggle` | Sun/Moon icon button — props: `theme`, `toggleTheme` |
-| `LanguageToggle` | FR/EN switcher — no props |
+| `LanguageToggle` | FR/EN switcher (switches URL on public pages) — no props |
 | `CookieConsent` | Cookie banner — props: `onAccept`, `onDecline` |
-| `Navbar` | Sticky, scroll-aware, mobile hamburger + theme + language toggles |
-| `Hero` | Full-height hero with headline + phone mockup |
-| `Features` | 6-card feature grid |
-| `Screenshots` | 3-phone showcase |
-| `Testimonials` | 3 review cards |
-| `DownloadCTA` | Centered CTA with glass card |
-| `Footer` | 4-column links + store badges |
 
 ### Dashboard
 | Component | Purpose |
 |-----------|---------|
 | `ProtectedRoute` | Redirects to `/login` if not authenticated |
 | `DashboardLayout` | Sidebar + header shell, renders `<Outlet />` |
-
-## Adding Screenshots
-
-Replace placeholder files in `src/assets/screenshots/`:
-
-| File | Used in | Recommended size |
-|------|---------|-----------------|
-| `screen1.png` | Hero + Screenshots center | 390×844px |
-| `screen2.png` | Screenshots left | 390×844px |
-| `screen3.png` | Screenshots right | 390×844px |
 
 ## Testing
 
@@ -186,10 +182,7 @@ Deployment is handled by Railway (project Klipp, service `web-front`, env `stagi
 
 ## Store Links
 
-Update href values in `StoreButton` calls (currently `#app-store` / `#play-store`):
-- Hero.jsx: both buttons
-- DownloadCTA.jsx: both buttons
-- Footer.jsx: mini badges at bottom
+The apps are not published yet: `StoreButton` is rendered without `href` (« Bientôt disponible »). Once the store URLs exist, pass `href` to the two buttons in `Hero.jsx` and the two in `DownloadCTA.jsx`.
 
 <!-- rtk-instructions v2 -->
 # RTK (Rust Token Killer) - Token-Optimized Commands

@@ -94,7 +94,6 @@ const { mockChangeLanguage, mockT } = vi.hoisted(() => ({
       'portal.register.passwordLabel': 'Password',
       'portal.register.confirmPasswordLabel': 'Confirm password',
       'portal.register.phoneLabel': 'Phone',
-      'portal.register.phonePlaceholder': '+33 6 00 00 00 00',
       'portal.register.streetNumberLabel': 'No.',
       'portal.register.streetLabel': 'Street',
       'portal.register.streetPlaceholder': 'Rue de la Paix',

@@ -1,6 +1,8 @@
 import { useState, useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { useTranslation } from 'react-i18next'
+import PhoneInput from '../components/PhoneInput.jsx'
+import { normalizePhone } from '../utils/phone.js'
 import { useAuth } from '../hooks/useAuth.js'
 import API_URL, { DEV_BYPASS, apiErrorMessage, authFetch } from '../config/api.js'
 
@@ -91,7 +93,7 @@ export default function ProfilePage() {
           managerName: data.manager_name || '',
           agencyName: data.agency_name || '',
           email: data.email || '',
-          phone: data.phone || '',
+          phone: normalizePhone(data.phone),
           streetNumber: data.street_number || '',
           street: data.street || '',
           postalCode: data.postal_code || '',
@@ -252,8 +254,8 @@ export default function ProfilePage() {
                   style={inputStyle} onFocus={focusStyle} onBlur={blurStyle} />
               </Field>
               <Field label={t('portal.profile.phoneLabel')} htmlFor="prof-phone">
-                <input id="prof-phone" type="tel" required value={infoForm.phone} onChange={setInfo('phone')}
-                  style={inputStyle} onFocus={focusStyle} onBlur={blurStyle} />
+                <PhoneInput id="prof-phone" value={infoForm.phone} onChange={phone => setInfoForm(prev => ({ ...prev, phone }))}
+                  inputStyle={inputStyle} onFocus={focusStyle} onBlur={blurStyle} />
               </Field>
             </div>
             <div className="dash-grid-fixed">

@@ -2,6 +2,8 @@ import { useState, useCallback, useEffect } from 'react'
 import { useTranslation } from 'react-i18next'
 import { Plus, MapPin, X, Pencil, Camera, Trash2 } from 'lucide-react'
 import API_URL, { DEV_BYPASS, authFetch } from '../config/api.js'
+import PhoneInput from '../components/PhoneInput.jsx'
+import { formatPhone, normalizePhone, parsePhone } from '../utils/phone.js'
 
 const inputStyle = {
   width: '100%',
@@ -14,26 +16,6 @@ const inputStyle = {
   outline: 'none',
   transition: 'border-color 0.2s',
   boxSizing: 'border-box',
-}
-
-const countries = [
-  { code: '+33', flag: '🇫🇷', label: 'FR' },
-  { code: '+32', flag: '🇧🇪', label: 'BE' },
-  { code: '+41', flag: '🇨🇭', label: 'CH' },
-  { code: '+352', flag: '🇱🇺', label: 'LU' },
-  { code: '+44', flag: '🇬🇧', label: 'UK' },
-  { code: '+1', flag: '🇺🇸', label: 'US' },
-]
-
-const formatPhone = (value) => {
-  let digits = value.replace(/\D/g, '')
-  if (digits.startsWith('0')) digits = digits.substring(1)
-  let formatted = ''
-  for (let i = 0; i < digits.length; i++) {
-    if (i > 0 && i % 2 === 1) formatted += ' '
-    formatted += digits[i]
-  }
-  return formatted.substring(0, 13)
 }
 
 function Field({ label, id, children }) {
@@ -53,7 +35,7 @@ export default function OfficesPage() {
   const [editingOffice, setEditingOffice] = useState(null)
   const [offices, setOffices] = useState([])
   const [loading, setLoading] = useState(false)
-  const [form, setForm] = useState({ name: '', address: '', email: '', phone: '', countryCode: '+33', photo: null })
+  const [form, setForm] = useState({ name: '', address: '', email: '', phone: '', photo: null })
   const [confirmDelete, setConfirmDelete] = useState(null)
 
   useEffect(() => {
@@ -67,7 +49,7 @@ export default function OfficesPage() {
 
   const closeForm = useCallback(() => {
     setEditingOffice(null)
-    setForm({ name: '', address: '', email: '', phone: '', countryCode: '+33', photo: null })
+    setForm({ name: '', address: '', email: '', phone: '', photo: null })
     setShowForm(false)
   }, [])
 
@@ -79,7 +61,7 @@ export default function OfficesPage() {
         if (editingOffice) {
           setOffices(prev => prev.map(o => o.uuid === editingOffice.uuid ? { ...form, uuid: o.uuid } : o))
         } else {
-          setOffices(prev => [...prev, { ...form, country_code: form.countryCode, uuid: Date.now().toString() }])
+          setOffices(prev => [...prev, { ...form, uuid: Date.now().toString() }])
         }
         closeForm()
         return
@@ -88,8 +70,8 @@ export default function OfficesPage() {
         name: form.name,
         address: form.address,
         email: form.email,
-        phone: `${form.countryCode} ${form.phone}`,
-        country_code: form.countryCode,
+        phone: form.phone,
+        country_code: parsePhone(form.phone).countryCode,
         photo: form.photo,
       }
       if (editingOffice) {
@@ -124,25 +106,15 @@ export default function OfficesPage() {
   }, [confirmDelete])
 
   const openEdit = (office) => {
-    const countryCode = office.country_code || '+33'
-    let phoneNum = office.phone || ''
-    if (phoneNum.startsWith(countryCode)) {
-      phoneNum = phoneNum.slice(countryCode.length).trim()
-    }
     setEditingOffice(office)
     setForm({
       name: office.name,
       address: office.address,
       email: office.email,
-      phone: phoneNum,
-      countryCode,
+      phone: normalizePhone(office.phone, office.country_code || undefined),
       photo: office.photo || null,
     })
     setShowForm(true)
-  }
-
-  const handlePhoneChange = (e) => {
-    setForm(prev => ({ ...prev, phone: formatPhone(e.target.value) }))
   }
 
   const handlePhotoChange = (e) => {
@@ -254,7 +226,7 @@ export default function OfficesPage() {
                     {office.email}
                   </td>
                   <td style={{ padding: '1rem', color: 'var(--color-text-secondary)', fontSize: '0.875rem' }}>
-                    {office.country_code} {office.phone}
+                    {formatPhone(office.phone)}
                   </td>
                   <td style={{ padding: '1rem', textAlign: 'right', display: 'flex', gap: '0.5rem', justifyContent: 'flex-end' }}>
                     <button
@@ -420,25 +392,10 @@ export default function OfficesPage() {
               </Field>
 
               <Field label={t('portal.offices.form.phone')} id="office-phone">
-                <div style={{ display: 'flex', gap: '0.5rem' }}>
-                  <select
-                    value={form.countryCode}
-                    onChange={e => setForm(prev => ({ ...prev, countryCode: e.target.value }))}
-                    style={{ ...inputStyle, width: 'auto', paddingRight: '0.5rem', cursor: 'pointer' }}
-                  >
-                    {countries.map(c => (
-                      <option key={c.code} value={c.code}>
-                        {c.flag} {c.code}
-                      </option>
-                    ))}
-                  </select>
-                  <input 
-                    id="office-phone"
-                    type="tel" required style={inputStyle} value={form.phone} 
-                    onChange={handlePhoneChange}
-                    placeholder="6 12 34 56 78"
-                  />
-                </div>
+                <PhoneInput
+                  id="office-phone" inputStyle={inputStyle} value={form.phone}
+                  onChange={phone => setForm(prev => ({ ...prev, phone }))}
+                />
               </Field>
 
               <div style={{ display: 'flex', gap: '0.75rem', marginTop: '0.5rem' }}>

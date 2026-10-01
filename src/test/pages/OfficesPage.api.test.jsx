@@ -12,7 +12,7 @@ vi.mock('../../hooks/useAuth.js', () => ({
   useAuth: () => ({ token: 'tok' }),
 }))
 
-const office = { uuid: 'o1', name: 'Office 1', address: 'Addr 1', email: 'o1@o.com', phone: '+33 0123456789', country_code: '+33', photo: null }
+const office = { uuid: 'o1', name: 'Office 1', address: 'Addr 1', email: 'o1@o.com', phone: '+33 7 68 30 88 98', country_code: '+33', photo: null }
 
 beforeEach(() => {
   vi.restoreAllMocks()
@@ -40,5 +40,24 @@ describe('OfficesPage (API)', () => {
     const [url, init] = fetch.mock.calls[1]
     expect(url).toBe('/offices/o1')
     expect(init.method).toBe('PATCH')
+  })
+
+  it('shows the stored phone once, without repeating the country code', async () => {
+    render(<OfficesPage />)
+    await waitFor(() => expect(screen.getByText('+33 7 68 30 88 98')).toBeInTheDocument())
+    expect(screen.queryByText(/\+33 \+33/)).not.toBeInTheDocument()
+  })
+
+  it('saves the phone in E.164 when editing a legacy number', async () => {
+    render(<OfficesPage />)
+    await waitFor(() => expect(screen.getByText('Office 1')).toBeInTheDocument())
+    fetch.mockResolvedValueOnce({ ok: true, json: async () => ({ message: 'Office updated' }) })
+
+    fireEvent.click(screen.getByRole('button', { name: /list.edit/i }))
+    expect(screen.getByLabelText('portal.offices.form.phone')).toHaveValue('7 68 30 88 98')
+    fireEvent.click(screen.getByRole('button', { name: /form.submitEdit/i }))
+
+    await waitFor(() => expect(fetch).toHaveBeenCalledTimes(2))
+    expect(JSON.parse(fetch.mock.calls[1][1].body)).toMatchObject({ phone: '+33768308898', country_code: '+33' })
   })
 })

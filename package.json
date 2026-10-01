@@ -10,8 +10,6 @@
     "test": "vitest run",
     "test:watch": "vitest",
     "preview": "vite preview",
-    "predeploy": "npm run build",
-    "deploy": "gh-pages -d dist",
     "email": "email dev --dir src/emails",
     "email:export": "email export --dir src/emails --out dist/emails"
   },
@@ -40,7 +38,6 @@
     "eslint-plugin-react": "^7.37.5",
     "eslint-plugin-react-hooks": "^7.1.1",
     "eslint-plugin-react-refresh": "^0.5.2",
-    "gh-pages": "^6.3.0",
     "globals": "^17.4.0",
     "jsdom": "^29.1.1",
     "react-email": "^5.2.10",

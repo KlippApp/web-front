@@ -1,6 +1,8 @@
 import { useState, useRef, useEffect } from 'react'
 import { useTranslation } from 'react-i18next'
+import { useLocation, useNavigate } from 'react-router-dom'
 import { ChevronDown } from 'lucide-react'
+import { basePath, isPublicPath, localizedPath } from '../config/site.js'
 
 const languages = [
   { code: 'en', flag: '🇺🇸', label: 'English' },
@@ -9,6 +11,8 @@ const languages = [
 
 export default function LanguageToggle() {
   const { i18n } = useTranslation()
+  const { pathname, hash } = useLocation()
+  const navigate = useNavigate()
   const [isOpen, setIsOpen] = useState(false)
   const dropdownRef = useRef(null)
 
@@ -16,6 +20,7 @@ export default function LanguageToggle() {
 
   const changeLanguage = (code) => {
     i18n.changeLanguage(code)
+    if (isPublicPath(pathname)) navigate(localizedPath(basePath(pathname), code) + hash)
     setIsOpen(false)
   }
 

@@ -3,9 +3,11 @@ import { useTranslation } from 'react-i18next'
 import appleBadge from '../assets/app-store-badge.svg'
 import googleBadge from '../assets/google-play-badge.svg'
 import Logo from './Logo.jsx'
+import { useLocalizedPath } from '../hooks/useLocalizedPath.js'
 
 export default function Footer() {
   const { t } = useTranslation()
+  const localize = useLocalizedPath()
   const year = new Date().getFullYear()
 
   const footerLinks = {
@@ -22,9 +24,9 @@ export default function Footer() {
       { label: t('footer.links.Press'), href: '#' },
     ],
     [t('footer.sections.Legal')]: [
-      { label: t('footer.links.Privacy Policy'), to: '/privacy' },
-      { label: t('footer.links.Terms of Service'), to: '/terms' },
-      { label: t('footer.links.Cookie Policy'), to: '/privacy#cookies' },
+      { label: t('footer.links.Privacy Policy'), to: localize('/privacy') },
+      { label: t('footer.links.Terms of Service'), to: localize('/terms') },
+      { label: t('footer.links.Cookie Policy'), to: `${localize('/privacy')}#cookies` },
     ],
   }
 

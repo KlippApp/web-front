@@ -3,6 +3,7 @@ import { Link, useLocation } from 'react-router-dom'
 import { useTranslation } from 'react-i18next'
 import { ChevronLeft } from 'lucide-react'
 import LEGAL_INFO from '../config/legal.js'
+import { useLocalizedPath } from '../hooks/useLocalizedPath.js'
 
 const relatedDocs = {
   privacy: { to: '/terms', labelKey: 'footer.links.Terms of Service' },
@@ -12,6 +13,7 @@ const relatedDocs = {
 export default function LegalPage({ doc, sections }) {
   const { t, i18n } = useTranslation()
   const { hash } = useLocation()
+  const localize = useLocalizedPath()
 
   useEffect(() => {
     const target = hash && document.getElementById(hash.slice(1))
@@ -30,7 +32,7 @@ export default function LegalPage({ doc, sections }) {
     <div style={{ minHeight: '100vh', padding: '3rem 1rem', background: 'var(--color-bg)' }}>
       <article className="glass-card" style={{ maxWidth: 760, margin: '0 auto', padding: '2.5rem 2rem' }}>
         <Link
-          to="/"
+          to={localize('/')}
           style={{
             display: 'inline-flex',
             alignItems: 'center',
@@ -70,7 +72,7 @@ export default function LegalPage({ doc, sections }) {
         ))}
 
         <div style={{ borderTop: '1px solid var(--color-divider)', paddingTop: '1.5rem' }}>
-          <Link to={related.to} style={{ color: 'var(--color-accent)', fontWeight: 600, textDecoration: 'none', fontSize: '0.9rem' }}>
+          <Link to={localize(related.to)} style={{ color: 'var(--color-accent)', fontWeight: 600, textDecoration: 'none', fontSize: '0.9rem' }}>
             {t(related.labelKey)}
           </Link>
         </div>

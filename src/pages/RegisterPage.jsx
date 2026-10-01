@@ -6,6 +6,7 @@ import PhoneInput from '../components/PhoneInput.jsx'
 import { useAuth } from '../hooks/useAuth.js'
 import { DEV_BYPASS, ApiError, registerAgency } from '../config/api.js'
 import Logo from '../components/Logo.jsx'
+import { useLocalizedPath } from '../hooks/useLocalizedPath.js'
 
 const inputStyle = {
   width: '100%',
@@ -33,6 +34,7 @@ function Field({ label, htmlFor, children }) {
 
 export default function RegisterPage() {
   const { t } = useTranslation()
+  const localize = useLocalizedPath()
   const navigate = useNavigate()
   const { login } = useAuth()
 
@@ -108,7 +110,7 @@ export default function RegisterPage() {
         style={{ width: '100%', maxWidth: 480, padding: '2.5rem 2rem' }}
       >
         <Link
-          to="/"
+          to={localize('/')}
           style={{
             display: 'inline-flex',
             alignItems: 'center',

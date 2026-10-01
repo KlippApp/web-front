@@ -8,13 +8,13 @@ beforeEach(() => {
   vi.spyOn(window, 'scrollTo').mockImplementation(() => {})
 })
 
-function renderLegal(entry = '/privacy', props = { doc: 'privacy', sections: ['controller', 'cookies'] }) {
+function renderLegal(entry = '/en/privacy', props = { doc: 'privacy', sections: ['controller', 'cookies'] }) {
   return render(
     <MemoryRouter initialEntries={[entry]}>
       <Routes>
-        <Route path="/" element={<div>Home page</div>} />
-        <Route path="/privacy" element={<LegalPage {...props} />} />
-        <Route path="/terms" element={<div>Terms page</div>} />
+        <Route path="/en" element={<div>Home page</div>} />
+        <Route path="/en/privacy" element={<LegalPage {...props} />} />
+        <Route path="/en/terms" element={<div>Terms page</div>} />
       </Routes>
     </MemoryRouter>
   )
@@ -48,7 +48,7 @@ describe('LegalPage', () => {
   it('scrolls to the section matching the hash', () => {
     const scrollIntoView = vi.fn()
     Element.prototype.scrollIntoView = scrollIntoView
-    renderLegal('/privacy#cookies')
+    renderLegal('/en/privacy#cookies')
     expect(scrollIntoView).toHaveBeenCalled()
     expect(window.scrollTo).not.toHaveBeenCalled()
     delete Element.prototype.scrollIntoView

@@ -10,7 +10,7 @@ export default function Testimonials() {
       name: 'Sarah K.',
       role: t('testimonials.list.0.role'),
       initials: 'SK',
-      color: '#2B7FFF',
+      color: '#695CF6',
     },
     {
       stars: 5,
@@ -34,7 +34,7 @@ export default function Testimonials() {
     <section id="testimonials" className="max-w-6xl mx-auto px-6 py-24">
       {/* Section header */}
       <div className="text-center mb-16">
-        <p style={{ color: '#2B7FFF', fontWeight: 600, fontSize: '0.85rem', letterSpacing: '0.1em', textTransform: 'uppercase', marginBottom: '0.75rem' }}>
+        <p style={{ color: '#695CF6', fontWeight: 600, fontSize: '0.85rem', letterSpacing: '0.1em', textTransform: 'uppercase', marginBottom: '0.75rem' }}>
           {t('nav.reviews')}
         </p>
         <h2 style={{ fontSize: 'clamp(1.8rem, 4vw, 2.8rem)', fontWeight: 800, letterSpacing: '-0.02em', marginBottom: '1rem' }}>

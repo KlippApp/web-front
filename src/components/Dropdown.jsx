@@ -102,16 +102,16 @@ export default function Dropdown({ options = [], value, onChange, placeholder = 
                 padding: '0.5rem 0.75rem',
                 borderRadius: '0.5rem',
                 border: 'none',
-                background: opt.value === value ? 'rgba(43,127,255,0.1)' : 'transparent',
-                color: opt.value === value ? 'var(--color-blue-primary)' : 'var(--color-text-primary)',
+                background: opt.value === value ? 'rgba(105,92,246,0.1)' : 'transparent',
+                color: opt.value === value ? 'var(--color-accent)' : 'var(--color-text-primary)',
                 fontSize: '0.875rem',
                 fontWeight: opt.value === value ? 600 : 400,
                 cursor: 'pointer',
                 textAlign: 'left',
                 transition: 'background 0.15s',
               }}
-              onMouseEnter={e => { e.currentTarget.style.background = opt.value === value ? 'rgba(43,127,255,0.15)' : 'rgba(255,255,255,0.05)' }}
-              onMouseLeave={e => { e.currentTarget.style.background = opt.value === value ? 'rgba(43,127,255,0.1)' : 'transparent' }}
+              onMouseEnter={e => { e.currentTarget.style.background = opt.value === value ? 'rgba(105,92,246,0.15)' : 'rgba(255,255,255,0.05)' }}
+              onMouseLeave={e => { e.currentTarget.style.background = opt.value === value ? 'rgba(105,92,246,0.1)' : 'transparent' }}
             >
               {opt.label}
             </button>

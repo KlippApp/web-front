@@ -4,6 +4,7 @@ import { useTranslation } from 'react-i18next'
 import { ChevronLeft } from 'lucide-react'
 import { useAuth } from '../hooks/useAuth.js'
 import { DEV_BYPASS, ApiError, loginAgency } from '../config/api.js'
+import Logo from '../components/Logo.jsx'
 
 const inputStyle = {
   width: '100%',
@@ -83,23 +84,7 @@ export default function LoginPage() {
 
         {/* Logo */}
         <div style={{ display: 'flex', alignItems: 'center', gap: '0.625rem', marginBottom: '2rem' }}>
-          <div
-            style={{
-              width: 32,
-              height: 32,
-              borderRadius: '0.5rem',
-              background: 'linear-gradient(135deg, #2B7FFF 0%, #8EC5FF 100%)',
-              display: 'flex',
-              alignItems: 'center',
-              justifyContent: 'center',
-              flexShrink: 0,
-            }}
-          >
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="none">
-              <path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2V9z" stroke="#fff" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-              <polyline points="9 22 9 12 15 12 15 22" stroke="#fff" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-            </svg>
-          </div>
+          <Logo size={28} />
           <span style={{ fontWeight: 700, fontSize: '1.1rem', color: 'var(--color-logo-text)' }}>Klipp</span>
         </div>
 
@@ -157,7 +142,7 @@ export default function LoginPage() {
               padding: '0.75rem',
               borderRadius: '0.75rem',
               border: 'none',
-              background: 'linear-gradient(135deg, #2B7FFF 0%, #8EC5FF 100%)',
+              background: 'linear-gradient(135deg, #695CF6 0%, #B7AFFB 100%)',
               color: '#fff',
               fontWeight: 700,
               fontSize: '0.95rem',
@@ -172,7 +157,7 @@ export default function LoginPage() {
 
         <p style={{ marginTop: '1.5rem', fontSize: '0.85rem', color: 'var(--color-text-secondary)', textAlign: 'center' }}>
           {t('portal.login.noAccount')}{' '}
-          <Link to="/register" style={{ color: '#2B7FFF', fontWeight: 600, textDecoration: 'none' }}>
+          <Link to="/register" style={{ color: '#695CF6', fontWeight: 600, textDecoration: 'none' }}>
             {t('portal.login.registerLink')}
           </Link>
         </p>

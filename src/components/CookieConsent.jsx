@@ -100,7 +100,7 @@ export default function CookieConsent({ onAccept, onDecline }) {
             padding: '0.5rem 1.1rem',
             borderRadius: '0.625rem',
             border: '1px solid transparent',
-            background: '#2B7FFF',
+            background: '#695CF6',
             color: '#fff',
             fontSize: '0.85rem',
             fontWeight: 600,
@@ -111,7 +111,7 @@ export default function CookieConsent({ onAccept, onDecline }) {
             e.currentTarget.style.background = '#1a6eee'
           }}
           onMouseLeave={e => {
-            e.currentTarget.style.background = '#2B7FFF'
+            e.currentTarget.style.background = '#695CF6'
           }}
         >
           {t('cookies.accept')}

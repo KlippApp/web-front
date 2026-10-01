@@ -7,6 +7,7 @@ import { useTheme } from '../hooks/useTheme.js'
 import { useCookieConsent } from '../hooks/useCookieConsent.js'
 import ThemeToggle from './ThemeToggle.jsx'
 import LanguageToggle from './LanguageToggle.jsx'
+import Logo from './Logo.jsx'
 
 export default function DashboardLayout() {
   const { t } = useTranslation()
@@ -99,16 +100,7 @@ export default function DashboardLayout() {
             display: 'flex', alignItems: 'center', justifyContent: 'space-between',
           }}>
             <div style={{ display: 'flex', alignItems: 'center', gap: '0.625rem' }}>
-              <div style={{
-                width: 28, height: 28, borderRadius: '0.375rem',
-                background: 'linear-gradient(135deg, #2B7FFF 0%, #8EC5FF 100%)',
-                display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0,
-              }}>
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="none">
-                  <path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2V9z" stroke="#fff" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-                  <polyline points="9 22 9 12 15 12 15 22" stroke="#fff" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-                </svg>
-              </div>
+              <Logo size={24} />
               <span style={{ fontWeight: 700, fontSize: '1rem', color: 'var(--color-text-primary)' }}>Klipp</span>
             </div>
             {sidebarOpen && (
@@ -140,8 +132,8 @@ export default function DashboardLayout() {
                   padding: '0.625rem 0.875rem', borderRadius: '0.5rem',
                   textDecoration: 'none', fontSize: '0.875rem', fontWeight: 500,
                   transition: 'all 0.15s', whiteSpace: 'nowrap',
-                  color: isActive ? 'var(--color-blue-primary)' : 'var(--color-text-secondary)',
-                  background: isActive ? 'rgba(43, 127, 255, 0.08)' : 'transparent',
+                  color: isActive ? 'var(--color-accent)' : 'var(--color-text-secondary)',
+                  background: isActive ? 'rgba(105,92,246, 0.08)' : 'transparent',
                 })}
               >
                 <Icon size={18} />

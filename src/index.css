@@ -1,8 +1,8 @@
 @import "tailwindcss";
 
 @theme {
-  --color-blue-primary: #2B7FFF;
-  --color-blue-light: #8EC5FF;
+  --color-accent: #695CF6;
+  --color-accent-light: #B7AFFB;
   --color-gray-subtitle: #64748b;
   --font-family-sans: 'Inter', system-ui, -apple-system, sans-serif;
 }
@@ -16,7 +16,7 @@
   --color-text-quote: #1e293b;
   --color-card-bg: rgba(0,0,0,0.04);
   --color-card-border: rgba(0,0,0,0.08);
-  --color-card-hover-border: rgba(43,127,255,0.4);
+  --color-card-hover-border: rgba(105,92,246,0.4);
   --color-card-shadow: 0 1px 3px rgba(0,0,0,0.06), 0 4px 16px rgba(0,0,0,0.04);
   --color-divider: rgba(0,0,0,0.08);
   --color-nav-bg: rgba(255,255,255,0.85);
@@ -27,18 +27,18 @@
   --color-portal-hover-bg: rgba(0,0,0,0.08);
   --color-portal-hover-border: rgba(0,0,0,0.2);
   --color-mobile-menu-bg: #ffffff;
-  --color-badge-bg: rgba(43,127,255,0.10);
-  --color-badge-border: rgba(43,127,255,0.25);
-  --color-badge-text: #2B7FFF;
-  --color-icon-bg: rgba(43,127,255,0.10);
-  --color-icon-color: #2B7FFF;
+  --color-badge-bg: rgba(105,92,246,0.10);
+  --color-badge-border: rgba(105,92,246,0.25);
+  --color-badge-text: #695CF6;
+  --color-icon-bg: rgba(105,92,246,0.10);
+  --color-icon-color: #695CF6;
   --color-section-stripe: #f1f3f7;
-  --color-hero-radial: rgba(43,127,255,0.07);
-  --color-hero-glow: rgba(43,127,255,0.15);
-  --color-screenshots-glow: rgba(43,127,255,0.18);
+  --color-hero-radial: rgba(105,92,246,0.07);
+  --color-hero-glow: rgba(105,92,246,0.15);
+  --color-screenshots-glow: rgba(105,92,246,0.18);
   --color-iphone-ring: rgba(0,0,0,0.15);
   --color-iphone-drop: rgba(0,0,0,0.25);
-  --color-mobile-portal: #2B7FFF;
+  --color-mobile-portal: #695CF6;
   --color-btn-store-bg: #0f172a;
   --color-btn-store-text: #fff;
   --color-btn-store-hover-bg: rgba(15,23,42,0.85);
@@ -49,11 +49,11 @@
   --color-footer-link-hover: #0f172a;
   --color-copyright: rgba(15,23,42,0.4);
   --color-avatar-initials: #fff;
-  --color-overlay-gradient: rgba(43,127,255,0.08);
+  --color-overlay-gradient: rgba(105,92,246,0.08);
   /* Inputs */
   --color-input-bg: rgba(0,0,0,0.04);
   --color-input-border: rgba(0,0,0,0.12);
-  --color-input-focus-border: #2B7FFF;
+  --color-input-focus-border: #695CF6;
   --color-input-text: #0f172a;
   --color-input-placeholder: #94a3b8;
   --color-input-error: #ef4444;
@@ -69,7 +69,7 @@
   --color-text-quote: rgba(255,255,255,0.85);
   --color-card-bg: rgba(255,255,255,0.08);
   --color-card-border: rgba(255,255,255,0.15);
-  --color-card-hover-border: rgba(43,127,255,0.3);
+  --color-card-hover-border: rgba(105,92,246,0.3);
   --color-card-shadow: none;
   --color-divider: rgba(255,255,255,0.08);
   --color-nav-bg: rgba(0,0,0,0.85);
@@ -80,18 +80,18 @@
   --color-portal-hover-bg: rgba(255,255,255,0.1);
   --color-portal-hover-border: rgba(255,255,255,0.3);
   --color-mobile-menu-bg: rgba(0,0,0,0.95);
-  --color-badge-bg: rgba(43,127,255,0.15);
-  --color-badge-border: rgba(43,127,255,0.3);
-  --color-badge-text: #8EC5FF;
-  --color-icon-bg: rgba(43,127,255,0.15);
-  --color-icon-color: #8EC5FF;
+  --color-badge-bg: rgba(105,92,246,0.15);
+  --color-badge-border: rgba(105,92,246,0.3);
+  --color-badge-text: #B7AFFB;
+  --color-icon-bg: rgba(105,92,246,0.15);
+  --color-icon-color: #B7AFFB;
   --color-section-stripe: rgba(255,255,255,0.02);
-  --color-hero-radial: rgba(43,127,255,0.12);
-  --color-hero-glow: rgba(43,127,255,0.35);
-  --color-screenshots-glow: rgba(43,127,255,0.4);
+  --color-hero-radial: rgba(105,92,246,0.12);
+  --color-hero-glow: rgba(105,92,246,0.35);
+  --color-screenshots-glow: rgba(105,92,246,0.4);
   --color-iphone-ring: rgba(0,0,0,0.6);
   --color-iphone-drop: rgba(0,0,0,0.5);
-  --color-mobile-portal: #8EC5FF;
+  --color-mobile-portal: #B7AFFB;
   --color-btn-store-bg: #fff;
   --color-btn-store-text: #000;
   --color-btn-store-hover-bg: rgba(255,255,255,0.9);
@@ -102,11 +102,11 @@
   --color-footer-link-hover: #fff;
   --color-copyright: rgba(255,255,255,0.4);
   --color-avatar-initials: #fff;
-  --color-overlay-gradient: rgba(43,127,255,0.15);
+  --color-overlay-gradient: rgba(105,92,246,0.15);
   /* Inputs */
   --color-input-bg: rgba(255,255,255,0.06);
   --color-input-border: rgba(255,255,255,0.15);
-  --color-input-focus-border: #8EC5FF;
+  --color-input-focus-border: #B7AFFB;
   --color-input-text: #fff;
   --color-input-placeholder: rgba(255,255,255,0.4);
   --color-input-error: #f87171;
@@ -184,7 +184,7 @@
   .btn-store:hover {
     background: var(--color-btn-store-hover-bg);
     transform: translateY(-1px);
-    box-shadow: 0 8px 24px rgba(43, 127, 255, 0.25);
+    box-shadow: 0 8px 24px rgba(105,92,246, 0.25);
   }
 
   /* -- Dashboard responsive utilities -- */

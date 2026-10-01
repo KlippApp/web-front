@@ -21,30 +21,20 @@ export default function DownloadCTA() {
           style={{
             position: 'absolute',
             inset: 0,
-            background: 'linear-gradient(135deg, var(--color-overlay-gradient) 0%, rgba(142,197,255,0.05) 100%)',
+            background: 'linear-gradient(135deg, var(--color-overlay-gradient) 0%, rgba(183,175,251,0.05) 100%)',
             pointerEvents: 'none',
           }}
         />
 
         <div style={{ position: 'relative', zIndex: 1 }}>
           {/* Icon */}
-          <div
-            style={{
-              width: 64,
-              height: 64,
-              borderRadius: '1.25rem',
-              background: 'linear-gradient(135deg, #2B7FFF 0%, #8EC5FF 100%)',
-              display: 'flex',
-              alignItems: 'center',
-              justifyContent: 'center',
-              margin: '0 auto 1.5rem',
-            }}
-          >
-            <svg width="32" height="32" viewBox="0 0 24 24" fill="none">
-              <path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2V9z" stroke="#fff" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-              <polyline points="9 22 9 12 15 12 15 22" stroke="#fff" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-            </svg>
-          </div>
+          <img
+            src="/favicon.svg"
+            alt=""
+            width={64}
+            height={64}
+            style={{ display: 'block', margin: '0 auto 1.5rem' }}
+          />
 
           <h2
             style={{

@@ -148,7 +148,7 @@ export default function OfficesPage() {
             padding: '0.625rem 1rem',
             borderRadius: '0.75rem',
             border: 'none',
-            background: 'linear-gradient(135deg, #2B7FFF 0%, #8EC5FF 100%)',
+            background: 'linear-gradient(135deg, #695CF6 0%, #B7AFFB 100%)',
             color: '#fff',
             fontWeight: 600,
             fontSize: '0.875rem',
@@ -207,7 +207,7 @@ export default function OfficesPage() {
                     <div style={{
                       width: 40, height: 40, borderRadius: '50%', overflow: 'hidden',
                       background: 'var(--color-nav-bg)', display: 'flex', alignItems: 'center', justifyContent: 'center',
-                      border: '1.5px solid var(--color-blue-primary)'
+                      border: '1.5px solid var(--color-accent)'
                     }}>
                       {office.photo ? (
                         <img src={office.photo} alt="" style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
@@ -338,7 +338,7 @@ export default function OfficesPage() {
                     <div style={{
                       width: 80, height: 80, borderRadius: '50%', overflow: 'hidden',
                       background: 'var(--color-nav-bg)', display: 'flex', alignItems: 'center', justifyContent: 'center',
-                      border: '2px solid var(--color-blue-primary)',
+                      border: '2px solid var(--color-accent)',
                       transition: 'opacity 0.2s',
                     }}
                     onMouseEnter={e => { e.currentTarget.style.opacity = '0.8' }}
@@ -353,7 +353,7 @@ export default function OfficesPage() {
                     <div style={{
                       position: 'absolute', bottom: 0, right: 0, 
                       width: 28, height: 28, borderRadius: '50%', 
-                      background: 'var(--color-blue-primary)', color: '#fff',
+                      background: 'var(--color-accent)', color: '#fff',
                       display: 'flex', alignItems: 'center', justifyContent: 'center',
                       border: '2px solid var(--color-bg)',
                       pointerEvents: 'none'
@@ -413,7 +413,7 @@ export default function OfficesPage() {
                   disabled={loading}
                   style={{
                     flex: 1, padding: '0.625rem', borderRadius: '0.625rem', border: 'none',
-                    background: 'linear-gradient(135deg, #2B7FFF 0%, #8EC5FF 100%)',
+                    background: 'linear-gradient(135deg, #695CF6 0%, #B7AFFB 100%)',
                     color: '#fff', fontWeight: 600, cursor: loading ? 'not-allowed' : 'pointer',
                     opacity: loading ? 0.7 : 1,
                   }}

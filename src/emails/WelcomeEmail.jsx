@@ -115,7 +115,7 @@ const logoContainer = {
 };
 
 const logoText = {
-  color: "#2B7FFF",
+  color: "#695CF6",
   fontSize: "32px",
   fontWeight: "bold",
   letterSpacing: "4px",
@@ -145,7 +145,7 @@ const btnContainer = {
 };
 
 const button = {
-  backgroundColor: "#2B7FFF",
+  backgroundColor: "#695CF6",
   borderRadius: "12px",
   color: "#ffffff",
   fontSize: "16px",
@@ -172,7 +172,7 @@ const footerText = {
 };
 
 const footerLink = {
-  color: "#2B7FFF",
+  color: "#695CF6",
   textDecoration: "underline",
   fontSize: "14px",
 };

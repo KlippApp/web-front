@@ -21,7 +21,8 @@ describe('Footer', () => {
 
   it('links to the how it works section', () => {
     renderFooter()
-    expect(screen.getByRole('link', { name: 'How it works' })).toHaveAttribute('href', '#how')
+    expect(screen.getByRole('link', { name: 'How it works' })).toHaveAttribute('href', '/en#how')
+    expect(screen.getByRole('link', { name: 'Agencies' })).toHaveAttribute('href', '/en/agences')
   })
 
   it('renders copyright with current year', () => {

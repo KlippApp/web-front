@@ -7,6 +7,7 @@ export const PUBLIC_PAGES = {
   '/': 'home',
   '/privacy': 'privacy',
   '/terms': 'terms',
+  '/agences': 'agencies',
 }
 
 export function langFromPath(pathname) {

@@ -9,7 +9,8 @@ export default function Footer() {
   const year = new Date().getFullYear()
 
   const links = [
-    { label: t('footer.links.How it works'), href: '#how' },
+    { label: t('footer.links.How it works'), href: `${localize('/')}#how` },
+    { label: t('footer.links.Agencies'), to: localize('/agences') },
     { label: t('footer.links.Agency portal'), to: '/login' },
     { label: t('footer.links.Privacy Policy'), to: localize('/privacy') },
     { label: t('footer.links.Terms of Service'), to: localize('/terms') },

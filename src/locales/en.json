@@ -123,7 +123,9 @@
       "card": {
         "open": "Open listing {{title}}",
         "likes_one": "{{count}} like",
-        "likes_other": "{{count}} likes"
+        "likes_other": "{{count}} likes",
+        "views_one": "{{count}} view",
+        "views_other": "{{count}} views"
       },
       "preview": {
         "close": "Close",
@@ -134,6 +136,7 @@
         "description": "Description",
         "photos": "Photos",
         "likesTotal": "Total likes",
+        "viewsTotal": "Views in the last 30 days",
         "chartTitle": "Likes received in the last 30 days",
         "noVideo": "Video not available yet",
         "photoAlt": "Listing photo {{index}}"

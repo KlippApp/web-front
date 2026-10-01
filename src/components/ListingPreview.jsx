@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from 'react'
 import { useTranslation } from 'react-i18next'
-import { X, Heart, MapPin } from 'lucide-react'
+import { X, Eye, Heart, MapPin } from 'lucide-react'
 import { authFetch } from '../config/api.js'
 import { formatDate, formatPrice, listingStatus } from '../utils/listing.js'
 import ListingVideo from './ListingVideo.jsx'
@@ -136,6 +136,13 @@ export default function ListingPreview({ listing, onClose }) {
               <strong style={{ fontSize: '1.25rem' }}>{listing.like_count}</strong>
               <span style={{ fontSize: '0.875rem', color: 'var(--color-text-secondary)' }}>{t('portal.listings.preview.likesTotal')}</span>
             </p>
+            {listing.view_count != null && (
+              <p style={{ margin: '0 0 0.75rem', display: 'flex', alignItems: 'center', gap: '0.5rem', color: 'var(--color-text-primary)' }}>
+                <Eye size={18} color="var(--color-accent)" aria-hidden="true" />
+                <strong style={{ fontSize: '1.25rem' }}>{listing.view_count}</strong>
+                <span style={{ fontSize: '0.875rem', color: 'var(--color-text-secondary)' }}>{t('portal.listings.preview.viewsTotal')}</span>
+              </p>
+            )}
             <h3 style={sectionTitle}>{t('portal.listings.preview.chartTitle')}</h3>
             <LikesChart likesPerDay={likesPerDay} height={160} />
           </section>

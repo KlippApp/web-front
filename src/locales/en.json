@@ -395,6 +395,14 @@
     "terms": {
       "title": "Terms of Service — Klipp",
       "description": "The terms of use of the Klipp app and agency portal."
+    },
+    "notFound": {
+      "title": "Page not found — Klipp",
+      "description": "This page doesn't exist."
     }
+  },
+  "notFound": {
+    "title": "Page not found",
+    "text": "The page you are looking for doesn't exist or has been moved."
   }
 }

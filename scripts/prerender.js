@@ -33,7 +33,10 @@ for (const [path, key] of Object.entries(PUBLIC_PAGES)) {
 
 const noindex = '<title>Klipp</title>\n    <meta name="robots" content="noindex" />'
 for (const route of APP_ROUTES) write(`${route.slice(1)}.html`, page({ lang: 'fr', head: noindex }))
-write('404.html', page({ lang: 'fr', head: noindex }))
+for (const lang of LANGS) {
+  const head = `<title>${i18n.getFixedT(lang)('seo.notFound.title')}</title>\n    <meta name="robots" content="noindex" />`
+  write(localizedPath('/404', lang).slice(1) + '.html', page({ lang, head, body: await render(localizedPath('/404', lang), lang) }))
+}
 
 const urls = Object.keys(PUBLIC_PAGES).map(path => {
   const alternates = LANGS.map(l =>

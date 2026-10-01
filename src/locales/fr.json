@@ -395,6 +395,14 @@
     "terms": {
       "title": "Conditions d'utilisation — Klipp",
       "description": "Les conditions d'utilisation de l'application et de l'espace agence Klipp."
+    },
+    "notFound": {
+      "title": "Page introuvable — Klipp",
+      "description": "Cette page n'existe pas."
     }
+  },
+  "notFound": {
+    "title": "Page introuvable",
+    "text": "La page que vous cherchez n'existe pas ou a été déplacée."
   }
 }

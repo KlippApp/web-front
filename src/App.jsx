@@ -1,5 +1,5 @@
 import { useEffect, lazy, Suspense } from 'react'
-import { BrowserRouter, Routes, Route, Navigate, Outlet, useLocation } from 'react-router-dom'
+import { BrowserRouter, Routes, Route, Outlet, useLocation } from 'react-router-dom'
 import { useTranslation } from 'react-i18next'
 import { useTheme } from './hooks/useTheme.js'
 import { useCookieConsent } from './hooks/useCookieConsent.js'
@@ -14,6 +14,7 @@ import Footer from './components/Footer.jsx'
 import CookieConsent from './components/CookieConsent.jsx'
 import PrivacyPage from './pages/PrivacyPage.jsx'
 import TermsPage from './pages/TermsPage.jsx'
+import NotFoundPage from './pages/NotFoundPage.jsx'
 
 const ProtectedRoute = lazy(() => import('./components/ProtectedRoute.jsx'))
 const DashboardLayout = lazy(() => import('./components/DashboardLayout.jsx'))
@@ -28,7 +29,7 @@ const SetPasswordPage = lazy(() => import('./pages/SetPasswordPage.jsx'))
 function PublicPage() {
   const { t, i18n } = useTranslation()
   const { pathname } = useLocation()
-  const page = PUBLIC_PAGES[basePath(pathname)]
+  const page = PUBLIC_PAGES[basePath(pathname)] ?? 'notFound'
   const lang = langFromPath(pathname)
 
   useEffect(() => {
@@ -82,6 +83,7 @@ export function AppRoutes() {
             <Route key={`${prefix}/privacy`} path={`${prefix}/privacy`} element={<PrivacyPage />} />,
             <Route key={`${prefix}/terms`} path={`${prefix}/terms`} element={<TermsPage />} />,
           ])}
+          <Route path="*" element={<NotFoundPage />} />
         </Route>
         <Route path="/login" element={<LoginPage />} />
         <Route path="/register" element={<RegisterPage />} />
@@ -94,7 +96,6 @@ export function AppRoutes() {
             <Route path="/dashboard/profile" element={<ProfilePage />} />
           </Route>
         </Route>
-        <Route path="*" element={<Navigate to="/" replace />} />
       </Routes>
     </Suspense>
   )

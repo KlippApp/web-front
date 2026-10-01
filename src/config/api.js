@@ -4,6 +4,8 @@ const API_URL = import.meta.env.VITE_API_URL || ''
 // Always disabled in test environment so mocks work normally.
 export const DEV_BYPASS = !API_URL && import.meta.env.MODE !== 'test'
 
+export const authHeaders = (token) => ({ 'Content-Type': 'application/json', Authorization: `Bearer ${token}` })
+
 export class ApiError extends Error {}
 
 export function apiErrorMessage(data, fallback) {

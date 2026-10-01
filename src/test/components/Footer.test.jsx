@@ -34,8 +34,8 @@ describe('Footer', () => {
 
   it('links legal entries to the legal pages', () => {
     renderFooter()
-    expect(screen.getByRole('link', { name: 'Privacy Policy' })).toHaveAttribute('href', '/privacy')
-    expect(screen.getByRole('link', { name: 'Terms of Service' })).toHaveAttribute('href', '/terms')
-    expect(screen.getByRole('link', { name: 'Cookie Policy' })).toHaveAttribute('href', '/privacy#cookies')
+    expect(screen.getByRole('link', { name: 'Privacy Policy' })).toHaveAttribute('href', '/en/privacy')
+    expect(screen.getByRole('link', { name: 'Terms of Service' })).toHaveAttribute('href', '/en/terms')
+    expect(screen.getByRole('link', { name: 'Cookie Policy' })).toHaveAttribute('href', '/en/privacy#cookies')
   })
 })

@@ -7,7 +7,7 @@ Light/dark theme, glass aesthetic (Notion/Linear/Vercel style).
 
 ```bash
 npm run dev      # Start dev server at http://localhost:5173
-npm run build    # Production build → dist/
+npm run build    # Production build → dist/ (client build + SSR build + scripts/prerender.js)
 npm run preview  # Preview production build locally
 npm run test     # Run tests (vitest)
 ```
@@ -19,6 +19,14 @@ npm run test     # Run tests (vitest)
 - **react-i18next** for i18n — locales in `src/locales/en.json` + `src/locales/fr.json`
 - **lucide-react** for icons
 - **Inter** font via Google Fonts CDN
+
+## SEO / Prerendering
+
+- Public pages live under language-prefixed URLs: French at `/`, `/privacy`, `/terms`; English at `/en`, `/en/privacy`, `/en/terms`. The URL decides the language on these pages (`src/config/site.js`: `PUBLIC_PAGES`, `langFromPath`, `localizedPath`); link to them with `useLocalizedPath()`.
+- `npm run build` prerenders every public page to static HTML (`src/entry-server.jsx` + `scripts/prerender.js`) with title, description, canonical, hreflang, Open Graph and JSON-LD (`headTags` in `src/config/site.js`, texts under the `seo` i18n key). It also writes `sitemap.xml`, a `noindex` shell for each portal route and the `NotFoundPage` as `404.html` / `en/404.html`.
+- **Adding a public page** → add it to `PUBLIC_PAGES`, its routes in `App.jsx` and `seo.<page>` keys. **Adding a portal route** → also add it to `APP_ROUTES` in `scripts/prerender.js`, otherwise it 404s in production.
+- Code rendered on public pages must not touch `window`/`document` during render (it runs in Node at build time).
+- `Caddyfile` (used by Railpack instead of its default) serves the files without SPA fallback, so unknown paths return a real 404.
 
 ## Theme System
 

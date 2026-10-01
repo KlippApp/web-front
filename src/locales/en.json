@@ -382,5 +382,27 @@
     "linkAccept": "Accept and become an agent",
     "linkSuccessTitle": "You are now an agent!",
     "linkSuccessMessage": "Your account is now linked to {{agency}}. Sign in to the mobile app as usual."
+  },
+  "seo": {
+    "home": {
+      "title": "Klipp — Find Your Perfect Home",
+      "description": "Klipp, the real estate app to find your perfect house or apartment. Available on iOS and Android."
+    },
+    "privacy": {
+      "title": "Privacy Policy — Klipp",
+      "description": "How Klipp collects, uses and protects your personal data."
+    },
+    "terms": {
+      "title": "Terms of Service — Klipp",
+      "description": "The terms of use of the Klipp app and agency portal."
+    },
+    "notFound": {
+      "title": "Page not found — Klipp",
+      "description": "This page doesn't exist."
+    }
+  },
+  "notFound": {
+    "title": "Page not found",
+    "text": "The page you are looking for doesn't exist or has been moved."
   }
 }

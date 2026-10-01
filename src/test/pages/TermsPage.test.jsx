@@ -12,6 +12,6 @@ describe('TermsPage', () => {
     render(<MemoryRouter><TermsPage /></MemoryRouter>)
     expect(screen.getByRole('heading', { level: 1, name: 'Terms of Service' })).toBeInTheDocument()
     expect(screen.getAllByRole('heading', { level: 2 })).toHaveLength(10)
-    expect(screen.getByRole('link', { name: 'Privacy Policy' })).toHaveAttribute('href', '/privacy')
+    expect(screen.getByRole('link', { name: 'Privacy Policy' })).toHaveAttribute('href', '/en/privacy')
   })
 })

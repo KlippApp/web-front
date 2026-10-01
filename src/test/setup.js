@@ -17,6 +17,16 @@ const { mockChangeLanguage, mockT } = vi.hoisted(() => ({
   mockChangeLanguage: vi.fn(() => new Promise(() => {})),
   mockT: (key, options) => {
     const translations = {
+      'seo.home.title': 'Klipp — Find Your Perfect Home',
+      'seo.home.description': 'Klipp, the real estate app to find your perfect house or apartment. Available on iOS and Android.',
+      'seo.privacy.title': 'Privacy Policy — Klipp',
+      'seo.privacy.description': 'How Klipp collects, uses and protects your personal data.',
+      'seo.terms.title': 'Terms of Service — Klipp',
+      'seo.terms.description': 'The terms of use of the Klipp app and agency portal.',
+      'seo.notFound.title': 'Page not found — Klipp',
+      'seo.notFound.description': "This page doesn't exist.",
+      'notFound.title': 'Page not found',
+      'notFound.text': "The page you are looking for doesn't exist or has been moved.",
       'nav.features': 'Features',
       'nav.screenshots': 'Screenshots',
       'nav.reviews': 'Reviews',

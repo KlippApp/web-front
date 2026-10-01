@@ -382,5 +382,27 @@
     "linkAccept": "Accepter et devenir agent",
     "linkSuccessTitle": "Vous êtes maintenant agent !",
     "linkSuccessMessage": "Votre compte est rattaché à {{agency}}. Connectez-vous à l'app mobile comme d'habitude."
+  },
+  "seo": {
+    "home": {
+      "title": "Klipp — Trouvez votre bien immobilier idéal",
+      "description": "Klipp, l'application immobilière pour trouver votre maison ou appartement idéal. Disponible sur iOS et Android."
+    },
+    "privacy": {
+      "title": "Politique de confidentialité — Klipp",
+      "description": "Comment Klipp collecte, utilise et protège vos données personnelles."
+    },
+    "terms": {
+      "title": "Conditions d'utilisation — Klipp",
+      "description": "Les conditions d'utilisation de l'application et de l'espace agence Klipp."
+    },
+    "notFound": {
+      "title": "Page introuvable — Klipp",
+      "description": "Cette page n'existe pas."
+    }
+  },
+  "notFound": {
+    "title": "Page introuvable",
+    "text": "La page que vous cherchez n'existe pas ou a été déplacée."
   }
 }

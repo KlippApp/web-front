@@ -6,8 +6,7 @@ import { useCookieConsent } from './hooks/useCookieConsent.js'
 import { PUBLIC_PAGES, basePath, langFromPath } from './config/site.js'
 import Navbar from './components/Navbar.jsx'
 import Hero from './components/Hero.jsx'
-import Features from './components/Features.jsx'
-import Screenshots from './components/Screenshots.jsx'
+import HowItWorks from './components/HowItWorks.jsx'
 import Agencies from './components/Agencies.jsx'
 import DownloadCTA from './components/DownloadCTA.jsx'
 import Footer from './components/Footer.jsx'
@@ -60,8 +59,7 @@ function LandingLayout() {
       <Navbar theme={theme} toggleTheme={toggleTheme} />
       <main>
         <Hero />
-        <Features />
-        <Screenshots />
+        <HowItWorks />
         <Agencies />
         <DownloadCTA />
       </main>

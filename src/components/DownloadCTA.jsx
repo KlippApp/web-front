@@ -5,69 +5,21 @@ export default function DownloadCTA() {
   const { t } = useTranslation()
 
   return (
-    <section id="download" className="max-w-6xl mx-auto px-6 py-24">
-      <div
-        className="glass-card text-center"
-        style={{
-          maxWidth: '640px',
-          margin: '0 auto',
-          padding: 'clamp(2rem, 5vw, 4rem)',
-          position: 'relative',
-          overflow: 'hidden',
-        }}
-      >
-        {/* Blue gradient overlay */}
-        <div
-          style={{
-            position: 'absolute',
-            inset: 0,
-            background: 'linear-gradient(135deg, var(--color-overlay-gradient) 0%, rgba(183,175,251,0.05) 100%)',
-            pointerEvents: 'none',
-          }}
-        />
-
-        <div style={{ position: 'relative', zIndex: 1 }}>
-          {/* Icon */}
-          <img
-            src="/favicon.svg"
-            alt=""
-            width={64}
-            height={64}
-            style={{ display: 'block', margin: '0 auto 1.5rem' }}
-          />
-
-          <h2
-            style={{
-              fontSize: 'clamp(1.6rem, 4vw, 2.5rem)',
-              fontWeight: 800,
-              letterSpacing: '-0.02em',
-              marginBottom: '1rem',
-            }}
-          >
-            {t('download.title')}
+    <section id="download" className="on-ink">
+      <div className="max-w-6xl mx-auto px-6 py-24 md:py-32 flex flex-col md:flex-row md:items-end md:justify-between gap-12">
+        <div className="max-w-2xl">
+          <img src="/favicon.svg" alt="" width={56} height={56} className="mb-8" />
+          <h2 className="font-extrabold text-[clamp(2.5rem,6vw,4.5rem)] leading-[0.95] tracking-[-0.04em]">
+            {t('download.title')}<span className="brand-dot">.</span>
           </h2>
-
-          <p
-            style={{
-              color: 'var(--color-text-secondary)',
-              fontSize: '1.05rem',
-              lineHeight: 1.6,
-              marginBottom: '2rem',
-              maxWidth: '400px',
-              margin: '0 auto 2rem',
-            }}
-          >
-            {t('download.subtitle')}
-          </p>
-
-          <div className="flex flex-wrap gap-3 justify-center mb-4">
+          <p className="mt-5 text-lg leading-relaxed text-(--color-text-secondary)">{t('download.subtitle')}</p>
+        </div>
+        <div>
+          <div className="flex flex-wrap gap-4">
             <StoreButton store="apple" />
             <StoreButton store="google" />
           </div>
-
-          <p style={{ color: 'var(--color-text-dim)', fontSize: '0.78rem' }}>
-            {t('download.disclaimer')}
-          </p>
+          <p className="mt-4 text-sm text-(--color-text-secondary)">{t('download.disclaimer')}</p>
         </div>
       </div>
     </section>

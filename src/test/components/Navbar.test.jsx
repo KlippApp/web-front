@@ -15,8 +15,7 @@ describe('Navbar', () => {
   it('renders logo and navigation links', () => {
     renderNavbar()
     expect(screen.getByText(/Klipp/i)).toBeInTheDocument()
-    expect(screen.getByText(/Features/i)).toBeInTheDocument()
-    expect(screen.getByText(/Screenshots/i)).toBeInTheDocument()
+    expect(screen.getByText('How it works')).toBeInTheDocument()
     expect(screen.getByText(/Agencies/i)).toBeInTheDocument()
     expect(screen.getAllByText(/Agency portal/i).length).toBeGreaterThan(0)
   })
@@ -27,8 +26,8 @@ describe('Navbar', () => {
 
     fireEvent.click(toggleButton)
 
-    // Mobile menu opens: Features link now appears twice (desktop nav + mobile menu)
-    const mobileLinks = screen.getAllByText(/Features/i)
+    // Mobile menu opens: the link now appears twice (desktop nav + mobile menu)
+    const mobileLinks = screen.getAllByText('How it works')
     expect(mobileLinks.length).toBeGreaterThan(1)
   })
 

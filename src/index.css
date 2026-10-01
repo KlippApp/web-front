@@ -1,22 +1,38 @@
 @import "tailwindcss";
 
+@font-face {
+  font-family: 'Schibsted Grotesk';
+  font-style: normal;
+  font-weight: 400 900;
+  font-display: swap;
+  src: url('/fonts/schibsted-grotesk-latin.woff2') format('woff2');
+}
+
 @theme {
   --color-accent: #695CF6;
   --color-accent-light: #B7AFFB;
-  --color-gray-subtitle: #64748b;
-  --font-family-sans: 'Inter', system-ui, -apple-system, sans-serif;
+  --font-family-sans: 'Schibsted Grotesk', system-ui, -apple-system, sans-serif;
 }
 
 /* ─── Light theme (default) ─────────────────────────────────────── */
 :root {
-  --color-bg: #f8f9fb;
-  --color-text-primary: #0f172a;
-  --color-text-secondary: #64748b;
-  --color-text-dim: rgba(15,23,42,0.4);
-  --color-text-quote: #1e293b;
+  --color-ink: #0B0B0E;
+  --color-paper: #FAFAF7;
+  --color-mist: #F1EFFE;
+  --color-accent-strong: #5A4DE6;
+  --color-header-glass: rgba(255,255,255,0.92);
+  --color-vignette: var(--color-mist);
+  --color-vignette-text: var(--color-ink);
+  --shadow-panel: 0 24px 60px -30px rgba(105,92,246,0.45);
+  --color-surface: var(--color-paper);
+  --color-surface-alt: var(--color-mist);
+  --color-panel: #fff;
+  --color-line: rgba(11,11,14,0.1);
+  --color-bg: #FFFFFF;
+  --color-text-primary: #0B0B0E;
+  --color-text-secondary: #5B6170;
   --color-card-bg: rgba(0,0,0,0.04);
   --color-card-border: rgba(0,0,0,0.08);
-  --color-card-hover-border: rgba(105,92,246,0.4);
   --color-card-shadow: 0 1px 3px rgba(0,0,0,0.06), 0 4px 16px rgba(0,0,0,0.04);
   --color-divider: rgba(0,0,0,0.08);
   --color-nav-bg: rgba(255,255,255,0.85);
@@ -29,44 +45,35 @@
   --color-mobile-menu-bg: #ffffff;
   --color-icon-bg: rgba(105,92,246,0.10);
   --color-icon-color: #695CF6;
-  --color-section-stripe: #f1f3f7;
-  --color-hero-radial: rgba(105,92,246,0.07);
-  --color-hero-glow: rgba(105,92,246,0.15);
-  --color-screenshots-glow: rgba(105,92,246,0.18);
-  --color-iphone-ring: rgba(0,0,0,0.15);
-  --color-iphone-drop: rgba(0,0,0,0.25);
-  --color-mobile-portal: #695CF6;
   --color-btn-store-bg: #0f172a;
   --color-btn-store-text: #fff;
   --color-btn-store-hover-bg: rgba(15,23,42,0.85);
   --color-hamburger: #0f172a;
   --color-logo-text: #0f172a;
-  --color-footer-heading: #0f172a;
-  --color-footer-link: #64748b;
-  --color-footer-link-hover: #0f172a;
   --color-copyright: rgba(15,23,42,0.4);
-  --color-avatar-initials: #fff;
-  --color-overlay-gradient: rgba(105,92,246,0.08);
   /* Inputs */
   --color-input-bg: rgba(0,0,0,0.04);
   --color-input-border: rgba(0,0,0,0.12);
   --color-input-focus-border: #695CF6;
   --color-input-text: #0f172a;
-  --color-input-placeholder: #94a3b8;
   --color-input-error: #ef4444;
   --color-input-success: #16a34a;
 }
 
 /* ─── Dark theme overrides ──────────────────────────────────────── */
 [data-theme="dark"] {
+  --color-header-glass: rgba(11,11,14,0.92);
+  --color-vignette: var(--color-ink);
+  --color-vignette-text: var(--color-paper);
+  --color-surface: #1C1C23;
+  --color-surface-alt: #25213F;
+  --color-panel: #2B2B35;
+  --color-line: rgba(255,255,255,0.12);
   --color-bg: #000;
   --color-text-primary: #fff;
   --color-text-secondary: #D1D5DC;
-  --color-text-dim: rgba(255,255,255,0.4);
-  --color-text-quote: rgba(255,255,255,0.85);
   --color-card-bg: rgba(255,255,255,0.08);
   --color-card-border: rgba(255,255,255,0.15);
-  --color-card-hover-border: rgba(105,92,246,0.3);
   --color-card-shadow: none;
   --color-divider: rgba(255,255,255,0.08);
   --color-nav-bg: rgba(0,0,0,0.85);
@@ -79,32 +86,46 @@
   --color-mobile-menu-bg: rgba(0,0,0,0.95);
   --color-icon-bg: rgba(105,92,246,0.15);
   --color-icon-color: #B7AFFB;
-  --color-section-stripe: rgba(255,255,255,0.02);
-  --color-hero-radial: rgba(105,92,246,0.12);
-  --color-hero-glow: rgba(105,92,246,0.35);
-  --color-screenshots-glow: rgba(105,92,246,0.4);
-  --color-iphone-ring: rgba(0,0,0,0.6);
-  --color-iphone-drop: rgba(0,0,0,0.5);
-  --color-mobile-portal: #B7AFFB;
   --color-btn-store-bg: #fff;
   --color-btn-store-text: #000;
   --color-btn-store-hover-bg: rgba(255,255,255,0.9);
   --color-hamburger: #fff;
   --color-logo-text: #fff;
-  --color-footer-heading: #fff;
-  --color-footer-link: #D1D5DC;
-  --color-footer-link-hover: #fff;
   --color-copyright: rgba(255,255,255,0.4);
-  --color-avatar-initials: #fff;
-  --color-overlay-gradient: rgba(105,92,246,0.15);
   /* Inputs */
   --color-input-bg: rgba(255,255,255,0.06);
   --color-input-border: rgba(255,255,255,0.15);
   --color-input-focus-border: #B7AFFB;
   --color-input-text: #fff;
-  --color-input-placeholder: rgba(255,255,255,0.4);
   --color-input-error: #f87171;
   --color-input-success: #4ade80;
+}
+
+/* The video world (navbar, hero, final call to action): ink black in dark mode, like the app */
+[data-theme="dark"] .on-ink {
+  background: var(--color-ink);
+  color: var(--color-paper);
+  --color-text-primary: var(--color-paper);
+  --color-text-secondary: #A6A9B4;
+  --color-logo-text: var(--color-paper);
+  --color-nav-link: #A6A9B4;
+  --color-nav-link-hover: var(--color-paper);
+  --color-hamburger: var(--color-paper);
+  --color-divider: rgba(255,255,255,0.1);
+  --color-portal-bg: rgba(255,255,255,0.06);
+  --color-portal-border: rgba(255,255,255,0.14);
+  --color-portal-hover-bg: rgba(255,255,255,0.1);
+  --color-portal-hover-border: rgba(255,255,255,0.28);
+  --color-mobile-menu-bg: var(--color-ink);
+}
+
+.brand-dot {
+  color: var(--color-accent);
+}
+
+:focus-visible {
+  outline: 2px solid var(--color-accent);
+  outline-offset: 3px;
 }
 
 @layer base {
@@ -209,4 +230,87 @@
     .dash-grid-fixed { grid-template-columns: 1fr; }
     .dash-row-spread { flex-direction: column; align-items: flex-start; }
   }
+}
+
+/* ─── Landing: iPhone 15 Pro mockup ─────────────────────────────
+   Every dimension derives from --w, the screen width, using the real
+   393 × 852 pt screen: island 126 × 37 pt at 11 pt, corners 55 pt. */
+.iphone {
+  --bezel: calc(var(--w) * 0.035);
+  position: relative;
+  width: calc(var(--w) + var(--bezel) * 2);
+  padding: var(--bezel);
+  border-radius: calc(var(--w) * 0.14 + var(--bezel));
+  background: #0B0B0E;
+  box-shadow:
+    0 0 0 2px #3A3A40,
+    0 0 0 3px #1A1A1E,
+    0 40px 80px -30px rgba(11,11,14,0.55);
+}
+.iphone-screen {
+  position: relative;
+  width: var(--w);
+  aspect-ratio: 393 / 852;
+  border-radius: calc(var(--w) * 0.14);
+  overflow: hidden;
+  background: #16161B;
+}
+.iphone-island {
+  position: absolute;
+  z-index: 3;
+  top: calc(var(--w) * 0.028);
+  left: 50%;
+  width: calc(var(--w) * 0.32);
+  height: calc(var(--w) * 0.094);
+  transform: translateX(-50%);
+  border-radius: 999px;
+  background: #000;
+}
+.iphone-status {
+  position: absolute;
+  z-index: 2;
+  top: calc(var(--w) * 0.028);
+  inset-inline: 0;
+  height: calc(var(--w) * 0.094);
+  padding-inline: calc(var(--w) * 0.085);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  color: #fff;
+  font-size: calc(var(--w) * 0.043);
+  font-weight: 600;
+}
+.iphone-button {
+  position: absolute;
+  width: 3px;
+  border-radius: 2px;
+  background: #3A3A40;
+}
+
+.feed-track {
+  position: absolute;
+  inset: 0;
+  transition: transform 0.7s cubic-bezier(0.65, 0, 0.35, 1);
+}
+.feed-item {
+  position: relative;
+  height: 100%;
+  color: #fff;
+  background: linear-gradient(180deg, transparent 45%, rgba(0,0,0,0.75) 100%), var(--feed-tone);
+}
+.feed-item:nth-child(4n + 1) { --feed-tone: #2C2A3A; }
+.feed-item:nth-child(4n + 2) { --feed-tone: #23292D; }
+.feed-item:nth-child(4n + 3) { --feed-tone: #2F2A24; }
+.feed-item:nth-child(4n + 4) { --feed-tone: #2A2430; }
+.feed-action {
+  width: 2.5rem;
+  height: 2.5rem;
+  border-radius: 999px;
+  background: rgba(255,255,255,0.2);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+@media (prefers-reduced-motion: reduce) {
+  .feed-track { transition: none; }
 }

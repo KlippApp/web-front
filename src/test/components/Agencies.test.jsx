@@ -24,4 +24,10 @@ describe('Agencies', () => {
     expect(screen.getByRole('link', { name: 'Create an agency account' })).toHaveAttribute('href', '/register')
     expect(screen.getByRole('link', { name: 'Sign in' })).toHaveAttribute('href', '/login')
   })
+
+  it('shows a labelled preview of the agency portal', () => {
+    renderAgencies()
+    expect(screen.getByText('Preview of the agency portal')).toBeInTheDocument()
+    expect(screen.getByText('Likes received — Last 30 days')).toBeInTheDocument()
+  })
 })

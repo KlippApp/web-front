@@ -1,87 +1,32 @@
 {
   "nav": {
-    "features": "Fonctionnalités",
-    "screenshots": "Captures",
+    "how": "Comment ça marche",
     "agencies": "Agences",
     "clientPortal": "Espace agence"
   },
   "hero": {
-    "headline": "L'immobilier <highlight>en vidéo</highlight>",
+    "title": "L'immobilier en vidéo",
     "subtitle": "Visitez les biens autour de vous en quelques secondes, gardez vos coups de cœur et contactez l'annonceur en direct. Vente et location.",
-    "facts": {
-      "video": {
-        "value": "100 %",
-        "label": "vidéo"
-      },
-      "free": {
-        "value": "0 €",
-        "label": "gratuit"
-      },
-      "noAccount": {
-        "value": "Sans compte",
-        "label": "pour explorer"
-      }
-    },
-    "mockupAlt": "Capture d'écran de l'application Klipp"
-  },
-  "features": {
-    "tag": "Fonctionnalités",
-    "title": "Tout pour trouver votre prochain chez-vous",
-    "subtitle": "Une application simple, pensée autour de la vidéo, pour visiter plus de biens en moins de temps.",
-    "list": {
-      "video": {
-        "title": "Visites en vidéo",
-        "description": "Les annonces défilent en plein écran, comme un fil de vidéos courtes. Un swipe pour passer au bien suivant."
-      },
-      "nearby": {
-        "title": "Autour de vous",
-        "description": "Une ville, un code postal ou votre position : découvrez les biens de la zone qui vous intéresse."
-      },
-      "contact": {
-        "title": "Contact direct",
-        "description": "Appelez l'annonceur, envoyez-lui un SMS ou un e-mail, en un geste depuis l'annonce."
-      },
-      "favorites": {
-        "title": "Favoris et collections",
-        "description": "Aimez un bien ou rangez-le dans vos collections pour le retrouver plus tard."
-      },
-      "searches": {
-        "title": "Recherches enregistrées",
-        "description": "Zone, rayon, budget et surface : enregistrez vos critères pour la prochaine fois."
-      },
-      "publish": {
-        "title": "Publiez votre annonce",
-        "description": "Vente ou location : mettez votre bien en ligne avec une vidéo et quelques photos."
-      }
-    }
-  },
-  "screenshots": {
-    "title": "Conçu pour votre poche",
-    "subtitle": "Une interface simple : on swipe, on visite, on garde ce qui plaît."
+    "note": "Gratuit, et sans compte pour explorer."
   },
   "download": {
-    "title": "Commencez votre recherche aujourd'hui",
+    "title": "Votre prochain chez-vous est à un swipe",
     "subtitle": "Téléchargez Klipp gratuitement et visitez vos prochains biens en vidéo.",
     "appStore": "Télécharger sur l'App Store",
     "googlePlay": "Disponible sur Google Play",
     "comingSoon": "Bientôt disponible",
-    "disclaimer": "Gratuit · iOS 15+ et Android 7+"
+    "disclaimer": "iOS 15+ et Android 7+"
   },
   "footer": {
     "description": "L'immobilier en vidéo. Vente et location, autour de vous.",
-    "sections": {
-      "Product": "Produit",
-      "Legal": "Légal"
-    },
     "links": {
-      "Features": "Fonctionnalités",
-      "Screenshots": "Captures",
+      "How it works": "Comment ça marche",
       "Agency portal": "Espace agence",
       "Privacy Policy": "Confidentialité",
       "Terms of Service": "Conditions d'utilisation",
-      "Cookie Policy": "Politique de cookies"
+      "Cookie Policy": "Cookies"
     },
-    "copyright": "© {{year}} Klipp. Tous droits réservés."
+    "copyright": "© {{year}} Klipp"
   },
   "cookies": {
     "title": "Cookies & préférences",
@@ -391,13 +336,12 @@
     "text": "La page que vous cherchez n'existe pas ou a été déplacée."
   },
   "agencies": {
-    "tag": "Agences",
     "title": "Vous êtes une agence ?",
     "subtitle": "Présentez vos biens en vidéo aux acheteurs et locataires de votre secteur, et pilotez votre équipe depuis l'espace agence.",
     "points": {
       "team": {
         "title": "Vos agents et vos agences",
-        "description": "Ajoutez vos agents et vos agences dans un espace dédié, accessible depuis votre navigateur."
+        "description": "Ajoutez-les dans un espace dédié, accessible depuis votre navigateur."
       },
       "video": {
         "title": "Des annonces en vidéo",
@@ -405,10 +349,70 @@
       },
       "stats": {
         "title": "Vos statistiques",
-        "description": "Suivez vos annonces actives, vos agents et les likes reçus sur les 30 derniers jours."
+        "description": "Annonces actives, agents et J'aime reçus sur les 30 derniers jours."
       }
     },
+    "previewCaption": "Aperçu de l'espace agence",
     "register": "Créer un compte agence",
     "login": "Se connecter"
+  },
+  "feed": {
+    "label": "Aperçu du fil d'annonces Klipp",
+    "sale": "Vente",
+    "rent": "Location",
+    "perMonth": "/mois",
+    "like": "Aimer",
+    "collections": "Collections",
+    "share": "Partager",
+    "bedrooms": "{{count}} ch.",
+    "bathrooms": "{{count}} sdb.",
+    "items": {
+      "0": {
+        "title": "Appartement moderne avec vue"
+      },
+      "1": {
+        "title": "T3 lumineux avec balcon"
+      },
+      "2": {
+        "title": "Maison avec jardin"
+      },
+      "3": {
+        "title": "Deux-pièces rénové"
+      }
+    }
+  },
+  "how": {
+    "title": "Swipez, gardez, contactez",
+    "subtitle": "Trois gestes, et vous avez visité plus de biens qu'en une après-midi d'agences.",
+    "steps": {
+      "swipe": {
+        "title": "Swipez",
+        "description": "Les annonces de votre zone défilent en plein écran, en vidéo. Un geste vers le haut pour passer au bien suivant."
+      },
+      "keep": {
+        "title": "Gardez",
+        "description": "Un bien vous plaît ? Aimez-le, ou rangez-le dans une collection pour le comparer plus tard."
+      },
+      "contact": {
+        "title": "Contactez",
+        "description": "Appelez l'annonceur, envoyez-lui un SMS ou un e-mail, directement depuis l'annonce."
+      }
+    },
+    "collectionA": "Lyon, 2 pièces",
+    "collectionB": "Maisons avec jardin",
+    "call": "Appeler",
+    "message": "Message",
+    "email": "E-mail",
+    "alsoTitle": "Aussi dans l'app",
+    "also": {
+      "searches": {
+        "title": "Recherches enregistrées",
+        "description": "Zone, rayon, budget et surface, gardés pour la prochaine fois."
+      },
+      "publish": {
+        "title": "Publiez votre annonce",
+        "description": "Vente ou location, avec une vidéo et quelques photos."
+      }
+    }
   }
 }

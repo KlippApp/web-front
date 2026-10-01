@@ -51,7 +51,7 @@ Light is the default. Dark mode toggled via a Sun/Moon button in the navbar and 
 | `--color-ink` / `--color-paper` / `--color-mist` | Brand base colors (logo black, app icon background, violet tint) |
 | `--color-surface` / `--color-surface-alt` / `--color-panel` / `--color-line` | Landing section backgrounds, panels and hairlines (themed) |
 
-- **`.on-ink`** — the "video world" (navbar, hero, final call to action): dark in both themes, overrides text/nav/toggle variables locally.
+- **`.on-ink`** — the "video world" (navbar, hero, final call to action): ink black in dark mode only (white in light mode), overrides text/nav/toggle variables locally. The `Feed` frame stays dark in both themes.
 - **`.brand-dot`** — the violet period that ends the big headlines, echoing the logo's dot.
 - Landing sections use Tailwind utilities with CSS variables (`bg-(--color-surface)`, `text-(--color-text-secondary)`).
 

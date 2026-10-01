@@ -3,7 +3,7 @@ import { ArrowUp, Heart, Bookmark, Phone, MessageSquare, Mail, Search, Upload } 
 
 function Vignette({ children }) {
   return (
-    <div className="h-52 rounded-3xl bg-(--color-ink) border border-(--color-line) text-white flex items-center justify-center p-6" aria-hidden="true">
+    <div className="h-52 rounded-3xl bg-(--color-vignette) border border-(--color-line) text-(--color-vignette-text) flex items-center justify-center p-6" aria-hidden="true">
       {children}
     </div>
   )
@@ -12,14 +12,14 @@ function Vignette({ children }) {
 function SwipeVignette() {
   return (
     <div className="relative w-28 h-40">
-      <div className="absolute inset-x-2 -top-3 h-full rounded-2xl bg-white/10" />
-      <div className="absolute inset-0 rounded-2xl bg-white/20 flex items-end p-3">
+      <div className="absolute inset-x-2 -top-3 h-full rounded-2xl bg-current/10" />
+      <div className="absolute inset-0 rounded-2xl bg-current/20 flex items-end p-3">
         <div className="w-full space-y-1.5">
-          <div className="h-2.5 w-3/4 rounded bg-white/80" />
-          <div className="h-2 w-1/2 rounded bg-white/40" />
+          <div className="h-2.5 w-3/4 rounded bg-current/80" />
+          <div className="h-2 w-1/2 rounded bg-current/40" />
         </div>
       </div>
-      <ArrowUp className="absolute -right-9 top-1/2 -translate-y-1/2 text-(--color-accent-light)" size={26} />
+      <ArrowUp className="absolute -right-9 top-1/2 -translate-y-1/2 text-(--color-accent)" size={26} />
     </div>
   )
 }
@@ -27,12 +27,12 @@ function SwipeVignette() {
 function KeepVignette({ t }) {
   return (
     <div className="flex items-center gap-5">
-      <span className="w-14 h-14 rounded-full bg-(--color-accent) flex items-center justify-center">
+      <span className="w-14 h-14 rounded-full bg-(--color-accent) text-white flex items-center justify-center">
         <Heart size={26} fill="currentColor" />
       </span>
       <div className="space-y-2 text-sm">
         {[t('how.collectionA'), t('how.collectionB')].map(name => (
-          <div key={name} className="flex items-center gap-2 rounded-xl bg-white/10 px-3 py-2">
+          <div key={name} className="flex items-center gap-2 rounded-xl bg-current/10 px-3 py-2">
             <Bookmark size={14} />{name}
           </div>
         ))}
@@ -46,7 +46,7 @@ function ContactVignette({ t }) {
     <div className="flex gap-3">
       {[['call', Phone], ['message', MessageSquare], ['email', Mail]].map(([key, Icon]) => (
         <div key={key} className="flex flex-col items-center gap-2 text-xs">
-          <span className="w-12 h-12 rounded-full bg-white/15 flex items-center justify-center"><Icon size={20} /></span>
+          <span className="w-12 h-12 rounded-full bg-current/15 flex items-center justify-center"><Icon size={20} /></span>
           {t(`how.${key}`)}
         </div>
       ))}

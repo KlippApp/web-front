@@ -27,7 +27,7 @@ function DashboardPreview() {
       <div className="rounded-3xl bg-(--color-panel) border border-(--color-line) p-6 shadow-(--shadow-panel)" aria-hidden="true">
         <div className="grid grid-cols-3 gap-3">
           {PREVIEW_STATS.map(({ key, Icon, value }) => (
-            <div key={key} className="rounded-2xl bg-(--color-surface) p-3">
+            <div key={key} className="rounded-2xl bg-(--color-surface-alt) p-3">
               <Icon size={16} className="text-(--color-accent)" />
               <p className="mt-3 text-2xl font-extrabold tracking-tight">{number.format(value)}</p>
               <p className="mt-1 text-[0.7rem] leading-tight text-(--color-text-secondary)">{t(`portal.dashboard.stats.${key}.label`)}</p>

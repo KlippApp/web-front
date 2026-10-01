@@ -29,9 +29,10 @@ export default function Navbar({ theme, toggleTheme }) {
     <header
       className="on-ink fixed inset-x-0 top-0 z-50 transition-colors"
       style={{
-        background: scrolled || menuOpen ? 'var(--color-ink-glass)' : 'transparent',
+        background: scrolled || menuOpen ? 'var(--color-header-glass)' : 'transparent',
         backdropFilter: scrolled ? 'blur(16px)' : 'none',
         WebkitBackdropFilter: scrolled ? 'blur(16px)' : 'none',
+        borderBottom: `1px solid ${scrolled ? 'var(--color-divider)' : 'transparent'}`,
       }}
     >
       <nav className="max-w-6xl mx-auto px-6 flex items-center justify-between h-16">

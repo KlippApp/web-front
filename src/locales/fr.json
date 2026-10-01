@@ -84,7 +84,7 @@
         "profile": "Profil de l'agence"
       },
       "chart": {
-        "title": "J'aime reçus — 30 derniers jours",
+        "title": "J'aime reçus sur les 30 derniers jours",
         "likes_one": "J'aime",
         "likes_other": "J'aime"
       },
@@ -217,7 +217,7 @@
         },
         "purposes": {
           "title": "3. Finalités et bases légales",
-          "body": "• Création et gestion de votre compte agence — exécution du contrat.\n• Affichage de vos agents et bureaux dans l'application Klipp — exécution du contrat.\n• Sécurité du service et prévention des abus — intérêt légitime.\n• Mémorisation de vos préférences (thème, langue) — consentement."
+          "body": "• Création et gestion de votre compte agence : exécution du contrat.\n• Affichage de vos agents et bureaux dans l'application Klipp : exécution du contrat.\n• Sécurité du service et prévention des abus : intérêt légitime.\n• Mémorisation de vos préférences (thème, langue) : consentement."
         },
         "retention": {
           "title": "4. Durée de conservation",
@@ -229,7 +229,7 @@
         },
         "cookies": {
           "title": "6. Cookies et stockage local",
-          "body": "Nous n'utilisons aucun cookie publicitaire ni de mesure d'audience.\n\n• cookie_consent — mémorise votre choix concernant les cookies (12 mois).\n• theme — mémorise le thème clair ou sombre, uniquement si vous avez accepté les cookies (12 mois).\n• i18next — mémorise votre langue, uniquement si vous avez accepté les cookies (12 mois).\n\nLorsque vous êtes connecté à l'espace agence, votre jeton de session est conservé dans le stockage local de votre navigateur. Il est strictement nécessaire au fonctionnement du service et supprimé à la déconnexion."
+          "body": "Nous n'utilisons aucun cookie publicitaire ni de mesure d'audience.\n\n• cookie_consent : mémorise votre choix concernant les cookies (12 mois).\n• theme : mémorise le thème clair ou sombre, uniquement si vous avez accepté les cookies (12 mois).\n• i18next : mémorise votre langue, uniquement si vous avez accepté les cookies (12 mois).\n\nLorsque vous êtes connecté à l'espace agence, votre jeton de session est conservé dans le stockage local de votre navigateur. Il est strictement nécessaire au fonctionnement du service et supprimé à la déconnexion."
         },
         "rights": {
           "title": "7. Vos droits",
@@ -315,19 +315,19 @@
   },
   "seo": {
     "home": {
-      "title": "Klipp — L'immobilier en vidéo",
+      "title": "Klipp | L'immobilier en vidéo",
       "description": "Visitez des biens immobiliers en vidéo autour de vous. Vente et location, favoris, recherches enregistrées et contact direct avec l'annonceur. Application iOS et Android."
     },
     "privacy": {
-      "title": "Politique de confidentialité — Klipp",
+      "title": "Politique de confidentialité | Klipp",
       "description": "Comment Klipp collecte, utilise et protège vos données personnelles."
     },
     "terms": {
-      "title": "Conditions d'utilisation — Klipp",
+      "title": "Conditions d'utilisation | Klipp",
       "description": "Les conditions d'utilisation de l'application et de l'espace agence Klipp."
     },
     "notFound": {
-      "title": "Page introuvable — Klipp",
+      "title": "Page introuvable | Klipp",
       "description": "Cette page n'existe pas."
     }
   },

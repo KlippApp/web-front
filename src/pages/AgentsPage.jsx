@@ -59,13 +59,16 @@ export default function AgentsPage() {
   const [form, setForm] = useState(emptyForm)
   const [confirmDelete, setConfirmDelete] = useState(null)
   const [error, setError] = useState('')
+  const [confirmLink, setConfirmLink] = useState(false)
 
   useEffect(() => {
     if (DEV_BYPASS || !API_URL) return
     // ponytail: single page of 100, add pagination if an agency outgrows it
-    authFetch('/agents?items_per_page=100')
-      .then(r => r.json())
-      .then(data => setAgents(data.items ?? []))
+    Promise.all([
+      authFetch('/agents?items_per_page=100').then(r => r.json()),
+      authFetch('/agents/pending-links').then(r => r.json()),
+    ])
+      .then(([agentsPage, pendingLinks]) => setAgents([...(agentsPage.items ?? []), ...(Array.isArray(pendingLinks) ? pendingLinks : [])]))
       .catch(() => {})
     authFetch('/offices?items_per_page=100')
       .then(r => r.json())
@@ -76,12 +79,12 @@ export default function AgentsPage() {
   const closeForm = useCallback(() => {
     setForm(emptyForm)
     setError('')
+    setConfirmLink(false)
     setShowForm(false)
   }, [])
 
-  const handleSubmit = useCallback(async (e) => {
-    e.preventDefault()
-    if (!form.officeUuid) return
+  const submitAgent = useCallback(async (linkExisting) => {
+    setConfirmLink(false)
     setLoading(true)
     try {
       if (DEV_BYPASS || !API_URL) {
@@ -107,9 +110,14 @@ export default function AgentsPage() {
           country_code: form.countryCode,
           photo: form.photo,
           office_uuid: form.officeUuid,
+          link_existing: linkExisting,
         }),
       })
       const data = await res.json()
+      if (res.status === 409) {
+        setConfirmLink(true)
+        return
+      }
       if (!res.ok) {
         setError(apiErrorMessage(data, t('portal.profile.errorGeneric')))
         return
@@ -122,6 +130,11 @@ export default function AgentsPage() {
       setLoading(false)
     }
   }, [form, closeForm, t])
+
+  const handleSubmit = (e) => {
+    e.preventDefault()
+    if (form.officeUuid) submitAgent(false)
+  }
 
   const handleDelete = useCallback(async () => {
     const agent = confirmDelete
@@ -244,14 +257,14 @@ export default function AgentsPage() {
                     {officeName(agent)}
                   </td>
                   <td style={{ padding: '1rem' }}>
-                    {!agent.has_set_password && (
+                    {(agent.link_pending || !agent.has_set_password) && (
                       <span style={{
                         display: 'inline-block', padding: '0.2rem 0.6rem', borderRadius: '9999px',
                         fontSize: '0.75rem', fontWeight: 600,
                         background: 'rgba(251,191,36,0.12)', color: '#f59e0b',
                         border: '1px solid rgba(251,191,36,0.3)',
                       }}>
-                        {t('portal.agents.list.pending')}
+                        {t(agent.link_pending ? 'portal.agents.list.linkPending' : 'portal.agents.list.pending')}
                       </span>
                     )}
                   </td>
@@ -448,6 +461,54 @@ export default function AgentsPage() {
                 </button>
               </div>
             </form>
+          </div>
+        </div>
+      )}
+
+      {confirmLink && (
+        <div
+          role="alertdialog" aria-modal="true" aria-labelledby="link-modal-title"
+          style={{
+            position: 'fixed', inset: 0, background: 'rgba(0,0,0,0.5)',
+            backdropFilter: 'blur(4px)', display: 'flex', alignItems: 'center',
+            justifyContent: 'center', padding: '1rem', zIndex: 300,
+          }}
+        >
+          <div style={{
+            width: '100%', maxWidth: 420, padding: '2rem',
+            background: 'var(--color-nav-bg)', backdropFilter: 'blur(20px)',
+            WebkitBackdropFilter: 'blur(20px)', border: '1px solid var(--color-card-border)',
+            borderRadius: '1.25rem', boxShadow: '0 8px 40px rgba(0,0,0,0.18)',
+          }}>
+            <h2 id="link-modal-title" style={{ margin: '0 0 0.5rem', fontSize: '1.1rem', fontWeight: 700, color: 'var(--color-text-primary)' }}>
+              {t('portal.agents.linkModal.title')}
+            </h2>
+            <p style={{ margin: '0 0 1.5rem', fontSize: '0.875rem', color: 'var(--color-text-secondary)' }}>
+              {t('portal.agents.linkModal.message', { email: form.email })}
+            </p>
+            <div style={{ display: 'flex', gap: '0.75rem', justifyContent: 'flex-end' }}>
+              <button
+                onClick={() => setConfirmLink(false)}
+                style={{
+                  padding: '0.625rem 1.25rem', borderRadius: '0.75rem',
+                  border: '1px solid var(--color-card-border)',
+                  background: 'transparent', color: 'var(--color-text-secondary)',
+                  fontWeight: 600, fontSize: '0.875rem', cursor: 'pointer',
+                }}
+              >
+                {t('portal.agents.linkModal.cancel')}
+              </button>
+              <button
+                onClick={() => submitAgent(true)}
+                style={{
+                  padding: '0.625rem 1.25rem', borderRadius: '0.75rem', border: 'none',
+                  background: 'linear-gradient(135deg, #2B7FFF 0%, #8EC5FF 100%)',
+                  color: '#fff', fontWeight: 600, fontSize: '0.875rem', cursor: 'pointer',
+                }}
+              >
+                {t('portal.agents.linkModal.confirm')}
+              </button>
+            </div>
           </div>
         </div>
       )}

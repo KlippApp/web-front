@@ -231,13 +231,20 @@
         "actions": "Actions",
         "edit": "Edit",
         "pending": "Pending",
-        "delete": "Delete"
+        "delete": "Delete",
+        "linkPending": "Invitation sent"
       },
       "deleteModal": {
         "title": "Delete agent?",
         "message": "Are you sure you want to delete \"{{name}}\"? This action cannot be undone.",
         "cancel": "Cancel",
         "confirm": "Delete"
+      },
+      "linkModal": {
+        "title": "Account already exists",
+        "message": "A Klipp account already uses {{email}}. Do you want to invite this person to join your agency as an agent? They will receive an email and must accept before their account is linked.",
+        "cancel": "Cancel",
+        "confirm": "Send invitation"
       }
     },
     "offices": {
@@ -373,6 +380,11 @@
     "errorMismatch": "Passwords do not match.",
     "errorGeneric": "An error occurred. Please try again.",
     "successTitle": "Password created!",
-    "successMessage": "Your password has been set successfully. You can now use the mobile app."
+    "successMessage": "Your password has been set successfully. You can now use the mobile app.",
+    "linkTitle": "Join {{agency}}",
+    "linkMessage": "Hello {{name}}, {{agency}} wants to link your Klipp account ({{email}}) to its agency as an agent. Your account and password stay the same.",
+    "linkAccept": "Accept and become an agent",
+    "linkSuccessTitle": "You are now an agent!",
+    "linkSuccessMessage": "Your account is now linked to {{agency}}. Sign in to the mobile app as usual."
   }
 }

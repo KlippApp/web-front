@@ -14,4 +14,9 @@ describe('DownloadCTA', () => {
     expect(screen.getByAltText(/Download on the App Store/i)).toBeInTheDocument()
     expect(screen.getByAltText(/Get it on Google Play/i)).toBeInTheDocument()
   })
+
+  it('renders the app icon', () => {
+    const { container } = render(<DownloadCTA />)
+    expect(container.querySelector('img[src="/favicon.svg"]')).toBeInTheDocument()
+  })
 })

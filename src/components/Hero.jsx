@@ -92,20 +92,15 @@ export default function Hero() {
 
             {/* Store buttons */}
             <div className="flex flex-wrap gap-3 justify-center md:justify-start mb-10">
-              <StoreButton store="apple" href="#app-store" />
-              <StoreButton store="google" href="#play-store" />
+              <StoreButton store="apple" />
+              <StoreButton store="google" />
             </div>
 
-            {/* Stats row */}
             <div className="flex gap-8 justify-center md:justify-start">
-              {[
-                { value: '4.9★', label: t('hero.stats.rating') },
-                { value: '50K+', label: t('hero.stats.users') },
-                { value: '#1', label: t('hero.stats.market') },
-              ].map(stat => (
-                <div key={stat.label}>
-                  <div style={{ fontSize: '1.4rem', fontWeight: 700, color: 'var(--color-text-primary)' }}>{stat.value}</div>
-                  <div style={{ fontSize: '0.75rem', color: 'var(--color-text-secondary)', marginTop: '0.25rem' }}>{stat.label}</div>
+              {['video', 'free', 'noAccount'].map(key => (
+                <div key={key}>
+                  <div style={{ fontSize: '1.4rem', fontWeight: 700, color: 'var(--color-text-primary)' }}>{t(`hero.facts.${key}.value`)}</div>
+                  <div style={{ fontSize: '0.75rem', color: 'var(--color-text-secondary)', marginTop: '0.25rem' }}>{t(`hero.facts.${key}.label`)}</div>
                 </div>
               ))}
             </div>

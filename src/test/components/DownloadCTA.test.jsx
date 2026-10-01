@@ -6,7 +6,7 @@ describe('DownloadCTA', () => {
   it('renders CTA text', () => {
     render(<DownloadCTA />)
     expect(screen.getByText(/Start your search today/i)).toBeInTheDocument()
-    expect(screen.getByText(/No subscription required/i)).toBeInTheDocument()
+    expect(screen.getByText(/tour your next homes on video/i)).toBeInTheDocument()
   })
 
   it('renders store buttons', () => {

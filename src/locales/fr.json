@@ -2,96 +2,82 @@
   "nav": {
     "features": "Fonctionnalités",
     "screenshots": "Captures",
-    "reviews": "Avis",
-    "clientPortal": "Espace Client"
+    "agencies": "Agences",
+    "clientPortal": "Espace agence"
   },
   "hero": {
-    "badge": "Maintenant disponible sur iOS & Android",
-    "headline": "Trouvez votre <highlight>maison idéale</highlight><br/>grâce à l'IA",
-    "subtitle": "Recherche immobilière propulsée par l'IA, visites virtuelles immersives et analyses du marché en temps réel — le tout dans une application magnifiquement simple.",
-    "stats": {
-      "rating": "Note App Store",
-      "users": "Utilisateurs Heureux",
-      "market": "App Immobilière N°1"
+    "badge": "Bientôt sur iOS & Android",
+    "headline": "L'immobilier <highlight>en vidéo</highlight>",
+    "subtitle": "Visitez les biens autour de vous en quelques secondes, gardez vos coups de cœur et contactez l'annonceur en direct. Vente et location.",
+    "facts": {
+      "video": {
+        "value": "100 %",
+        "label": "vidéo"
+      },
+      "free": {
+        "value": "0 €",
+        "label": "gratuit"
+      },
+      "noAccount": {
+        "value": "Sans compte",
+        "label": "pour explorer"
+      }
     },
     "mockupAlt": "Capture d'écran de l'application Klipp"
   },
   "features": {
     "tag": "Fonctionnalités",
-    "title": "Tout ce dont vous avez besoin pour trouver votre chez-vous",
-    "subtitle": "Des outils puissants conçus pour rendre votre recherche de propriété plus rapide, plus intelligente et moins stressante.",
+    "title": "Tout pour trouver votre prochain chez-vous",
+    "subtitle": "Une application simple, pensée autour de la vidéo, pour visiter plus de biens en moins de temps.",
     "list": {
-      "search": {
-        "title": "Recherche par IA",
-        "description": "Décrivez la maison de vos rêves en langage naturel. Notre IA comprend vos besoins et affiche instantanément les meilleures correspondances."
+      "video": {
+        "title": "Visites en vidéo",
+        "description": "Les annonces défilent en plein écran, comme un fil de vidéos courtes. Un swipe pour passer au bien suivant."
       },
-      "tours": {
-        "title": "Visites Virtuelles",
-        "description": "Visitez n'importe quelle propriété depuis votre canapé. Des visites 3D immersives vous permettent d'explorer chaque pièce avec précision."
+      "nearby": {
+        "title": "Autour de vous",
+        "description": "Une ville, un code postal ou votre position : découvrez les biens de la zone qui vous intéresse."
       },
-      "insights": {
-        "title": "Analyses du Marché",
-        "description": "Tendances des prix en temps réel, scores de quartier et prévisions d'investissement vous aident à décider en toute confiance."
+      "contact": {
+        "title": "Contact direct",
+        "description": "Appelez l'annonceur, envoyez-lui un SMS ou un e-mail, en un geste depuis l'annonce."
       },
-      "alerts": {
-        "title": "Alertes Instantanées",
-        "description": "Ne manquez aucune annonce. Recevez des notifications push dès qu'un bien correspondant à vos critères arrive sur le marché."
+      "favorites": {
+        "title": "Favoris et collections",
+        "description": "Aimez un bien ou rangez-le dans vos collections pour le retrouver plus tard."
       },
-      "connect": {
-        "title": "Contact Agent",
-        "description": "Envoyez des messages aux agents locaux vérifiés directement dans l'application. Planifiez des visites et négociez sans quitter Klipp."
+      "searches": {
+        "title": "Recherches enregistrées",
+        "description": "Zone, rayon, budget et surface : enregistrez vos critères pour la prochaine fois."
       },
-      "guide": {
-        "title": "Guide de Quartier",
-        "description": "Écoles, transports, restaurants, scores de sécurité — tout ce dont vous avez besoin pour évaluer un emplacement en un coup d'œil."
+      "publish": {
+        "title": "Publiez votre annonce",
+        "description": "Vente ou location : mettez votre bien en ligne avec une vidéo et quelques photos."
       }
     }
   },
   "screenshots": {
     "title": "Conçu pour votre poche",
-    "subtitle": "Une interface propre et moderne qui fait de la recherche immobilière un plaisir."
-  },
-  "testimonials": {
-    "title": "Apprécié par les futurs propriétaires",
-    "subtitle": "Rejoignez plus de 50 000 personnes qui ont trouvé leur maison idéale avec Klipp.",
-    "list": [
-      {
-        "quote": "Klipp a rendu la recherche de notre première maison sans effort. La recherche par IA a compris exactement ce que nous voulions — nous avons trouvé notre place en deux semaines au lieu de six mois.",
-        "role": "Premier achat, Austin TX"
-      },
-      {
-        "quote": "En tant qu'agent immobilier, je recommande Klipp à tous mes clients. Les visites virtuelles nous font gagner des dizaines d'heures par transaction. Les données du marché sont vraiment les meilleures du secteur.",
-        "role": "Agent immobilier agréé, NYC"
-      },
-      {
-        "quote": "Mutation de Seattle à Miami pour le travail. J'ai utilisé Klipp pour explorer les quartiers à distance — les guides de quartier et les visites virtuelles ont été absolument inestimables.",
-        "role": "Acheteur à distance, Miami FL"
-      }
-    ]
+    "subtitle": "Une interface simple : on swipe, on visite, on garde ce qui plaît."
   },
   "download": {
     "title": "Commencez votre recherche aujourd'hui",
-    "subtitle": "Téléchargez Klipp gratuitement et trouvez votre propriété idéale. Aucun abonnement requis.",
+    "subtitle": "Téléchargez Klipp gratuitement et visitez vos prochains biens en vidéo.",
     "appStore": "Télécharger sur l'App Store",
     "googlePlay": "Disponible sur Google Play",
-    "disclaimer": "Gratuit à télécharger · Disponible sur iOS 16+ & Android 8+"
+    "comingSoon": "Bientôt disponible",
+    "disclaimer": "Gratuit · iOS 15+ et Android 7+"
   },
   "footer": {
-    "description": "Trouvez votre maison idéale grâce à la recherche par IA et aux analyses du marché en temps réel.",
+    "description": "L'immobilier en vidéo. Vente et location, autour de vous.",
     "sections": {
       "Product": "Produit",
-      "Company": "Entreprise",
       "Legal": "Légal"
     },
     "links": {
       "Features": "Fonctionnalités",
       "Screenshots": "Captures",
-      "Pricing": "Tarifs",
-      "Changelog": "Journal",
-      "About": "À propos",
-      "Blog": "Blog",
-      "Careers": "Carrières",
-      "Press": "Presse",
+      "Agency portal": "Espace agence",
       "Privacy Policy": "Confidentialité",
       "Terms of Service": "Conditions d'utilisation",
       "Cookie Policy": "Politique de cookies"
@@ -385,8 +371,8 @@
   },
   "seo": {
     "home": {
-      "title": "Klipp — Trouvez votre bien immobilier idéal",
-      "description": "Klipp, l'application immobilière pour trouver votre maison ou appartement idéal. Disponible sur iOS et Android."
+      "title": "Klipp — L'immobilier en vidéo",
+      "description": "Visitez des biens immobiliers en vidéo autour de vous. Vente et location, favoris, recherches enregistrées et contact direct avec l'annonceur. Application iOS et Android."
     },
     "privacy": {
       "title": "Politique de confidentialité — Klipp",
@@ -404,5 +390,26 @@
   "notFound": {
     "title": "Page introuvable",
     "text": "La page que vous cherchez n'existe pas ou a été déplacée."
+  },
+  "agencies": {
+    "tag": "Agences",
+    "title": "Vous êtes une agence ?",
+    "subtitle": "Présentez vos biens en vidéo aux acheteurs et locataires de votre secteur, et pilotez votre équipe depuis l'espace agence.",
+    "points": {
+      "team": {
+        "title": "Vos agents et vos agences",
+        "description": "Ajoutez vos agents et vos agences dans un espace dédié, accessible depuis votre navigateur."
+      },
+      "video": {
+        "title": "Des annonces en vidéo",
+        "description": "Vos agents publient leurs biens en vidéo directement depuis l'application."
+      },
+      "stats": {
+        "title": "Vos statistiques",
+        "description": "Suivez vos annonces actives, vos agents et les likes reçus sur les 30 derniers jours."
+      }
+    },
+    "register": "Créer un compte agence",
+    "login": "Se connecter"
   }
 }

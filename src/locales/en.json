@@ -24,7 +24,8 @@
       "Agency portal": "Agency portal",
       "Privacy Policy": "Privacy Policy",
       "Terms of Service": "Terms of Service",
-      "Cookie Policy": "Cookies"
+      "Cookie Policy": "Cookies",
+      "Agencies": "Agencies"
     },
     "copyright": "© {{year}} Klipp"
   },
@@ -329,6 +330,10 @@
     "notFound": {
       "title": "Page not found | Klipp",
       "description": "This page doesn't exist."
+    },
+    "agencies": {
+      "title": "Klipp for agencies | Your listings on video",
+      "description": "Show your properties on video to buyers and renters in your area. Invite your agents, manage your offices and track your statistics from the Klipp agency portal."
     }
   },
   "notFound": {
@@ -414,5 +419,69 @@
         "description": "For sale or for rent, with a video and a few photos."
       }
     }
+  },
+  "agenciesPage": {
+    "title": "Your listings on video, in front of buyers in your area",
+    "subtitle": "Klipp puts your listings in the video feed of people searching near you. You manage your team and your results from the agency portal.",
+    "stepsTitle": "Get started in four steps",
+    "steps": {
+      "account": {
+        "title": "Create your agency account",
+        "description": "Your agency name, the manager and your contact details are enough."
+      },
+      "offices": {
+        "title": "Add your offices",
+        "description": "Photo, address, email and phone for each branch."
+      },
+      "agents": {
+        "title": "Invite your agents",
+        "description": "Each one gets an email to choose a password. If they already have a Klipp account, they simply accept to join your agency."
+      },
+      "publish": {
+        "title": "Post on video",
+        "description": "Your agents post their properties from the app, for sale or for rent."
+      }
+    },
+    "portalTitle": "In the agency portal",
+    "portal": {
+      "dashboard": {
+        "title": "Dashboard",
+        "description": "Active listings, number of agents and likes received over the last 30 days, day by day."
+      },
+      "agents": {
+        "title": "Agents",
+        "description": "One profile per agent with photo, email and phone, assigned to one of your offices. You can see who has not accepted their invitation yet."
+      },
+      "offices": {
+        "title": "Offices",
+        "description": "All your branches, with their photo and contact details."
+      },
+      "profile": {
+        "title": "Profile",
+        "description": "Your agency details, your password, and account deletion if you ever need it."
+      }
+    },
+    "faqTitle": "Frequently asked questions",
+    "faq": {
+      "app": {
+        "q": "Do my agents need to install the app?",
+        "a": "Yes. They film and post their listings from the app. The agency portal is for managing the team and tracking statistics."
+      },
+      "existing": {
+        "q": "An agent already has a Klipp account. What happens?",
+        "a": "You send them an invitation from the agency portal. Their account joins your agency as soon as they accept it."
+      },
+      "offices": {
+        "q": "Can I manage several branches?",
+        "a": "Yes. Add as many offices as you need and assign each agent to theirs."
+      },
+      "delete": {
+        "q": "Can I delete my account?",
+        "a": "Yes, from the agency profile. All your data is then permanently deleted."
+      }
+    },
+    "ctaTitle": "Create your agency portal",
+    "ctaSubtitle": "A few minutes to sign up, then invite your team.",
+    "learnMore": "Discover Klipp for agencies"
   }
 }

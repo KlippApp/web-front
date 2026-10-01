@@ -14,6 +14,7 @@ import CookieConsent from './components/CookieConsent.jsx'
 import PrivacyPage from './pages/PrivacyPage.jsx'
 import TermsPage from './pages/TermsPage.jsx'
 import NotFoundPage from './pages/NotFoundPage.jsx'
+import AgenciesPage from './pages/AgenciesPage.jsx'
 
 const ProtectedRoute = lazy(() => import('./components/ProtectedRoute.jsx'))
 const DashboardLayout = lazy(() => import('./components/DashboardLayout.jsx'))
@@ -27,7 +28,7 @@ const SetPasswordPage = lazy(() => import('./pages/SetPasswordPage.jsx'))
 
 function PublicPage() {
   const { t, i18n } = useTranslation()
-  const { pathname } = useLocation()
+  const { pathname, hash } = useLocation()
   const page = PUBLIC_PAGES[basePath(pathname)] ?? 'notFound'
   const lang = langFromPath(pathname)
 
@@ -36,13 +37,17 @@ function PublicPage() {
   }, [i18n, lang])
 
   useEffect(() => {
+    if (!hash) window.scrollTo({ top: 0, behavior: 'instant' })
+  }, [pathname, hash])
+
+  useEffect(() => {
     document.title = t(`seo.${page}.title`)
   }, [t, page, i18n.language])
 
   return <Outlet />
 }
 
-function LandingLayout() {
+function SiteLayout({ children }) {
   const { i18n } = useTranslation()
   const { consented, accept, decline } = useCookieConsent()
   const { theme, toggleTheme } = useTheme(consented)
@@ -57,16 +62,22 @@ function LandingLayout() {
   return (
     <>
       <Navbar theme={theme} toggleTheme={toggleTheme} />
-      <main>
-        <Hero />
-        <HowItWorks />
-        <Agencies />
-        <DownloadCTA />
-      </main>
+      <main>{children}</main>
       <Footer />
       {consented === null && (
         <CookieConsent onAccept={accept} onDecline={decline} />
       )}
+    </>
+  )
+}
+
+function HomePage() {
+  return (
+    <>
+      <Hero />
+      <HowItWorks />
+      <Agencies />
+      <DownloadCTA />
     </>
   )
 }
@@ -77,7 +88,8 @@ export function AppRoutes() {
       <Routes>
         <Route element={<PublicPage />}>
           {['', '/en'].map(prefix => [
-            <Route key={`${prefix}/`} path={prefix || '/'} element={<LandingLayout />} />,
+            <Route key={`${prefix}/`} path={prefix || '/'} element={<SiteLayout><HomePage /></SiteLayout>} />,
+            <Route key={`${prefix}/agences`} path={`${prefix}/agences`} element={<SiteLayout><AgenciesPage /></SiteLayout>} />,
             <Route key={`${prefix}/privacy`} path={`${prefix}/privacy`} element={<PrivacyPage />} />,
             <Route key={`${prefix}/terms`} path={`${prefix}/terms`} element={<TermsPage />} />,
           ])}

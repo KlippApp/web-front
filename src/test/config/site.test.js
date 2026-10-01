@@ -20,6 +20,8 @@ describe('site config', () => {
   it('recognises public pages only', () => {
     expect(isPublicPath('/')).toBe(true)
     expect(isPublicPath('/en/terms')).toBe(true)
+    expect(isPublicPath('/agences')).toBe(true)
+    expect(isPublicPath('/en/agences')).toBe(true)
     expect(isPublicPath('/login')).toBe(false)
     expect(isPublicPath('/dashboard/agents')).toBe(false)
   })

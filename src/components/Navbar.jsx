@@ -5,18 +5,26 @@ import { useTranslation } from 'react-i18next'
 import ThemeToggle from './ThemeToggle.jsx'
 import LanguageToggle from './LanguageToggle.jsx'
 import Logo from './Logo.jsx'
+import { useLocalizedPath } from '../hooks/useLocalizedPath.js'
 
 const linkClass = 'text-(--color-nav-link) no-underline font-medium transition-colors hover:text-(--color-nav-link-hover)'
 const portalClass = 'inline-flex items-center gap-2 rounded-xl border border-(--color-portal-border) bg-(--color-portal-bg) px-4 py-2 text-sm font-semibold text-(--color-text-primary) no-underline transition-colors hover:bg-(--color-portal-hover-bg)'
 
+function NavLink({ link, ...props }) {
+  return link.to
+    ? <Link to={link.to} {...props}>{link.label}</Link>
+    : <a href={link.href} {...props}>{link.label}</a>
+}
+
 export default function Navbar({ theme, toggleTheme }) {
   const { t } = useTranslation()
+  const localize = useLocalizedPath()
   const [scrolled, setScrolled] = useState(false)
   const [menuOpen, setMenuOpen] = useState(false)
 
   const navLinks = [
-    { label: t('nav.how'), href: '#how' },
-    { label: t('nav.agencies'), href: '#agencies' },
+    { label: t('nav.how'), href: `${localize('/')}#how` },
+    { label: t('nav.agencies'), to: localize('/agences') },
   ]
 
   useEffect(() => {
@@ -36,13 +44,13 @@ export default function Navbar({ theme, toggleTheme }) {
       }}
     >
       <nav className="max-w-6xl mx-auto px-6 flex items-center justify-between h-16">
-        <a href="#" className="flex items-center gap-2 no-underline">
+        <Link to={localize('/')} className="flex items-center gap-2 no-underline">
           <Logo size={26} />
           <span className="text-lg font-bold text-(--color-logo-text)">Klipp</span>
-        </a>
+        </Link>
 
         <div className="hidden md:flex items-center gap-8 text-[0.95rem]">
-          {navLinks.map(link => <a key={link.href} href={link.href} className={linkClass}>{link.label}</a>)}
+          {navLinks.map(link => <NavLink key={link.label} link={link} className={linkClass} />)}
         </div>
 
         <div className="hidden md:flex items-center gap-3">
@@ -71,9 +79,7 @@ export default function Navbar({ theme, toggleTheme }) {
             <ThemeToggle theme={theme} toggleTheme={toggleTheme} />
           </div>
           {navLinks.map(link => (
-            <a key={link.href} href={link.href} onClick={() => setMenuOpen(false)} className={`${linkClass} text-base`}>
-              {link.label}
-            </a>
+            <NavLink key={link.label} link={link} onClick={() => setMenuOpen(false)} className={`${linkClass} text-base`} />
           ))}
           <Link to="/login" onClick={() => setMenuOpen(false)} className={`${portalClass} self-start`}>
             <User size={16} />

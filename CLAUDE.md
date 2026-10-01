@@ -22,7 +22,7 @@ npm run test     # Run tests (vitest)
 
 ## SEO / Prerendering
 
-- Public pages live under language-prefixed URLs: French at `/`, `/privacy`, `/terms`; English at `/en`, `/en/privacy`, `/en/terms`. The URL decides the language on these pages (`src/config/site.js`: `PUBLIC_PAGES`, `langFromPath`, `localizedPath`); link to them with `useLocalizedPath()`.
+- Public pages live under language-prefixed URLs: French at `/`, `/agences`, `/privacy`, `/terms`; English at `/en`, `/en/agences`, `/en/privacy`, `/en/terms` (same slug in both languages). The URL decides the language on these pages (`src/config/site.js`: `PUBLIC_PAGES`, `langFromPath`, `localizedPath`); link to them with `useLocalizedPath()`.
 - `npm run build` prerenders every public page to static HTML (`src/entry-server.jsx` + `scripts/prerender.js`) with title, description, canonical, hreflang, Open Graph and JSON-LD (`headTags` in `src/config/site.js`, texts under the `seo` i18n key). It also writes `sitemap.xml`, a `noindex` shell for each portal route and the `NotFoundPage` as `404.html` / `en/404.html`.
 - **Adding a public page** → add it to `PUBLIC_PAGES`, its routes in `App.jsx` and `seo.<page>` keys. **Adding a portal route** → also add it to `APP_ROUTES` in `scripts/prerender.js`, otherwise it 404s in production.
 - Code rendered on public pages must not touch `window`/`document` during render (it runs in Node at build time).
@@ -86,6 +86,15 @@ Routes: `/login` → `/register` → `/dashboard/*` (protected by `ProtectedRout
 | `OfficesPage` | `/dashboard/offices` | CRUD offices (photo, name, address, email, phone) |
 | `ProfilePage` | `/dashboard/profile` | Agency info form, change password, delete account |
 
+### Public pages
+
+| Page | Route | Description |
+|------|-------|-------------|
+| home (`HomePage` in `App.jsx`) | `/` | Hero, how it works, agencies pitch, download |
+| `AgenciesPage` | `/agences` | Agency offer: steps, portal features, FAQ (`<details>`), calls to action |
+
+Both render inside `SiteLayout` (navbar, footer, cookie banner).
+
 ### Dashboard layout (`DashboardLayout.jsx`)
 
 Collapsible sidebar (240px / 0px) + fixed header. Nav items: Dashboard, Agents, Offices, Profile. Header: greeting (managerName), LanguageToggle, ThemeToggle. Logout → redirects to `/`.
@@ -125,7 +134,8 @@ Tests that cover the error path of bypassed handlers are marked `it.skip(...)` u
 | `Feed` | Preview of the app's video feed inside `IPhoneMockup`; auto-swipes every 3.2 s, pauses on hover, still with reduced motion |
 | `IPhoneMockup` | iPhone 15 Pro frame with real proportions (island, corners, buttons derive from the screen width) — props: `width` (CSS length), `children` |
 | `HowItWorks` | Swipe / save / contact steps with UI vignettes + other app features |
-| `Agencies` | Agency pitch + HTML preview of the dashboard, links to `/register` and `/login` |
+| `Agencies` | Agency pitch on the home page + `DashboardPreview`, links to `/register` and the agencies page |
+| `DashboardPreview` | Labelled HTML preview of the agency dashboard (real labels, illustrative numbers) |
 | `DownloadCTA` | Final `.on-ink` call to action with store badges |
 | `Footer` | One-row links + copyright |
 | `StoreButton` | App Store / Google Play badge — props: `store` (apple/google), `href` (omit → « Bientôt disponible », not a link) |

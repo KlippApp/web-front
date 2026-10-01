@@ -19,10 +19,10 @@ describe('Agencies', () => {
       .forEach(title => expect(screen.getByRole('heading', { level: 3, name: title })).toBeInTheDocument())
   })
 
-  it('links to agency registration and login', () => {
+  it('links to agency registration and to the agencies page', () => {
     renderAgencies()
     expect(screen.getByRole('link', { name: 'Create an agency account' })).toHaveAttribute('href', '/register')
-    expect(screen.getByRole('link', { name: 'Sign in' })).toHaveAttribute('href', '/login')
+    expect(screen.getByRole('link', { name: 'Discover Klipp for agencies' })).toHaveAttribute('href', '/en/agences')
   })
 
   it('shows a labelled preview of the agency portal', () => {

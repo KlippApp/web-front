@@ -24,7 +24,8 @@
       "Agency portal": "Espace agence",
       "Privacy Policy": "Confidentialité",
       "Terms of Service": "Conditions d'utilisation",
-      "Cookie Policy": "Cookies"
+      "Cookie Policy": "Cookies",
+      "Agencies": "Agences"
     },
     "copyright": "© {{year}} Klipp"
   },
@@ -329,6 +330,10 @@
     "notFound": {
       "title": "Page introuvable | Klipp",
       "description": "Cette page n'existe pas."
+    },
+    "agencies": {
+      "title": "Klipp pour les agences | Vos biens en vidéo",
+      "description": "Présentez vos biens immobiliers en vidéo aux acheteurs et locataires de votre secteur. Invitez vos agents, gérez vos agences et suivez vos statistiques depuis l'espace agence Klipp."
     }
   },
   "notFound": {
@@ -414,5 +419,69 @@
         "description": "Vente ou location, avec une vidéo et quelques photos."
       }
     }
+  },
+  "agenciesPage": {
+    "title": "Vos biens en vidéo, devant les acheteurs de votre secteur",
+    "subtitle": "Klipp place vos annonces dans le fil vidéo des personnes qui cherchent autour de chez vous. Votre équipe et vos résultats se gèrent depuis l'espace agence.",
+    "stepsTitle": "Démarrer en quatre étapes",
+    "steps": {
+      "account": {
+        "title": "Créez votre compte agence",
+        "description": "Le nom de l'agence, le responsable et vos coordonnées suffisent."
+      },
+      "offices": {
+        "title": "Ajoutez vos agences",
+        "description": "Photo, adresse, e-mail et téléphone de chaque point de vente."
+      },
+      "agents": {
+        "title": "Invitez vos agents",
+        "description": "Chacun reçoit un e-mail pour choisir son mot de passe. S'il a déjà un compte Klipp, il accepte simplement de rejoindre votre agence."
+      },
+      "publish": {
+        "title": "Publiez en vidéo",
+        "description": "Vos agents publient leurs biens depuis l'application, en vente ou en location."
+      }
+    },
+    "portalTitle": "Dans l'espace agence",
+    "portal": {
+      "dashboard": {
+        "title": "Tableau de bord",
+        "description": "Annonces actives, nombre d'agents et J'aime reçus sur les 30 derniers jours, jour par jour."
+      },
+      "agents": {
+        "title": "Agents",
+        "description": "Une fiche par agent avec photo, e-mail et téléphone, rattachée à l'une de vos agences. Vous voyez qui n'a pas encore accepté son invitation."
+      },
+      "offices": {
+        "title": "Agences",
+        "description": "Tous vos points de vente, avec leur photo et leurs coordonnées."
+      },
+      "profile": {
+        "title": "Profil",
+        "description": "Les informations de l'agence, le mot de passe, et la suppression du compte si vous le souhaitez."
+      }
+    },
+    "faqTitle": "Questions fréquentes",
+    "faq": {
+      "app": {
+        "q": "Mes agents doivent-ils installer l'application ?",
+        "a": "Oui. C'est depuis l'application qu'ils filment et publient leurs annonces. L'espace agence sert à gérer l'équipe et à suivre les statistiques."
+      },
+      "existing": {
+        "q": "Un agent a déjà un compte Klipp. Que se passe-t-il ?",
+        "a": "Vous lui envoyez une invitation depuis l'espace agence. Son compte est rattaché à votre agence dès qu'il l'accepte."
+      },
+      "offices": {
+        "q": "Puis-je gérer plusieurs points de vente ?",
+        "a": "Oui. Ajoutez autant d'agences que nécessaire et rattachez chaque agent à la sienne."
+      },
+      "delete": {
+        "q": "Puis-je supprimer mon compte ?",
+        "a": "Oui, depuis le profil de l'agence. Toutes vos données sont alors supprimées définitivement."
+      }
+    },
+    "ctaTitle": "Créez votre espace agence",
+    "ctaSubtitle": "Quelques minutes pour vous inscrire, puis invitez votre équipe.",
+    "learnMore": "Découvrir l'offre agences"
   }
 }

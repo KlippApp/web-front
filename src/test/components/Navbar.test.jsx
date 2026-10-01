@@ -61,3 +61,11 @@ describe('Navbar', () => {
     expect(screen.getAllByRole('button', { name: /switch to dark mode/i })).toHaveLength(2)
   })
 })
+
+describe('Navbar links', () => {
+  it('points to the home section and the agencies page in the current language', () => {
+    renderNavbar()
+    expect(screen.getByRole('link', { name: 'How it works' })).toHaveAttribute('href', '/en#how')
+    expect(screen.getByRole('link', { name: 'Agencies' })).toHaveAttribute('href', '/en/agences')
+  })
+})

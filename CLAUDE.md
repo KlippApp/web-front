@@ -82,7 +82,7 @@ Routes: `/login` → `/register` → `/dashboard/*` (protected by `ProtectedRout
 | Page | Route | Description |
 |------|-------|-------------|
 | `DashboardPage` | `/dashboard` | Stats + sales chart |
-| `ListingsPage` | `/dashboard/listings` | Agents' listings (`GET /agencies/listings`) as vertical covers, agent/type filters, preview modal with video, photos and likes over 30 days |
+| `ListingsPage` | `/dashboard/listings` | Agents' listings (`GET /agencies/listings`) as vertical covers, agent/type filters, preview modal with video, photos, likes over 30 days and Mux Data views (`view_count`, hidden when null) |
 | `AgentsPage` | `/dashboard/agents` | CRUD agents (photo, name, email, phone + country code) |
 | `OfficesPage` | `/dashboard/offices` | CRUD offices (photo, name, address, email, phone) |
 | `ProfilePage` | `/dashboard/profile` | Agency info form, change password, delete account |

@@ -2,6 +2,7 @@ import { useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import { useTranslation } from 'react-i18next'
 import { ChevronLeft } from 'lucide-react'
+import PhoneInput from '../components/PhoneInput.jsx'
 import { useAuth } from '../hooks/useAuth.js'
 import { DEV_BYPASS, ApiError, registerAgency } from '../config/api.js'
 
@@ -187,9 +188,8 @@ export default function RegisterPage() {
           </div>
 
           <Field label={t('portal.register.phoneLabel')} htmlFor="reg-phone">
-            <input id="reg-phone" type="tel" required value={form.phone} onChange={set('phone')}
-              placeholder={t('portal.register.phonePlaceholder')}
-              style={inputStyle} onFocus={focusStyle} onBlur={blurStyle} />
+            <PhoneInput id="reg-phone" value={form.phone} onChange={phone => setForm(prev => ({ ...prev, phone }))}
+              inputStyle={inputStyle} onFocus={focusStyle} onBlur={blurStyle} />
           </Field>
 
           <div style={{ display: 'grid', gridTemplateColumns: '1fr 2fr', gap: '0.75rem' }}>

@@ -3,6 +3,8 @@ import { useTranslation } from 'react-i18next'
 import { Plus, Users, X, Trash2, Camera } from 'lucide-react'
 import API_URL, { DEV_BYPASS, authFetch, apiErrorMessage } from '../config/api.js'
 import Dropdown from '../components/Dropdown.jsx'
+import PhoneInput from '../components/PhoneInput.jsx'
+import { formatPhone, parsePhone } from '../utils/phone.js'
 
 const inputStyle = {
   width: '100%',
@@ -17,26 +19,6 @@ const inputStyle = {
   boxSizing: 'border-box',
 }
 
-const countries = [
-  { code: '+33', flag: '🇫🇷', label: 'FR' },
-  { code: '+32', flag: '🇧🇪', label: 'BE' },
-  { code: '+41', flag: '🇨🇭', label: 'CH' },
-  { code: '+352', flag: '🇱🇺', label: 'LU' },
-  { code: '+44', flag: '🇬🇧', label: 'UK' },
-  { code: '+1', flag: '🇺🇸', label: 'US' },
-]
-
-const formatPhone = (value) => {
-  let digits = value.replace(/\D/g, '')
-  if (digits.startsWith('0')) digits = digits.substring(1)
-  let formatted = ''
-  for (let i = 0; i < digits.length; i++) {
-    if (i > 0 && i % 2 === 1) formatted += ' '
-    formatted += digits[i]
-  }
-  return formatted.substring(0, 13)
-}
-
 function Field({ label, id, children }) {
   return (
     <div style={{ marginBottom: '1rem' }}>
@@ -48,7 +30,7 @@ function Field({ label, id, children }) {
   )
 }
 
-const emptyForm = { firstName: '', lastName: '', email: '', phone: '', countryCode: '+33', photo: null, officeUuid: '' }
+const emptyForm = { firstName: '', lastName: '', email: '', phone: '', photo: null, officeUuid: '' }
 
 export default function AgentsPage() {
   const { t } = useTranslation()
@@ -92,7 +74,7 @@ export default function AgentsPage() {
           uuid: Date.now().toString(),
           name: `${form.firstName} ${form.lastName}`,
           email: form.email,
-          phone: `${form.countryCode}${form.phone}`,
+          phone: form.phone,
           profile_image_url: form.photo,
           office_uuid: form.officeUuid,
           has_set_password: false,
@@ -107,7 +89,7 @@ export default function AgentsPage() {
           last_name: form.lastName,
           email: form.email,
           phone: form.phone,
-          country_code: form.countryCode,
+          country_code: parsePhone(form.phone).countryCode,
           photo: form.photo,
           office_uuid: form.officeUuid,
           link_existing: linkExisting,
@@ -146,10 +128,6 @@ export default function AgentsPage() {
     await authFetch(`/agents/${agent.uuid}`, { method: 'DELETE' })
     setAgents(prev => prev.filter(a => a.uuid !== agent.uuid))
   }, [confirmDelete])
-
-  const handlePhoneChange = (e) => {
-    setForm(prev => ({ ...prev, phone: formatPhone(e.target.value) }))
-  }
 
   const handlePhotoChange = (e) => {
     const file = e.target.files[0]
@@ -251,7 +229,7 @@ export default function AgentsPage() {
                     {agent.email}
                   </td>
                   <td style={{ padding: '1rem', color: 'var(--color-text-secondary)', fontSize: '0.875rem' }}>
-                    {agent.phone}
+                    {formatPhone(agent.phone)}
                   </td>
                   <td style={{ padding: '1rem', color: 'var(--color-text-secondary)', fontSize: '0.875rem' }}>
                     {officeName(agent)}
@@ -410,18 +388,10 @@ export default function AgentsPage() {
               </Field>
 
               <Field label={t('portal.agents.form.phone')} id="agent-phone">
-                <div style={{ display: 'flex', gap: '0.5rem' }}>
-                  <Dropdown
-                    options={countries.map(c => ({ value: c.code, label: `${c.flag} ${c.code}` }))}
-                    value={form.countryCode}
-                    onChange={v => setForm(prev => ({ ...prev, countryCode: v }))}
-                    style={{ width: '110px' }}
-                  />
-                  <input
-                    id="agent-phone" type="tel" required style={inputStyle} value={form.phone}
-                    onChange={handlePhoneChange} placeholder="6 12 34 56 78"
-                  />
-                </div>
+                <PhoneInput
+                  id="agent-phone" inputStyle={inputStyle} value={form.phone}
+                  onChange={phone => setForm(prev => ({ ...prev, phone }))}
+                />
               </Field>
 
               <Field label={t('portal.agents.form.office')} id="agent-office">

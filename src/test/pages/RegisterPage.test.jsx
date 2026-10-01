@@ -97,5 +97,6 @@ describe('RegisterPage', () => {
     await waitFor(() => expect(screen.getByText('Dashboard')).toBeInTheDocument())
     expect(localStorage.getItem('klipp_token')).toBe('reg-token')
     expect(localStorage.getItem('klipp_manager')).toBe('Jean Dupont')
+    expect(JSON.parse(fetch.mock.calls[0][1].body).phone).toBe('+33600000000')
   })
 })

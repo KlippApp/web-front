@@ -101,7 +101,7 @@ export default function DashboardLayout() {
             <div style={{ display: 'flex', alignItems: 'center', gap: '0.625rem' }}>
               <div style={{
                 width: 28, height: 28, borderRadius: '0.375rem',
-                background: 'linear-gradient(135deg, #2B7FFF 0%, #8EC5FF 100%)',
+                background: 'linear-gradient(135deg, #695CF6 0%, #B7AFFB 100%)',
                 display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0,
               }}>
                 <svg width="16" height="16" viewBox="0 0 24 24" fill="none">
@@ -140,8 +140,8 @@ export default function DashboardLayout() {
                   padding: '0.625rem 0.875rem', borderRadius: '0.5rem',
                   textDecoration: 'none', fontSize: '0.875rem', fontWeight: 500,
                   transition: 'all 0.15s', whiteSpace: 'nowrap',
-                  color: isActive ? 'var(--color-blue-primary)' : 'var(--color-text-secondary)',
-                  background: isActive ? 'rgba(43, 127, 255, 0.08)' : 'transparent',
+                  color: isActive ? 'var(--color-accent)' : 'var(--color-text-secondary)',
+                  background: isActive ? 'rgba(105,92,246, 0.08)' : 'transparent',
                 })}
               >
                 <Icon size={18} />

@@ -21,7 +21,7 @@ export default function DownloadCTA() {
           style={{
             position: 'absolute',
             inset: 0,
-            background: 'linear-gradient(135deg, var(--color-overlay-gradient) 0%, rgba(142,197,255,0.05) 100%)',
+            background: 'linear-gradient(135deg, var(--color-overlay-gradient) 0%, rgba(183,175,251,0.05) 100%)',
             pointerEvents: 'none',
           }}
         />
@@ -33,7 +33,7 @@ export default function DownloadCTA() {
               width: 64,
               height: 64,
               borderRadius: '1.25rem',
-              background: 'linear-gradient(135deg, #2B7FFF 0%, #8EC5FF 100%)',
+              background: 'linear-gradient(135deg, #695CF6 0%, #B7AFFB 100%)',
               display: 'flex',
               alignItems: 'center',
               justifyContent: 'center',

@@ -70,7 +70,7 @@ export default function LegalPage({ doc, sections }) {
         ))}
 
         <div style={{ borderTop: '1px solid var(--color-divider)', paddingTop: '1.5rem' }}>
-          <Link to={related.to} style={{ color: 'var(--color-blue-primary)', fontWeight: 600, textDecoration: 'none', fontSize: '0.9rem' }}>
+          <Link to={related.to} style={{ color: 'var(--color-accent)', fontWeight: 600, textDecoration: 'none', fontSize: '0.9rem' }}>
             {t(related.labelKey)}
           </Link>
         </div>

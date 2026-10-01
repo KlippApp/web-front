@@ -156,7 +156,7 @@ export default function AgentsPage() {
           style={{
             display: 'flex', alignItems: 'center', gap: '0.5rem',
             padding: '0.625rem 1rem', borderRadius: '0.75rem', border: 'none',
-            background: 'linear-gradient(135deg, #2B7FFF 0%, #8EC5FF 100%)',
+            background: 'linear-gradient(135deg, #695CF6 0%, #B7AFFB 100%)',
             color: '#fff', fontWeight: 600, fontSize: '0.875rem', cursor: 'pointer', transition: 'opacity 0.2s',
           }}
           onMouseEnter={e => { e.currentTarget.style.opacity = '0.9' }}
@@ -213,7 +213,7 @@ export default function AgentsPage() {
                     <div style={{
                       width: 40, height: 40, borderRadius: '50%', overflow: 'hidden',
                       background: 'var(--color-nav-bg)', display: 'flex', alignItems: 'center', justifyContent: 'center',
-                      border: '1.5px solid var(--color-blue-primary)',
+                      border: '1.5px solid var(--color-accent)',
                     }}>
                       {agent.profile_image_url && agent.profile_image_url !== 'https://profileimageurl.com' ? (
                         <img src={agent.profile_image_url} alt="" style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
@@ -342,7 +342,7 @@ export default function AgentsPage() {
                   <div style={{
                     width: 80, height: 80, borderRadius: '50%', overflow: 'hidden',
                     background: 'var(--color-nav-bg)', display: 'flex', alignItems: 'center', justifyContent: 'center',
-                    border: '2px solid var(--color-blue-primary)', transition: 'opacity 0.2s',
+                    border: '2px solid var(--color-accent)', transition: 'opacity 0.2s',
                   }}
                   onMouseEnter={e => { e.currentTarget.style.opacity = '0.8' }}
                   onMouseLeave={e => { e.currentTarget.style.opacity = '1' }}
@@ -356,7 +356,7 @@ export default function AgentsPage() {
                   <div style={{
                     position: 'absolute', bottom: 0, right: 0,
                     width: 28, height: 28, borderRadius: '50%',
-                    background: 'var(--color-blue-primary)', color: '#fff',
+                    background: 'var(--color-accent)', color: '#fff',
                     display: 'flex', alignItems: 'center', justifyContent: 'center',
                     border: '2px solid var(--color-bg)', pointerEvents: 'none',
                   }}>
@@ -421,7 +421,7 @@ export default function AgentsPage() {
                   type="submit" disabled={loading || !form.officeUuid}
                   style={{
                     flex: 1, padding: '0.625rem', borderRadius: '0.625rem', border: 'none',
-                    background: 'linear-gradient(135deg, #2B7FFF 0%, #8EC5FF 100%)',
+                    background: 'linear-gradient(135deg, #695CF6 0%, #B7AFFB 100%)',
                     color: '#fff', fontWeight: 600,
                     cursor: loading || !form.officeUuid ? 'not-allowed' : 'pointer',
                     opacity: loading || !form.officeUuid ? 0.5 : 1,
@@ -472,7 +472,7 @@ export default function AgentsPage() {
                 onClick={() => submitAgent(true)}
                 style={{
                   padding: '0.625rem 1.25rem', borderRadius: '0.75rem', border: 'none',
-                  background: 'linear-gradient(135deg, #2B7FFF 0%, #8EC5FF 100%)',
+                  background: 'linear-gradient(135deg, #695CF6 0%, #B7AFFB 100%)',
                   color: '#fff', fontWeight: 600, fontSize: '0.875rem', cursor: 'pointer',
                 }}
               >

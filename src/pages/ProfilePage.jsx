@@ -23,7 +23,7 @@ const submitStyle = (loading) => ({
   padding: '0.65rem 1.5rem',
   borderRadius: '0.75rem',
   border: 'none',
-  background: 'linear-gradient(135deg, #2B7FFF 0%, #8EC5FF 100%)',
+  background: 'linear-gradient(135deg, #695CF6 0%, #B7AFFB 100%)',
   color: '#fff',
   fontWeight: 700,
   fontSize: '0.875rem',

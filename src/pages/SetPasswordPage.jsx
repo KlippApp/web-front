@@ -112,7 +112,7 @@ export default function SetPasswordPage() {
         <div style={{ display: 'flex', alignItems: 'center', gap: '0.625rem', marginBottom: '2rem' }}>
           <div style={{
             width: 32, height: 32, borderRadius: '0.5rem',
-            background: 'linear-gradient(135deg, #2B7FFF 0%, #8EC5FF 100%)',
+            background: 'linear-gradient(135deg, #695CF6 0%, #B7AFFB 100%)',
             display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0,
           }}>
             <svg width="18" height="18" viewBox="0 0 24 24" fill="none">
@@ -159,7 +159,7 @@ export default function SetPasswordPage() {
                   padding: '0.75rem',
                   borderRadius: '0.75rem',
                   border: 'none',
-                  background: 'linear-gradient(135deg, #2B7FFF 0%, #8EC5FF 100%)',
+                  background: 'linear-gradient(135deg, #695CF6 0%, #B7AFFB 100%)',
                   color: '#fff',
                   fontWeight: 700,
                   fontSize: '0.95rem',
@@ -237,7 +237,7 @@ export default function SetPasswordPage() {
                   padding: '0.75rem',
                   borderRadius: '0.75rem',
                   border: 'none',
-                  background: 'linear-gradient(135deg, #2B7FFF 0%, #8EC5FF 100%)',
+                  background: 'linear-gradient(135deg, #695CF6 0%, #B7AFFB 100%)',
                   color: '#fff',
                   fontWeight: 700,
                   fontSize: '0.95rem',

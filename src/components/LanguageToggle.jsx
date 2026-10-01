@@ -102,8 +102,8 @@ export default function LanguageToggle() {
                 padding: '0.5rem 0.75rem',
                 borderRadius: '0.5rem',
                 border: 'none',
-                background: i18n.language.startsWith(lang.code) ? 'rgba(43, 127, 255, 0.1)' : 'transparent',
-                color: i18n.language.startsWith(lang.code) ? 'var(--color-blue-primary)' : 'var(--color-text-primary)',
+                background: i18n.language.startsWith(lang.code) ? 'rgba(105,92,246, 0.1)' : 'transparent',
+                color: i18n.language.startsWith(lang.code) ? 'var(--color-accent)' : 'var(--color-text-primary)',
                 cursor: 'pointer',
                 textAlign: 'left',
                 fontSize: '0.9rem',
@@ -114,7 +114,7 @@ export default function LanguageToggle() {
                 e.currentTarget.style.background = 'rgba(255, 255, 255, 0.05)'
               }}
               onMouseLeave={e => {
-                e.currentTarget.style.background = i18n.language.startsWith(lang.code) ? 'rgba(43, 127, 255, 0.1)' : 'transparent'
+                e.currentTarget.style.background = i18n.language.startsWith(lang.code) ? 'rgba(105,92,246, 0.1)' : 'transparent'
               }}
             >
               <span style={{ fontSize: '1.1rem' }}>{lang.flag}</span>

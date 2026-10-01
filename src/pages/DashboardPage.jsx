@@ -42,10 +42,10 @@ export default function DashboardPage() {
           <div key={key} className="glass-card" style={{ padding: '1.5rem', display: 'flex', gap: '1rem', alignItems: 'flex-start' }}>
             <div style={{
               width: 40, height: 40, borderRadius: '0.625rem',
-              background: 'rgba(43, 127, 255, 0.1)',
+              background: 'rgba(105,92,246, 0.1)',
               display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0,
             }}>
-              <Icon size={20} color="var(--color-blue-primary)" />
+              <Icon size={20} color="var(--color-accent)" />
             </div>
             <div>
               <p style={{ fontSize: '0.8rem', fontWeight: 600, color: 'var(--color-text-secondary)', margin: '0 0 0.25rem' }}>
@@ -68,8 +68,8 @@ export default function DashboardPage() {
           <AreaChart data={toChartData(stats?.likes_per_day ?? [])} margin={{ top: 4, right: 8, left: -16, bottom: 0 }}>
             <defs>
               <linearGradient id="likesGradient" x1="0" y1="0" x2="0" y2="1">
-                <stop offset="5%" stopColor="#2B7FFF" stopOpacity={0.15} />
-                <stop offset="95%" stopColor="#2B7FFF" stopOpacity={0} />
+                <stop offset="5%" stopColor="#695CF6" stopOpacity={0.15} />
+                <stop offset="95%" stopColor="#695CF6" stopOpacity={0} />
               </linearGradient>
             </defs>
             <CartesianGrid strokeDasharray="3 3" stroke="var(--color-card-border)" />
@@ -94,7 +94,7 @@ export default function DashboardPage() {
                 color: 'var(--color-text-primary)',
               }}
             />
-            <Area type="monotone" dataKey="value" stroke="#2B7FFF" strokeWidth={2} fill="url(#likesGradient)" />
+            <Area type="monotone" dataKey="value" stroke="#695CF6" strokeWidth={2} fill="url(#likesGradient)" />
           </AreaChart>
         </ResponsiveContainer>
       </div>

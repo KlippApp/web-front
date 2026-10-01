@@ -132,7 +132,7 @@ export default function RegisterPage() {
               width: 32,
               height: 32,
               borderRadius: '0.5rem',
-              background: 'linear-gradient(135deg, #2B7FFF 0%, #8EC5FF 100%)',
+              background: 'linear-gradient(135deg, #695CF6 0%, #B7AFFB 100%)',
               display: 'flex',
               alignItems: 'center',
               justifyContent: 'center',
@@ -230,7 +230,7 @@ export default function RegisterPage() {
               padding: '0.75rem',
               borderRadius: '0.75rem',
               border: 'none',
-              background: 'linear-gradient(135deg, #2B7FFF 0%, #8EC5FF 100%)',
+              background: 'linear-gradient(135deg, #695CF6 0%, #B7AFFB 100%)',
               color: '#fff',
               fontWeight: 700,
               fontSize: '0.95rem',
@@ -245,7 +245,7 @@ export default function RegisterPage() {
 
         <p style={{ marginTop: '1.5rem', fontSize: '0.85rem', color: 'var(--color-text-secondary)', textAlign: 'center' }}>
           {t('portal.register.hasAccount')}{' '}
-          <Link to="/login" style={{ color: '#2B7FFF', fontWeight: 600, textDecoration: 'none' }}>
+          <Link to="/login" style={{ color: '#695CF6', fontWeight: 600, textDecoration: 'none' }}>
             {t('portal.register.loginLink')}
           </Link>
         </p>

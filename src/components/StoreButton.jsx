@@ -17,7 +17,7 @@ export default function StoreButton({ store = 'apple', href = '#' }) {
       }}
       onMouseEnter={e => {
         e.currentTarget.style.transform = 'translateY(-2px)'
-        e.currentTarget.style.filter = 'drop-shadow(0 8px 20px rgba(43,127,255,0.3))'
+        e.currentTarget.style.filter = 'drop-shadow(0 8px 20px rgba(105,92,246,0.3))'
       }}
       onMouseLeave={e => {
         e.currentTarget.style.transform = ''

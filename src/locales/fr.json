@@ -123,7 +123,9 @@
       "card": {
         "open": "Voir l'annonce {{title}}",
         "likes_one": "{{count}} j'aime",
-        "likes_other": "{{count}} j'aime"
+        "likes_other": "{{count}} j'aime",
+        "views_one": "{{count}} vue",
+        "views_other": "{{count}} vues"
       },
       "preview": {
         "close": "Fermer",
@@ -134,6 +136,7 @@
         "description": "Description",
         "photos": "Photos",
         "likesTotal": "J'aime au total",
+        "viewsTotal": "Vues ces 30 derniers jours",
         "chartTitle": "J'aime reçus ces 30 derniers jours",
         "noVideo": "Vidéo pas encore disponible",
         "photoAlt": "Photo {{index}} de l'annonce"

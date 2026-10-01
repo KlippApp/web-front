@@ -20,6 +20,7 @@ const listing = (uuid, overrides = {}) => ({
   location: 'Paris 15e',
   listing_type: 'sale',
   like_count: 3,
+  view_count: 40,
   created_at: '2026-09-20T10:00:00Z',
   owner: { uuid: 'agent-1', name: 'Jean Agent' },
   video: { status: 'READY', mux_playback_id: `pb-${uuid}` },
@@ -47,18 +48,20 @@ describe('ListingsPage with API', () => {
   it('lists the agency listings and loads the next page', async () => {
     mockApi([
       { items: [listing('l1')], has_more: true },
-      { items: [listing('l2', { listing_type: 'rent', price_cents: 125000 })], has_more: false },
+      { items: [listing('l2', { listing_type: 'rent', price_cents: 125000, view_count: null })], has_more: false },
     ])
     render(<ListingsPage />)
 
     expect(await screen.findByRole('button', { name: 'Open listing Appartement l1' })).toBeInTheDocument()
     expect(screen.getByText('3 likes')).toBeInTheDocument()
+    expect(screen.getByText('40 views')).toBeInTheDocument()
     expect(screen.getByText('Live')).toBeInTheDocument()
 
     fireEvent.click(screen.getByRole('button', { name: 'Show more listings' }))
     expect(await screen.findByRole('button', { name: 'Open listing Appartement l2' })).toBeInTheDocument()
     expect(screen.getByRole('button', { name: 'Open listing Appartement l1' })).toBeInTheDocument()
     expect(screen.getByText('/month')).toBeInTheDocument()
+    expect(screen.getAllByText(/views$/)).toHaveLength(1)
     expect(screen.queryByRole('button', { name: 'Show more listings' })).not.toBeInTheDocument()
   })
 
@@ -85,6 +88,7 @@ describe('ListingsPage with API', () => {
     const dialog = screen.getByRole('dialog', { name: 'Appartement l1' })
     expect(dialog).toHaveTextContent('Lumineux')
     expect(dialog).toHaveTextContent('62 m²')
+    expect(dialog).toHaveTextContent('40Views in the last 30 days')
     await waitFor(() => expect(screen.getByTestId('likes-chart')).toHaveAttribute('data-points', '1'))
     expect(fetch).toHaveBeenCalledWith('/agencies/listings/l1', expect.anything())
 

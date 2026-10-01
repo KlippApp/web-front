@@ -1,6 +1,6 @@
 import { useCallback, useEffect, useState } from 'react'
 import { useTranslation } from 'react-i18next'
-import { Clapperboard, Heart } from 'lucide-react'
+import { Clapperboard, Eye, Heart } from 'lucide-react'
 import API_URL, { DEV_BYPASS, authFetch } from '../config/api.js'
 import Dropdown from '../components/Dropdown.jsx'
 import ListingPreview from '../components/ListingPreview.jsx'
@@ -22,8 +22,10 @@ function ListingCard({ listing, onOpen }) {
         {cover && <img src={cover} alt="" loading="lazy" />}
         <ListingStatus status={listingStatus(listing)} style={{ position: 'absolute', top: '0.625rem', left: '0.625rem' }} />
         <span className="listing-card-likes">
-          <Heart size={14} aria-hidden="true" />
-          {t('portal.listings.card.likes', { count: listing.like_count })}
+          <span><Heart size={14} aria-hidden="true" />{t('portal.listings.card.likes', { count: listing.like_count })}</span>
+          {listing.view_count != null && (
+            <span><Eye size={14} aria-hidden="true" />{t('portal.listings.card.views', { count: listing.view_count })}</span>
+          )}
         </span>
       </div>
       <div style={{ padding: '0.75rem 0.25rem 0' }}>

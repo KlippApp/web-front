@@ -1,76 +1,21 @@
 import { useTranslation } from 'react-i18next'
+import { Clapperboard, MapPin, Phone, Heart, Search, Upload } from 'lucide-react'
 
 export default function Features() {
   const { t } = useTranslation()
 
   const features = [
-    {
-      icon: (
-        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
-          <circle cx="11" cy="11" r="8"/>
-          <line x1="21" y1="21" x2="16.65" y2="16.65"/>
-          <path d="M11 8a3 3 0 100 6"/>
-        </svg>
-      ),
-      title: t('features.list.search.title'),
-      description: t('features.list.search.description'),
-    },
-    {
-      icon: (
-        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
-          <path d="M15 10l4.553-2.069A1 1 0 0121 8.87V15.13a1 1 0 01-1.447.899L15 14M3 8a2 2 0 012-2h8a2 2 0 012 2v8a2 2 0 01-2 2H5a2 2 0 01-2-2V8z"/>
-        </svg>
-      ),
-      title: t('features.list.tours.title'),
-      description: t('features.list.tours.description'),
-    },
-    {
-      icon: (
-        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
-          <line x1="18" y1="20" x2="18" y2="10"/>
-          <line x1="12" y1="20" x2="12" y2="4"/>
-          <line x1="6" y1="20" x2="6" y2="14"/>
-        </svg>
-      ),
-      title: t('features.list.insights.title'),
-      description: t('features.list.insights.description'),
-    },
-    {
-      icon: (
-        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
-          <path d="M18 8h1a4 4 0 010 8h-1"/>
-          <path d="M2 8h16v9a4 4 0 01-4 4H6a4 4 0 01-4-4V8z"/>
-          <line x1="6" y1="1" x2="6" y2="4"/>
-          <line x1="10" y1="1" x2="10" y2="4"/>
-          <line x1="14" y1="1" x2="14" y2="4"/>
-        </svg>
-      ),
-      title: t('features.list.alerts.title'),
-      description: t('features.list.alerts.description'),
-    },
-    {
-      icon: (
-        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
-          <path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/>
-          <circle cx="9" cy="7" r="4"/>
-          <path d="M23 21v-2a4 4 0 00-3-3.87"/>
-          <path d="M16 3.13a4 4 0 010 7.75"/>
-        </svg>
-      ),
-      title: t('features.list.connect.title'),
-      description: t('features.list.connect.description'),
-    },
-    {
-      icon: (
-        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
-          <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/>
-          <circle cx="12" cy="10" r="3"/>
-        </svg>
-      ),
-      title: t('features.list.guide.title'),
-      description: t('features.list.guide.description'),
-    },
-  ]
+    { key: 'video', Icon: Clapperboard },
+    { key: 'nearby', Icon: MapPin },
+    { key: 'contact', Icon: Phone },
+    { key: 'favorites', Icon: Heart },
+    { key: 'searches', Icon: Search },
+    { key: 'publish', Icon: Upload },
+  ].map(({ key, Icon }) => ({
+    icon: <Icon size={24} strokeWidth={1.5} />,
+    title: t(`features.list.${key}.title`),
+    description: t(`features.list.${key}.description`),
+  }))
 
   return (
     <section id="features" className="max-w-6xl mx-auto px-6 py-24">

@@ -61,8 +61,8 @@ export default function DownloadCTA() {
           </p>
 
           <div className="flex flex-wrap gap-3 justify-center mb-4">
-            <StoreButton store="apple" href="#app-store" />
-            <StoreButton store="google" href="#play-store" />
+            <StoreButton store="apple" />
+            <StoreButton store="google" />
           </div>
 
           <p style={{ color: 'var(--color-text-dim)', fontSize: '0.78rem' }}>

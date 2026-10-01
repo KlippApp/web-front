@@ -5,16 +5,12 @@ import Features from '../../components/Features'
 describe('Features', () => {
   it('renders section header', () => {
     render(<Features />)
-    expect(screen.getByText(/Everything you need to find home/i)).toBeInTheDocument()
+    expect(screen.getByText(/Everything you need to find your next home/i)).toBeInTheDocument()
   })
 
-  it('renders all 6 feature cards', () => {
+  it('renders the six real app features', () => {
     render(<Features />)
-    expect(screen.getByText(/AI-Powered Search/i)).toBeInTheDocument()
-    expect(screen.getByText(/Virtual Tours/i)).toBeInTheDocument()
-    expect(screen.getByText(/Market Insights/i)).toBeInTheDocument()
-    expect(screen.getByText(/Instant Alerts/i)).toBeInTheDocument()
-    expect(screen.getByText(/Agent Connect/i)).toBeInTheDocument()
-    expect(screen.getByText(/Neighborhood Guide/i)).toBeInTheDocument()
+    ;['Video tours', 'Around you', 'Direct contact', 'Favorites and collections', 'Saved searches', 'Post your listing']
+      .forEach(title => expect(screen.getByRole('heading', { level: 3, name: title })).toBeInTheDocument())
   })
 })

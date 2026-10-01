@@ -14,7 +14,7 @@ export default function Navbar({ theme, toggleTheme }) {
   const navLinks = [
     { label: t('nav.features'), href: '#features' },
     { label: t('nav.screenshots'), href: '#screenshots' },
-    { label: t('nav.reviews'), href: '#testimonials' },
+    { label: t('nav.agencies'), href: '#agencies' },
   ]
 
   useEffect(() => {

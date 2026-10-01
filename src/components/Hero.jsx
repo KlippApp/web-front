@@ -33,23 +33,6 @@ export default function Hero() {
 
           {/* Left column: text */}
           <div className="flex-1 text-center md:text-left">
-            {/* Badge */}
-            <div className="inline-flex items-center gap-2 mb-6"
-              style={{
-                background: 'var(--color-badge-bg)',
-                border: '1px solid var(--color-badge-border)',
-                borderRadius: '2rem',
-                padding: '0.375rem 1rem',
-                fontSize: '0.8rem',
-                fontWeight: 600,
-                color: 'var(--color-badge-text)',
-                letterSpacing: '0.05em',
-              }}
-            >
-              <span style={{ fontSize: '0.65rem' }}>●</span>
-              {t('hero.badge')}
-            </div>
-
             {/* Headline */}
             <h1
               style={{
@@ -92,20 +75,15 @@ export default function Hero() {
 
             {/* Store buttons */}
             <div className="flex flex-wrap gap-3 justify-center md:justify-start mb-10">
-              <StoreButton store="apple" href="#app-store" />
-              <StoreButton store="google" href="#play-store" />
+              <StoreButton store="apple" />
+              <StoreButton store="google" />
             </div>
 
-            {/* Stats row */}
             <div className="flex gap-8 justify-center md:justify-start">
-              {[
-                { value: '4.9★', label: t('hero.stats.rating') },
-                { value: '50K+', label: t('hero.stats.users') },
-                { value: '#1', label: t('hero.stats.market') },
-              ].map(stat => (
-                <div key={stat.label}>
-                  <div style={{ fontSize: '1.4rem', fontWeight: 700, color: 'var(--color-text-primary)' }}>{stat.value}</div>
-                  <div style={{ fontSize: '0.75rem', color: 'var(--color-text-secondary)', marginTop: '0.25rem' }}>{stat.label}</div>
+              {['video', 'free', 'noAccount'].map(key => (
+                <div key={key}>
+                  <div style={{ fontSize: '1.4rem', fontWeight: 700, color: 'var(--color-text-primary)' }}>{t(`hero.facts.${key}.value`)}</div>
+                  <div style={{ fontSize: '0.75rem', color: 'var(--color-text-secondary)', marginTop: '0.25rem' }}>{t(`hero.facts.${key}.label`)}</div>
                 </div>
               ))}
             </div>

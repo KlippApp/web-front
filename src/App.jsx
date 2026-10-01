@@ -8,7 +8,7 @@ import Navbar from './components/Navbar.jsx'
 import Hero from './components/Hero.jsx'
 import Features from './components/Features.jsx'
 import Screenshots from './components/Screenshots.jsx'
-import Testimonials from './components/Testimonials.jsx'
+import Agencies from './components/Agencies.jsx'
 import DownloadCTA from './components/DownloadCTA.jsx'
 import Footer from './components/Footer.jsx'
 import CookieConsent from './components/CookieConsent.jsx'
@@ -62,7 +62,7 @@ function LandingLayout() {
         <Hero />
         <Features />
         <Screenshots />
-        <Testimonials />
+        <Agencies />
         <DownloadCTA />
       </main>
       <Footer />

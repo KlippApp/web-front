@@ -5,7 +5,7 @@ import Screenshots from '../../components/Screenshots'
 describe('Screenshots', () => {
   it('renders section header', () => {
     render(<Screenshots />)
-    expect(screen.getByText(/Beautiful by design/i)).toBeInTheDocument()
+    expect(screen.getByText(/Designed for your pocket/i)).toBeInTheDocument()
   })
 
   it('renders phone mockups with screenshots', () => {

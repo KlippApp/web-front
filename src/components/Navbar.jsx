@@ -1,10 +1,13 @@
 import { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom'
-import { User } from 'lucide-react'
+import { User, Menu, X } from 'lucide-react'
 import { useTranslation } from 'react-i18next'
 import ThemeToggle from './ThemeToggle.jsx'
 import LanguageToggle from './LanguageToggle.jsx'
 import Logo from './Logo.jsx'
+
+const linkClass = 'text-(--color-nav-link) no-underline font-medium transition-colors hover:text-(--color-nav-link-hover)'
+const portalClass = 'inline-flex items-center gap-2 rounded-xl border border-(--color-portal-border) bg-(--color-portal-bg) px-4 py-2 text-sm font-semibold text-(--color-text-primary) no-underline transition-colors hover:bg-(--color-portal-hover-bg)'
 
 export default function Navbar({ theme, toggleTheme }) {
   const { t } = useTranslation()
@@ -12,8 +15,7 @@ export default function Navbar({ theme, toggleTheme }) {
   const [menuOpen, setMenuOpen] = useState(false)
 
   const navLinks = [
-    { label: t('nav.features'), href: '#features' },
-    { label: t('nav.screenshots'), href: '#screenshots' },
+    { label: t('nav.how'), href: '#how' },
     { label: t('nav.agencies'), href: '#agencies' },
   ]
 
@@ -25,163 +27,57 @@ export default function Navbar({ theme, toggleTheme }) {
 
   return (
     <header
+      className="on-ink fixed inset-x-0 top-0 z-50 transition-colors"
       style={{
-        position: 'fixed',
-        top: 0,
-        left: 0,
-        right: 0,
-        zIndex: 50,
-        transition: 'all 0.3s ease',
-        background: scrolled ? 'var(--color-nav-bg)' : 'transparent',
+        background: scrolled || menuOpen ? 'var(--color-ink-glass)' : 'transparent',
         backdropFilter: scrolled ? 'blur(16px)' : 'none',
         WebkitBackdropFilter: scrolled ? 'blur(16px)' : 'none',
-        borderBottom: scrolled ? '1px solid var(--color-divider)' : '1px solid transparent',
       }}
     >
       <nav className="max-w-6xl mx-auto px-6 flex items-center justify-between h-16">
-        {/* Logo */}
         <a href="#" className="flex items-center gap-2 no-underline">
-          <Logo size={28} />
-          <span style={{ fontWeight: 700, fontSize: '1.1rem', color: 'var(--color-logo-text)' }}>Klipp</span>
+          <Logo size={26} />
+          <span className="text-lg font-bold text-(--color-logo-text)">Klipp</span>
         </a>
 
-        {/* Desktop nav links */}
-        <div className="hidden md:flex items-center gap-8">
-          {navLinks.map(link => (
-            <a
-              key={link.href}
-              href={link.href}
-              style={{
-                color: 'var(--color-nav-link)',
-                textDecoration: 'none',
-                fontSize: '0.9rem',
-                fontWeight: 500,
-                transition: 'color 0.2s',
-              }}
-              onMouseEnter={e => e.target.style.color = 'var(--color-nav-link-hover)'}
-              onMouseLeave={e => e.target.style.color = 'var(--color-nav-link)'}
-            >
-              {link.label}
-            </a>
-          ))}
+        <div className="hidden md:flex items-center gap-8 text-[0.95rem]">
+          {navLinks.map(link => <a key={link.href} href={link.href} className={linkClass}>{link.label}</a>)}
         </div>
 
-        {/* Desktop CTA */}
         <div className="hidden md:flex items-center gap-3">
           <LanguageToggle />
           <ThemeToggle theme={theme} toggleTheme={toggleTheme} />
-          <Link
-            to="/login"
-            style={{
-              display: 'inline-flex',
-              alignItems: 'center',
-              gap: '0.5rem',
-              color: 'var(--color-text-primary)',
-              textDecoration: 'none',
-              fontSize: '0.9rem',
-              fontWeight: 600,
-              padding: '0.5rem 1.25rem',
-              borderRadius: '0.75rem',
-              border: '1px solid var(--color-portal-border)',
-              background: 'var(--color-portal-bg)',
-              transition: 'all 0.2s ease',
-            }}
-            onMouseEnter={e => {
-              e.currentTarget.style.background = 'var(--color-portal-hover-bg)'
-              e.currentTarget.style.borderColor = 'var(--color-portal-hover-border)'
-            }}
-            onMouseLeave={e => {
-              e.currentTarget.style.background = 'var(--color-portal-bg)'
-              e.currentTarget.style.borderColor = 'var(--color-portal-border)'
-            }}
-          >
-            <User size={18} />
+          <Link to="/login" className={portalClass}>
+            <User size={16} />
             {t('nav.clientPortal')}
           </Link>
         </div>
 
-        {/* Mobile hamburger */}
         <button
-          className="md:hidden"
+          className="md:hidden p-1 text-(--color-hamburger) bg-transparent border-0 cursor-pointer"
           onClick={() => setMenuOpen(!menuOpen)}
-          style={{
-            background: 'none',
-            border: 'none',
-            color: 'var(--color-hamburger)',
-            cursor: 'pointer',
-            padding: '0.25rem',
-          }}
           aria-label="Toggle menu"
+          aria-expanded={menuOpen}
         >
-          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-            {menuOpen ? (
-              <>
-                <line x1="18" y1="6" x2="6" y2="18"/>
-                <line x1="6" y1="6" x2="18" y2="18"/>
-              </>
-            ) : (
-              <>
-                <line x1="3" y1="12" x2="21" y2="12"/>
-                <line x1="3" y1="6" x2="21" y2="6"/>
-                <line x1="3" y1="18" x2="21" y2="18"/>
-              </>
-            )}
-          </svg>
+          {menuOpen ? <X size={24} /> : <Menu size={24} />}
         </button>
       </nav>
 
-      {/* Mobile menu */}
       {menuOpen && (
-        <div
-          className="md:hidden"
-          style={{
-            background: 'var(--color-mobile-menu-bg)',
-            borderTop: '1px solid var(--color-divider)',
-            padding: '1rem 1.5rem 1.5rem',
-          }}
-        >
-          <div className="flex flex-col gap-4">
-            <div className="flex justify-end gap-3">
-              <LanguageToggle />
-              <ThemeToggle theme={theme} toggleTheme={toggleTheme} />
-            </div>
-            {navLinks.map(link => (
-              <a
-                key={link.href}
-                href={link.href}
-                onClick={() => setMenuOpen(false)}
-                style={{
-                  color: 'var(--color-nav-link)',
-                  textDecoration: 'none',
-                  fontSize: '1rem',
-                  fontWeight: 500,
-                }}
-              >
-                {link.label}
-              </a>
-            ))}
-            <Link
-              to="/login"
-              onClick={() => setMenuOpen(false)}
-              style={{
-                display: 'inline-flex',
-                alignItems: 'center',
-                gap: '0.5rem',
-                color: 'var(--color-text-primary)',
-                textDecoration: 'none',
-                fontSize: '0.9rem',
-                fontWeight: 600,
-                padding: '0.5rem 1.25rem',
-                borderRadius: '0.75rem',
-                border: '1px solid var(--color-portal-border)',
-                background: 'var(--color-portal-bg)',
-                alignSelf: 'flex-start',
-              }}
-            >
-              <User size={18} />
-              {t('nav.clientPortal')}
-            </Link>
+        <div className="md:hidden border-t border-(--color-divider) px-6 pt-4 pb-6 flex flex-col gap-4">
+          <div className="flex justify-end gap-3">
+            <LanguageToggle />
+            <ThemeToggle theme={theme} toggleTheme={toggleTheme} />
           </div>
+          {navLinks.map(link => (
+            <a key={link.href} href={link.href} onClick={() => setMenuOpen(false)} className={`${linkClass} text-base`}>
+              {link.label}
+            </a>
+          ))}
+          <Link to="/login" onClick={() => setMenuOpen(false)} className={`${portalClass} self-start`}>
+            <User size={16} />
+            {t('nav.clientPortal')}
+          </Link>
         </div>
       )}
     </header>

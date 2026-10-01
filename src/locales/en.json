@@ -1,87 +1,32 @@
 {
   "nav": {
-    "features": "Features",
-    "screenshots": "Screenshots",
+    "how": "How it works",
     "agencies": "Agencies",
     "clientPortal": "Agency portal"
   },
   "hero": {
-    "headline": "Real estate, <highlight>on video</highlight>",
+    "title": "Real estate, on video",
     "subtitle": "Tour the properties around you in seconds, keep the ones you love and contact the lister directly. For sale and for rent.",
-    "facts": {
-      "video": {
-        "value": "100%",
-        "label": "video"
-      },
-      "free": {
-        "value": "€0",
-        "label": "free"
-      },
-      "noAccount": {
-        "value": "No account",
-        "label": "needed to browse"
-      }
-    },
-    "mockupAlt": "Klipp app screenshot"
-  },
-  "features": {
-    "tag": "Features",
-    "title": "Everything you need to find your next home",
-    "subtitle": "A simple app built around video, so you can tour more homes in less time.",
-    "list": {
-      "video": {
-        "title": "Video tours",
-        "description": "Listings play full screen, like a feed of short videos. Swipe to move on to the next home."
-      },
-      "nearby": {
-        "title": "Around you",
-        "description": "A city, a postcode or your location: discover the homes in the area you care about."
-      },
-      "contact": {
-        "title": "Direct contact",
-        "description": "Call the lister, send a text or an email, in one tap from the listing."
-      },
-      "favorites": {
-        "title": "Favorites and collections",
-        "description": "Like a home or save it to your collections to find it again later."
-      },
-      "searches": {
-        "title": "Saved searches",
-        "description": "Area, radius, budget and size: save your criteria for next time."
-      },
-      "publish": {
-        "title": "Post your listing",
-        "description": "For sale or for rent: put your property online with a video and a few photos."
-      }
-    }
-  },
-  "screenshots": {
-    "title": "Designed for your pocket",
-    "subtitle": "A simple interface: swipe, tour, keep what you like."
+    "note": "Free, and no account needed to browse."
   },
   "download": {
-    "title": "Start your search today",
+    "title": "Your next home is one swipe away",
     "subtitle": "Download Klipp for free and tour your next homes on video.",
     "appStore": "Download on the App Store",
     "googlePlay": "Get it on Google Play",
     "comingSoon": "Coming soon",
-    "disclaimer": "Free · iOS 15+ and Android 7+"
+    "disclaimer": "iOS 15+ and Android 7+"
   },
   "footer": {
     "description": "Real estate, on video. Homes for sale and rent, around you.",
-    "sections": {
-      "Product": "Product",
-      "Legal": "Legal"
-    },
     "links": {
-      "Features": "Features",
-      "Screenshots": "Screenshots",
+      "How it works": "How it works",
       "Agency portal": "Agency portal",
       "Privacy Policy": "Privacy Policy",
       "Terms of Service": "Terms of Service",
-      "Cookie Policy": "Cookie Policy"
+      "Cookie Policy": "Cookies"
     },
-    "copyright": "© {{year}} Klipp. All rights reserved."
+    "copyright": "© {{year}} Klipp"
   },
   "cookies": {
     "title": "Cookies & preferences",
@@ -391,13 +336,12 @@
     "text": "The page you are looking for doesn't exist or has been moved."
   },
   "agencies": {
-    "tag": "Agencies",
     "title": "Are you an agency?",
     "subtitle": "Show your properties on video to buyers and renters in your area, and run your team from the agency portal.",
     "points": {
       "team": {
         "title": "Your agents and offices",
-        "description": "Add your agents and offices in a dedicated portal, right from your browser."
+        "description": "Add them in a dedicated portal, right from your browser."
       },
       "video": {
         "title": "Video listings",
@@ -405,10 +349,70 @@
       },
       "stats": {
         "title": "Your statistics",
-        "description": "Track your active listings, your agents and the likes received over the last 30 days."
+        "description": "Active listings, agents and likes received over the last 30 days."
       }
     },
+    "previewCaption": "Preview of the agency portal",
     "register": "Create an agency account",
     "login": "Sign in"
+  },
+  "feed": {
+    "label": "Preview of the Klipp listing feed",
+    "sale": "For sale",
+    "rent": "For rent",
+    "perMonth": "/month",
+    "like": "Like",
+    "collections": "Collections",
+    "share": "Share",
+    "bedrooms": "{{count}} bd",
+    "bathrooms": "{{count}} ba",
+    "items": {
+      "0": {
+        "title": "Modern apartment with a view"
+      },
+      "1": {
+        "title": "Bright 2-bed with balcony"
+      },
+      "2": {
+        "title": "House with a garden"
+      },
+      "3": {
+        "title": "Renovated one-bedroom"
+      }
+    }
+  },
+  "how": {
+    "title": "Swipe, save, contact",
+    "subtitle": "Three gestures, and you have toured more homes than in an afternoon of open houses.",
+    "steps": {
+      "swipe": {
+        "title": "Swipe",
+        "description": "Listings in your area play full screen, on video. Swipe up to move on to the next home."
+      },
+      "keep": {
+        "title": "Save",
+        "description": "Like a home, or save it to a collection to compare it later."
+      },
+      "contact": {
+        "title": "Contact",
+        "description": "Call the lister, send a text or an email, straight from the listing."
+      }
+    },
+    "collectionA": "Lyon, 1-bed",
+    "collectionB": "Houses with a garden",
+    "call": "Call",
+    "message": "Message",
+    "email": "Email",
+    "alsoTitle": "Also in the app",
+    "also": {
+      "searches": {
+        "title": "Saved searches",
+        "description": "Area, radius, budget and size, kept for next time."
+      },
+      "publish": {
+        "title": "Post your listing",
+        "description": "For sale or for rent, with a video and a few photos."
+      }
+    }
   }
 }

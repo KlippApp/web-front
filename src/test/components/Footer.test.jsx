@@ -19,10 +19,9 @@ describe('Footer', () => {
     expect(screen.getByText(/Homes for sale and rent, around you/i)).toBeInTheDocument()
   })
 
-  it('renders link sections', () => {
+  it('links to the how it works section', () => {
     renderFooter()
-    expect(screen.getByText(/Product/i)).toBeInTheDocument()
-    expect(screen.getByText(/Legal/i)).toBeInTheDocument()
+    expect(screen.getByRole('link', { name: 'How it works' })).toHaveAttribute('href', '#how')
   })
 
   it('renders copyright with current year', () => {
@@ -35,7 +34,7 @@ describe('Footer', () => {
     renderFooter()
     expect(screen.getByRole('link', { name: 'Privacy Policy' })).toHaveAttribute('href', '/en/privacy')
     expect(screen.getByRole('link', { name: 'Terms of Service' })).toHaveAttribute('href', '/en/terms')
-    expect(screen.getByRole('link', { name: 'Cookie Policy' })).toHaveAttribute('href', '/en/privacy#cookies')
+    expect(screen.getByRole('link', { name: 'Cookies' })).toHaveAttribute('href', '/en/privacy#cookies')
   })
 
   it('links the agency portal and has no placeholder links', () => {

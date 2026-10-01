@@ -1,119 +1,29 @@
-import { useTranslation, Trans } from 'react-i18next'
-import IPhoneMockup from './IPhoneMockup.jsx'
+import { useTranslation } from 'react-i18next'
 import StoreButton from './StoreButton.jsx'
-import screen1 from '../assets/screenshots/screen1.png'
+import Feed from './Feed.jsx'
 
 export default function Hero() {
   const { t } = useTranslation()
 
   return (
-    <section
-      id="hero"
-      style={{
-        minHeight: '100vh',
-        paddingTop: '5rem',
-        display: 'flex',
-        alignItems: 'center',
-        position: 'relative',
-        overflow: 'hidden',
-      }}
-    >
-      {/* Background radial gradient */}
-      <div
-        style={{
-          position: 'absolute',
-          inset: 0,
-          background: 'radial-gradient(ellipse 80% 60% at 60% 40%, var(--color-hero-radial) 0%, transparent 70%)',
-          pointerEvents: 'none',
-        }}
-      />
-
-      <div className="max-w-6xl mx-auto px-6 py-16 w-full">
-        <div className="flex flex-col md:flex-row items-center gap-12 md:gap-16">
-
-          {/* Left column: text */}
-          <div className="flex-1 text-center md:text-left">
-            {/* Headline */}
-            <h1
-              style={{
-                fontSize: 'clamp(2.5rem, 6vw, 4.5rem)',
-                fontWeight: 800,
-                lineHeight: 1.1,
-                letterSpacing: '-0.03em',
-                marginBottom: '1.5rem',
-              }}
-            >
-              <Trans
-                i18nKey="hero.headline"
-                components={{
-                  highlight: <span
-                    style={{
-                      background: 'linear-gradient(135deg, #695CF6 0%, #B7AFFB 100%)',
-                      WebkitBackgroundClip: 'text',
-                      WebkitTextFillColor: 'transparent',
-                      backgroundClip: 'text',
-                    }}
-                  />,
-                  br: <br />
-                }}
-              />
-            </h1>
-
-            {/* Subtitle */}
-            <p
-              style={{
-                fontSize: '1.125rem',
-                color: 'var(--color-text-secondary)',
-                lineHeight: 1.7,
-                marginBottom: '2.5rem',
-                maxWidth: '480px',
-              }}
-              className="mx-auto md:mx-0"
-            >
-              {t('hero.subtitle')}
-            </p>
-
-            {/* Store buttons */}
-            <div className="flex flex-wrap gap-3 justify-center md:justify-start mb-10">
-              <StoreButton store="apple" />
-              <StoreButton store="google" />
-            </div>
-
-            <div className="flex gap-8 justify-center md:justify-start">
-              {['video', 'free', 'noAccount'].map(key => (
-                <div key={key}>
-                  <div style={{ fontSize: '1.4rem', fontWeight: 700, color: 'var(--color-text-primary)' }}>{t(`hero.facts.${key}.value`)}</div>
-                  <div style={{ fontSize: '0.75rem', color: 'var(--color-text-secondary)', marginTop: '0.25rem' }}>{t(`hero.facts.${key}.label`)}</div>
-                </div>
-              ))}
-            </div>
+    <section id="hero" className="on-ink">
+      <div className="max-w-6xl mx-auto px-6 pt-32 pb-20 md:pt-36 md:pb-28 grid md:grid-cols-[1.15fr_0.85fr] gap-14 items-center">
+        <div>
+          <h1 className="font-extrabold text-[clamp(3.25rem,9vw,6.75rem)] leading-[0.92] tracking-[-0.045em]">
+            {t('hero.title')}<span className="brand-dot">.</span>
+          </h1>
+          <p className="mt-7 max-w-[30rem] text-lg leading-relaxed text-(--color-text-secondary)">
+            {t('hero.subtitle')}
+          </p>
+          <div className="mt-10 flex flex-wrap gap-4">
+            <StoreButton store="apple" />
+            <StoreButton store="google" />
           </div>
+          <p className="mt-5 text-sm text-(--color-text-secondary)">{t('hero.note')}</p>
+        </div>
 
-          {/* Right column: phone mockup */}
-          <div
-            className="flex-shrink-0 flex justify-center"
-            style={{ position: 'relative' }}
-          >
-            {/* Ambient glow */}
-            <div
-              style={{
-                position: 'absolute',
-                bottom: '-40px',
-                left: '50%',
-                transform: 'translateX(-50%)',
-                width: '320px',
-                height: '200px',
-                background: 'radial-gradient(ellipse, var(--color-hero-glow) 0%, transparent 70%)',
-                filter: 'blur(24px)',
-                pointerEvents: 'none',
-                zIndex: 0,
-              }}
-            />
-            <div style={{ position: 'relative', zIndex: 1 }}>
-              <IPhoneMockup src={screen1} alt={t('hero.mockupAlt')} size="lg" />
-            </div>
-          </div>
-
+        <div className="flex justify-center md:justify-end">
+          <Feed />
         </div>
       </div>
     </section>

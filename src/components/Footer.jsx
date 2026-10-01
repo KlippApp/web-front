@@ -8,83 +8,34 @@ export default function Footer() {
   const localize = useLocalizedPath()
   const year = new Date().getFullYear()
 
-  const footerLinks = {
-    [t('footer.sections.Product')]: [
-      { label: t('footer.links.Features'), href: '#features' },
-      { label: t('footer.links.Screenshots'), href: '#screenshots' },
-      { label: t('footer.links.Agency portal'), to: '/login' },
-    ],
-    [t('footer.sections.Legal')]: [
-      { label: t('footer.links.Privacy Policy'), to: localize('/privacy') },
-      { label: t('footer.links.Terms of Service'), to: localize('/terms') },
-      { label: t('footer.links.Cookie Policy'), to: `${localize('/privacy')}#cookies` },
-    ],
-  }
+  const links = [
+    { label: t('footer.links.How it works'), href: '#how' },
+    { label: t('footer.links.Agency portal'), to: '/login' },
+    { label: t('footer.links.Privacy Policy'), to: localize('/privacy') },
+    { label: t('footer.links.Terms of Service'), to: localize('/terms') },
+    { label: t('footer.links.Cookie Policy'), to: `${localize('/privacy')}#cookies` },
+  ]
 
   return (
-    <footer style={{ borderTop: '1px solid var(--color-divider)', marginTop: '2rem' }}>
-      <div className="max-w-6xl mx-auto px-6 py-16">
-        <div className="grid grid-cols-2 md:grid-cols-3 gap-10 mb-12">
-          {/* Brand */}
-          <div className="col-span-2 md:col-span-1">
-            <div className="flex items-center gap-2 mb-4">
-              <Logo size={28} />
-              <span style={{ fontWeight: 700, fontSize: '1.05rem', color: 'var(--color-logo-text)' }}>Klipp</span>
-            </div>
-            <p style={{ color: 'var(--color-text-secondary)', fontSize: '0.875rem', lineHeight: 1.6, maxWidth: '220px' }}>
-              {t('footer.description')}
-            </p>
+    <footer className="bg-(--color-surface) border-t border-(--color-line)">
+      <div className="max-w-6xl mx-auto px-6 py-12 flex flex-col md:flex-row md:items-center md:justify-between gap-8">
+        <div>
+          <div className="flex items-center gap-2">
+            <Logo size={24} />
+            <span className="font-bold text-(--color-logo-text)">Klipp</span>
           </div>
-
-          {/* Link columns */}
-          {Object.entries(footerLinks).map(([section, links]) => (
-            <div key={section}>
-              <h4 style={{ fontWeight: 600, fontSize: '0.875rem', marginBottom: '1rem', color: 'var(--color-footer-heading)' }}>
-                {section}
-              </h4>
-              <ul style={{ listStyle: 'none', padding: 0, margin: 0, display: 'flex', flexDirection: 'column', gap: '0.625rem' }}>
-                {links.map(link => {
-                  const LinkTag = link.to ? Link : 'a'
-                  return (
-                    <li key={link.label}>
-                      <LinkTag
-                        {...(link.to ? { to: link.to } : { href: link.href })}
-                        style={{
-                          color: 'var(--color-footer-link)',
-                          textDecoration: 'none',
-                          fontSize: '0.875rem',
-                          transition: 'color 0.2s',
-                        }}
-                        onMouseEnter={e => e.target.style.color = 'var(--color-footer-link-hover)'}
-                        onMouseLeave={e => e.target.style.color = 'var(--color-footer-link)'}
-                      >
-                        {link.label}
-                      </LinkTag>
-                    </li>
-                  )
-                })}
-              </ul>
-            </div>
-          ))}
+          <p className="mt-3 max-w-xs text-sm text-(--color-text-secondary)">{t('footer.description')}</p>
         </div>
-
-        {/* Bottom bar */}
-        <div
-          style={{
-            borderTop: '1px solid var(--color-divider)',
-            paddingTop: '2rem',
-            display: 'flex',
-            flexWrap: 'wrap',
-            alignItems: 'center',
-            justifyContent: 'space-between',
-            gap: '1rem',
-          }}
-        >
-          <p style={{ color: 'var(--color-copyright)', fontSize: '0.8rem' }}>
-            {t('footer.copyright', { year })}
-          </p>
-        </div>
+        <nav className="flex flex-wrap gap-x-6 gap-y-3 text-sm">
+          {links.map(link => {
+            const className = 'text-(--color-text-secondary) no-underline hover:text-(--color-text-primary)'
+            return link.to
+              ? <Link key={link.label} to={link.to} className={className}>{link.label}</Link>
+              : <a key={link.label} href={link.href} className={className}>{link.label}</a>
+          })}
+        </nav>
       </div>
+      <p className="max-w-6xl mx-auto px-6 pb-10 text-xs text-(--color-copyright)">{t('footer.copyright', { year })}</p>
     </footer>
   )
 }

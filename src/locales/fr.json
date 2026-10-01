@@ -242,5 +242,96 @@
         "edit": "Modifier"
       }
     }
+  },
+  "legal": {
+    "lastUpdated": "Dernière mise à jour : {{date}}",
+    "privacy": {
+      "title": "Politique de confidentialité",
+      "intro": "Cette politique explique quelles données personnelles {{company}} collecte via le site Klipp, l'espace agence et l'application mobile Klipp, pourquoi elles sont collectées et quels sont vos droits.",
+      "sections": {
+        "controller": {
+          "title": "1. Responsable du traitement",
+          "body": "Le responsable du traitement est {{company}}, dont le siège est situé {{address}}.\nPour toute question relative à vos données, vous pouvez nous écrire à {{email}}."
+        },
+        "data": {
+          "title": "2. Données collectées",
+          "body": "Site vitrine : aucune donnée personnelle n'est collectée en dehors des cookies de préférence décrits ci-dessous.\n\nEspace agence : lors de la création et de l'utilisation de votre compte, nous collectons le nom de l'agence, le nom du gérant, l'adresse e-mail, le numéro de téléphone, l'adresse postale et le mot de passe.\n\nAgents et bureaux : les informations que votre agence saisit sur ses agents (photo, nom, e-mail, téléphone) et sur ses bureaux (photo, nom, adresse, e-mail, téléphone)."
+        },
+        "purposes": {
+          "title": "3. Finalités et bases légales",
+          "body": "• Création et gestion de votre compte agence — exécution du contrat.\n• Affichage de vos agents et bureaux dans l'application Klipp — exécution du contrat.\n• Sécurité du service et prévention des abus — intérêt légitime.\n• Mémorisation de vos préférences (thème, langue) — consentement."
+        },
+        "retention": {
+          "title": "4. Durée de conservation",
+          "body": "Les données de votre compte sont conservées tant que celui-ci est actif. Lorsque vous supprimez votre compte depuis votre profil, vos données ainsi que celles de vos agents et bureaux sont supprimées, sous réserve des obligations légales de conservation.\nLes cookies de préférence sont conservés 12 mois au maximum."
+        },
+        "recipients": {
+          "title": "5. Destinataires et hébergement",
+          "body": "Vos données sont destinées uniquement à {{company}} et ne sont jamais vendues. Elles sont hébergées par {{host}}.\nLorsque des données sont transférées hors de l'Union européenne, ce transfert est encadré par des garanties appropriées, telles que les clauses contractuelles types de la Commission européenne."
+        },
+        "cookies": {
+          "title": "6. Cookies et stockage local",
+          "body": "Nous n'utilisons aucun cookie publicitaire ni de mesure d'audience.\n\n• cookie_consent — mémorise votre choix concernant les cookies (12 mois).\n• theme — mémorise le thème clair ou sombre, uniquement si vous avez accepté les cookies (12 mois).\n• i18next — mémorise votre langue, uniquement si vous avez accepté les cookies (12 mois).\n\nLorsque vous êtes connecté à l'espace agence, votre jeton de session est conservé dans le stockage local de votre navigateur. Il est strictement nécessaire au fonctionnement du service et supprimé à la déconnexion."
+        },
+        "rights": {
+          "title": "7. Vos droits",
+          "body": "Conformément au RGPD, vous disposez d'un droit d'accès, de rectification, d'effacement, de limitation, de portabilité et d'opposition sur vos données, ainsi que du droit de retirer votre consentement à tout moment.\nPour exercer ces droits, écrivez à {{email}}. Vous pouvez également introduire une réclamation auprès de la CNIL (www.cnil.fr)."
+        },
+        "security": {
+          "title": "8. Sécurité",
+          "body": "Nous mettons en œuvre des mesures techniques et organisationnelles adaptées pour protéger vos données contre tout accès non autorisé, perte ou altération. Les échanges entre votre navigateur et nos serveurs sont chiffrés (HTTPS)."
+        },
+        "changes": {
+          "title": "9. Modifications",
+          "body": "Nous pouvons mettre à jour cette politique. La date de dernière mise à jour figure en haut de cette page. En cas de changement important, nous vous en informerons par e-mail ou via l'espace agence."
+        }
+      }
+    },
+    "terms": {
+      "title": "Conditions d'utilisation",
+      "intro": "Les présentes conditions d'utilisation encadrent l'accès et l'utilisation du site Klipp, de l'espace agence et de l'application mobile Klipp. En utilisant nos services, vous les acceptez sans réserve.",
+      "sections": {
+        "publisher": {
+          "title": "1. Éditeur et hébergeur",
+          "body": "Le service est édité par {{company}}, dont le siège est situé {{address}}. Contact : {{email}}.\nDirecteur de la publication : {{director}}.\nLe site est hébergé par {{host}}."
+        },
+        "service": {
+          "title": "2. Description du service",
+          "body": "Klipp est une application de recherche immobilière. L'espace agence permet aux agences immobilières de gérer leur profil, leurs agents et leurs bureaux, et de consulter leurs statistiques."
+        },
+        "account": {
+          "title": "3. Compte agence",
+          "body": "La création d'un compte agence est réservée aux professionnels de l'immobilier. Vous vous engagez à fournir des informations exactes et à les tenir à jour.\nVous êtes responsable de la confidentialité de vos identifiants et de toute activité réalisée depuis votre compte. Signalez-nous sans délai toute utilisation non autorisée."
+        },
+        "obligations": {
+          "title": "4. Obligations de l'agence",
+          "body": "Vous vous engagez à n'utiliser le service que dans un cadre légal et à ne publier aucun contenu illicite, trompeur ou portant atteinte aux droits de tiers.\nLorsque vous ajoutez des agents, vous garantissez avoir informé ces personnes et disposer d'une base légale pour publier leurs données (photo, nom, coordonnées)."
+        },
+        "ip": {
+          "title": "5. Propriété intellectuelle",
+          "body": "La marque Klipp, le site, l'application et l'ensemble de leurs contenus (textes, visuels, logos, code) sont la propriété de {{company}}. Toute reproduction sans autorisation est interdite.\nVous conservez les droits sur les contenus que vous publiez et nous accordez une licence non exclusive pour les afficher dans le cadre du service."
+        },
+        "liability": {
+          "title": "6. Responsabilité",
+          "body": "Nous nous efforçons d'assurer la disponibilité et le bon fonctionnement du service, sans pouvoir le garantir de manière absolue. Le service peut être interrompu pour maintenance ou en cas de force majeure.\n{{company}} ne saurait être tenue responsable des contenus publiés par les agences ni des dommages indirects résultant de l'utilisation du service."
+        },
+        "termination": {
+          "title": "7. Suspension et résiliation",
+          "body": "Vous pouvez supprimer votre compte à tout moment depuis votre profil. Nous pouvons suspendre ou supprimer un compte en cas de manquement aux présentes conditions, après en avoir informé l'agence lorsque cela est possible."
+        },
+        "data": {
+          "title": "8. Données personnelles",
+          "body": "Le traitement de vos données personnelles est décrit dans notre politique de confidentialité."
+        },
+        "changes": {
+          "title": "9. Modification des conditions",
+          "body": "Nous pouvons modifier ces conditions à tout moment. Les nouvelles conditions s'appliquent dès leur publication sur cette page. En cas de changement important, nous vous en informerons à l'avance."
+        },
+        "law": {
+          "title": "10. Droit applicable",
+          "body": "Les présentes conditions sont régies par le droit français. En cas de litige, une solution amiable sera recherchée en priorité ; à défaut, les tribunaux français seront seuls compétents."
+        }
+      }
+    }
   }
 }

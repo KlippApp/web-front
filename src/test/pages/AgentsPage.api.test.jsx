@@ -17,8 +17,8 @@ const office = { uuid: 'office-1', name: 'Klipp Paris' }
 
 function mockLists(agents = []) {
   globalThis.fetch = vi.fn((url) => {
-    if (url.startsWith('http://api/agents?')) return Promise.resolve(ok({ items: agents }))
-    if (url.startsWith('http://api/offices?')) return Promise.resolve(ok({ items: [office] }))
+    if (url.startsWith('/agents?')) return Promise.resolve(ok({ items: agents }))
+    if (url.startsWith('/offices?')) return Promise.resolve(ok({ items: [office] }))
     return Promise.reject(new Error(`unexpected ${url}`))
   })
 }
@@ -44,7 +44,7 @@ describe('AgentsPage (API)', () => {
     render(<AgentsPage />)
     await waitFor(() => expect(screen.getByText('Jane Roe')).toBeInTheDocument())
     expect(screen.getByText('Klipp Paris')).toBeInTheDocument()
-    expect(fetch).toHaveBeenCalledWith('http://api/agents?items_per_page=100', expect.anything())
+    expect(fetch).toHaveBeenCalledWith('/agents?items_per_page=100', expect.anything())
   })
 
   it('creates an agent with office_uuid', async () => {
@@ -57,7 +57,7 @@ describe('AgentsPage (API)', () => {
 
     await waitFor(() => expect(screen.getByText('John Doe')).toBeInTheDocument())
     const [url, init] = fetch.mock.calls[2]
-    expect(url).toBe('http://api/agents')
+    expect(url).toBe('/agents')
     expect(JSON.parse(init.body)).toMatchObject({ first_name: 'John', last_name: 'Doe', office_uuid: 'office-1' })
   })
 

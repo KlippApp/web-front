@@ -23,7 +23,7 @@ describe('OfficesPage (API)', () => {
   it('loads offices from the paginated endpoint', async () => {
     render(<OfficesPage />)
     await waitFor(() => expect(screen.getByText('Office 1')).toBeInTheDocument())
-    expect(fetch).toHaveBeenCalledWith('http://api/offices?items_per_page=100', expect.anything())
+    expect(fetch).toHaveBeenCalledWith('/offices?items_per_page=100', expect.anything())
   })
 
   it('updates an office with PATCH and keeps it in the list', async () => {
@@ -38,7 +38,7 @@ describe('OfficesPage (API)', () => {
     await waitFor(() => expect(screen.getByText('Office 2')).toBeInTheDocument())
     expect(screen.getByText('Addr 1')).toBeInTheDocument()
     const [url, init] = fetch.mock.calls[1]
-    expect(url).toBe('http://api/offices/o1')
+    expect(url).toBe('/offices/o1')
     expect(init.method).toBe('PATCH')
   })
 })

@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import { logoutAgency } from '../config/api.js'
 
 const TOKEN_KEY = 'klipp_token'
 const AGENCY_KEY = 'klipp_agency'
@@ -19,6 +20,7 @@ export function useAuth() {
   }
 
   const logout = () => {
+    logoutAgency()
     localStorage.removeItem(TOKEN_KEY)
     localStorage.removeItem(AGENCY_KEY)
     localStorage.removeItem(MANAGER_KEY)

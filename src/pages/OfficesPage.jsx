@@ -1,8 +1,7 @@
 import { useState, useCallback, useEffect } from 'react'
 import { useTranslation } from 'react-i18next'
 import { Plus, MapPin, X, Pencil, Camera, Trash2 } from 'lucide-react'
-import { useAuth } from '../hooks/useAuth.js'
-import API_URL, { DEV_BYPASS, authHeaders } from '../config/api.js'
+import API_URL, { DEV_BYPASS, authFetch } from '../config/api.js'
 
 const inputStyle = {
   width: '100%',
@@ -50,7 +49,6 @@ function Field({ label, id, children }) {
 
 export default function OfficesPage() {
   const { t } = useTranslation()
-  const { token } = useAuth()
   const [showForm, setShowForm] = useState(false)
   const [editingOffice, setEditingOffice] = useState(null)
   const [offices, setOffices] = useState([])
@@ -61,11 +59,11 @@ export default function OfficesPage() {
   useEffect(() => {
     if (DEV_BYPASS || !API_URL) return
     // ponytail: single page of 100, add pagination if an agency outgrows it
-    fetch(`${API_URL}/offices?items_per_page=100`, { headers: authHeaders(token) })
+    authFetch('/offices?items_per_page=100')
       .then(r => r.json())
       .then(data => setOffices(data.items ?? []))
       .catch(() => {})
-  }, [token])
+  }, [])
 
   const closeForm = useCallback(() => {
     setEditingOffice(null)
@@ -95,16 +93,14 @@ export default function OfficesPage() {
         photo: form.photo,
       }
       if (editingOffice) {
-        const res = await fetch(`${API_URL}/offices/${editingOffice.uuid}`, {
+        const res = await authFetch(`/offices/${editingOffice.uuid}`, {
           method: 'PATCH',
-          headers: authHeaders(token),
           body: JSON.stringify(body),
         })
         if (res.ok) setOffices(prev => prev.map(o => o.uuid === editingOffice.uuid ? { ...o, ...body } : o))
       } else {
-        const res = await fetch(`${API_URL}/offices`, {
+        const res = await authFetch('/offices', {
           method: 'POST',
-          headers: authHeaders(token),
           body: JSON.stringify(body),
         })
         const data = await res.json()
@@ -114,7 +110,7 @@ export default function OfficesPage() {
     } finally {
       setLoading(false)
     }
-  }, [editingOffice, form, token, closeForm])
+  }, [editingOffice, form, closeForm])
 
   const handleDelete = useCallback(async () => {
     const office = confirmDelete
@@ -123,9 +119,9 @@ export default function OfficesPage() {
       setOffices(prev => prev.filter(o => o.uuid !== office.uuid))
       return
     }
-    await fetch(`${API_URL}/offices/${office.uuid}`, { method: 'DELETE', headers: authHeaders(token) })
+    await authFetch(`/offices/${office.uuid}`, { method: 'DELETE' })
     setOffices(prev => prev.filter(o => o.uuid !== office.uuid))
-  }, [confirmDelete, token])
+  }, [confirmDelete])
 
   const openEdit = (office) => {
     const countryCode = office.country_code || '+33'

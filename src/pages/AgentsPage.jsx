@@ -1,8 +1,7 @@
 import { useState, useCallback, useEffect } from 'react'
 import { useTranslation } from 'react-i18next'
 import { Plus, Users, X, Trash2, Camera } from 'lucide-react'
-import { useAuth } from '../hooks/useAuth.js'
-import API_URL, { DEV_BYPASS, authHeaders, apiErrorMessage } from '../config/api.js'
+import API_URL, { DEV_BYPASS, authFetch, apiErrorMessage } from '../config/api.js'
 import Dropdown from '../components/Dropdown.jsx'
 
 const inputStyle = {
@@ -53,7 +52,6 @@ const emptyForm = { firstName: '', lastName: '', email: '', phone: '', countryCo
 
 export default function AgentsPage() {
   const { t } = useTranslation()
-  const { token } = useAuth()
   const [showForm, setShowForm] = useState(false)
   const [agents, setAgents] = useState([])
   const [offices, setOffices] = useState([])
@@ -65,15 +63,15 @@ export default function AgentsPage() {
   useEffect(() => {
     if (DEV_BYPASS || !API_URL) return
     // ponytail: single page of 100, add pagination if an agency outgrows it
-    fetch(`${API_URL}/agents?items_per_page=100`, { headers: authHeaders(token) })
+    authFetch('/agents?items_per_page=100')
       .then(r => r.json())
       .then(data => setAgents(data.items ?? []))
       .catch(() => {})
-    fetch(`${API_URL}/offices?items_per_page=100`, { headers: authHeaders(token) })
+    authFetch('/offices?items_per_page=100')
       .then(r => r.json())
       .then(data => setOffices(data.items ?? []))
       .catch(() => {})
-  }, [token])
+  }, [])
 
   const closeForm = useCallback(() => {
     setForm(emptyForm)
@@ -99,9 +97,8 @@ export default function AgentsPage() {
         closeForm()
         return
       }
-      const res = await fetch(`${API_URL}/agents`, {
+      const res = await authFetch('/agents', {
         method: 'POST',
-        headers: authHeaders(token),
         body: JSON.stringify({
           first_name: form.firstName,
           last_name: form.lastName,
@@ -124,7 +121,7 @@ export default function AgentsPage() {
     } finally {
       setLoading(false)
     }
-  }, [form, token, closeForm, t])
+  }, [form, closeForm, t])
 
   const handleDelete = useCallback(async () => {
     const agent = confirmDelete
@@ -133,9 +130,9 @@ export default function AgentsPage() {
       setAgents(prev => prev.filter(a => a.uuid !== agent.uuid))
       return
     }
-    await fetch(`${API_URL}/agents/${agent.uuid}`, { method: 'DELETE', headers: authHeaders(token) })
+    await authFetch(`/agents/${agent.uuid}`, { method: 'DELETE' })
     setAgents(prev => prev.filter(a => a.uuid !== agent.uuid))
-  }, [confirmDelete, token])
+  }, [confirmDelete])
 
   const handlePhoneChange = (e) => {
     setForm(prev => ({ ...prev, phone: formatPhone(e.target.value) }))

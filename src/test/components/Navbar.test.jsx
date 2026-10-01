@@ -17,8 +17,8 @@ describe('Navbar', () => {
     expect(screen.getByText(/Klipp/i)).toBeInTheDocument()
     expect(screen.getByText(/Features/i)).toBeInTheDocument()
     expect(screen.getByText(/Screenshots/i)).toBeInTheDocument()
-    expect(screen.getByText(/Reviews/i)).toBeInTheDocument()
-    expect(screen.getAllByText(/Espace Client/i).length).toBeGreaterThan(0)
+    expect(screen.getByText(/Agencies/i)).toBeInTheDocument()
+    expect(screen.getAllByText(/Agency portal/i).length).toBeGreaterThan(0)
   })
 
   it('toggles mobile menu when hamburger is clicked', () => {

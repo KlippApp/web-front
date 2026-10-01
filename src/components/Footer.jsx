@@ -1,7 +1,5 @@
 import { Link } from 'react-router-dom'
 import { useTranslation } from 'react-i18next'
-import appleBadge from '../assets/app-store-badge.svg'
-import googleBadge from '../assets/google-play-badge.svg'
 import Logo from './Logo.jsx'
 import { useLocalizedPath } from '../hooks/useLocalizedPath.js'
 
@@ -14,14 +12,7 @@ export default function Footer() {
     [t('footer.sections.Product')]: [
       { label: t('footer.links.Features'), href: '#features' },
       { label: t('footer.links.Screenshots'), href: '#screenshots' },
-      { label: t('footer.links.Pricing'), href: '#' },
-      { label: t('footer.links.Changelog'), href: '#' },
-    ],
-    [t('footer.sections.Company')]: [
-      { label: t('footer.links.About'), href: '#' },
-      { label: t('footer.links.Blog'), href: '#' },
-      { label: t('footer.links.Careers'), href: '#' },
-      { label: t('footer.links.Press'), href: '#' },
+      { label: t('footer.links.Agency portal'), to: '/login' },
     ],
     [t('footer.sections.Legal')]: [
       { label: t('footer.links.Privacy Policy'), to: localize('/privacy') },
@@ -33,7 +24,7 @@ export default function Footer() {
   return (
     <footer style={{ borderTop: '1px solid var(--color-divider)', marginTop: '2rem' }}>
       <div className="max-w-6xl mx-auto px-6 py-16">
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-10 mb-12">
+        <div className="grid grid-cols-2 md:grid-cols-3 gap-10 mb-12">
           {/* Brand */}
           <div className="col-span-2 md:col-span-1">
             <div className="flex items-center gap-2 mb-4">
@@ -92,25 +83,6 @@ export default function Footer() {
           <p style={{ color: 'var(--color-copyright)', fontSize: '0.8rem' }}>
             {t('footer.copyright', { year })}
           </p>
-
-          <div className="flex items-center gap-3">
-            <a
-              href="#app-store"
-              style={{ display: 'inline-block', opacity: 0.6, transition: 'opacity 0.2s' }}
-              onMouseEnter={e => e.currentTarget.style.opacity = '1'}
-              onMouseLeave={e => e.currentTarget.style.opacity = '0.6'}
-            >
-              <img src={appleBadge} alt={t('download.appStore')} style={{ display: 'block', height: 28, width: 'auto' }} />
-            </a>
-            <a
-              href="#play-store"
-              style={{ display: 'inline-block', opacity: 0.6, transition: 'opacity 0.2s' }}
-              onMouseEnter={e => e.currentTarget.style.opacity = '1'}
-              onMouseLeave={e => e.currentTarget.style.opacity = '0.6'}
-            >
-              <img src={googleBadge} alt={t('download.googlePlay')} style={{ display: 'block', height: 28, width: 'auto' }} />
-            </a>
-          </div>
         </div>
       </div>
     </footer>

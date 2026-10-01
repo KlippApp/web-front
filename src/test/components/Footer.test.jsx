@@ -16,13 +16,12 @@ describe('Footer', () => {
     renderFooter()
     const brandElements = screen.getAllByText(/Klipp/i)
     expect(brandElements.length).toBeGreaterThanOrEqual(2)
-    expect(screen.getByText(/Find your perfect home with AI-powered search/i)).toBeInTheDocument()
+    expect(screen.getByText(/Homes for sale and rent, around you/i)).toBeInTheDocument()
   })
 
   it('renders link sections', () => {
     renderFooter()
     expect(screen.getByText(/Product/i)).toBeInTheDocument()
-    expect(screen.getByText(/Company/i)).toBeInTheDocument()
     expect(screen.getByText(/Legal/i)).toBeInTheDocument()
   })
 
@@ -37,5 +36,11 @@ describe('Footer', () => {
     expect(screen.getByRole('link', { name: 'Privacy Policy' })).toHaveAttribute('href', '/en/privacy')
     expect(screen.getByRole('link', { name: 'Terms of Service' })).toHaveAttribute('href', '/en/terms')
     expect(screen.getByRole('link', { name: 'Cookie Policy' })).toHaveAttribute('href', '/en/privacy#cookies')
+  })
+
+  it('links the agency portal and has no placeholder links', () => {
+    const { container } = renderFooter()
+    expect(screen.getByRole('link', { name: 'Agency portal' })).toHaveAttribute('href', '/login')
+    expect(container.querySelector('a[href="#"]')).toBeNull()
   })
 })

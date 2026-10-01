@@ -1,8 +1,12 @@
 import { renderHook, act } from '@testing-library/react'
-import { describe, it, expect, beforeEach } from 'vitest'
+import { describe, it, expect, beforeEach, vi } from 'vitest'
 import { useAuth } from '../../hooks/useAuth'
+import { logoutAgency } from '../../config/api.js'
+
+vi.mock('../../config/api.js', () => ({ logoutAgency: vi.fn() }))
 
 beforeEach(() => {
+  vi.clearAllMocks()
   localStorage.clear()
 })
 
@@ -58,6 +62,14 @@ describe('useAuth', () => {
     expect(localStorage.getItem('klipp_token')).toBeNull()
     expect(localStorage.getItem('klipp_agency')).toBeNull()
     expect(localStorage.getItem('klipp_manager')).toBeNull()
+  })
+
+  it('logout revokes the backend session before clearing the token', () => {
+    localStorage.setItem('klipp_token', 'my-jwt')
+    logoutAgency.mockImplementationOnce(() => expect(localStorage.getItem('klipp_token')).toBe('my-jwt'))
+    const { result } = renderHook(() => useAuth())
+    act(() => { result.current.logout() })
+    expect(logoutAgency).toHaveBeenCalledTimes(1)
   })
 
   it('updateProfile updates agency and managerName in localStorage and state', () => {

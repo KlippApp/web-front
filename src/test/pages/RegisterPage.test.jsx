@@ -78,19 +78,19 @@ describe('RegisterPage', () => {
   it('shows generic error on API failure', async () => {
     globalThis.fetch = vi.fn().mockResolvedValueOnce({
       ok: false,
-      json: async () => ({ message: 'Email already in use' }),
+      json: async () => ({ detail: 'Email is already registered' }),
     })
     renderRegister()
     fillForm()
     fireEvent.click(screen.getByRole('button', { name: /create account/i }))
-    await waitFor(() => expect(screen.getByText('Email already in use')).toBeInTheDocument())
+    await waitFor(() => expect(screen.getByText('Email is already registered')).toBeInTheDocument())
   })
 
   it('navigates to dashboard on successful registration', async () => {
-    globalThis.fetch = vi.fn().mockResolvedValueOnce({
-      ok: true,
-      json: async () => ({ token: 'reg-token', agencyName: 'Test Agency', managerName: 'Jean Dupont' }),
-    })
+    globalThis.fetch = vi.fn()
+      .mockResolvedValueOnce({ ok: true, json: async () => ({ agency_name: 'Test Agency' }) })
+      .mockResolvedValueOnce({ ok: true, json: async () => ({ access_token: 'reg-token', token_type: 'bearer' }) })
+      .mockResolvedValueOnce({ ok: true, json: async () => ({ agency_name: 'Test Agency', manager_name: 'Jean Dupont' }) })
     renderRegister()
     fillForm()
     fireEvent.click(screen.getByRole('button', { name: /create account/i }))

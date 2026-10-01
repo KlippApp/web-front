@@ -21,6 +21,7 @@ import OfficesPage from './pages/OfficesPage.jsx'
 import ProfilePage from './pages/ProfilePage.jsx'
 import PrivacyPage from './pages/PrivacyPage.jsx'
 import TermsPage from './pages/TermsPage.jsx'
+import SetPasswordPage from './pages/SetPasswordPage.jsx'
 
 function LandingLayout() {
   const { i18n } = useTranslation()
@@ -61,6 +62,7 @@ export default function App() {
         <Route path="/register" element={<RegisterPage />} />
         <Route path="/privacy" element={<PrivacyPage />} />
         <Route path="/terms" element={<TermsPage />} />
+        <Route path="/set-password" element={<SetPasswordPage />} />
         <Route element={<ProtectedRoute />}>
           <Route element={<DashboardLayout />}>
             <Route path="/dashboard" element={<DashboardPage />} />

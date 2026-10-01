@@ -122,7 +122,8 @@ Tests that cover the error path of bypassed handlers are marked `it.skip(...)` u
 |-----------|---------|
 | `Navbar` | Fixed, `.on-ink`, scroll-aware, mobile menu + theme + language toggles |
 | `Hero` | Slogan with brand dot + `Feed` + store badges |
-| `Feed` | 9:16 preview of the app's video feed; auto-swipes every 3.2 s, pauses on hover, still with reduced motion |
+| `Feed` | Preview of the app's video feed inside `IPhoneMockup`; auto-swipes every 3.2 s, pauses on hover, still with reduced motion |
+| `IPhoneMockup` | iPhone 15 Pro frame with real proportions (island, corners, buttons derive from the screen width) — props: `width` (CSS length), `children` |
 | `HowItWorks` | Swipe / save / contact steps with UI vignettes + other app features |
 | `Agencies` | Agency pitch + HTML preview of the dashboard, links to `/register` and `/login` |
 | `DownloadCTA` | Final `.on-ink` call to action with store badges |

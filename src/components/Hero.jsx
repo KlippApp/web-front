@@ -7,7 +7,7 @@ export default function Hero() {
 
   return (
     <section id="hero" className="on-ink">
-      <div className="max-w-6xl mx-auto px-6 pt-32 pb-20 md:pt-36 md:pb-28 grid md:grid-cols-[1.15fr_0.85fr] gap-14 items-center">
+      <div className="max-w-6xl mx-auto px-6 pt-28 pb-20 md:pt-28 md:pb-24 grid md:grid-cols-[1.15fr_0.85fr] gap-14 items-center">
         <div>
           <h1 className="font-extrabold text-[clamp(3.25rem,9vw,6.75rem)] leading-[0.92] tracking-[-0.045em]">
             {t('hero.title')}<span className="brand-dot">.</span>

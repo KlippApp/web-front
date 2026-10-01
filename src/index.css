@@ -232,16 +232,61 @@
   }
 }
 
-/* ─── Landing: listing feed preview (hero) ─────────────────────── */
-.feed-frame {
+/* ─── Landing: iPhone 15 Pro mockup ─────────────────────────────
+   Every dimension derives from --w, the screen width, using the real
+   393 × 852 pt screen: island 126 × 37 pt at 11 pt, corners 55 pt. */
+.iphone {
+  --bezel: calc(var(--w) * 0.035);
   position: relative;
-  width: min(330px, 78vw);
-  aspect-ratio: 9 / 16;
-  border-radius: 2rem;
+  width: calc(var(--w) + var(--bezel) * 2);
+  padding: var(--bezel);
+  border-radius: calc(var(--w) * 0.14 + var(--bezel));
+  background: #0B0B0E;
+  box-shadow:
+    0 0 0 2px #3A3A40,
+    0 0 0 3px #1A1A1E,
+    0 40px 80px -30px rgba(11,11,14,0.55);
+}
+.iphone-screen {
+  position: relative;
+  width: var(--w);
+  aspect-ratio: 393 / 852;
+  border-radius: calc(var(--w) * 0.14);
   overflow: hidden;
   background: #16161B;
-  border: 1px solid rgba(255,255,255,0.1);
 }
+.iphone-island {
+  position: absolute;
+  z-index: 3;
+  top: calc(var(--w) * 0.028);
+  left: 50%;
+  width: calc(var(--w) * 0.32);
+  height: calc(var(--w) * 0.094);
+  transform: translateX(-50%);
+  border-radius: 999px;
+  background: #000;
+}
+.iphone-status {
+  position: absolute;
+  z-index: 2;
+  top: calc(var(--w) * 0.028);
+  inset-inline: 0;
+  height: calc(var(--w) * 0.094);
+  padding-inline: calc(var(--w) * 0.085);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  color: #fff;
+  font-size: calc(var(--w) * 0.043);
+  font-weight: 600;
+}
+.iphone-button {
+  position: absolute;
+  width: 3px;
+  border-radius: 2px;
+  background: #3A3A40;
+}
+
 .feed-track {
   position: absolute;
   inset: 0;

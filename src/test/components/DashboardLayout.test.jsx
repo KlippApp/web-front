@@ -7,6 +7,7 @@ vi.mock('react-i18next', () => ({
   useTranslation: () => ({
     t: (key, params) => {
       if (key === 'portal.dashboard.nav.dashboard') return 'Dashboard'
+      if (key === 'portal.dashboard.nav.listings') return 'Listings'
       if (key === 'portal.dashboard.nav.agents') return 'Agents'
       if (key === 'portal.dashboard.nav.offices') return 'Offices'
       if (key === 'portal.dashboard.nav.profile') return 'Agency profile'
@@ -86,6 +87,7 @@ describe('DashboardLayout', () => {
   it('renders sidebar navigation links', () => {
     renderLayout()
     expect(screen.getByRole('link', { name: /^dashboard$/i })).toBeInTheDocument()
+    expect(screen.getByRole('link', { name: /^listings$/i })).toHaveAttribute('href', '/dashboard/listings')
     expect(screen.getByRole('link', { name: /^agents$/i })).toBeInTheDocument()
     expect(screen.getByRole('link', { name: /^offices$/i })).toBeInTheDocument()
     expect(screen.getByRole('link', { name: /^agency profile$/i })).toBeInTheDocument()

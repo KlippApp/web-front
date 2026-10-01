@@ -171,6 +171,34 @@ const { mockChangeLanguage, mockT } = vi.hoisted(() => ({
       'portal.dashboard.stats.activeListings.label': 'Active listings',
       'portal.dashboard.stats.likes.label': 'Likes (30 days)',
       'portal.dashboard.stats.agents.label': 'Agents',
+      'portal.dashboard.nav.listings': 'Listings',
+      'portal.listings.title': "Listings",
+      'portal.listings.subtitle': "Listings published by your agents",
+      'portal.listings.empty': "No listings yet. Listings your agents publish in the app will show up here.",
+      'portal.listings.emptyFiltered': "No listings match these filters.",
+      'portal.listings.loadMore': "Show more listings",
+      'portal.listings.perMonth': "/month",
+      'portal.listings.filters.allAgents': "All agents",
+      'portal.listings.filters.allTypes': "Sale and rent",
+      'portal.listings.filters.sale': "Sale",
+      'portal.listings.filters.rent': "Rent",
+      'portal.listings.status.online': "Live",
+      'portal.listings.status.processing': "Processing",
+      'portal.listings.status.error': "Video error",
+      'portal.listings.card.open': "Open listing {{title}}",
+      'portal.listings.card.likes_one': "{{count}} like",
+      'portal.listings.card.likes_other': "{{count}} likes",
+      'portal.listings.preview.close': "Close",
+      'portal.listings.preview.publishedOn': "Published on {{date}}",
+      'portal.listings.preview.rooms': "Rooms",
+      'portal.listings.preview.bathrooms': "Bathrooms",
+      'portal.listings.preview.surface': "Surface",
+      'portal.listings.preview.description': "Description",
+      'portal.listings.preview.photos': "Photos",
+      'portal.listings.preview.likesTotal': "Total likes",
+      'portal.listings.preview.chartTitle': "Likes received in the last 30 days",
+      'portal.listings.preview.noVideo': "Video not available yet",
+      'portal.listings.preview.photoAlt': "Listing photo {{index}}",
       'portal.profile.title': 'Agency profile',
       'portal.profile.agencyInfoSection': 'Agency information',
       'portal.profile.passwordSection': 'Change password',
@@ -285,6 +313,10 @@ const { mockChangeLanguage, mockT } = vi.hoisted(() => ({
     }
     if (key === 'portal.dashboard.chart.likes') {
       return options?.count === 1 ? 'Like' : 'Likes'
+    }
+    if (key.startsWith('portal.listings.')) {
+      const value = translations[key] || translations[`${key}_${options?.count === 1 ? 'one' : 'other'}`]
+      return value ? value.replace(/\{\{(\w+)\}\}/g, (match, name) => options?.[name] ?? match) : key
     }
     return translations[key] || key
   }

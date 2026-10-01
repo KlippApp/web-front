@@ -80,6 +80,7 @@
       "logout": "Se déconnecter",
       "nav": {
         "dashboard": "Tableau de bord",
+        "listings": "Annonces",
         "agents": "Agents",
         "offices": "Agences",
         "profile": "Profil de l'agence"
@@ -99,6 +100,43 @@
         "agents": {
           "label": "Agents"
         }
+      }
+    },
+    "listings": {
+      "title": "Annonces",
+      "subtitle": "Les annonces publiées par vos agents",
+      "empty": "Aucune annonce pour l'instant. Les annonces publiées par vos agents dans l'app apparaîtront ici.",
+      "emptyFiltered": "Aucune annonce ne correspond à ces filtres.",
+      "loadMore": "Voir plus d'annonces",
+      "perMonth": "/mois",
+      "filters": {
+        "allAgents": "Tous les agents",
+        "allTypes": "Vente et location",
+        "sale": "Vente",
+        "rent": "Location"
+      },
+      "status": {
+        "online": "En ligne",
+        "processing": "En traitement",
+        "error": "Erreur vidéo"
+      },
+      "card": {
+        "open": "Voir l'annonce {{title}}",
+        "likes_one": "{{count}} j'aime",
+        "likes_other": "{{count}} j'aime"
+      },
+      "preview": {
+        "close": "Fermer",
+        "publishedOn": "Publiée le {{date}}",
+        "rooms": "Pièces",
+        "bathrooms": "Salles de bain",
+        "surface": "Surface",
+        "description": "Description",
+        "photos": "Photos",
+        "likesTotal": "J'aime au total",
+        "chartTitle": "J'aime reçus ces 30 derniers jours",
+        "noVideo": "Vidéo pas encore disponible",
+        "photoAlt": "Photo {{index}} de l'annonce"
       }
     },
     "profile": {

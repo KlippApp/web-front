@@ -80,6 +80,7 @@
       "logout": "Sign out",
       "nav": {
         "dashboard": "Dashboard",
+        "listings": "Listings",
         "agents": "Agents",
         "offices": "Offices",
         "profile": "Agency profile"
@@ -99,6 +100,43 @@
         "agents": {
           "label": "Agents"
         }
+      }
+    },
+    "listings": {
+      "title": "Listings",
+      "subtitle": "Listings published by your agents",
+      "empty": "No listings yet. Listings your agents publish in the app will show up here.",
+      "emptyFiltered": "No listings match these filters.",
+      "loadMore": "Show more listings",
+      "perMonth": "/month",
+      "filters": {
+        "allAgents": "All agents",
+        "allTypes": "Sale and rent",
+        "sale": "Sale",
+        "rent": "Rent"
+      },
+      "status": {
+        "online": "Live",
+        "processing": "Processing",
+        "error": "Video error"
+      },
+      "card": {
+        "open": "Open listing {{title}}",
+        "likes_one": "{{count}} like",
+        "likes_other": "{{count}} likes"
+      },
+      "preview": {
+        "close": "Close",
+        "publishedOn": "Published on {{date}}",
+        "rooms": "Rooms",
+        "bathrooms": "Bathrooms",
+        "surface": "Surface",
+        "description": "Description",
+        "photos": "Photos",
+        "likesTotal": "Total likes",
+        "chartTitle": "Likes received in the last 30 days",
+        "noVideo": "Video not available yet",
+        "photoAlt": "Listing photo {{index}}"
       }
     },
     "profile": {

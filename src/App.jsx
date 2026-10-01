@@ -21,6 +21,7 @@ const DashboardLayout = lazy(() => import('./components/DashboardLayout.jsx'))
 const LoginPage = lazy(() => import('./pages/LoginPage.jsx'))
 const RegisterPage = lazy(() => import('./pages/RegisterPage.jsx'))
 const DashboardPage = lazy(() => import('./pages/DashboardPage.jsx'))
+const ListingsPage = lazy(() => import('./pages/ListingsPage.jsx'))
 const AgentsPage = lazy(() => import('./pages/AgentsPage.jsx'))
 const OfficesPage = lazy(() => import('./pages/OfficesPage.jsx'))
 const ProfilePage = lazy(() => import('./pages/ProfilePage.jsx'))
@@ -101,6 +102,7 @@ export function AppRoutes() {
         <Route element={<ProtectedRoute />}>
           <Route element={<DashboardLayout />}>
             <Route path="/dashboard" element={<DashboardPage />} />
+            <Route path="/dashboard/listings" element={<ListingsPage />} />
             <Route path="/dashboard/agents" element={<AgentsPage />} />
             <Route path="/dashboard/offices" element={<OfficesPage />} />
             <Route path="/dashboard/profile" element={<ProfilePage />} />

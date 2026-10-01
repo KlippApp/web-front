@@ -224,6 +224,92 @@
     gap: 1rem;
   }
 
+  /* -- Dashboard listings: vertical covers like the app feed -- */
+  .listing-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+    gap: 1.5rem 1.25rem;
+  }
+
+  .listing-card {
+    display: block;
+    padding: 0;
+    border: none;
+    background: none;
+    text-align: left;
+    font: inherit;
+    cursor: pointer;
+    min-width: 0;
+  }
+
+  .listing-card-cover {
+    position: relative;
+    aspect-ratio: 9 / 16;
+    border-radius: 1rem;
+    overflow: hidden;
+    background: var(--color-ink);
+    transition: transform 0.2s;
+  }
+  .listing-card:hover .listing-card-cover { transform: translateY(-2px); }
+  .listing-card-cover img { width: 100%; height: 100%; object-fit: cover; }
+  .listing-card-cover::after {
+    content: '';
+    position: absolute;
+    inset: auto 0 0;
+    height: 35%;
+    background: linear-gradient(transparent, color-mix(in srgb, var(--color-ink) 70%, transparent));
+    pointer-events: none;
+  }
+
+  .listing-card-likes {
+    position: absolute;
+    left: 0.625rem;
+    bottom: 0.625rem;
+    z-index: 1;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.3rem;
+    font-size: 0.8rem;
+    font-weight: 600;
+    color: var(--color-paper);
+    text-shadow: 0 1px 3px rgba(0,0,0,0.5);
+  }
+
+  .listing-preview {
+    position: relative;
+    display: grid;
+    --preview-h: min(720px, calc(100vh - 2rem));
+    grid-template-columns: calc(var(--preview-h) * 9 / 16) 1fr;
+    width: 100%;
+    max-width: 920px;
+    height: var(--preview-h);
+    overflow: hidden;
+  }
+
+  .listing-preview-media {
+    display: flex;
+    min-height: 0;
+    overflow: hidden;
+    background: var(--color-ink);
+  }
+
+  .listing-preview-body {
+    position: relative;
+    padding: 1.5rem;
+    overflow-y: auto;
+    min-width: 0;
+  }
+
+  @media (max-width: 720px) {
+    .listing-preview { grid-template-columns: 1fr; height: auto; max-height: calc(100vh - 2rem); overflow-y: auto; }
+    .listing-preview-media { height: 60vh; }
+    .listing-preview-body { overflow: visible; }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .listing-card-cover { transition: none; }
+  }
+
   @media (max-width: 640px) {
     .dash-page-content { padding: 1rem; }
     .dash-grid-2 { grid-template-columns: 1fr; }

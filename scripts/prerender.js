@@ -4,7 +4,7 @@ import { render, i18n } from '../dist-ssr/entry-server.js'
 import { LANGS, PUBLIC_PAGES, SITE_URL, headTags, localizedPath } from '../src/config/site.js'
 
 // ponytail: keep in sync with the non-public routes in src/App.jsx
-const APP_ROUTES = ['/login', '/register', '/set-password', '/dashboard', '/dashboard/agents', '/dashboard/offices', '/dashboard/profile']
+const APP_ROUTES = ['/login', '/register', '/set-password', '/dashboard', '/dashboard/listings', '/dashboard/agents', '/dashboard/offices', '/dashboard/profile']
 
 const template = readFileSync('dist/index.html', 'utf8')
 

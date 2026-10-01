@@ -71,6 +71,7 @@ const { mockChangeLanguage, mockT } = vi.hoisted(() => ({
       'cookies.description': 'Nous utilisons des cookies pour mémoriser votre préférence de thème (clair/sombre). Aucune donnée personnelle n\'est collectée.',
       'cookies.accept': 'Accepter',
       'cookies.decline': 'Refuser',
+      'portal.backToHome': 'Back to home',
       'portal.login.title': 'Welcome back',
       'portal.login.subtitle': 'Sign in to your agency account',
       'portal.login.emailLabel': 'Email',

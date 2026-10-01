@@ -178,10 +178,6 @@ export default function ProfilePage() {
       const data = await res.json()
       if (!res.ok) {
         setInfoError(apiErrorMessage(data, t('portal.profile.errorGeneric')))
-      } else if (infoForm.agencyName !== agency) {
-        // The backend token subject is the agency name, so a rename invalidates the current session.
-        logout()
-        navigate('/login')
       } else {
         updateProfile(infoForm.agencyName, infoForm.managerName)
         setInfoSuccess(t('portal.profile.successInfo'))

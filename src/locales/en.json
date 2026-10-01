@@ -154,22 +154,19 @@
         "profile": "Agency profile"
       },
       "chart": {
-        "title": "Sales — Last 30 days",
-        "sales_one": "Sale",
-        "sales_other": "Sales"
+        "title": "Likes received — Last 30 days",
+        "likes_one": "Like",
+        "likes_other": "Likes"
       },
       "stats": {
-        "messages": {
-          "label": "Messages",
-          "value": "0"
-        },
         "activeListings": {
-          "label": "Active listings",
-          "value": "0"
+          "label": "Active listings"
         },
-        "monthlySales": {
-          "label": "Sales this month",
-          "value": "0"
+        "likes": {
+          "label": "Likes (30 days)"
+        },
+        "agents": {
+          "label": "Agents"
         }
       }
     },

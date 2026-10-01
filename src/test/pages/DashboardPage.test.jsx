@@ -22,16 +22,22 @@ function renderDashboard() {
 }
 
 describe('DashboardPage', () => {
-  it('renders stat cards', () => {
+  it('renders the stat cards', () => {
     renderDashboard()
-    expect(screen.getByText('Messages')).toBeInTheDocument()
     expect(screen.getByText('Active listings')).toBeInTheDocument()
-    expect(screen.getByText('Sales this month')).toBeInTheDocument()
+    expect(screen.getByText('Likes (30 days)')).toBeInTheDocument()
+    expect(screen.getByText('Agents')).toBeInTheDocument()
+    expect(screen.queryByText('Messages')).not.toBeInTheDocument()
   })
 
-  it('renders chart title', () => {
+  it('shows zeros without a configured API', () => {
     renderDashboard()
-    expect(screen.getByText('Sales — Last 30 days')).toBeInTheDocument()
+    expect(screen.getAllByText('0')).toHaveLength(3)
+  })
+
+  it('renders the chart title', () => {
+    renderDashboard()
+    expect(screen.getByText('Likes received — Last 30 days')).toBeInTheDocument()
   })
 
   it('renders the chart', () => {

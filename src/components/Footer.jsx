@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom'
 import { useTranslation } from 'react-i18next'
 import appleBadge from '../assets/app-store-badge.svg'
 import googleBadge from '../assets/google-play-badge.svg'
@@ -20,9 +21,9 @@ export default function Footer() {
       { label: t('footer.links.Press'), href: '#' },
     ],
     [t('footer.sections.Legal')]: [
-      { label: t('footer.links.Privacy Policy'), href: '#' },
-      { label: t('footer.links.Terms of Service'), href: '#' },
-      { label: t('footer.links.Cookie Policy'), href: '#' },
+      { label: t('footer.links.Privacy Policy'), to: '/privacy' },
+      { label: t('footer.links.Terms of Service'), to: '/terms' },
+      { label: t('footer.links.Cookie Policy'), to: '/privacy#cookies' },
     ],
   }
 
@@ -63,23 +64,26 @@ export default function Footer() {
                 {section}
               </h4>
               <ul style={{ listStyle: 'none', padding: 0, margin: 0, display: 'flex', flexDirection: 'column', gap: '0.625rem' }}>
-                {links.map(link => (
-                  <li key={link.label}>
-                    <a
-                      href={link.href}
-                      style={{
-                        color: 'var(--color-footer-link)',
-                        textDecoration: 'none',
-                        fontSize: '0.875rem',
-                        transition: 'color 0.2s',
-                      }}
-                      onMouseEnter={e => e.target.style.color = 'var(--color-footer-link-hover)'}
-                      onMouseLeave={e => e.target.style.color = 'var(--color-footer-link)'}
-                    >
-                      {link.label}
-                    </a>
-                  </li>
-                ))}
+                {links.map(link => {
+                  const LinkTag = link.to ? Link : 'a'
+                  return (
+                    <li key={link.label}>
+                      <LinkTag
+                        {...(link.to ? { to: link.to } : { href: link.href })}
+                        style={{
+                          color: 'var(--color-footer-link)',
+                          textDecoration: 'none',
+                          fontSize: '0.875rem',
+                          transition: 'color 0.2s',
+                        }}
+                        onMouseEnter={e => e.target.style.color = 'var(--color-footer-link-hover)'}
+                        onMouseLeave={e => e.target.style.color = 'var(--color-footer-link)'}
+                      >
+                        {link.label}
+                      </LinkTag>
+                    </li>
+                  )
+                })}
               </ul>
             </div>
           ))}

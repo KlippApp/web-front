@@ -85,7 +85,7 @@ describe('ProfilePage', () => {
     expect(init.method).toBe('PATCH')
   })
 
-  it('logs out after renaming the agency since the session token becomes invalid', async () => {
+  it('keeps the session and stores the new name after renaming the agency', async () => {
     globalThis.fetch = vi.fn().mockResolvedValueOnce({ ok: true, json: async () => ({}) })
     renderProfilePage()
     fireEvent.change(document.getElementById('prof-email'), { target: { value: 'agency@test.com' } })
@@ -96,9 +96,10 @@ describe('ProfilePage', () => {
     fireEvent.change(document.getElementById('prof-city'), { target: { value: 'Paris' } })
     fireEvent.change(document.getElementById('prof-agencyName'), { target: { value: 'New Name' } })
     fireEvent.click(screen.getByRole('button', { name: /save changes/i }))
-    await waitFor(() => expect(mockLogout).toHaveBeenCalled())
-    expect(mockNavigate).toHaveBeenCalledWith('/login')
-    expect(mockUpdateProfile).not.toHaveBeenCalled()
+    await waitFor(() => expect(screen.getByText('Information updated successfully.')).toBeInTheDocument())
+    expect(mockUpdateProfile).toHaveBeenCalledWith('New Name', 'Jean Dupont')
+    expect(mockLogout).not.toHaveBeenCalled()
+    expect(mockNavigate).not.toHaveBeenCalled()
   })
 
   it('shows error on agency info save failure', async () => {

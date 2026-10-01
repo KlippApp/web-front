@@ -60,10 +60,10 @@
 
 /* ─── Dark theme overrides ──────────────────────────────────────── */
 [data-theme="dark"] {
-  --color-surface: #111115;
-  --color-surface-alt: #17152A;
-  --color-panel: #1C1C22;
-  --color-line: rgba(255,255,255,0.1);
+  --color-surface: #1C1C23;
+  --color-surface-alt: #25213F;
+  --color-panel: #2B2B35;
+  --color-line: rgba(255,255,255,0.12);
   --color-bg: #000;
   --color-text-primary: #fff;
   --color-text-secondary: #D1D5DC;

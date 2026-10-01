@@ -231,13 +231,20 @@
         "actions": "Actions",
         "edit": "Modifier",
         "pending": "En attente",
-        "delete": "Supprimer"
+        "delete": "Supprimer",
+        "linkPending": "Invitation envoyée"
       },
       "deleteModal": {
         "title": "Supprimer l'agent ?",
         "message": "Êtes-vous sûr de vouloir supprimer \"{{name}}\" ? Cette action est irréversible.",
         "cancel": "Annuler",
         "confirm": "Supprimer"
+      },
+      "linkModal": {
+        "title": "Ce compte existe déjà",
+        "message": "Un compte Klipp utilise déjà {{email}}. Voulez-vous inviter cette personne à rejoindre votre agence en tant qu'agent ? Elle recevra un email et devra accepter avant que son compte soit rattaché.",
+        "cancel": "Annuler",
+        "confirm": "Envoyer l'invitation"
       }
     },
     "offices": {
@@ -373,6 +380,11 @@
     "errorMismatch": "Les mots de passe ne correspondent pas.",
     "errorGeneric": "Une erreur est survenue. Veuillez réessayer.",
     "successTitle": "Mot de passe créé !",
-    "successMessage": "Votre mot de passe a été créé avec succès. Vous pouvez maintenant utiliser l'application mobile."
+    "successMessage": "Votre mot de passe a été créé avec succès. Vous pouvez maintenant utiliser l'application mobile.",
+    "linkTitle": "Rejoindre {{agency}}",
+    "linkMessage": "Bonjour {{name}}, {{agency}} souhaite rattacher votre compte Klipp ({{email}}) à son agence en tant qu'agent. Votre compte et votre mot de passe restent inchangés.",
+    "linkAccept": "Accepter et devenir agent",
+    "linkSuccessTitle": "Vous êtes maintenant agent !",
+    "linkSuccessMessage": "Votre compte est rattaché à {{agency}}. Connectez-vous à l'app mobile comme d'habitude."
   }
 }

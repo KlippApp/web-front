@@ -37,7 +37,7 @@ export default function SetPasswordPage() {
       .then(r => r.json().then(data => ({ ok: r.ok, data })))
       .then(({ ok, data }) => {
         if (ok && data.valid) {
-          setAgentInfo({ name: data.name, email: data.email })
+          setAgentInfo({ name: data.name, email: data.email, link: !!data.link, agencyName: data.agency_name })
           setStatus('valid')
         } else {
           setStatus('invalid')
@@ -45,6 +45,27 @@ export default function SetPasswordPage() {
       })
       .catch(() => setStatus('invalid'))
   }, [isMock, token])
+
+  const handleAccept = async (e) => {
+    e.preventDefault()
+    setError('')
+    setStatus('submitting')
+    try {
+      const res = await fetch(`${API_URL}/agents/invitation/accept`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ token }),
+      })
+      if (res.ok) {
+        setStatus('done')
+        return
+      }
+      setError(apiErrorMessage(await res.json(), t('setPassword.errorGeneric')))
+    } catch {
+      setError(t('setPassword.errorGeneric'))
+    }
+    setStatus('valid')
+  }
 
   const handleSubmit = async (e) => {
     e.preventDefault()
@@ -119,7 +140,41 @@ export default function SetPasswordPage() {
           </>
         )}
 
-        {(status === 'valid' || status === 'submitting') && agentInfo && (
+        {(status === 'valid' || status === 'submitting') && agentInfo?.link && (
+          <>
+            <h1 style={{ fontSize: '1.5rem', fontWeight: 700, color: 'var(--color-text-primary)', marginBottom: '0.25rem' }}>
+              {t('setPassword.linkTitle', { agency: agentInfo.agencyName })}
+            </h1>
+            <p style={{ fontSize: '0.875rem', color: 'var(--color-text-secondary)', marginBottom: '1.75rem' }}>
+              {t('setPassword.linkMessage', { name: agentInfo.name, agency: agentInfo.agencyName, email: agentInfo.email })}
+            </p>
+            <form onSubmit={handleAccept} style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
+              {error && (
+                <p style={{ fontSize: '0.8rem', color: 'var(--color-input-error)', margin: 0 }}>{error}</p>
+              )}
+              <button
+                type="submit"
+                disabled={status === 'submitting'}
+                style={{
+                  padding: '0.75rem',
+                  borderRadius: '0.75rem',
+                  border: 'none',
+                  background: 'linear-gradient(135deg, #2B7FFF 0%, #8EC5FF 100%)',
+                  color: '#fff',
+                  fontWeight: 700,
+                  fontSize: '0.95rem',
+                  cursor: status === 'submitting' ? 'not-allowed' : 'pointer',
+                  opacity: status === 'submitting' ? 0.7 : 1,
+                  transition: 'opacity 0.2s',
+                }}
+              >
+                {status === 'submitting' ? t('setPassword.submitting') : t('setPassword.linkAccept')}
+              </button>
+            </form>
+          </>
+        )}
+
+        {(status === 'valid' || status === 'submitting') && agentInfo && !agentInfo.link && (
           <>
             <h1 style={{ fontSize: '1.5rem', fontWeight: 700, color: 'var(--color-text-primary)', marginBottom: '0.25rem' }}>
               {t('setPassword.title')}
@@ -210,10 +265,12 @@ export default function SetPasswordPage() {
               </svg>
             </div>
             <h1 style={{ fontSize: '1.5rem', fontWeight: 700, color: 'var(--color-text-primary)', marginBottom: '0.5rem', textAlign: 'center' }}>
-              {t('setPassword.successTitle')}
+              {t(agentInfo?.link ? 'setPassword.linkSuccessTitle' : 'setPassword.successTitle')}
             </h1>
             <p style={{ fontSize: '0.875rem', color: 'var(--color-text-secondary)', textAlign: 'center' }}>
-              {t('setPassword.successMessage')}
+              {agentInfo?.link
+                ? t('setPassword.linkSuccessMessage', { agency: agentInfo.agencyName })
+                : t('setPassword.successMessage')}
             </p>
           </>
         )}

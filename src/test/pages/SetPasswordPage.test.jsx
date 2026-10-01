@@ -77,4 +77,32 @@ describe('SetPasswordPage', () => {
 
     await waitFor(() => expect(screen.getByText('String should have at least 8 characters')).toBeInTheDocument())
   })
+
+  it('lets an existing account accept a link invitation without touching its password', async () => {
+    globalThis.fetch = vi.fn()
+      .mockResolvedValueOnce(ok({ valid: true, name: 'App User', email: 'app@user.fr', link: true, agency_name: 'Agence Test' }))
+      .mockResolvedValueOnce(ok({ message: 'Invitation accepted' }))
+    renderWithToken('link')
+    await waitFor(() => expect(screen.getByText('Join {{agency}}')).toBeInTheDocument())
+    expect(document.getElementById('set-password')).not.toBeInTheDocument()
+
+    fireEvent.click(screen.getByRole('button', { name: 'Accept and become an agent' }))
+
+    await waitFor(() => expect(screen.getByText('You are now an agent!')).toBeInTheDocument())
+    const [url, init] = fetch.mock.calls[1]
+    expect(url).toBe('http://api/agents/invitation/accept')
+    expect(JSON.parse(init.body)).toEqual({ token: 'link' })
+  })
+
+  it('shows the backend error when accepting fails', async () => {
+    globalThis.fetch = vi.fn()
+      .mockResolvedValueOnce(ok({ valid: true, name: 'App User', email: 'app@user.fr', link: true, agency_name: 'Agence Test' }))
+      .mockResolvedValueOnce({ ok: false, json: async () => ({ detail: 'The office of this invitation no longer exists' }) })
+    renderWithToken('link')
+    await waitFor(() => expect(screen.getByRole('button', { name: 'Accept and become an agent' })).toBeInTheDocument())
+
+    fireEvent.click(screen.getByRole('button', { name: 'Accept and become an agent' }))
+
+    await waitFor(() => expect(screen.getByText('The office of this invitation no longer exists')).toBeInTheDocument())
+  })
 })

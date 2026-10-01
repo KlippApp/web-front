@@ -217,6 +217,16 @@ const { mockChangeLanguage, mockT } = vi.hoisted(() => ({
       'setPassword.errorGeneric': 'An error occurred. Please try again.',
       'setPassword.successTitle': 'Password created!',
       'setPassword.successMessage': 'Your password has been set successfully. You can now use the mobile app.',
+      'portal.agents.list.linkPending': 'Invitation sent',
+      'portal.agents.linkModal.title': 'Account already exists',
+      'portal.agents.linkModal.message': 'A Klipp account already uses {{email}}. Do you want to invite this person to join your agency as an agent? They will receive an email and must accept before their account is linked.',
+      'portal.agents.linkModal.cancel': 'Cancel',
+      'portal.agents.linkModal.confirm': 'Send invitation',
+      'setPassword.linkTitle': 'Join {{agency}}',
+      'setPassword.linkMessage': 'Hello {{name}}, {{agency}} wants to link your Klipp account ({{email}}) to its agency as an agent. Your account and password stay the same.',
+      'setPassword.linkAccept': 'Accept and become an agent',
+      'setPassword.linkSuccessTitle': 'You are now an agent!',
+      'setPassword.linkSuccessMessage': 'Your account is now linked to {{agency}}. Sign in to the mobile app as usual.',
     }
     if (key === 'portal.dashboard.greeting') {
       return `Hello, ${options?.agency ?? ''}`

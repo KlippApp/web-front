@@ -2,7 +2,7 @@ import { useState, useCallback, useEffect } from 'react'
 import { useTranslation } from 'react-i18next'
 import { Plus, Users, X, Trash2, Camera } from 'lucide-react'
 import { useAuth } from '../hooks/useAuth.js'
-import API_URL, { DEV_BYPASS } from '../config/api.js'
+import API_URL, { DEV_BYPASS, authHeaders, apiErrorMessage } from '../config/api.js'
 import Dropdown from '../components/Dropdown.jsx'
 
 const inputStyle = {
@@ -49,7 +49,7 @@ function Field({ label, id, children }) {
   )
 }
 
-const emptyForm = { firstName: '', lastName: '', email: '', phone: '', countryCode: '+33', photo: null, physicalAgencyUuid: '' }
+const emptyForm = { firstName: '', lastName: '', email: '', phone: '', countryCode: '+33', photo: null, officeUuid: '' }
 
 export default function AgentsPage() {
   const { t } = useTranslation()
@@ -60,45 +60,40 @@ export default function AgentsPage() {
   const [loading, setLoading] = useState(false)
   const [form, setForm] = useState(emptyForm)
   const [confirmDelete, setConfirmDelete] = useState(null)
-
-  const authHeaders = { 'Content-Type': 'application/json', Authorization: `Bearer ${token}` }
+  const [error, setError] = useState('')
 
   useEffect(() => {
-    if (DEV_BYPASS || !API_URL) {
-      setAgents([])
-      setOffices([])
-      return
-    }
-    fetch(`${API_URL}/agents`, { headers: authHeaders })
+    if (DEV_BYPASS || !API_URL) return
+    // ponytail: single page of 100, add pagination if an agency outgrows it
+    fetch(`${API_URL}/agents?items_per_page=100`, { headers: authHeaders(token) })
       .then(r => r.json())
       .then(data => setAgents(data.items ?? []))
       .catch(() => {})
-    fetch(`${API_URL}/offices`, { headers: authHeaders })
+    fetch(`${API_URL}/offices?items_per_page=100`, { headers: authHeaders(token) })
       .then(r => r.json())
       .then(data => setOffices(data.items ?? []))
       .catch(() => {})
-  }, [])
+  }, [token])
 
   const closeForm = useCallback(() => {
     setForm(emptyForm)
+    setError('')
     setShowForm(false)
   }, [])
 
   const handleSubmit = useCallback(async (e) => {
     e.preventDefault()
-    if (!form.physicalAgencyUuid) return
+    if (!form.officeUuid) return
     setLoading(true)
     try {
       if (DEV_BYPASS || !API_URL) {
-        const office = offices.find(o => o.uuid === form.physicalAgencyUuid)
         setAgents(prev => [...prev, {
           uuid: Date.now().toString(),
           name: `${form.firstName} ${form.lastName}`,
           email: form.email,
           phone: `${form.countryCode}${form.phone}`,
           profile_image_url: form.photo,
-          physical_agency_uuid: form.physicalAgencyUuid || null,
-          physical_agency_name: office?.name ?? null,
+          office_uuid: form.officeUuid,
           has_set_password: false,
         }])
         closeForm()
@@ -106,7 +101,7 @@ export default function AgentsPage() {
       }
       const res = await fetch(`${API_URL}/agents`, {
         method: 'POST',
-        headers: authHeaders,
+        headers: authHeaders(token),
         body: JSON.stringify({
           first_name: form.firstName,
           last_name: form.lastName,
@@ -114,19 +109,22 @@ export default function AgentsPage() {
           phone: form.phone,
           country_code: form.countryCode,
           photo: form.photo,
-          physical_agency_uuid: form.physicalAgencyUuid || null,
+          office_uuid: form.officeUuid,
         }),
       })
       const data = await res.json()
-      if (res.ok) {
-        const office = offices.find(o => o.uuid === data.physical_agency_uuid)
-        setAgents(prev => [...prev, { ...data, physical_agency_name: office?.name ?? null }])
+      if (!res.ok) {
+        setError(apiErrorMessage(data, t('portal.profile.errorGeneric')))
+        return
       }
+      setAgents(prev => [...prev, data])
       closeForm()
+    } catch {
+      setError(t('portal.profile.errorGeneric'))
     } finally {
       setLoading(false)
     }
-  }, [form, offices, closeForm])
+  }, [form, token, closeForm, t])
 
   const handleDelete = useCallback(async () => {
     const agent = confirmDelete
@@ -135,9 +133,9 @@ export default function AgentsPage() {
       setAgents(prev => prev.filter(a => a.uuid !== agent.uuid))
       return
     }
-    await fetch(`${API_URL}/agents/${agent.uuid}`, { method: 'DELETE', headers: authHeaders })
+    await fetch(`${API_URL}/agents/${agent.uuid}`, { method: 'DELETE', headers: authHeaders(token) })
     setAgents(prev => prev.filter(a => a.uuid !== agent.uuid))
-  }, [confirmDelete])
+  }, [confirmDelete, token])
 
   const handlePhoneChange = (e) => {
     setForm(prev => ({ ...prev, phone: formatPhone(e.target.value) }))
@@ -152,14 +150,7 @@ export default function AgentsPage() {
     }
   }
 
-  const officeName = (agent) => {
-    if (agent.physical_agency_name) return agent.physical_agency_name
-    if (agent.physical_agency_uuid) {
-      const o = offices.find(o => o.uuid === agent.physical_agency_uuid)
-      return o?.name ?? '—'
-    }
-    return '—'
-  }
+  const officeName = (agent) => offices.find(o => o.uuid === agent.office_uuid)?.name ?? '—'
 
   return (
     <div className="dash-page-content">
@@ -426,11 +417,15 @@ export default function AgentsPage() {
               <Field label={t('portal.agents.form.office')} id="agent-office">
                 <Dropdown
                   options={offices.map(o => ({ value: o.uuid, label: o.name }))}
-                  value={form.physicalAgencyUuid}
-                  onChange={v => setForm(prev => ({ ...prev, physicalAgencyUuid: v }))}
+                  value={form.officeUuid}
+                  onChange={v => setForm(prev => ({ ...prev, officeUuid: v }))}
                   placeholder={t('portal.agents.form.officeNone')}
                 />
               </Field>
+
+              {error && (
+                <p role="alert" style={{ color: 'var(--color-input-error)', fontSize: '0.85rem', margin: 0 }}>{error}</p>
+              )}
 
               <div style={{ display: 'flex', gap: '0.75rem', marginTop: '0.5rem' }}>
                 <button
@@ -443,13 +438,13 @@ export default function AgentsPage() {
                   {t('portal.agents.form.cancel')}
                 </button>
                 <button
-                  type="submit" disabled={loading || !form.physicalAgencyUuid}
+                  type="submit" disabled={loading || !form.officeUuid}
                   style={{
                     flex: 1, padding: '0.625rem', borderRadius: '0.625rem', border: 'none',
                     background: 'linear-gradient(135deg, #2B7FFF 0%, #8EC5FF 100%)',
                     color: '#fff', fontWeight: 600,
-                    cursor: loading || !form.physicalAgencyUuid ? 'not-allowed' : 'pointer',
-                    opacity: loading || !form.physicalAgencyUuid ? 0.5 : 1,
+                    cursor: loading || !form.officeUuid ? 'not-allowed' : 'pointer',
+                    opacity: loading || !form.officeUuid ? 0.5 : 1,
                   }}
                 >
                   {t('portal.agents.form.submit')}

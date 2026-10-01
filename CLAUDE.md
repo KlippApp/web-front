@@ -82,6 +82,7 @@ Routes: `/login` → `/register` → `/dashboard/*` (protected by `ProtectedRout
 | Page | Route | Description |
 |------|-------|-------------|
 | `DashboardPage` | `/dashboard` | Stats + sales chart |
+| `ListingsPage` | `/dashboard/listings` | Agents' listings (`GET /agencies/listings`) as vertical covers, agent/type filters, preview modal with video, photos and likes over 30 days |
 | `AgentsPage` | `/dashboard/agents` | CRUD agents (photo, name, email, phone + country code) |
 | `OfficesPage` | `/dashboard/offices` | CRUD offices (photo, name, address, email, phone) |
 | `ProfilePage` | `/dashboard/profile` | Agency info form, change password, delete account |
@@ -149,6 +150,10 @@ Tests that cover the error path of bypassed handlers are marked `it.skip(...)` u
 |-----------|---------|
 | `ProtectedRoute` | Redirects to `/login` if not authenticated |
 | `DashboardLayout` | Sidebar + header shell, renders `<Outlet />` |
+| `LikesChart` | Likes per day area chart (recharts) — props: `likesPerDay`, `height` |
+| `ListingPreview` | Listing modal (video or photo, details, likes chart from `GET /agencies/listings/{uuid}`) — props: `listing`, `onClose` |
+| `ListingVideo` | Mux HLS player: native HLS when supported, else lazy-loaded `hls.js/light` — prop: `playbackId` |
+| `ListingStatus` | Online / processing / error pill — prop: `status` (from `listingStatus` in `src/utils/listing.js`) |
 
 ## Testing
 

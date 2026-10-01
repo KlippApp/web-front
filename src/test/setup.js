@@ -23,7 +23,6 @@ const { mockChangeLanguage, mockT } = vi.hoisted(() => ({
       'nav.screenshots': "Screenshots",
       'nav.agencies': "Agencies",
       'nav.clientPortal': "Agency portal",
-      'hero.badge': "Coming soon on iOS & Android",
       'hero.headline': "Real estate, on video",
       'hero.subtitle': "Tour the properties around you in seconds, keep the ones you love and contact the lister directly. For sale and for rent.",
       'hero.facts.video.value': "100%",

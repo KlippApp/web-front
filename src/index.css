@@ -27,9 +27,6 @@
   --color-portal-hover-bg: rgba(0,0,0,0.08);
   --color-portal-hover-border: rgba(0,0,0,0.2);
   --color-mobile-menu-bg: #ffffff;
-  --color-badge-bg: rgba(105,92,246,0.10);
-  --color-badge-border: rgba(105,92,246,0.25);
-  --color-badge-text: #695CF6;
   --color-icon-bg: rgba(105,92,246,0.10);
   --color-icon-color: #695CF6;
   --color-section-stripe: #f1f3f7;
@@ -80,9 +77,6 @@
   --color-portal-hover-bg: rgba(255,255,255,0.1);
   --color-portal-hover-border: rgba(255,255,255,0.3);
   --color-mobile-menu-bg: rgba(0,0,0,0.95);
-  --color-badge-bg: rgba(105,92,246,0.15);
-  --color-badge-border: rgba(105,92,246,0.3);
-  --color-badge-text: #B7AFFB;
   --color-icon-bg: rgba(105,92,246,0.15);
   --color-icon-color: #B7AFFB;
   --color-section-stripe: rgba(255,255,255,0.02);

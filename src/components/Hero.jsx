@@ -33,23 +33,6 @@ export default function Hero() {
 
           {/* Left column: text */}
           <div className="flex-1 text-center md:text-left">
-            {/* Badge */}
-            <div className="inline-flex items-center gap-2 mb-6"
-              style={{
-                background: 'var(--color-badge-bg)',
-                border: '1px solid var(--color-badge-border)',
-                borderRadius: '2rem',
-                padding: '0.375rem 1rem',
-                fontSize: '0.8rem',
-                fontWeight: 600,
-                color: 'var(--color-badge-text)',
-                letterSpacing: '0.05em',
-              }}
-            >
-              <span style={{ fontSize: '0.65rem' }}>●</span>
-              {t('hero.badge')}
-            </div>
-
             {/* Headline */}
             <h1
               style={{

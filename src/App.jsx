@@ -19,6 +19,8 @@ import DashboardPage from './pages/DashboardPage.jsx'
 import AgentsPage from './pages/AgentsPage.jsx'
 import OfficesPage from './pages/OfficesPage.jsx'
 import ProfilePage from './pages/ProfilePage.jsx'
+import PrivacyPage from './pages/PrivacyPage.jsx'
+import TermsPage from './pages/TermsPage.jsx'
 
 function LandingLayout() {
   const { i18n } = useTranslation()
@@ -57,6 +59,8 @@ export default function App() {
         <Route path="/" element={<LandingLayout />} />
         <Route path="/login" element={<LoginPage />} />
         <Route path="/register" element={<RegisterPage />} />
+        <Route path="/privacy" element={<PrivacyPage />} />
+        <Route path="/terms" element={<TermsPage />} />
         <Route element={<ProtectedRoute />}>
           <Route element={<DashboardLayout />}>
             <Route path="/dashboard" element={<DashboardPage />} />

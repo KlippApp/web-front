@@ -109,15 +109,12 @@ const { mockChangeLanguage, mockT } = vi.hoisted(() => ({
       'portal.dashboard.logout': 'Sign out',
       'portal.dashboard.nav.dashboard': 'Dashboard',
       'portal.dashboard.nav.profile': 'Agency profile',
-      'portal.dashboard.chart.title': 'Sales — Last 30 days',
-      'portal.dashboard.chart.sales_one': 'Sale',
-      'portal.dashboard.chart.sales_other': 'Sales',
-      'portal.dashboard.stats.messages.label': 'Messages',
-      'portal.dashboard.stats.messages.value': '0',
+      'portal.dashboard.chart.title': 'Likes received — Last 30 days',
+      'portal.dashboard.chart.likes_one': 'Like',
+      'portal.dashboard.chart.likes_other': 'Likes',
       'portal.dashboard.stats.activeListings.label': 'Active listings',
-      'portal.dashboard.stats.activeListings.value': '0',
-      'portal.dashboard.stats.monthlySales.label': 'Sales this month',
-      'portal.dashboard.stats.monthlySales.value': '0',
+      'portal.dashboard.stats.likes.label': 'Likes (30 days)',
+      'portal.dashboard.stats.agents.label': 'Agents',
       'portal.profile.title': 'Agency profile',
       'portal.profile.agencyInfoSection': 'Agency information',
       'portal.profile.passwordSection': 'Change password',
@@ -230,8 +227,8 @@ const { mockChangeLanguage, mockT } = vi.hoisted(() => ({
     if (key === 'portal.dashboard.greeting') {
       return `Hello, ${options?.agency ?? ''}`
     }
-    if (key === 'portal.dashboard.chart.sales') {
-      return options?.count === 1 ? 'Sale' : 'Sales'
+    if (key === 'portal.dashboard.chart.likes') {
+      return options?.count === 1 ? 'Like' : 'Likes'
     }
     return translations[key] || key
   }

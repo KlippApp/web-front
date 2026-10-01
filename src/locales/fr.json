@@ -154,22 +154,19 @@
         "profile": "Profil de l'agence"
       },
       "chart": {
-        "title": "Ventes — 30 derniers jours",
-        "sales_one": "Vente",
-        "sales_other": "Ventes"
+        "title": "J'aime reçus — 30 derniers jours",
+        "likes_one": "J'aime",
+        "likes_other": "J'aime"
       },
       "stats": {
-        "messages": {
-          "label": "Messages",
-          "value": "0"
-        },
         "activeListings": {
-          "label": "Annonces actives",
-          "value": "0"
+          "label": "Annonces actives"
         },
-        "monthlySales": {
-          "label": "Ventes ce mois",
-          "value": "0"
+        "likes": {
+          "label": "J'aime reçus (30 j)"
+        },
+        "agents": {
+          "label": "Agents"
         }
       }
     },

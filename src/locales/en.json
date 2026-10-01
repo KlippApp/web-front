@@ -84,7 +84,7 @@
         "profile": "Agency profile"
       },
       "chart": {
-        "title": "Likes received — Last 30 days",
+        "title": "Likes received in the last 30 days",
         "likes_one": "Like",
         "likes_other": "Likes"
       },
@@ -217,7 +217,7 @@
         },
         "purposes": {
           "title": "3. Purposes and legal bases",
-          "body": "• Creating and managing your agency account — performance of contract.\n• Displaying your agents and offices in the Klipp app — performance of contract.\n• Service security and abuse prevention — legitimate interest.\n• Remembering your preferences (theme, language) — consent."
+          "body": "• Creating and managing your agency account: performance of contract.\n• Displaying your agents and offices in the Klipp app: performance of contract.\n• Service security and abuse prevention: legitimate interest.\n• Remembering your preferences (theme, language): consent."
         },
         "retention": {
           "title": "4. Retention",
@@ -229,7 +229,7 @@
         },
         "cookies": {
           "title": "6. Cookies and local storage",
-          "body": "We use no advertising or analytics cookies.\n\n• cookie_consent — remembers your cookie choice (12 months).\n• theme — remembers light or dark theme, only if you accepted cookies (12 months).\n• i18next — remembers your language, only if you accepted cookies (12 months).\n\nWhen you are signed in to the agency portal, your session token is kept in your browser's local storage. It is strictly necessary for the service to work and is removed when you sign out."
+          "body": "We use no advertising or analytics cookies.\n\n• cookie_consent: remembers your cookie choice (12 months).\n• theme: remembers light or dark theme, only if you accepted cookies (12 months).\n• i18next: remembers your language, only if you accepted cookies (12 months).\n\nWhen you are signed in to the agency portal, your session token is kept in your browser's local storage. It is strictly necessary for the service to work and is removed when you sign out."
         },
         "rights": {
           "title": "7. Your rights",
@@ -315,19 +315,19 @@
   },
   "seo": {
     "home": {
-      "title": "Klipp — Real estate, on video",
+      "title": "Klipp | Real estate, on video",
       "description": "Tour properties near you on video. Homes for sale and rent, favorites, saved searches and direct contact with the lister. iOS and Android app."
     },
     "privacy": {
-      "title": "Privacy Policy — Klipp",
+      "title": "Privacy Policy | Klipp",
       "description": "How Klipp collects, uses and protects your personal data."
     },
     "terms": {
-      "title": "Terms of Service — Klipp",
+      "title": "Terms of Service | Klipp",
       "description": "The terms of use of the Klipp app and agency portal."
     },
     "notFound": {
-      "title": "Page not found — Klipp",
+      "title": "Page not found | Klipp",
       "description": "This page doesn't exist."
     }
   },

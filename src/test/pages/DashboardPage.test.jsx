@@ -37,7 +37,7 @@ describe('DashboardPage', () => {
 
   it('renders the chart title', () => {
     renderDashboard()
-    expect(screen.getByText('Likes received — Last 30 days')).toBeInTheDocument()
+    expect(screen.getByText('Likes received in the last 30 days')).toBeInTheDocument()
   })
 
   it('renders the chart', () => {

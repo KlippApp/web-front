@@ -28,6 +28,6 @@ describe('Agencies', () => {
   it('shows a labelled preview of the agency portal', () => {
     renderAgencies()
     expect(screen.getByText('Preview of the agency portal')).toBeInTheDocument()
-    expect(screen.getByText('Likes received — Last 30 days')).toBeInTheDocument()
+    expect(screen.getByText('Likes received in the last 30 days')).toBeInTheDocument()
   })
 })
